@@ -1,4 +1,4 @@
-﻿-- MTS reports amounts in dollars; convert to $ millions. Refunds surge after the Feb-2026 IEEPA ruling.
+-- MTS reports amounts in dollars; convert to $ millions. Refunds surge after the Feb-2026 IEEPA ruling.
 select
     cast(date_trunc('month', record_date) as date)     as month_date,
     cast(record_date as date)                          as record_date,

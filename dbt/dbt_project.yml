@@ -1,4 +1,4 @@
-﻿name: tradewar
+name: tradewar
 version: "1.0.0"
 config-version: 2
 profile: tradewar
@@ -13,6 +13,12 @@ clean-targets: ["target", "dbt_packages"]
 vars:
   raw_root: "../data/raw"
   baseline_year: 2024
+  before_start: "2024-01-01"      # "Before" window = calendar 2024
+  before_end: "2024-12-31"
+  after_start: "2025-04-01"       # "After" window = Liberation Day month onward
+  prewar_date: "2026-02-27"       # last trading day before the Iran war
+  war_start: "2026-02-28"
+  us_households_m: 132.2          # US households (millions), Census CPS/ASEC 2024 - used for per-household duty cost
 
 models:
   tradewar:
@@ -40,3 +46,5 @@ seeds:
       +column_types: {event_date: date, brent_usd: double, verified: boolean}
     cpi_category_map:
       +column_types: {is_headline: boolean}
+    event_phases:
+      +column_types: {start_date: date, end_date: date, phase_order: integer}

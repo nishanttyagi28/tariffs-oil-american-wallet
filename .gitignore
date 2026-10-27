@@ -18,3 +18,7 @@ logs/
 # Power BI local caches
 powerbi/**/.pbi/localSettings.json
 powerbi/**/.pbi/cache.abf
+dbt/.user.yml
+warehouse/*.tmp
+warehouse/*.duckdb.tmp
+

@@ -1,4 +1,4 @@
-﻿"""OPTIONAL: US Census International Trade API (HS chapter x country x calculated duty).
+"""OPTIONAL: US Census International Trade API (HS chapter x country x calculated duty).
 Enabled only when CENSUS_API_KEY is set in E:/da-flagship/.env. Skipped gracefully otherwise.
 """
 import os

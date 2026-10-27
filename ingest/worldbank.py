@@ -1,4 +1,4 @@
-﻿"""World Bank WDI API (annual, no key)."""
+"""World Bank WDI API (annual, no key)."""
 import pandas as pd
 
 from .common import http_get, record, save

@@ -1,4 +1,4 @@
-﻿"""Statistics Canada table 12-10-0011-01: merchandise trade by principal partners (monthly, CAD).
+"""Statistics Canada table 12-10-0011-01: merchandise trade by principal partners (monthly, CAD).
 Full-table CSV download (no key): https://www150.statcan.gc.ca/n1/tbl/csv/12100011-eng.zip
 """
 import io

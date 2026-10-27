@@ -1,4 +1,4 @@
-﻿select
+select
     cast(period as date) as month_date,
     geo as reporter,
     partner,

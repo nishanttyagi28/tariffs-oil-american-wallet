@@ -1,4 +1,4 @@
-﻿country_iso3,start_date,end_date,headline_rate_pct,basis,verified
+country_iso3,start_date,end_date,headline_rate_pct,basis,verified
 CHN,2025-02-04,2025-03-03,10,IEEPA fentanyl,TRUE
 CHN,2025-03-04,2025-04-04,20,IEEPA fentanyl,TRUE
 CHN,2025-04-05,2025-04-09,30,fentanyl 20 + baseline 10 (Apr 9 interim 104% step not modelled),FALSE

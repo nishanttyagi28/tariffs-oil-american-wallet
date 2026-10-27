@@ -1,4 +1,4 @@
-﻿"""Run every ingest module in sequence (one process, low memory). Usage: python -m ingest.run_all [module ...]"""
+"""Run every ingest module in sequence (one process, low memory). Usage: python -m ingest.run_all [module ...]"""
 import importlib
 import logging
 import sys
@@ -6,7 +6,7 @@ import time
 import traceback
 
 MODULES = ["naturalearth", "crosswalk", "census_country", "census_hs", "eurostat", "statcan", "worldbank",
-           "bls", "fred", "treasury", "eia", "yahoo", "portwatch", "gscpi", "comtrade"]
+           "bls", "fred", "treasury", "eia", "yahoo", "portwatch", "portwatch_ref", "gscpi", "comtrade"]
 
 
 def main(argv=None) -> int:

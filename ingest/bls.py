@@ -1,4 +1,4 @@
-﻿"""BLS CPI-U by category via public API v1 (no key; 25 queries/day, <=25 series, <=10 years per query).
+"""BLS CPI-U by category via public API v1 (no key; 25 queries/day, <=25 series, <=10 years per query).
 One POST per run; cached for the day to respect the limit."""
 import json
 from datetime import date

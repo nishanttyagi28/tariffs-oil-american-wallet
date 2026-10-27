@@ -1,4 +1,4 @@
-﻿series_id,category,exposure_group,is_headline
+series_id,category,exposure_group,is_headline
 CUUR0000SA0,All items,aggregate,TRUE
 CUUR0000SA0L1E,Core (less food & energy),aggregate,TRUE
 CUUR0000SACL1E,Core goods (commodities less food & energy),tariff_exposed_goods,TRUE

@@ -1,4 +1,4 @@
-﻿"""Natural Earth 1:110m admin-0 countries: ISO codes, region, label point (map lat/long).
+"""Natural Earth 1:110m admin-0 countries: ISO codes, region, label point (map lat/long).
 Attributes are read straight from the shapefile's .dbf (no GIS dependency)."""
 import io
 import struct
@@ -6,7 +6,7 @@ import zipfile
 
 import pandas as pd
 
-from .common import http_get, record, save, save_bytes
+from .common import RAW, http_get, record, save, save_bytes
 
 URL = "https://naciscdn.org/naturalearth/110m/cultural/ne_110m_admin_0_countries.zip"
 KEEP = ["ADMIN", "NAME", "NAME_LONG", "FORMAL_EN", "ISO_A2", "ISO_A3", "ISO_A3_EH", "ADM0_A3", "CONTINENT",
@@ -25,7 +25,7 @@ def read_dbf(b: bytes) -> pd.DataFrame:
     for _ in range(n):
         rec, p = {}, off + 1
         for name, ftype, flen in fields:
-            raw = b[p:p + flen].decode("utf-8", errors="replace").strip()
+            raw = b[p:p + flen].decode("utf-8", errors="replace").replace("\x00", "").strip()
             p += flen
             if ftype in "NF":
                 try:
@@ -40,8 +40,12 @@ def read_dbf(b: bytes) -> pd.DataFrame:
 
 
 def run():
-    content = http_get(URL, ua="Mozilla/5.0").content
-    save_bytes(content, "naturalearth", "ne_110m_admin_0_countries.zip")
+    cached = RAW / "naturalearth" / "ne_110m_admin_0_countries.zip"
+    if cached.exists():
+        content = cached.read_bytes()
+    else:
+        content = http_get(URL, ua="Mozilla/5.0").content
+        save_bytes(content, "naturalearth", "ne_110m_admin_0_countries.zip")
     with zipfile.ZipFile(io.BytesIO(content)) as z:
         dbf = next(n for n in z.namelist() if n.lower().endswith(".dbf"))
         df = read_dbf(z.read(dbf))

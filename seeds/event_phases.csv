@@ -1,0 +1,12 @@
+phase_type,phase_code,phase_order,phase_name,start_date,end_date,description
+trade,T0,0,Pre-tariff baseline,2015-01-01,2025-01-19,Before the second Trump administration; 2024 is the comparison baseline year
+trade,T1,1,Threats & fentanyl tariffs,2025-01-20,2025-04-01,IEEPA fentanyl duties on China (Feb 4) and Canada/Mexico (Mar 4)
+trade,T2,2,Liberation Day escalation,2025-04-02,2025-05-11,10% global baseline; China escalation to 145%
+trade,T3,3,Truces & framework deals,2025-05-12,2025-08-06,Geneva truce with China; EU/Japan framework deals; country rates paused
+trade,T4,4,Reciprocal-tariff regime,2025-08-07,2026-02-19,Country reciprocal rates in force; India 50%; Canada 35%
+trade,T5,5,Post-SCOTUS Section 122,2026-02-20,2026-07-23,Supreme Court strikes IEEPA tariffs; temporary 10% Section 122 surcharge
+trade,T6,6,Section 301 regime,2026-07-24,2099-12-31,Section 122 expires; Section 301 forced-labor tariffs on 60 economies
+war,W0,0,Pre-war,2015-01-01,2026-02-27,Before US/Israel strikes on Iran
+war,W1,1,War & Hormuz closure,2026-02-28,2026-04-07,Strikes begin Feb 28; Iran restricts the Strait of Hormuz
+war,W2,2,Ceasefire & blockade,2026-04-08,2026-07-07,Apr 8 ceasefire; US naval blockade of Iranian ports; tankers resume late June
+war,W3,3,Truce collapse & renewed blockade,2026-07-08,2099-12-31,Truce collapses Jul 8; blockade reinstated; Saudi pipeline attack in September

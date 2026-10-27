@@ -1,4 +1,4 @@
-﻿"""FRED via fredgraph.csv (no key). NOTE: use a plain user agent - browser UAs time out."""
+"""FRED via fredgraph.csv (no key). NOTE: use a plain user agent - browser UAs time out."""
 import io
 import time
 

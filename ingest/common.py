@@ -1,4 +1,4 @@
-﻿"""Shared helpers for all ingest modules: HTTP with retry/backoff, raw paths, manifest."""
+"""Shared helpers for all ingest modules: HTTP with retry/backoff, raw paths, manifest."""
 from __future__ import annotations
 
 import json

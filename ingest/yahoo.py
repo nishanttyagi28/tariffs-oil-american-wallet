@@ -1,4 +1,4 @@
-﻿"""Yahoo Finance chart API (daily OHLC, no key) for global indices, commodities, FX, rates, volatility."""
+"""Yahoo Finance chart API (daily OHLC, no key) for global indices, commodities, FX, rates, volatility."""
 import time
 from datetime import datetime, timezone
 

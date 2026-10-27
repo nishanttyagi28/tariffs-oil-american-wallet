@@ -1,4 +1,4 @@
-﻿"""EIA spot prices (daily): Brent RBRTE and WTI RWTC history workbooks. No key."""
+"""EIA spot prices (daily): Brent RBRTE and WTI RWTC history workbooks. No key."""
 import io
 
 import pandas as pd

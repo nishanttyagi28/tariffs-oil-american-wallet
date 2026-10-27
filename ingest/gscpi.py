@@ -1,4 +1,4 @@
-﻿"""NY Fed Global Supply Chain Pressure Index (monthly, no key)."""
+"""NY Fed Global Supply Chain Pressure Index (monthly, no key)."""
 import io
 
 import pandas as pd

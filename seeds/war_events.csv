@@ -1,4 +1,4 @@
-﻿event_id,event_date,event,category,brent_usd,source_url,verified
+event_id,event_date,event,category,brent_usd,source_url,verified
 W01,2026-02-27,Last trading day before war,baseline,71.32,https://www.congress.gov/crs_external_products/R/PDF/R45281/R45281.6.pdf,TRUE
 W02,2026-02-28,US and Israel begin large-scale strikes on Iran; Khamenei killed on day one,war_start,,https://www.theguardian.com/world/ng-interactive/2026/aug/28/how-the-iran-war-unfolded-every-attack-and-oil-price-change-visualised,TRUE
 W03,2026-03-01,Iran restricts Strait of Hormuz; traffic falls ~80%,hormuz,,https://www.theguardian.com/world/ng-interactive/2026/aug/28/how-the-iran-war-unfolded-every-attack-and-oil-price-change-visualised,TRUE

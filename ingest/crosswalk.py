@@ -1,4 +1,4 @@
-﻿"""Census Schedule C country codes -> ISO2 -> ISO3 (via pycountry), joined to Natural Earth label points.
+"""Census Schedule C country codes -> ISO2 -> ISO3 (via pycountry), joined to Natural Earth label points.
 Small partners missing from Natural Earth 1:110m get hand-entered capital coordinates."""
 import re
 

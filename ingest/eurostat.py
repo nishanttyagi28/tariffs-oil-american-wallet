@@ -1,4 +1,4 @@
-﻿"""Eurostat - EU27 trade with partners by SITC (monthly, EUR millions). JSON-stat API, no key."""
+"""Eurostat - EU27 trade with partners by SITC (monthly, EUR millions). JSON-stat API, no key."""
 import itertools
 
 import pandas as pd

@@ -1,4 +1,4 @@
-﻿"""US Treasury Monthly Treasury Statement table 4: Customs Duties receipts (gross, refunds, net). No key."""
+"""US Treasury Monthly Treasury Statement table 4: Customs Duties receipts (gross, refunds, net). No key."""
 import pandas as pd
 
 from .common import http_get, record, save

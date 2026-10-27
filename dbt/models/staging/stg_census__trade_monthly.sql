@@ -1,4 +1,4 @@
-﻿-- US goods trade by Census partner code, monthly, millions USD (NSA)
+-- US goods trade by Census partner code, monthly, millions USD (NSA)
 select
     cast(period as date)              as month_date,
     cast(year as integer)             as year,

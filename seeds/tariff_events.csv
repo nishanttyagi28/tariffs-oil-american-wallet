@@ -1,4 +1,4 @@
-﻿event_id,event_date,effective_date,country_iso3,measure,authority,rate_pct,description,source_url,verified
+event_id,event_date,effective_date,country_iso3,measure,authority,rate_pct,description,source_url,verified
 T01,2025-02-01,2025-02-04,CHN,Fentanyl tariff,IEEPA,10,EO 14195: additional 10% duty on most Chinese imports,https://www.supremecourt.gov/opinions/25pdf/24-1287_new_3135.pdf,TRUE
 T02,2025-02-01,2025-03-04,CAN,Fentanyl tariff,IEEPA,25,EO 14193: 25% on most Canadian imports (effective date after 30-day pause not independently verified),https://www.supremecourt.gov/opinions/25pdf/24-1287_new_3135.pdf,FALSE
 T03,2025-02-01,2025-03-04,MEX,Fentanyl tariff,IEEPA,25,EO 14194: 25% on most Mexican imports (effective date after 30-day pause not independently verified),https://www.supremecourt.gov/opinions/25pdf/24-1287_new_3135.pdf,FALSE
