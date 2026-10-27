@@ -42,7 +42,7 @@ def log_experiment(task: str, params: dict, metrics: dict, artifacts: list[str] 
     ts = datetime.now().strftime("%Y%m%dT%H%M%S")
     rec = {"task": task, "run_at": ts, "params": params, "metrics": metrics, "artifacts": artifacts or []}
     p = EXP_DIR / f"{ts}_{task}.json"
-    p.write_text(json.dumps(rec, indent=2, default=_jsonable), encoding="utf-8")
+    p.write_text(json.dumps(rec, indent=2, default=_jsonable), encoding="utf-8", newline="\n")
     return p
 
 

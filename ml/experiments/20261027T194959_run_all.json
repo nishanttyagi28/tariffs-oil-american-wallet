@@ -1,0 +1,18 @@
+{
+  "task": "run_all",
+  "run_at": "20261027T194959",
+  "params": {
+    "skip_trade": false
+  },
+  "metrics": {
+    "seconds": {
+      "trade_counterfactual": 138.9,
+      "cpi_passthrough": 1.4,
+      "oil_shock": 4.7,
+      "vol_regimes": 11.8,
+      "forecasts": 8.3,
+      "total": 166.0
+    }
+  },
+  "artifacts": []
+}

@@ -29,7 +29,7 @@ def run() -> dict:
         prm = pd.Series(np.asarray(ms.params), index=ms.model.param_names)
         sig = np.sqrt([prm[f"sigma2[{i}]"] for i in range(2)])
         hi = int(np.argmax(sig))
-        p_hi = ms.smoothed_marginal_probabilities[:, hi]
+        p_hi = np.clip(ms.smoothed_marginal_probabilities[:, hi], 0.0, 1.0)  # remove float noise (e.g. 1+1e-16)
         P = ms.regime_transition
         stay_hi = float(P[hi, hi, 0]) if P.ndim == 3 else float(P[hi, hi])
         gp = None

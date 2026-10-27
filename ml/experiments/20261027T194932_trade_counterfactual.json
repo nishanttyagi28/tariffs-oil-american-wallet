@@ -1,0 +1,175 @@
+{
+  "task": "trade_counterfactual",
+  "run_at": "20261027T194932",
+  "params": {
+    "train_end": "2025-01-01",
+    "origins": [
+      "2021-12-01",
+      "2022-06-01",
+      "2022-12-01",
+      "2023-06-01",
+      "2023-12-01"
+    ],
+    "horizon_bt": 12,
+    "models": [
+      "seasonal_naive",
+      "ets",
+      "sarima",
+      "lightgbm"
+    ],
+    "lgbm": "global, seasonal log-diff, recursive"
+  },
+  "metrics": {
+    "best": [
+      {
+        "series_id": "CAN|exports",
+        "model": "ets",
+        "mape": 4.326441564776433,
+        "wape": 4.311626844406348,
+        "smape": 4.282437057004601
+      },
+      {
+        "series_id": "CAN|imports",
+        "model": "ets",
+        "mape": 6.501194156293002,
+        "wape": 6.598354422245855,
+        "smape": 6.569216887713035
+      },
+      {
+        "series_id": "CHN|exports",
+        "model": "sarima",
+        "mape": 7.891614712032353,
+        "wape": 7.8094832102491925,
+        "smape": 7.9454884552714535
+      },
+      {
+        "series_id": "CHN|imports",
+        "model": "ets",
+        "mape": 10.336219109590647,
+        "wape": 9.849690042339498,
+        "smape": 9.584068812062334
+      },
+      {
+        "series_id": "EU27|exports",
+        "model": "ets",
+        "mape": 5.97487645344651,
+        "wape": 6.018879205638261,
+        "smape": 6.143113452345875
+      },
+      {
+        "series_id": "EU27|imports",
+        "model": "sarima",
+        "mape": 4.818236664795203,
+        "wape": 4.8656452957725485,
+        "smape": 4.8390726995747855
+      },
+      {
+        "series_id": "IND|exports",
+        "model": "ets",
+        "mape": 9.968972977827063,
+        "wape": 9.960914788449237,
+        "smape": 9.9353218746679
+      },
+      {
+        "series_id": "IND|imports",
+        "model": "sarima",
+        "mape": 9.879236106192973,
+        "wape": 9.82444337477687,
+        "smape": 9.428805025202744
+      },
+      {
+        "series_id": "JPN|exports",
+        "model": "ets",
+        "mape": 5.774633419776224,
+        "wape": 5.861705389557506,
+        "smape": 5.794088421054566
+      },
+      {
+        "series_id": "JPN|imports",
+        "model": "ets",
+        "mape": 7.066740445962736,
+        "wape": 7.08604298973111,
+        "smape": 7.243918695351169
+      },
+      {
+        "series_id": "KOR|exports",
+        "model": "seasonal_naive",
+        "mape": 10.400113829853073,
+        "wape": 10.133786822035722,
+        "smape": 10.155777933497628
+      },
+      {
+        "series_id": "KOR|imports",
+        "model": "sarima",
+        "mape": 7.285918434680491,
+        "wape": 7.281481238793883,
+        "smape": 7.254889135589612
+      },
+      {
+        "series_id": "MEX|exports",
+        "model": "sarima",
+        "mape": 6.708998752420378,
+        "wape": 6.762041763584475,
+        "smape": 6.767005128489754
+      },
+      {
+        "series_id": "MEX|imports",
+        "model": "sarima",
+        "mape": 4.294784494948272,
+        "wape": 4.37194917440482,
+        "smape": 4.458017682472032
+      },
+      {
+        "series_id": "TOTAL|exports",
+        "model": "ets",
+        "mape": 4.522774825973733,
+        "wape": 4.552250228921411,
+        "smape": 4.570565950724552
+      },
+      {
+        "series_id": "TOTAL|imports",
+        "model": "ets",
+        "mape": 5.346049859818208,
+        "wape": 5.368438846700412,
+        "smape": 5.323540937975091
+      },
+      {
+        "series_id": "TWN|exports",
+        "model": "lightgbm",
+        "mape": 9.242576450894584,
+        "wape": 9.279082292988178,
+        "smape": 9.208149540244372
+      },
+      {
+        "series_id": "TWN|imports",
+        "model": "lightgbm",
+        "mape": 9.661123589568396,
+        "wape": 9.949062027414966,
+        "smape": 10.082344411468016
+      },
+      {
+        "series_id": "VNM|exports",
+        "model": "ets",
+        "mape": 15.944964927079301,
+        "wape": 16.86879431670379,
+        "smape": 15.95753678402382
+      },
+      {
+        "series_id": "VNM|imports",
+        "model": "ets",
+        "mape": 12.935385310487288,
+        "wape": 12.542058716913406,
+        "smape": 11.847161377423825
+      }
+    ],
+    "mean_wape_by_model": {
+      "ets": 8.49,
+      "lightgbm": 11.22,
+      "sarima": 8.53,
+      "seasonal_naive": 10.48
+    }
+  },
+  "artifacts": [
+    "docs/figures/trade_counterfactual.png"
+  ]
+}

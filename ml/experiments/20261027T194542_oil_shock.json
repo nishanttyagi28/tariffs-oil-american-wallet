@@ -1,0 +1,84 @@
+{
+  "task": "oil_shock",
+  "run_at": "20261027T194542",
+  "params": {
+    "events": {
+      "W02": "war",
+      "W08": "war",
+      "W09": "war",
+      "W14": "war",
+      "W16": "war",
+      "T05": "tariff",
+      "T07": "tariff",
+      "T19": "tariff"
+    },
+    "war_est_window": [
+      "2025-06-02",
+      "2026-01-30"
+    ],
+    "lp_horizon": 12
+  },
+  "metrics": {
+    "W02_D+5_car_pct": {
+      "000001.SS": -2.13,
+      "BZ=F": 30.78,
+      "CAD=X": -0.48,
+      "CL=F": 34.4,
+      "CNY=X": 0.94,
+      "DX-Y.NYB": 1.68,
+      "EURUSD=X": -2.58,
+      "GC=F": -4.09,
+      "INR=X": 0.77,
+      "JPY=X": 1.41,
+      "MXN=X": 4.91,
+      "NG=F": 7.91,
+      "^BSESN": -3.84,
+      "^FTSE": -6.32,
+      "^GDAXI": -6.83,
+      "^GSPC": -1.78,
+      "^GSPTSE": -3.08,
+      "^HSI": -4.97,
+      "^IXIC": 1.74,
+      "^MXX": -6.5,
+      "^N225": -11.71,
+      "^NSEI": -3.71,
+      "^STOXX50E": -7.29,
+      "^TNX": 4.44,
+      "^VIX": 25.22
+    },
+    "irf_peaks": [
+      {
+        "outcome": "gasoline_cpi",
+        "horizon_months": 2,
+        "irf": 5.716,
+        "ci_lo95": 4.229,
+        "ci_hi95": 7.202
+      },
+      {
+        "outcome": "headline_cpi",
+        "horizon_months": 11,
+        "irf": 0.472,
+        "ci_lo95": 0.137,
+        "ci_hi95": 0.807
+      },
+      {
+        "outcome": "usd_broad",
+        "horizon_months": 10,
+        "irf": 0.65,
+        "ci_lo95": 0.074,
+        "ci_hi95": 1.226
+      },
+      {
+        "outcome": "ust_10y",
+        "horizon_months": 9,
+        "irf": 0.179,
+        "ci_lo95": 0.058,
+        "ci_hi95": 0.301
+      }
+    ]
+  },
+  "artifacts": [
+    "docs/figures/event_study_war.png",
+    "docs/figures/irf_brent.png"
+  ]
+}

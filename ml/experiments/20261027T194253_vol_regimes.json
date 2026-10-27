@@ -1,0 +1,77 @@
+{
+  "task": "vol_regimes",
+  "run_at": "20261027T194253",
+  "params": {
+    "symbols": [
+      "^GSPC",
+      "^NSEI",
+      "BZ=F"
+    ],
+    "start": "2018-01-01"
+  },
+  "metrics": {
+    "params": [
+      {
+        "task": "vol_regimes",
+        "series_id": "^GSPC",
+        "model": "markov_switching_2state",
+        "calm_vol_ann_pct": 11.296,
+        "high_vol_ann_pct": 33.138,
+        "expected_high_regime_days": 17.859,
+        "aic": 6200.365,
+        "garch_alpha": 0.16,
+        "garch_beta": 0.821,
+        "garch_aic": 5956.074
+      },
+      {
+        "task": "vol_regimes",
+        "series_id": "^NSEI",
+        "model": "markov_switching_2state",
+        "calm_vol_ann_pct": 11.769,
+        "high_vol_ann_pct": 38.642,
+        "expected_high_regime_days": 8.141,
+        "aic": 5668.149,
+        "garch_alpha": 0.1,
+        "garch_beta": 0.862,
+        "garch_aic": 5520.521
+      },
+      {
+        "task": "vol_regimes",
+        "series_id": "BZ=F",
+        "model": "markov_switching_2state",
+        "calm_vol_ann_pct": 26.769,
+        "high_vol_ann_pct": 82.772,
+        "expected_high_regime_days": 8.963,
+        "aic": 9800.576,
+        "garch_alpha": 0.101,
+        "garch_beta": 0.878,
+        "garch_aic": 9619.203
+      }
+    ],
+    "share_high_vol_by_war_phase": {
+      "Ceasefire & blockade": {
+        "BZ=F": 0.79,
+        "^GSPC": 0.113,
+        "^NSEI": 0.033
+      },
+      "Pre-war": {
+        "BZ=F": 0.113,
+        "^GSPC": 0.24,
+        "^NSEI": 0.088
+      },
+      "Truce collapse & renewed blockade": {
+        "BZ=F": 0.354,
+        "^GSPC": 0.0,
+        "^NSEI": 0.0
+      },
+      "War & Hormuz closure": {
+        "BZ=F": 1.0,
+        "^GSPC": 0.269,
+        "^NSEI": 1.0
+      }
+    }
+  },
+  "artifacts": [
+    "docs/figures/vol_regimes.png"
+  ]
+}

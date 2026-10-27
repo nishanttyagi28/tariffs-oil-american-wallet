@@ -1,0 +1,56 @@
+version: 2
+# Tables written by `python -m ml.run_all` (run after the first `dbt build`). Tested here so Power BI
+# only ever reads validated ML outputs.
+sources:
+  - name: ml
+    schema: ml
+    tables:
+      - name: ml_trade_counterfactual
+        tests:
+          - unique_combination: {columns: [series_id, month_date]}
+        columns:
+          - name: series_id
+            tests: [not_null]
+          - name: flow
+            tests: [{accepted_values: {values: ['imports', 'exports']}}]
+          - name: counterfactual_musd
+            tests: [{value_between: {min_value: 0}}]
+      - name: ml_trade_effect_summary
+        tests:
+          - unique_combination: {columns: [effect_window, series_id]}
+      - name: ml_model_metrics
+        columns:
+          - name: task
+            tests: [not_null]
+          - name: metric
+            tests: [not_null]
+      - name: ml_cpi_passthrough
+        tests:
+          - unique_combination: {columns: [spec, term]}
+        columns:
+          - name: coef
+            tests: [not_null]
+      - name: ml_event_study
+        tests:
+          - unique_combination: {columns: [event_id, symbol, window_label]}
+        columns:
+          - name: car_pct
+            tests: [not_null]
+      - name: ml_irf
+        tests:
+          - unique_combination: {columns: [outcome, horizon_months]}
+        columns:
+          - name: horizon_months
+            tests: [{value_between: {min_value: 0, max_value: 24}}]
+      - name: ml_vol_regimes
+        tests:
+          - unique_combination: {columns: [symbol, trade_date]}
+        columns:
+          - name: prob_high_vol
+            tests: [not_null, {value_between: {min_value: 0, max_value: 1}}]
+      - name: ml_forecasts
+        columns:
+          - name: target
+            tests: [{accepted_values: {values: ['brent', 'gas', 'headline_cpi']}}]
+          - name: kind
+            tests: [{accepted_values: {values: ['actual', 'forecast', 'forecast_alt', 'reference_eia']}}]
