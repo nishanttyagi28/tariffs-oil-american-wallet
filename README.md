@@ -33,8 +33,8 @@ and a 7-page Power BI dashboard:
 | 4 | **Customs collections above the 2024 run-rate add up to about $2,618 per US household** (Feb 2025 - Sep 2026). | SQL #16, Power BI page 4 |
 | 5 | **Tariffs reached shelf prices:** tariff-exposed CPI goods inflated **3.8 pp/yr faster** than domestic categories (difference-in-differences, 95% CI 0.7-6.9, p = 0.017); a placebo start date shows no effect. | `ml/cpi_passthrough.py` |
 | 6 | **The Iran war was a textbook oil shock:** Hormuz transits fell ~95%; Brent's abnormal return was **+30.8% in 6 trading days** (t = 6.8) and peaked at $138.21 (7 Apr 2026); the S&P 500 lost **-10.1%** abnormal over 21 days, Nifty -10.1%, Nikkei -16.9%. | Event study, PortWatch, SQL #23-28 |
-| 7 | **A +10% Brent month lifts gasoline CPI ~5% within 3 months and headline CPI ~0.3% after 6 months.** | Local-projection IRFs, 2015-2026 |
-| 8 | **Outlook:** ARIMA keeps Brent near $124 in Q4 2026 vs EIA STEO's $105; headline CPI is projected at 3.9% YoY (Oct 2026), easing to 3.0% by Mar 2027. | `ml/forecasts.py` |
+| 7 | **A +10% Brent month lifts gasoline CPI by 4.9% after 3 months (95% CI 3.5-6.4%) and headline CPI by 0.3% after 6 months.** | Local-projection IRFs, 2015-2026 |
+| 8 | **Outlook:** ARIMA puts the Q4 2026 Brent average at $123.6/bbl (Oct actual + Nov-Dec forecast) vs EIA STEO's $105; headline CPI is projected at 3.9% YoY (Oct 2026), easing to 3.0% by Mar 2027. | `ml/forecasts.py` |
 
 Full write-up with every table and figure: **[docs/ml_report.md](docs/ml_report.md)**. Caveats are listed [below](#limitations--honest-caveats).
 
@@ -94,7 +94,7 @@ flowchart LR
 
 ## Data sources
 
-All sources are public and downloaded without an API key by `python -m ingest.run_all`. Raw files are **not** committed; re-run the ingest to get them.
+All sources are public and downloaded without an API key by `python -m ingest.run_all`. The raw snapshots used for the published numbers are committed in `data/raw` (about 21 MB, see [SETUP.md](SETUP.md)); re-run the ingest to refresh them.
 
 | Source | What | Link | Terms / licence |
 |---|---|---|---|
@@ -164,9 +164,9 @@ order by obs_date;
 | What would trade have been without tariffs? | Per series (20 = 10 partners x imports/exports): seasonal naive vs damped ETS vs SARIMA vs global LightGBM; best model by backtest, refit to Jan 2025 | Rolling-origin backtest, 5 origins x 12 months; mean **WAPE 8.5%** (ETS) vs 10.5% naive | China imports -43%, Taiwan +89%, Vietnam +37% |
 | Did tariffs raise consumer prices? | Difference-in-differences on 20 CPI categories with category + month fixed effects; event study; intensity regression | Clustered SEs, placebo start date, alternative controls | +3.8 pp/yr (p = 0.017); placebo n.s. |
 | How did markets react to events? | Event study (market model / constant mean), CAR with t-stats | Shared pre-war estimation window | Brent +30.8% (D0-D5), S&P 500 -10.1% (D0-D20) |
-| How does oil feed into prices? | Jorda local projections, HAC SEs | 95% bands, 0-12 months | Gasoline CPI +4.9% at 3 months per +10% Brent |
+| How does oil feed into prices? | Jorda local projections, HAC SEs | 95% bands, 0-12 months | Gasoline CPI +4.9% after 3 months per +10% Brent |
 | When were markets in a crisis regime? | 2-state Markov-switching variance model + GARCH(1,1)-t | AIC vs single-regime | Brent high-vol regime 82.8% annualised vol |
-| Where next? | ARIMA (log Brent) + AR(1) alternative; SARIMAX for CPI and gasoline with Brent as exogenous | 80/95% intervals; EIA STEO comparison | Brent ~$124 Q4-26; CPI 3.0% Mar-27 |
+| Where next? | ARIMA (log Brent) + AR(1) alternative; SARIMAX for CPI and gasoline with Brent as exogenous | 80/95% intervals; EIA STEO comparison | Brent $123.6 Q4-26 avg; CPI 3.0% Mar-27 |
 
 Model outputs are written back to the warehouse (`ml` schema), tested by dbt, and surfaced in Power BI.
 
@@ -214,7 +214,7 @@ Tests: `pytest -q` (warehouse tests skip if `warehouse/tradewar.duckdb` is absen
 │   ├── TradeWar.pbip, TradeWar.SemanticModel/ (TMDL), TradeWar.Report/ (PBIR)
 │   └── tools/           # Desktop GUI helpers (screenshots), crop_screenshots.py
 ├── tests/               # pytest: seeds, warehouse, SQL analyses, ML outputs
-├── tools/               # gen_data_dictionary.py
+├── tools/               # gen_data_dictionary.py, secret_scan.py
 ├── docs/                # ml_report.md, data_dictionary.md, figures/, sql_outputs/, screenshots/
 └── .github/workflows/ci.yml
 ```

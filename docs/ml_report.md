@@ -14,9 +14,9 @@ _Generated 2026-10-27 19:50 IST by `python -m ml.run_all`. All numbers are read 
    (DiD, 95% CI 0.7 to 6.9 pp, p = 0.017). A placebo test with a fake Feb 2023 start finds no effect.
    A 1 pp rise in the effective tariff rate goes with roughly 0.22 pp higher YoY inflation in exposed categories (95% CI 0.12 to 0.31).
 4. **The Iran war was a classic oil shock.** Over D0..D+5 Brent's abnormal return was +30.8% (t = 6.8).
-   Over D0..D+20 the S&P 500's was -10.1% (t = -3.3). Historically, a +10% Brent month lifts gasoline CPI by 5.2% within a month
-   and headline CPI by 0.31% after 6 months.
-5. **Outlook.** A random-walk-type ARIMA keeps Brent near current levels, about $123/bbl on average in Q4 2026, while EIA's Oct-2026 STEO has $105.
+   Over D0..D+20 the S&P 500's was -10.1% (t = -3.3). Historically, a +10% Brent month lifts gasoline CPI by 4.9% after 3 months (95% CI 3.5-6.4%)
+   and headline CPI by 0.3% after 6 months.
+5. **Outlook.** A random-walk-type ARIMA keeps Brent near current levels, about $123.6/bbl on average in Q4 2026 (Oct actual + Nov-Dec forecast), while EIA's Oct-2026 STEO has $105.
    A mean-reverting AR(1) alternative sits between the two. Headline CPI is projected at 3.9% YoY in Oct 2026
    and 3.0% in Mar 2027 (95% PI 0.9-5.2%).
 

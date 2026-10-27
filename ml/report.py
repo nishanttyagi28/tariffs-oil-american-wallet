@@ -55,7 +55,7 @@ def build(timings: dict | None = None) -> None:
     fc = read("select * from ml.ml_forecasts")
     f = fc[fc.kind.isin(["forecast", "forecast_alt"])][["target", "model", "month_date", "value", "lo80", "hi80", "lo95", "hi95", "yoy_value"]].round(3)
     q4 = fc[(fc.target == "brent") & (fc.kind.isin(["actual", "forecast"])) & (pd.to_datetime(fc.month_date) >= "2026-10-01") & (pd.to_datetime(fc.month_date) <= "2026-12-01")]
-    q4m = q4.groupby("kind")["value"].mean().mean() if len(q4) else float("nan")
+    q4m = q4.groupby("month_date")["value"].mean().mean() if len(q4) else float("nan")  # Oct-Dec: actual where known, else forecast
     hc = fc[(fc.target == "headline_cpi") & (fc.kind == "forecast")]
 
     def g(sid):
@@ -82,9 +82,9 @@ _Generated {datetime.now():%Y-%m-%d %H:%M} IST by `python -m ml.run_all`. All nu
    (DiD, 95% CI {main.ci_lo * 12:.1f} to {main.ci_hi * 12:.1f} pp, p = {main.p_value:.3f}). A placebo test with a fake Feb 2023 start finds no effect.
    A 1 pp rise in the effective tariff rate goes with roughly {inten.coef:.2f} pp higher YoY inflation in exposed categories (95% CI {inten.ci_lo:.2f} to {inten.ci_hi:.2f}).
 4. **The Iran war was a classic oil shock.** Over D0..D+5 Brent's abnormal return was {brent_car.car_pct:+.1f}% (t = {brent_car.t_stat:.1f}).
-   Over D0..D+20 the S&P 500's was {spx_car.car_pct:+.1f}% (t = {spx_car.t_stat:.1f}). Historically, a +10% Brent month lifts gasoline CPI by {gas.loc[1, 'irf']:.1f}% within a month
-   and headline CPI by {hcp.loc[6, 'irf']:.2f}% after 6 months.
-5. **Outlook.** A random-walk-type ARIMA keeps Brent near current levels, about ${q4m:,.0f}/bbl on average in Q4 2026, while EIA's Oct-2026 STEO has $105.
+   Over D0..D+20 the S&P 500's was {spx_car.car_pct:+.1f}% (t = {spx_car.t_stat:.1f}). Historically, a +10% Brent month lifts gasoline CPI by {gas.loc[3, 'irf']:.1f}% after 3 months (95% CI {gas.loc[3, 'ci_lo95']:.1f}-{gas.loc[3, 'ci_hi95']:.1f}%)
+   and headline CPI by {hcp.loc[6, 'irf']:.1f}% after 6 months.
+5. **Outlook.** A random-walk-type ARIMA keeps Brent near current levels, about ${q4m:,.1f}/bbl on average in Q4 2026 (Oct actual + Nov-Dec forecast), while EIA's Oct-2026 STEO has $105.
    A mean-reverting AR(1) alternative sits between the two. Headline CPI is projected at {hc.yoy_value.iloc[0] * 100:.1f}% YoY in {pd.to_datetime(hc.month_date.iloc[0]):%b %Y}
    and {hc.yoy_value.iloc[-1] * 100:.1f}% in {pd.to_datetime(hc.month_date.iloc[-1]):%b %Y} (95% PI {hc.yoy_lo95.iloc[-1] * 100:.1f}-{hc.yoy_hi95.iloc[-1] * 100:.1f}%).
 

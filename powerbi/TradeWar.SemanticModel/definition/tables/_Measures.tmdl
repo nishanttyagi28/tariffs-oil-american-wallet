@@ -497,10 +497,10 @@ table _Measures
 		displayFolder: Oil
 		lineageTag: c237057b-2ffd-5c19-a4ea-c11d65769264
 
-	measure 'Gasoline IRF 1m (%)' = CALCULATE ( [IRF (%)], IRF[Outcome] = "gasoline_cpi", IRF[Horizon Months] = 1 )
+	measure 'Gasoline IRF 3m (%)' = CALCULATE ( [IRF (%)], IRF[Outcome] = "gasoline_cpi", IRF[Horizon Months] = 3 )
 		formatString: +0.0;-0.0
 		displayFolder: Oil
-		lineageTag: cddbcd21-ebf7-5bce-8ba7-6ed36d8a7451
+		lineageTag: b84a0dd6-2804-5364-8fee-9087e63688c3
 
 	measure 'Days Since War Began' = DATEDIFF ( DATE(2026, 2, 28), TODAY (), DAY )
 		formatString: #,0
@@ -682,23 +682,33 @@ table _Measures
 		lineageTag: 59831fd2-7793-5651-9c7e-99c9b10bbf3f
 
 	measure 'Brent Forecast Q4 2026 ($)' =
-			CALCULATE ( AVERAGE ( Forecasts[Value] ), REMOVEFILTERS ( Forecasts ), REMOVEFILTERS ( 'Date' ), Forecasts[Target] = "brent",
-			    Forecasts[Kind] = "forecast", Forecasts[Month] >= DATE ( 2026, 10, 1 ), Forecasts[Month] <= DATE ( 2026, 12, 1 ) )
-		formatString: $#,0.00
+			VAR t = CALCULATETABLE ( Forecasts, REMOVEFILTERS ( Forecasts ), REMOVEFILTERS ( 'Date' ), Forecasts[Target] = "brent",
+			    Forecasts[Kind] IN { "actual", "forecast" }, Forecasts[Month] >= DATE ( 2026, 10, 1 ), Forecasts[Month] <= DATE ( 2026, 12, 1 ) )
+			VAR months = SUMMARIZE ( t, Forecasts[Month] )
+			RETURN AVERAGEX ( months,
+			    VAR m = Forecasts[Month]
+			    VAR a = MAXX ( FILTER ( t, Forecasts[Month] = m && Forecasts[Kind] = "actual" ), Forecasts[Value] )
+			    RETURN IF ( ISBLANK ( a ), MAXX ( FILTER ( t, Forecasts[Month] = m ), Forecasts[Value] ), a ) )
+		formatString: $#,0.0
 		displayFolder: Forecast & ML
 		lineageTag: dc97a5ad-3b14-5f44-b6db-9995c564f119
 
 	measure 'Brent AR(1) Q4 2026 ($)' =
-			CALCULATE ( AVERAGE ( Forecasts[Value] ), REMOVEFILTERS ( Forecasts ), REMOVEFILTERS ( 'Date' ), Forecasts[Target] = "brent",
-			    Forecasts[Kind] = "forecast_alt", Forecasts[Month] >= DATE ( 2026, 10, 1 ), Forecasts[Month] <= DATE ( 2026, 12, 1 ) )
-		formatString: $#,0.00
+			VAR t = CALCULATETABLE ( Forecasts, REMOVEFILTERS ( Forecasts ), REMOVEFILTERS ( 'Date' ), Forecasts[Target] = "brent",
+			    Forecasts[Kind] IN { "actual", "forecast_alt" }, Forecasts[Month] >= DATE ( 2026, 10, 1 ), Forecasts[Month] <= DATE ( 2026, 12, 1 ) )
+			VAR months = SUMMARIZE ( t, Forecasts[Month] )
+			RETURN AVERAGEX ( months,
+			    VAR m = Forecasts[Month]
+			    VAR a = MAXX ( FILTER ( t, Forecasts[Month] = m && Forecasts[Kind] = "actual" ), Forecasts[Value] )
+			    RETURN IF ( ISBLANK ( a ), MAXX ( FILTER ( t, Forecasts[Month] = m ), Forecasts[Value] ), a ) )
+		formatString: $#,0.0
 		displayFolder: Forecast & ML
 		lineageTag: c76fe35e-2513-58a2-8150-b7f55389c25e
 
 	measure 'EIA Brent 4Q26 ($)' =
 			CALCULATE ( AVERAGE ( Forecasts[Value] ), REMOVEFILTERS ( Forecasts ), REMOVEFILTERS ( 'Date' ), Forecasts[Kind] = "reference_eia",
 			    Forecasts[Target] = "brent", CONTAINSSTRING ( Forecasts[Model], "4Q26" ) )
-		formatString: $#,0.00
+		formatString: $#,0.0
 		displayFolder: Forecast & ML
 		lineageTag: 70ca45b9-738c-577d-86c9-4f8489263301
 

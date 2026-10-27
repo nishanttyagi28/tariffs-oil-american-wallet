@@ -28,7 +28,7 @@
               },
               "queryRef": "_Measures.Brent Forecast Q4 2026 ($)",
               "nativeQueryRef": "Brent Forecast Q4 2026 ($)",
-              "displayName": "Brent Q4 2026, ARIMA ($/bbl)"
+              "displayName": "Brent Q4 2026 avg, ARIMA ($/bbl)"
             }
           ]
         }

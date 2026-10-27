@@ -10,6 +10,7 @@ BN = "$#,0.0;-$#,0.0;$0.0"
 BN0 = "$#,0;-$#,0;$0"
 USD = "$#,0.00"
 USD0 = "$#,0"
+USD1 = "$#,0.0"
 NUM1 = "#,0.0"
 NUM0 = "#,0"
 PP = "+0.0;-0.0;0.0"
@@ -163,7 +164,7 @@ m("Hormuz Latest vs Pre-war %", F, SPCT, latest("'Oil Shock'", "Date", "[Hormuz 
 m("IRF (%)", F, "0.00", "AVERAGE ( IRF[IRF] )")
 m("IRF Lo 95", F, "0.00", "AVERAGE ( IRF[CI Lo 95] )")
 m("IRF Hi 95", F, "0.00", "AVERAGE ( IRF[CI Hi 95] )")
-m("Gasoline IRF 1m (%)", F, "+0.0;-0.0", "CALCULATE ( [IRF (%)], IRF[Outcome] = \"gasoline_cpi\", IRF[Horizon Months] = 1 )")
+m("Gasoline IRF 3m (%)", F, "+0.0;-0.0", "CALCULATE ( [IRF (%)], IRF[Outcome] = \"gasoline_cpi\", IRF[Horizon Months] = 3 )")
 m("Days Since War Began", F, NUM0, f"DATEDIFF ( {WAR}, TODAY (), DAY )")
 m("Oil Title", F, "",
   "\"Brent & WTI in 2026 ($/bbl): Brent latest \" & FORMAT ( [Brent Latest ($/bbl)], \"$0.0\" ) & \" (\" &\n"
@@ -214,9 +215,23 @@ def _fc(target: str, kind: str, d0: str, d1: str, col: str = "Value", extra: str
 
 
 Q4 = ("DATE ( 2026, 10, 1 )", "DATE ( 2026, 12, 1 )")
-m("Brent Forecast Q4 2026 ($)", F, USD, _fc("brent", "forecast", *Q4))
-m("Brent AR(1) Q4 2026 ($)", F, USD, _fc("brent", "forecast_alt", *Q4))
-m("EIA Brent 4Q26 ($)", F, USD,
+
+
+def _q4(kind: str) -> str:
+    """Average of Brent over Oct-Dec 2026: the actual where already known, else the model's forecast."""
+    return ("VAR t = CALCULATETABLE ( Forecasts, REMOVEFILTERS ( Forecasts ), REMOVEFILTERS ( 'Date' ), Forecasts[Target] = \"brent\",\n"
+            f"    Forecasts[Kind] IN {{ \"actual\", \"{kind}\" }}, Forecasts[Month] >= {Q4[0]}, Forecasts[Month] <= {Q4[1]} )\n"
+            "VAR months = SUMMARIZE ( t, Forecasts[Month] )\n"
+            "RETURN AVERAGEX ( months,\n"
+            "    VAR m = Forecasts[Month]\n"
+            "    VAR a = MAXX ( FILTER ( t, Forecasts[Month] = m && Forecasts[Kind] = \"actual\" ), Forecasts[Value] )\n"
+            "    RETURN IF ( ISBLANK ( a ), MAXX ( FILTER ( t, Forecasts[Month] = m ), Forecasts[Value] ), a ) )")
+
+
+# Q4 average over Oct-Dec months: the actual where already known (Oct), else the model forecast, same as docs/ml_report.md.
+m("Brent Forecast Q4 2026 ($)", F, USD1, _q4("forecast"))
+m("Brent AR(1) Q4 2026 ($)", F, USD1, _q4("forecast_alt"))
+m("EIA Brent 4Q26 ($)", F, USD1,
   "CALCULATE ( AVERAGE ( Forecasts[Value] ), REMOVEFILTERS ( Forecasts ), REMOVEFILTERS ( 'Date' ), Forecasts[Kind] = \"reference_eia\",\n"
   "    Forecasts[Target] = \"brent\", CONTAINSSTRING ( Forecasts[Model], \"4Q26\" ) )")
 m("Brent Forecast minus EIA ($)", F, "+$0.0;-$0.0", "[Brent Forecast Q4 2026 ($)] - [EIA Brent 4Q26 ($)]")

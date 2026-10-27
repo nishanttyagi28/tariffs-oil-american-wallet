@@ -28,7 +28,7 @@
               },
               "queryRef": "_Measures.Brent AR(1) Q4 2026 ($)",
               "nativeQueryRef": "Brent AR(1) Q4 2026 ($)",
-              "displayName": "Brent Q4 2026, AR(1) ($/bbl)"
+              "displayName": "Brent Q4 2026 avg, AR(1) ($/bbl)"
             }
           ]
         }

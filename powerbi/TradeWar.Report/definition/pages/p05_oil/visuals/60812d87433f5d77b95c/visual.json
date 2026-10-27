@@ -1,6 +1,6 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
-  "name": "630f23e425f658cb8f0d",
+  "name": "60812d87433f5d77b95c",
   "position": {
     "x": 1064,
     "y": 108,
@@ -23,12 +23,12 @@
                       "Entity": "_Measures"
                     }
                   },
-                  "Property": "Gasoline IRF 1m (%)"
+                  "Property": "Gasoline IRF 3m (%)"
                 }
               },
-              "queryRef": "_Measures.Gasoline IRF 1m (%)",
-              "nativeQueryRef": "Gasoline IRF 1m (%)",
-              "displayName": "Gas CPI after +10% Brent, 1m"
+              "queryRef": "_Measures.Gasoline IRF 3m (%)",
+              "nativeQueryRef": "Gasoline IRF 3m (%)",
+              "displayName": "Gas CPI after +10% Brent, 3m"
             }
           ]
         }

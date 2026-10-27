@@ -307,7 +307,7 @@ def build_pages() -> list[Page]:
                ("Brent vs Pre-war %", "Brent vs 27 Feb 2026"),
                ("Brent Drawdown from War Peak %", "Brent vs war-time peak"),
                ("Hormuz Latest vs Pre-war %", "Hormuz transits vs pre-war"),
-               ("Gasoline IRF 1m (%)", "Gas CPI after +10% Brent, 1m")], x0=228, total_w=1036)
+               ("Gasoline IRF 3m (%)", "Gas CPI after +10% Brent, 3m")], x0=228, total_w=1036)
     p.add("lineChart", 16, 204, 820, 256,
           roles={"Category": ["Date.Date"], "Y": [("m:Brent ($/bbl)", "Brent"), ("m:WTI ($/bbl)", "WTI")]},
           title="m:Oil Title",
@@ -371,8 +371,8 @@ def build_pages() -> list[Page]:
     # 7 ---------------------------------------------------------------- Forecast & scenarios
     p = Page("p07_forecast", "Forecast & Scenarios", "Counterfactual gaps with intervals, Brent and CPI forecasts vs EIA STEO, and model accuracy")
     p.slicer(16, 108, 200, 84, "Forecasts.Target Label", title="Forecast target", single=True)
-    p.kpi_row([("Brent Forecast Q4 2026 ($)", "Brent Q4 2026, ARIMA ($/bbl)"),
-               ("Brent AR(1) Q4 2026 ($)", "Brent Q4 2026, AR(1) ($/bbl)"),
+    p.kpi_row([("Brent Forecast Q4 2026 ($)", "Brent Q4 2026 avg, ARIMA ($/bbl)"),
+               ("Brent AR(1) Q4 2026 ($)", "Brent Q4 2026 avg, AR(1) ($/bbl)"),
                ("EIA Brent 4Q26 ($)", "EIA STEO Oct-26, 4Q26 ($/bbl)"),
                ("Headline CPI Forecast Oct-26 %", "Headline CPI YoY, Oct 2026 fcst"),
                ("Headline CPI Forecast Mar-27 %", "Headline CPI YoY, Mar 2027 fcst")], x0=228, total_w=1036)
