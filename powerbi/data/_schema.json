@@ -1,0 +1,2198 @@
+{
+ "Date": [
+  {
+   "source": "date_day",
+   "name": "Date",
+   "type": "DATE"
+  },
+  {
+   "source": "month_date",
+   "name": "Month",
+   "type": "DATE"
+  },
+  {
+   "source": "year",
+   "name": "Year",
+   "type": "BIGINT"
+  },
+  {
+   "source": "quarter",
+   "name": "Quarter",
+   "type": "BIGINT"
+  },
+  {
+   "source": "month",
+   "name": "Month No",
+   "type": "BIGINT"
+  },
+  {
+   "source": "month_label",
+   "name": "Month Label",
+   "type": "VARCHAR"
+  },
+  {
+   "source": "year_month",
+   "name": "Year-Month",
+   "type": "VARCHAR"
+  },
+  {
+   "source": "iso_dow",
+   "name": "Weekday No",
+   "type": "BIGINT"
+  },
+  {
+   "source": "is_weekend",
+   "name": "Is Weekend",
+   "type": "BOOLEAN"
+  },
+  {
+   "source": "is_month_start",
+   "name": "Is Month Start",
+   "type": "BOOLEAN"
+  },
+  {
+   "source": "trade_phase_code",
+   "name": "Trade Phase Code",
+   "type": "VARCHAR"
+  },
+  {
+   "source": "trade_phase_order",
+   "name": "Trade Phase Order",
+   "type": "INTEGER"
+  },
+  {
+   "source": "trade_phase",
+   "name": "Trade Phase",
+   "type": "VARCHAR"
+  },
+  {
+   "source": "war_phase_code",
+   "name": "War Phase Code",
+   "type": "VARCHAR"
+  },
+  {
+   "source": "war_phase_order",
+   "name": "War Phase Order",
+   "type": "INTEGER"
+  },
+  {
+   "source": "war_phase",
+   "name": "War Phase",
+   "type": "VARCHAR"
+  },
+  {
+   "source": "before_after",
+   "name": "Before After",
+   "type": "VARCHAR"
+  },
+  {
+   "source": "is_war_period",
+   "name": "Is War Period",
+   "type": "BOOLEAN"
+  }
+ ],
+ "Country": [
+  {
+   "source": "country_iso3",
+   "name": "ISO3",
+   "type": "VARCHAR"
+  },
+  {
+   "source": "country_name",
+   "name": "Country",
+   "type": "VARCHAR"
+  },
+  {
+   "source": "continent",
+   "name": "Continent",
+   "type": "VARCHAR"
+  },
+  {
+   "source": "region_wb",
+   "name": "Region WB",
+   "type": "VARCHAR"
+  },
+  {
+   "source": "subregion",
+   "name": "Subregion",
+   "type": "VARCHAR"
+  },
+  {
+   "source": "income_group",
+   "name": "Income Group",
+   "type": "VARCHAR"
+  },
+  {
+   "source": "pop_est",
+   "name": "Pop Est",
+   "type": "DOUBLE"
+  },
+  {
+   "source": "gdp_md_usd",
+   "name": "GDP $M USD",
+   "type": "DOUBLE"
+  },
+  {
+   "source": "latitude",
+   "name": "Latitude",
+   "type": "DOUBLE"
+  },
+  {
+   "source": "longitude",
+   "name": "Longitude",
+   "type": "DOUBLE"
+  },
+  {
+   "source": "is_us_trade_partner",
+   "name": "Is US Trade Partner",
+   "type": "BOOLEAN"
+  },
+  {
+   "source": "is_eu27",
+   "name": "Is EU27",
+   "type": "BOOLEAN"
+  },
+  {
+   "source": "partner_group",
+   "name": "Partner Group",
+   "type": "VARCHAR"
+  },
+  {
+   "source": "is_focus",
+   "name": "Is Focus",
+   "type": "BOOLEAN"
+  },
+  {
+   "source": "tariff_schedule_key",
+   "name": "Tariff Schedule Key",
+   "type": "VARCHAR"
+  },
+  {
+   "source": "entity_type",
+   "name": "Entity Type",
+   "type": "VARCHAR"
+  },
+  {
+   "source": "map_name",
+   "name": "Map Name",
+   "type": "VARCHAR"
+  }
+ ],
+ "CPI Category": [
+  {
+   "source": "series_id",
+   "name": "Series ID",
+   "type": "VARCHAR"
+  },
+  {
+   "source": "category",
+   "name": "Category",
+   "type": "VARCHAR"
+  },
+  {
+   "source": "exposure_group",
+   "name": "Exposure Group",
+   "type": "VARCHAR"
+  },
+  {
+   "source": "exposure_label",
+   "name": "Exposure",
+   "type": "VARCHAR"
+  },
+  {
+   "source": "is_headline",
+   "name": "Is Headline",
+   "type": "BOOLEAN"
+  }
+ ],
+ "Instrument": [
+  {
+   "source": "symbol",
+   "name": "Symbol",
+   "type": "VARCHAR"
+  },
+  {
+   "source": "instrument_name",
+   "name": "Instrument",
+   "type": "VARCHAR"
+  },
+  {
+   "source": "asset_class",
+   "name": "Asset Class",
+   "type": "VARCHAR"
+  },
+  {
+   "source": "country_iso3",
+   "name": "ISO3",
+   "type": "VARCHAR"
+  },
+  {
+   "source": "currency",
+   "name": "Currency",
+   "type": "VARCHAR"
+  },
+  {
+   "source": "market_region",
+   "name": "Market Region",
+   "type": "VARCHAR"
+  },
+  {
+   "source": "is_usd_base_fx",
+   "name": "Is USD Base Fx",
+   "type": "BOOLEAN"
+  },
+  {
+   "source": "first_date",
+   "name": "First Date",
+   "type": "DATE"
+  },
+  {
+   "source": "last_date",
+   "name": "Last Date",
+   "type": "DATE"
+  },
+  {
+   "source": "n_days",
+   "name": "# Days",
+   "type": "BIGINT"
+  }
+ ],
+ "Chokepoint": [
+  {
+   "source": "chokepoint_id",
+   "name": "Chokepoint ID",
+   "type": "VARCHAR"
+  },
+  {
+   "source": "chokepoint_name",
+   "name": "Chokepoint",
+   "type": "VARCHAR"
+  },
+  {
+   "source": "latitude",
+   "name": "Latitude",
+   "type": "DOUBLE"
+  },
+  {
+   "source": "longitude",
+   "name": "Longitude",
+   "type": "DOUBLE"
+  },
+  {
+   "source": "is_energy_route",
+   "name": "Is Energy Route",
+   "type": "BOOLEAN"
+  },
+  {
+   "source": "avg_daily_transits_2024",
+   "name": "Avg Daily Transits 2024",
+   "type": "DOUBLE"
+  },
+  {
+   "source": "avg_daily_transits_prewar",
+   "name": "Avg Daily Transits Prewar",
+   "type": "DOUBLE"
+  },
+  {
+   "source": "avg_daily_transits_last30",
+   "name": "Avg Daily Transits Last30",
+   "type": "DOUBLE"
+  },
+  {
+   "source": "avg_daily_tankers_2024",
+   "name": "Avg Daily Tankers 2024",
+   "type": "DOUBLE"
+  },
+  {
+   "source": "last30_vs_prewar_pct",
+   "name": "Last30 vs Prewar %",
+   "type": "DOUBLE"
+  },
+  {
+   "source": "last_obs_date",
+   "name": "Last Obs Date",
+   "type": "DATE"
+  }
+ ],
+ "Trade": [
+  {
+   "source": "month_date",
+   "name": "Month",
+   "type": "DATE"
+  },
+  {
+   "source": "country_iso3",
+   "name": "ISO3",
+   "type": "VARCHAR"
+  },
+  {
+   "source": "imports_musd",
+   "name": "Imports $M",
+   "type": "DOUBLE"
+  },
+  {
+   "source": "exports_musd",
+   "name": "Exports $M",
+   "type": "DOUBLE"
+  },
+  {
+   "source": "balance_musd",
+   "name": "Balance $M",
+   "type": "DOUBLE"
+  },
+  {
+   "source": "total_trade_musd",
+   "name": "Total Trade $M",
+   "type": "DOUBLE"
+  },
+  {
+   "source": "share_of_us_imports",
+   "name": "Share of US Imports",
+   "type": "DOUBLE"
+  },
+  {
+   "source": "share_of_us_exports",
+   "name": "Share of US Exports",
+   "type": "DOUBLE"
+  },
+  {
+   "source": "imports_r12m_musd",
+   "name": "Imports R12M $M",
+   "type": "DOUBLE"
+  },
+  {
+   "source": "exports_r12m_musd",
+   "name": "Exports R12M $M",
+   "type": "DOUBLE"
+  },
+  {
+   "source": "months_in_r12m",
+   "name": "Months in R12M",
+   "type": "BIGINT"
+  },
+  {
+   "source": "imports_musd_ly",
+   "name": "Imports $M LY",
+   "type": "DOUBLE"
+  },
+  {
+   "source": "exports_musd_ly",
+   "name": "Exports $M LY",
+   "type": "DOUBLE"
+  },
+  {
+   "source": "imports_yoy_pct",
+   "name": "Imports YoY %",
+   "type": "DOUBLE"
+  },
+  {
+   "source": "exports_yoy_pct",
+   "name": "Exports YoY %",
+   "type": "DOUBLE"
+  },
+  {
+   "source": "balance_yoy_change_musd",
+   "name": "Balance YoY Change $M",
+   "type": "DOUBLE"
+  }
+ ],
+ "Tariff Rate": [
+  {
+   "source": "month_date",
+   "name": "Month",
+   "type": "DATE"
+  },
+  {
+   "source": "country_iso3",
+   "name": "ISO3",
+   "type": "VARCHAR"
+  },
+  {
+   "source": "tariff_schedule_key",
+   "name": "Tariff Schedule Key",
+   "type": "VARCHAR"
+  },
+  {
+   "source": "statutory_rate_pct",
+   "name": "Statutory Rate %",
+   "type": "DOUBLE"
+  },
+  {
+   "source": "max_rate_in_month_pct",
+   "name": "Max Rate in Month %",
+   "type": "DOUBLE"
+  },
+  {
+   "source": "all_days_verified",
+   "name": "All Days Verified",
+   "type": "BOOLEAN"
+  },
+  {
+   "source": "effective_rate_gross_pct",
+   "name": "Effective Rate Gross %",
+   "type": "DOUBLE"
+  },
+  {
+   "source": "effective_rate_net_pct",
+   "name": "Effective Rate Net %",
+   "type": "DOUBLE"
+  }
+ ],
+ "Customs": [
+  {
+   "source": "month_date",
+   "name": "Month",
+   "type": "DATE"
+  },
+  {
+   "source": "gross_receipts_musd",
+   "name": "Gross Receipts $M",
+   "type": "DOUBLE"
+  },
+  {
+   "source": "refunds_musd",
+   "name": "Refunds $M",
+   "type": "DOUBLE"
+  },
+  {
+   "source": "net_receipts_musd",
+   "name": "Net Receipts $M",
+   "type": "DOUBLE"
+  },
+  {
+   "source": "us_imports_musd",
+   "name": "US Imports $M",
+   "type": "DOUBLE"
+  },
+  {
+   "source": "effective_rate_gross_pct",
+   "name": "Effective Rate Gross %",
+   "type": "DOUBLE"
+  },
+  {
+   "source": "effective_rate_net_pct",
+   "name": "Effective Rate Net %",
+   "type": "DOUBLE"
+  },
+  {
+   "source": "incremental_net_vs_2024_musd",
+   "name": "Incremental Net vs 2024 $M",
+   "type": "DOUBLE"
+  },
+  {
+   "source": "incremental_gross_vs_2024_musd",
+   "name": "Incremental Gross vs 2024 $M",
+   "type": "DOUBLE"
+  },
+  {
+   "source": "net_yoy_pct",
+   "name": "Net YoY %",
+   "type": "DOUBLE"
+  },
+  {
+   "source": "cum_incremental_net_since_feb2025_musd",
+   "name": "Cum Incremental Net since Feb2025 $M",
+   "type": "DOUBLE"
+  },
+  {
+   "source": "incremental_gross_per_household_usd",
+   "name": "Incremental Gross per Household USD",
+   "type": "DOUBLE"
+  },
+  {
+   "source": "incremental_net_per_household_usd",
+   "name": "Incremental Net per Household USD",
+   "type": "DOUBLE"
+  }
+ ],
+ "CPI": [
+  {
+   "source": "series_id",
+   "name": "Series ID",
+   "type": "VARCHAR"
+  },
+  {
+   "source": "month_date",
+   "name": "Month",
+   "type": "DATE"
+  },
+  {
+   "source": "index_value",
+   "name": "Index Value",
+   "type": "DOUBLE"
+  },
+  {
+   "source": "yoy_pct",
+   "name": "YoY %",
+   "type": "DOUBLE"
+  },
+  {
+   "source": "mom_pct",
+   "name": "MoM %",
+   "type": "DOUBLE"
+  },
+  {
+   "source": "index_jan2025_100",
+   "name": "Index Jan2025 100",
+   "type": "DOUBLE"
+  },
+  {
+   "source": "change_since_jan2025_pct",
+   "name": "Change since Jan2025 %",
+   "type": "DOUBLE"
+  },
+  {
+   "source": "change_vs_2024_avg_pct",
+   "name": "Change vs 2024 Avg %",
+   "type": "DOUBLE"
+  }
+ ],
+ "Macro": [
+  {
+   "source": "month_date",
+   "name": "Month",
+   "type": "DATE"
+  },
+  {
+   "source": "cpi_sa",
+   "name": "CPI SA",
+   "type": "DOUBLE"
+  },
+  {
+   "source": "core_cpi_sa",
+   "name": "Core CPI SA",
+   "type": "DOUBLE"
+  },
+  {
+   "source": "pce_index",
+   "name": "PCE Index",
+   "type": "DOUBLE"
+  },
+  {
+   "source": "core_pce_index",
+   "name": "Core PCE Index",
+   "type": "DOUBLE"
+  },
+  {
+   "source": "avg_hourly_earnings_usd",
+   "name": "Avg Hourly Earnings USD",
+   "type": "DOUBLE"
+  },
+  {
+   "source": "unemployment_rate_pct",
+   "name": "Unemployment Rate %",
+   "type": "DOUBLE"
+  },
+  {
+   "source": "nonfarm_payrolls_k",
+   "name": "Nonfarm Payrolls K",
+   "type": "DOUBLE"
+  },
+  {
+   "source": "consumer_sentiment",
+   "name": "Consumer Sentiment",
+   "type": "DOUBLE"
+  },
+  {
+   "source": "personal_saving_rate_pct",
+   "name": "Personal Saving Rate %",
+   "type": "DOUBLE"
+  },
+  {
+   "source": "retail_sales_musd",
+   "name": "Retail Sales $M",
+   "type": "DOUBLE"
+  },
+  {
+   "source": "import_price_index",
+   "name": "Import Price Index",
+   "type": "DOUBLE"
+  },
+  {
+   "source": "import_price_ex_food_fuel",
+   "name": "Import Price Ex Food Fuel",
+   "type": "DOUBLE"
+  },
+  {
+   "source": "import_price_ex_petroleum",
+   "name": "Import Price Ex Petroleum",
+   "type": "DOUBLE"
+  },
+  {
+   "source": "trade_balance_gs_musd",
+   "name": "Trade Balance G&S $M",
+   "type": "DOUBLE"
+  },
+  {
+   "source": "gasoline_usd_gal",
+   "name": "Gasoline USD Gal",
+   "type": "DOUBLE"
+  },
+  {
+   "source": "mortgage_30y_pct",
+   "name": "Mortgage 30y %",
+   "type": "DOUBLE"
+  },
+  {
+   "source": "fed_funds_pct",
+   "name": "Fed Funds %",
+   "type": "DOUBLE"
+  },
+  {
+   "source": "ust_10y_pct",
+   "name": "UST 10y %",
+   "type": "DOUBLE"
+  },
+  {
+   "source": "ust_2y_pct",
+   "name": "UST 2y %",
+   "type": "DOUBLE"
+  },
+  {
+   "source": "breakeven_10y_pct",
+   "name": "Breakeven 10y %",
+   "type": "DOUBLE"
+  },
+  {
+   "source": "usd_broad_index",
+   "name": "USD Broad Index",
+   "type": "DOUBLE"
+  },
+  {
+   "source": "vix",
+   "name": "VIX",
+   "type": "DOUBLE"
+  },
+  {
+   "source": "brent_usd",
+   "name": "Brent USD",
+   "type": "DOUBLE"
+  },
+  {
+   "source": "wti_usd",
+   "name": "WTI USD",
+   "type": "DOUBLE"
+  },
+  {
+   "source": "henry_hub_usd",
+   "name": "Henry Hub USD",
+   "type": "DOUBLE"
+  },
+  {
+   "source": "gscpi",
+   "name": "GSCPI",
+   "type": "DOUBLE"
+  },
+  {
+   "source": "yield_curve_10y2y_pct",
+   "name": "Yield Curve 10y2y %",
+   "type": "DOUBLE"
+  },
+  {
+   "source": "cpi_yoy_pct",
+   "name": "CPI YoY %",
+   "type": "DOUBLE"
+  },
+  {
+   "source": "core_cpi_yoy_pct",
+   "name": "Core CPI YoY %",
+   "type": "DOUBLE"
+  },
+  {
+   "source": "pce_yoy_pct",
+   "name": "PCE YoY %",
+   "type": "DOUBLE"
+  },
+  {
+   "source": "ahe_yoy_pct",
+   "name": "AHE YoY %",
+   "type": "DOUBLE"
+  },
+  {
+   "source": "real_wage_yoy_pct",
+   "name": "Real Wage YoY %",
+   "type": "DOUBLE"
+  },
+  {
+   "source": "retail_sales_yoy_pct",
+   "name": "Retail Sales YoY %",
+   "type": "DOUBLE"
+  },
+  {
+   "source": "import_price_ex_fuel_yoy_pct",
+   "name": "Import Price Ex Fuel YoY %",
+   "type": "DOUBLE"
+  },
+  {
+   "source": "gasoline_yoy_pct",
+   "name": "Gasoline YoY %",
+   "type": "DOUBLE"
+  },
+  {
+   "source": "cpi_mom_pct",
+   "name": "CPI MoM %",
+   "type": "DOUBLE"
+  }
+ ],
+ "Market": [
+  {
+   "source": "trade_date",
+   "name": "Date",
+   "type": "DATE"
+  },
+  {
+   "source": "symbol",
+   "name": "Symbol",
+   "type": "VARCHAR"
+  },
+  {
+   "source": "close",
+   "name": "Close",
+   "type": "DOUBLE"
+  },
+  {
+   "source": "adj_close",
+   "name": "Adj Close",
+   "type": "DOUBLE"
+  },
+  {
+   "source": "ret",
+   "name": "Ret",
+   "type": "DOUBLE"
+  },
+  {
+   "source": "log_ret",
+   "name": "Log Ret",
+   "type": "DOUBLE"
+  },
+  {
+   "source": "trading_day_idx",
+   "name": "Trading Day Idx",
+   "type": "BIGINT"
+  },
+  {
+   "source": "vol_21d_ann",
+   "name": "Vol 21d Ann.",
+   "type": "DOUBLE"
+  },
+  {
+   "source": "vol_63d_ann",
+   "name": "Vol 63d Ann.",
+   "type": "DOUBLE"
+  },
+  {
+   "source": "drawdown_pct",
+   "name": "Drawdown %",
+   "type": "DOUBLE"
+  },
+  {
+   "source": "drawdown_since_2025_pct",
+   "name": "Drawdown since 2025 %",
+   "type": "DOUBLE"
+  },
+  {
+   "source": "index_2025_100",
+   "name": "Index 2025 100",
+   "type": "DOUBLE"
+  },
+  {
+   "source": "index_prewar_100",
+   "name": "Index Prewar 100",
+   "type": "DOUBLE"
+  },
+  {
+   "source": "sma_50",
+   "name": "SMA 50",
+   "type": "DOUBLE"
+  },
+  {
+   "source": "sma_200",
+   "name": "SMA 200",
+   "type": "DOUBLE"
+  },
+  {
+   "source": "trend_vs_sma200",
+   "name": "Trend vs Sma200",
+   "type": "VARCHAR"
+  }
+ ],
+ "Oil": [
+  {
+   "source": "obs_date",
+   "name": "Date",
+   "type": "DATE"
+  },
+  {
+   "source": "brent_spot_usd",
+   "name": "Brent Spot USD",
+   "type": "DOUBLE"
+  },
+  {
+   "source": "wti_spot_usd",
+   "name": "WTI Spot USD",
+   "type": "DOUBLE"
+  },
+  {
+   "source": "brent_futures_usd",
+   "name": "Brent Futures USD",
+   "type": "DOUBLE"
+  },
+  {
+   "source": "wti_futures_usd",
+   "name": "WTI Futures USD",
+   "type": "DOUBLE"
+  },
+  {
+   "source": "brent_usd",
+   "name": "Brent USD",
+   "type": "DOUBLE"
+  },
+  {
+   "source": "wti_usd",
+   "name": "WTI USD",
+   "type": "DOUBLE"
+  },
+  {
+   "source": "brent_source",
+   "name": "Brent Source",
+   "type": "VARCHAR"
+  },
+  {
+   "source": "brent_wti_spread_usd",
+   "name": "Brent WTI Spread USD",
+   "type": "DOUBLE"
+  },
+  {
+   "source": "brent_ret",
+   "name": "Brent Ret",
+   "type": "DOUBLE"
+  },
+  {
+   "source": "brent_vol_21d_ann",
+   "name": "Brent Vol 21d Ann.",
+   "type": "DOUBLE"
+  },
+  {
+   "source": "brent_drawdown_52w_pct",
+   "name": "Brent Drawdown 52w %",
+   "type": "DOUBLE"
+  },
+  {
+   "source": "brent_vs_prewar_pct",
+   "name": "Brent vs Prewar %",
+   "type": "DOUBLE"
+  },
+  {
+   "source": "wti_vs_prewar_pct",
+   "name": "WTI vs Prewar %",
+   "type": "DOUBLE"
+  },
+  {
+   "source": "brent_7d_avg",
+   "name": "Brent 7d Avg",
+   "type": "DOUBLE"
+  }
+ ],
+ "Chokepoint Daily": [
+  {
+   "source": "obs_date",
+   "name": "Date",
+   "type": "DATE"
+  },
+  {
+   "source": "chokepoint_id",
+   "name": "Chokepoint ID",
+   "type": "VARCHAR"
+  },
+  {
+   "source": "n_total",
+   "name": "Transits",
+   "type": "INTEGER"
+  },
+  {
+   "source": "n_tanker",
+   "name": "Tanker Transits",
+   "type": "INTEGER"
+  },
+  {
+   "source": "n_container",
+   "name": "# Container",
+   "type": "INTEGER"
+  },
+  {
+   "source": "n_dry_bulk",
+   "name": "# Dry Bulk",
+   "type": "INTEGER"
+  },
+  {
+   "source": "n_cargo",
+   "name": "# Cargo",
+   "type": "INTEGER"
+  },
+  {
+   "source": "capacity_dwt",
+   "name": "Capacity DWT",
+   "type": "DOUBLE"
+  },
+  {
+   "source": "capacity_tanker_dwt",
+   "name": "Capacity Tanker DWT",
+   "type": "DOUBLE"
+  },
+  {
+   "source": "n_total_7d_avg",
+   "name": "Transits 7d Avg",
+   "type": "DOUBLE"
+  },
+  {
+   "source": "n_tanker_7d_avg",
+   "name": "Tanker Transits 7d Avg",
+   "type": "DOUBLE"
+  },
+  {
+   "source": "total_7d_vs_2024_pct",
+   "name": "Total 7d vs 2024 %",
+   "type": "DOUBLE"
+  },
+  {
+   "source": "total_7d_vs_prewar_pct",
+   "name": "Total 7d vs Prewar %",
+   "type": "DOUBLE"
+  },
+  {
+   "source": "tanker_7d_vs_prewar_pct",
+   "name": "Tanker 7d vs Prewar %",
+   "type": "DOUBLE"
+  }
+ ],
+ "Country Before After": [
+  {
+   "source": "country_iso3",
+   "name": "ISO3",
+   "type": "VARCHAR"
+  },
+  {
+   "source": "country_name",
+   "name": "Country",
+   "type": "VARCHAR"
+  },
+  {
+   "source": "partner_group",
+   "name": "Partner Group",
+   "type": "VARCHAR"
+  },
+  {
+   "source": "region_wb",
+   "name": "Region WB",
+   "type": "VARCHAR"
+  },
+  {
+   "source": "entity_type",
+   "name": "Entity Type",
+   "type": "VARCHAR"
+  },
+  {
+   "source": "is_focus",
+   "name": "Is Focus",
+   "type": "BOOLEAN"
+  },
+  {
+   "source": "latitude",
+   "name": "Latitude",
+   "type": "DOUBLE"
+  },
+  {
+   "source": "longitude",
+   "name": "Longitude",
+   "type": "DOUBLE"
+  },
+  {
+   "source": "imports_avg_before_musd",
+   "name": "Imports Avg Before $M",
+   "type": "DOUBLE"
+  },
+  {
+   "source": "imports_avg_after_musd",
+   "name": "Imports Avg After $M",
+   "type": "DOUBLE"
+  },
+  {
+   "source": "exports_avg_before_musd",
+   "name": "Exports Avg Before $M",
+   "type": "DOUBLE"
+  },
+  {
+   "source": "exports_avg_after_musd",
+   "name": "Exports Avg After $M",
+   "type": "DOUBLE"
+  },
+  {
+   "source": "balance_avg_before_musd",
+   "name": "Balance Avg Before $M",
+   "type": "DOUBLE"
+  },
+  {
+   "source": "balance_avg_after_musd",
+   "name": "Balance Avg After $M",
+   "type": "DOUBLE"
+  },
+  {
+   "source": "imports_ytd_musd",
+   "name": "Imports YTD $M",
+   "type": "DOUBLE"
+  },
+  {
+   "source": "imports_ytd_2024_musd",
+   "name": "Imports YTD 2024 $M",
+   "type": "DOUBLE"
+  },
+  {
+   "source": "exports_ytd_musd",
+   "name": "Exports YTD $M",
+   "type": "DOUBLE"
+  },
+  {
+   "source": "exports_ytd_2024_musd",
+   "name": "Exports YTD 2024 $M",
+   "type": "DOUBLE"
+  },
+  {
+   "source": "imports_2024_musd",
+   "name": "Imports 2024 $M",
+   "type": "DOUBLE"
+  },
+  {
+   "source": "imports_2025_musd",
+   "name": "Imports 2025 $M",
+   "type": "DOUBLE"
+  },
+  {
+   "source": "latest_month",
+   "name": "Latest Month",
+   "type": "DATE"
+  },
+  {
+   "source": "imports_change_pct",
+   "name": "Imports Change %",
+   "type": "DOUBLE"
+  },
+  {
+   "source": "exports_change_pct",
+   "name": "Exports Change %",
+   "type": "DOUBLE"
+  },
+  {
+   "source": "balance_change_musd",
+   "name": "Balance Change $M",
+   "type": "DOUBLE"
+  },
+  {
+   "source": "imports_ytd_vs_2024_pct",
+   "name": "Imports YTD vs 2024 %",
+   "type": "DOUBLE"
+  },
+  {
+   "source": "exports_ytd_vs_2024_pct",
+   "name": "Exports YTD vs 2024 %",
+   "type": "DOUBLE"
+  },
+  {
+   "source": "import_share_before",
+   "name": "Import Share Before",
+   "type": "DOUBLE"
+  },
+  {
+   "source": "import_share_after",
+   "name": "Import Share After",
+   "type": "DOUBLE"
+  },
+  {
+   "source": "import_share_change_pp",
+   "name": "Import Share Change pp",
+   "type": "DOUBLE"
+  },
+  {
+   "source": "import_rank_before",
+   "name": "Import Rank Before",
+   "type": "BIGINT"
+  },
+  {
+   "source": "import_rank_after",
+   "name": "Import Rank After",
+   "type": "BIGINT"
+  },
+  {
+   "source": "peak_statutory_rate_pct",
+   "name": "Peak Statutory Rate %",
+   "type": "DOUBLE"
+  },
+  {
+   "source": "current_statutory_rate_pct",
+   "name": "Current Statutory Rate %",
+   "type": "DOUBLE"
+  }
+ ],
+ "Trade Diversion": [
+  {
+   "source": "month_date",
+   "name": "Month",
+   "type": "DATE"
+  },
+  {
+   "source": "partner_group",
+   "name": "Partner Group",
+   "type": "VARCHAR"
+  },
+  {
+   "source": "imports_musd",
+   "name": "Imports $M",
+   "type": "DOUBLE"
+  },
+  {
+   "source": "exports_musd",
+   "name": "Exports $M",
+   "type": "DOUBLE"
+  },
+  {
+   "source": "balance_musd",
+   "name": "Balance $M",
+   "type": "DOUBLE"
+  },
+  {
+   "source": "us_imports_musd",
+   "name": "US Imports $M",
+   "type": "DOUBLE"
+  },
+  {
+   "source": "import_share",
+   "name": "Import Share",
+   "type": "DOUBLE"
+  },
+  {
+   "source": "import_share_2024",
+   "name": "Import Share 2024",
+   "type": "DOUBLE"
+  },
+  {
+   "source": "share_change_pp",
+   "name": "Share Change pp",
+   "type": "DOUBLE"
+  },
+  {
+   "source": "diverted_imports_musd",
+   "name": "Diverted Imports $M",
+   "type": "DOUBLE"
+  },
+  {
+   "source": "imports_r12m_musd",
+   "name": "Imports R12M $M",
+   "type": "DOUBLE"
+  },
+  {
+   "source": "rank_in_month",
+   "name": "Rank in Month",
+   "type": "BIGINT"
+  }
+ ],
+ "Household": [
+  {
+   "source": "month_date",
+   "name": "Month",
+   "type": "DATE"
+  },
+  {
+   "source": "cpi_headline_yoy_pct",
+   "name": "CPI Headline YoY %",
+   "type": "DOUBLE"
+  },
+  {
+   "source": "cpi_core_yoy_pct",
+   "name": "CPI Core YoY %",
+   "type": "DOUBLE"
+  },
+  {
+   "source": "cpi_core_goods_yoy_pct",
+   "name": "CPI Core Goods YoY %",
+   "type": "DOUBLE"
+  },
+  {
+   "source": "cpi_core_services_yoy_pct",
+   "name": "CPI Core Services YoY %",
+   "type": "DOUBLE"
+  },
+  {
+   "source": "cpi_gasoline_yoy_pct",
+   "name": "CPI Gasoline YoY %",
+   "type": "DOUBLE"
+  },
+  {
+   "source": "cpi_food_home_yoy_pct",
+   "name": "CPI Food Home YoY %",
+   "type": "DOUBLE"
+  },
+  {
+   "source": "tariff_exposed_goods_yoy_pct",
+   "name": "Tariff Exposed Goods YoY %",
+   "type": "DOUBLE"
+  },
+  {
+   "source": "domestic_services_yoy_pct",
+   "name": "Domestic Services YoY %",
+   "type": "DOUBLE"
+  },
+  {
+   "source": "tariff_exposed_since_jan2025_pct",
+   "name": "Tariff Exposed since Jan2025 %",
+   "type": "DOUBLE"
+  },
+  {
+   "source": "domestic_services_since_jan2025_pct",
+   "name": "Domestic Services since Jan2025 %",
+   "type": "DOUBLE"
+  },
+  {
+   "source": "tariff_goods_minus_services_pp",
+   "name": "Tariff Goods Minus Services pp",
+   "type": "DOUBLE"
+  },
+  {
+   "source": "avg_hourly_earnings_usd",
+   "name": "Avg Hourly Earnings USD",
+   "type": "DOUBLE"
+  },
+  {
+   "source": "ahe_yoy_pct",
+   "name": "AHE YoY %",
+   "type": "DOUBLE"
+  },
+  {
+   "source": "real_wage_yoy_pct",
+   "name": "Real Wage YoY %",
+   "type": "DOUBLE"
+  },
+  {
+   "source": "consumer_sentiment",
+   "name": "Consumer Sentiment",
+   "type": "DOUBLE"
+  },
+  {
+   "source": "personal_saving_rate_pct",
+   "name": "Personal Saving Rate %",
+   "type": "DOUBLE"
+  },
+  {
+   "source": "unemployment_rate_pct",
+   "name": "Unemployment Rate %",
+   "type": "DOUBLE"
+  },
+  {
+   "source": "retail_sales_yoy_pct",
+   "name": "Retail Sales YoY %",
+   "type": "DOUBLE"
+  },
+  {
+   "source": "mortgage_30y_pct",
+   "name": "Mortgage 30y %",
+   "type": "DOUBLE"
+  },
+  {
+   "source": "gasoline_usd_gal",
+   "name": "Gasoline USD Gal",
+   "type": "DOUBLE"
+  },
+  {
+   "source": "gasoline_yoy_pct",
+   "name": "Gasoline YoY %",
+   "type": "DOUBLE"
+  },
+  {
+   "source": "import_price_ex_fuel_yoy_pct",
+   "name": "Import Price Ex Fuel YoY %",
+   "type": "DOUBLE"
+  },
+  {
+   "source": "breakeven_10y_pct",
+   "name": "Breakeven 10y %",
+   "type": "DOUBLE"
+  },
+  {
+   "source": "customs_net_musd",
+   "name": "Customs Net $M",
+   "type": "DOUBLE"
+  },
+  {
+   "source": "customs_gross_musd",
+   "name": "Customs Gross $M",
+   "type": "DOUBLE"
+  },
+  {
+   "source": "customs_refunds_musd",
+   "name": "Customs Refunds $M",
+   "type": "DOUBLE"
+  },
+  {
+   "source": "effective_rate_gross_pct",
+   "name": "Effective Rate Gross %",
+   "type": "DOUBLE"
+  },
+  {
+   "source": "incremental_gross_per_household_usd",
+   "name": "Incremental Gross per Household USD",
+   "type": "DOUBLE"
+  },
+  {
+   "source": "incremental_net_per_household_usd",
+   "name": "Incremental Net per Household USD",
+   "type": "DOUBLE"
+  },
+  {
+   "source": "cum_incremental_gross_per_household_usd",
+   "name": "Cum Incremental Gross per Household USD",
+   "type": "DOUBLE"
+  },
+  {
+   "source": "trade_phase",
+   "name": "Trade Phase",
+   "type": "VARCHAR"
+  },
+  {
+   "source": "war_phase",
+   "name": "War Phase",
+   "type": "VARCHAR"
+  }
+ ],
+ "Oil Shock": [
+  {
+   "source": "obs_date",
+   "name": "Date",
+   "type": "DATE"
+  },
+  {
+   "source": "war_phase",
+   "name": "War Phase",
+   "type": "VARCHAR"
+  },
+  {
+   "source": "war_phase_order",
+   "name": "War Phase Order",
+   "type": "INTEGER"
+  },
+  {
+   "source": "brent_usd",
+   "name": "Brent USD",
+   "type": "DOUBLE"
+  },
+  {
+   "source": "wti_usd",
+   "name": "WTI USD",
+   "type": "DOUBLE"
+  },
+  {
+   "source": "brent_source",
+   "name": "Brent Source",
+   "type": "VARCHAR"
+  },
+  {
+   "source": "brent_vs_prewar_pct",
+   "name": "Brent vs Prewar %",
+   "type": "DOUBLE"
+  },
+  {
+   "source": "wti_vs_prewar_pct",
+   "name": "WTI vs Prewar %",
+   "type": "DOUBLE"
+  },
+  {
+   "source": "brent_vol_21d_ann",
+   "name": "Brent Vol 21d Ann.",
+   "type": "DOUBLE"
+  },
+  {
+   "source": "brent_7d_avg",
+   "name": "Brent 7d Avg",
+   "type": "DOUBLE"
+  },
+  {
+   "source": "hormuz_transits",
+   "name": "Hormuz Transits",
+   "type": "INTEGER"
+  },
+  {
+   "source": "hormuz_tankers",
+   "name": "Hormuz Tankers",
+   "type": "INTEGER"
+  },
+  {
+   "source": "hormuz_transits_7d",
+   "name": "Hormuz Transits 7d",
+   "type": "DOUBLE"
+  },
+  {
+   "source": "hormuz_tankers_7d",
+   "name": "Hormuz Tankers 7d",
+   "type": "DOUBLE"
+  },
+  {
+   "source": "hormuz_7d_vs_prewar_pct",
+   "name": "Hormuz 7d vs Prewar %",
+   "type": "DOUBLE"
+  },
+  {
+   "source": "bab_el_mandeb_transits_7d",
+   "name": "Bab El Mandeb Transits 7d",
+   "type": "DOUBLE"
+  },
+  {
+   "source": "vix",
+   "name": "VIX",
+   "type": "DOUBLE"
+  },
+  {
+   "source": "sp500_prewar_100",
+   "name": "S&P 500 Prewar 100",
+   "type": "DOUBLE"
+  },
+  {
+   "source": "gold_usd",
+   "name": "Gold USD",
+   "type": "DOUBLE"
+  },
+  {
+   "source": "dxy",
+   "name": "DXY",
+   "type": "DOUBLE"
+  },
+  {
+   "source": "war_event",
+   "name": "War Event",
+   "type": "VARCHAR"
+  },
+  {
+   "source": "war_event_category",
+   "name": "War Event Category",
+   "type": "VARCHAR"
+  },
+  {
+   "source": "gasoline_usd_gal",
+   "name": "Gasoline USD Gal",
+   "type": "DOUBLE"
+  },
+  {
+   "source": "is_war_period",
+   "name": "Is War Period",
+   "type": "BOOLEAN"
+  }
+ ],
+ "Events": [
+  {
+   "source": "event_id",
+   "name": "Event ID",
+   "type": "VARCHAR"
+  },
+  {
+   "source": "event_date",
+   "name": "Event Date",
+   "type": "DATE"
+  },
+  {
+   "source": "event_family",
+   "name": "Event Family",
+   "type": "VARCHAR"
+  },
+  {
+   "source": "event",
+   "name": "Event",
+   "type": "VARCHAR"
+  },
+  {
+   "source": "country_iso3",
+   "name": "ISO3",
+   "type": "VARCHAR"
+  },
+  {
+   "source": "rate_pct",
+   "name": "Rate %",
+   "type": "DOUBLE"
+  },
+  {
+   "source": "description",
+   "name": "Description",
+   "type": "VARCHAR"
+  },
+  {
+   "source": "source_url",
+   "name": "Source URL",
+   "type": "VARCHAR"
+  }
+ ],
+ "Partner": [
+  {
+   "source": "partner_code",
+   "name": "Partner Code",
+   "type": "VARCHAR"
+  },
+  {
+   "source": "partner",
+   "name": "Partner",
+   "type": "VARCHAR"
+  },
+  {
+   "source": "tariff_iso3",
+   "name": "Tariff ISO3",
+   "type": "VARCHAR"
+  },
+  {
+   "source": "partner_order",
+   "name": "Partner Order",
+   "type": "INTEGER"
+  }
+ ],
+ "Trade Metric": [
+  {
+   "source": "metric",
+   "name": "Metric",
+   "type": "VARCHAR"
+  },
+  {
+   "source": "metric_order",
+   "name": "Metric Order",
+   "type": "INTEGER"
+  }
+ ],
+ "Counterfactual": [
+  {
+   "source": "series_id",
+   "name": "Series ID",
+   "type": "VARCHAR"
+  },
+  {
+   "source": "partner_code",
+   "name": "Partner Code",
+   "type": "VARCHAR"
+  },
+  {
+   "source": "partner",
+   "name": "Partner",
+   "type": "VARCHAR"
+  },
+  {
+   "source": "flow",
+   "name": "Flow",
+   "type": "VARCHAR"
+  },
+  {
+   "source": "month_date",
+   "name": "Month",
+   "type": "DATE"
+  },
+  {
+   "source": "actual_musd",
+   "name": "Actual $M",
+   "type": "DOUBLE"
+  },
+  {
+   "source": "is_post",
+   "name": "Is Post-Tariff",
+   "type": "BOOLEAN"
+  },
+  {
+   "source": "best_model",
+   "name": "Best Model",
+   "type": "VARCHAR"
+  },
+  {
+   "source": "horizon",
+   "name": "Horizon",
+   "type": "DOUBLE"
+  },
+  {
+   "source": "counterfactual_musd",
+   "name": "Counterfactual $M",
+   "type": "DOUBLE"
+  },
+  {
+   "source": "cf_lo80",
+   "name": "CF Lo 80",
+   "type": "DOUBLE"
+  },
+  {
+   "source": "cf_hi80",
+   "name": "CF Hi 80",
+   "type": "DOUBLE"
+  },
+  {
+   "source": "cf_lo95",
+   "name": "CF Lo 95",
+   "type": "DOUBLE"
+  },
+  {
+   "source": "cf_hi95",
+   "name": "CF Hi 95",
+   "type": "DOUBLE"
+  },
+  {
+   "source": "cf_seasonal_naive",
+   "name": "CF Seasonal Naive",
+   "type": "DOUBLE"
+  },
+  {
+   "source": "cf_ets",
+   "name": "CF ETS",
+   "type": "DOUBLE"
+  },
+  {
+   "source": "cf_sarima",
+   "name": "CF SARIMA",
+   "type": "DOUBLE"
+  },
+  {
+   "source": "cf_lightgbm",
+   "name": "CF LightGBM",
+   "type": "DOUBLE"
+  },
+  {
+   "source": "effect_musd",
+   "name": "Effect $M",
+   "type": "DOUBLE"
+  },
+  {
+   "source": "effect_lo95",
+   "name": "Effect Lo 95",
+   "type": "DOUBLE"
+  },
+  {
+   "source": "effect_hi95",
+   "name": "Effect Hi 95",
+   "type": "DOUBLE"
+  },
+  {
+   "source": "effect_lo80",
+   "name": "Effect Lo 80",
+   "type": "DOUBLE"
+  },
+  {
+   "source": "effect_hi80",
+   "name": "Effect Hi 80",
+   "type": "DOUBLE"
+  },
+  {
+   "source": "effect_pct",
+   "name": "Effect %",
+   "type": "DOUBLE"
+  }
+ ],
+ "Tariff Effect": [
+  {
+   "source": "partner_code",
+   "name": "Partner Code",
+   "type": "VARCHAR"
+  },
+  {
+   "source": "series_id",
+   "name": "Series ID",
+   "type": "VARCHAR"
+  },
+  {
+   "source": "partner",
+   "name": "Partner",
+   "type": "VARCHAR"
+  },
+  {
+   "source": "flow",
+   "name": "Flow",
+   "type": "VARCHAR"
+  },
+  {
+   "source": "best_model",
+   "name": "Best Model",
+   "type": "VARCHAR"
+  },
+  {
+   "source": "months",
+   "name": "Months",
+   "type": "BIGINT"
+  },
+  {
+   "source": "actual_musd",
+   "name": "Actual $M",
+   "type": "DOUBLE"
+  },
+  {
+   "source": "counterfactual_musd",
+   "name": "Counterfactual $M",
+   "type": "DOUBLE"
+  },
+  {
+   "source": "cf_lo95",
+   "name": "CF Lo 95",
+   "type": "DOUBLE"
+  },
+  {
+   "source": "cf_hi95",
+   "name": "CF Hi 95",
+   "type": "DOUBLE"
+  },
+  {
+   "source": "cf_lo80",
+   "name": "CF Lo 80",
+   "type": "DOUBLE"
+  },
+  {
+   "source": "cf_hi80",
+   "name": "CF Hi 80",
+   "type": "DOUBLE"
+  },
+  {
+   "source": "effect_window",
+   "name": "Effect Window",
+   "type": "VARCHAR"
+  },
+  {
+   "source": "effect_musd",
+   "name": "Effect $M",
+   "type": "DOUBLE"
+  },
+  {
+   "source": "effect_pct",
+   "name": "Effect %",
+   "type": "DOUBLE"
+  },
+  {
+   "source": "effect_lo95",
+   "name": "Effect Lo 95",
+   "type": "DOUBLE"
+  },
+  {
+   "source": "effect_hi95",
+   "name": "Effect Hi 95",
+   "type": "DOUBLE"
+  },
+  {
+   "source": "effect_lo80",
+   "name": "Effect Lo 80",
+   "type": "DOUBLE"
+  },
+  {
+   "source": "effect_hi80",
+   "name": "Effect Hi 80",
+   "type": "DOUBLE"
+  },
+  {
+   "source": "significant_95",
+   "name": "Significant 95",
+   "type": "BOOLEAN"
+  }
+ ],
+ "Model Metrics": [
+  {
+   "source": "task",
+   "name": "Task",
+   "type": "VARCHAR"
+  },
+  {
+   "source": "series_id",
+   "name": "Series ID",
+   "type": "VARCHAR"
+  },
+  {
+   "source": "model",
+   "name": "Model",
+   "type": "VARCHAR"
+  },
+  {
+   "source": "metric",
+   "name": "Metric",
+   "type": "VARCHAR"
+  },
+  {
+   "source": "value",
+   "name": "Value",
+   "type": "DOUBLE"
+  },
+  {
+   "source": "is_best",
+   "name": "Is Best",
+   "type": "BOOLEAN"
+  },
+  {
+   "source": "n_folds",
+   "name": "# Folds",
+   "type": "DOUBLE"
+  },
+  {
+   "source": "horizon_months",
+   "name": "Horizon Months",
+   "type": "DOUBLE"
+  }
+ ],
+ "Pass-through": [
+  {
+   "source": "spec",
+   "name": "Spec",
+   "type": "VARCHAR"
+  },
+  {
+   "source": "term",
+   "name": "Term",
+   "type": "VARCHAR"
+  },
+  {
+   "source": "coef",
+   "name": "Coef",
+   "type": "DOUBLE"
+  },
+  {
+   "source": "se",
+   "name": "SE",
+   "type": "DOUBLE"
+  },
+  {
+   "source": "ci_lo",
+   "name": "CI Lo",
+   "type": "DOUBLE"
+  },
+  {
+   "source": "ci_hi",
+   "name": "CI Hi",
+   "type": "DOUBLE"
+  },
+  {
+   "source": "p_value",
+   "name": "P Value",
+   "type": "DOUBLE"
+  },
+  {
+   "source": "n_obs",
+   "name": "# Obs",
+   "type": "BIGINT"
+  },
+  {
+   "source": "n_categories",
+   "name": "# Categories",
+   "type": "BIGINT"
+  },
+  {
+   "source": "cov_type",
+   "name": "Cov Type",
+   "type": "VARCHAR"
+  },
+  {
+   "source": "sample_start",
+   "name": "Sample Start",
+   "type": "DATE"
+  },
+  {
+   "source": "sample_end",
+   "name": "Sample End",
+   "type": "DATE"
+  },
+  {
+   "source": "notes",
+   "name": "Notes",
+   "type": "VARCHAR"
+  },
+  {
+   "source": "unit",
+   "name": "Unit",
+   "type": "VARCHAR"
+  },
+  {
+   "source": "rel_quarter",
+   "name": "Rel Quarter",
+   "type": "DOUBLE"
+  },
+  {
+   "source": "annualised_coef",
+   "name": "Annualised Coef",
+   "type": "DOUBLE"
+  }
+ ],
+ "Event Study": [
+  {
+   "source": "event_id",
+   "name": "Event ID",
+   "type": "VARCHAR"
+  },
+  {
+   "source": "event_date",
+   "name": "Event Date",
+   "type": "DATE"
+  },
+  {
+   "source": "event_name",
+   "name": "Event Name",
+   "type": "VARCHAR"
+  },
+  {
+   "source": "event_family",
+   "name": "Event Family",
+   "type": "VARCHAR"
+  },
+  {
+   "source": "symbol",
+   "name": "Symbol",
+   "type": "VARCHAR"
+  },
+  {
+   "source": "instrument_name",
+   "name": "Instrument",
+   "type": "VARCHAR"
+  },
+  {
+   "source": "asset_class",
+   "name": "Asset Class",
+   "type": "VARCHAR"
+  },
+  {
+   "source": "model_type",
+   "name": "Model Type",
+   "type": "VARCHAR"
+  },
+  {
+   "source": "beta",
+   "name": "Beta",
+   "type": "DOUBLE"
+  },
+  {
+   "source": "est_n_days",
+   "name": "Est # Days",
+   "type": "BIGINT"
+  },
+  {
+   "source": "window_label",
+   "name": "Window Label",
+   "type": "VARCHAR"
+  },
+  {
+   "source": "window_days",
+   "name": "Window Days",
+   "type": "BIGINT"
+  },
+  {
+   "source": "t0_date",
+   "name": "T0 Date",
+   "type": "DATE"
+  },
+  {
+   "source": "raw_return_pct",
+   "name": "Raw Return %",
+   "type": "DOUBLE"
+  },
+  {
+   "source": "car_pct",
+   "name": "CAR %",
+   "type": "DOUBLE"
+  },
+  {
+   "source": "t_stat",
+   "name": "T Stat",
+   "type": "DOUBLE"
+  },
+  {
+   "source": "p_value",
+   "name": "P Value",
+   "type": "DOUBLE"
+  },
+  {
+   "source": "significant_5pct",
+   "name": "Significant 5%",
+   "type": "BOOLEAN"
+  }
+ ],
+ "IRF": [
+  {
+   "source": "shock",
+   "name": "Shock",
+   "type": "VARCHAR"
+  },
+  {
+   "source": "outcome",
+   "name": "Outcome",
+   "type": "VARCHAR"
+  },
+  {
+   "source": "outcome_label",
+   "name": "Outcome Label",
+   "type": "VARCHAR"
+  },
+  {
+   "source": "units",
+   "name": "Units",
+   "type": "VARCHAR"
+  },
+  {
+   "source": "horizon_months",
+   "name": "Horizon Months",
+   "type": "BIGINT"
+  },
+  {
+   "source": "irf",
+   "name": "IRF",
+   "type": "DOUBLE"
+  },
+  {
+   "source": "se",
+   "name": "SE",
+   "type": "DOUBLE"
+  },
+  {
+   "source": "ci_lo90",
+   "name": "CI Lo 90",
+   "type": "DOUBLE"
+  },
+  {
+   "source": "ci_hi90",
+   "name": "CI Hi 90",
+   "type": "DOUBLE"
+  },
+  {
+   "source": "ci_lo95",
+   "name": "CI Lo 95",
+   "type": "DOUBLE"
+  },
+  {
+   "source": "ci_hi95",
+   "name": "CI Hi 95",
+   "type": "DOUBLE"
+  },
+  {
+   "source": "n_obs",
+   "name": "# Obs",
+   "type": "BIGINT"
+  },
+  {
+   "source": "method",
+   "name": "Method",
+   "type": "VARCHAR"
+  }
+ ],
+ "Vol Regimes": [
+  {
+   "source": "trade_date",
+   "name": "Date",
+   "type": "DATE"
+  },
+  {
+   "source": "symbol",
+   "name": "Symbol",
+   "type": "VARCHAR"
+  },
+  {
+   "source": "instrument_name",
+   "name": "Instrument",
+   "type": "VARCHAR"
+  },
+  {
+   "source": "ret_pct",
+   "name": "Ret %",
+   "type": "DOUBLE"
+  },
+  {
+   "source": "prob_high_vol",
+   "name": "Prob High Vol",
+   "type": "DOUBLE"
+  },
+  {
+   "source": "regime",
+   "name": "Regime",
+   "type": "VARCHAR"
+  },
+  {
+   "source": "garch_vol_ann_pct",
+   "name": "Garch Vol Ann. %",
+   "type": "DOUBLE"
+  },
+  {
+   "source": "trade_phase",
+   "name": "Trade Phase",
+   "type": "VARCHAR"
+  },
+  {
+   "source": "war_phase",
+   "name": "War Phase",
+   "type": "VARCHAR"
+  }
+ ],
+ "Forecasts": [
+  {
+   "source": "target",
+   "name": "Target",
+   "type": "VARCHAR"
+  },
+  {
+   "source": "target_label",
+   "name": "Target Label",
+   "type": "VARCHAR"
+  },
+  {
+   "source": "unit",
+   "name": "Unit",
+   "type": "VARCHAR"
+  },
+  {
+   "source": "model",
+   "name": "Model",
+   "type": "VARCHAR"
+  },
+  {
+   "source": "kind",
+   "name": "Kind",
+   "type": "VARCHAR"
+  },
+  {
+   "source": "month_date",
+   "name": "Month",
+   "type": "DATE"
+  },
+  {
+   "source": "value",
+   "name": "Value",
+   "type": "DOUBLE"
+  },
+  {
+   "source": "lo80",
+   "name": "Lo 80",
+   "type": "DOUBLE"
+  },
+  {
+   "source": "hi80",
+   "name": "Hi 80",
+   "type": "DOUBLE"
+  },
+  {
+   "source": "lo95",
+   "name": "Lo 95",
+   "type": "DOUBLE"
+  },
+  {
+   "source": "hi95",
+   "name": "Hi 95",
+   "type": "DOUBLE"
+  },
+  {
+   "source": "yoy_value",
+   "name": "YoY Value",
+   "type": "DOUBLE"
+  },
+  {
+   "source": "yoy_lo80",
+   "name": "YoY Lo 80",
+   "type": "DOUBLE"
+  },
+  {
+   "source": "yoy_hi80",
+   "name": "YoY Hi 80",
+   "type": "DOUBLE"
+  },
+  {
+   "source": "yoy_lo95",
+   "name": "YoY Lo 95",
+   "type": "DOUBLE"
+  },
+  {
+   "source": "yoy_hi95",
+   "name": "YoY Hi 95",
+   "type": "DOUBLE"
+  }
+ ]
+}
