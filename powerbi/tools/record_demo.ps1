@@ -1,7 +1,7 @@
 # Record the demo: VS Code tour of the repo, then a walk through the 7 Power BI pages.
 # Needs Power BI Desktop already open on TradeWar.pbip (data loaded, side panes collapsed) and VS Code on this folder.
-# Usage: powershell -File powerbi\tools\record_demo.ps1 -Out E:\da-flagship\.scratch\demo_raw.mp4
-param([string]$Out = "E:\da-flagship\.scratch\demo_raw.mp4", [int]$Fps = 15, [switch]$PrepOnly)
+# Usage: powershell -File powerbi\tools\record_demo.ps1 [-Out <path>.mp4]   (default: <repo>\.scratch\demo_raw.mp4)
+param([string]$Out = (Join-Path $PSScriptRoot '..\..\.scratch\demo_raw.mp4'), [int]$Fps = 15, [switch]$PrepOnly)
 . "$PSScriptRoot\pbi_gui.ps1"
 $Repo = (Resolve-Path "$PSScriptRoot\..\..").Path
 if (-not ('DemoWin' -as [type])) {

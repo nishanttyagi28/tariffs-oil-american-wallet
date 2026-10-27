@@ -1,5 +1,5 @@
 ﻿# Helpers to drive Power BI Desktop on the interactive console session: focus/maximize, keys, clicks, screenshots.
-# Usage: . .\powerbi\tools\pbi_gui.ps1 ; Show-Pbi ; Save-Screen E:\path.png
+# Usage: . .\powerbi\tools\pbi_gui.ps1 ; Show-Pbi ; Save-Screen .scratch\shot.png
 Add-Type -AssemblyName System.Windows.Forms, System.Drawing, UIAutomationClient, UIAutomationTypes
 if (-not ('PbiUser32' -as [type])) {
 Add-Type @"
