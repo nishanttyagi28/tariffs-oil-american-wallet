@@ -1,0 +1,1479 @@
+[
+ {
+  "part": 1,
+  "path": "README.md",
+  "lines": 243,
+  "pgdn": 2,
+  "note": "Project overview: problem, key findings, dashboard pages, architecture, sources, SQL/ML highlights, how to reproduce."
+ },
+ {
+  "part": 1,
+  "path": "SETUP.md",
+  "lines": 138,
+  "pgdn": 2,
+  "note": "Fresh-laptop setup: venv, committed data vs re-ingest, dbt, ML, Power BI export and troubleshooting."
+ },
+ {
+  "part": 1,
+  "path": "LICENSE",
+  "lines": 23,
+  "pgdn": 0,
+  "note": "MIT licence for the code (third-party data keeps each provider's terms)."
+ },
+ {
+  "part": 1,
+  "path": ".env.example",
+  "lines": 10,
+  "pgdn": 0,
+  "note": "Optional settings template: CENSUS_API_KEY plus TRADEWAR_DB / TRADEWAR_RAW overrides."
+ },
+ {
+  "part": 1,
+  "path": ".gitattributes",
+  "lines": 11,
+  "pgdn": 0,
+  "note": "LF line endings for text; binary for duckdb/parquet/xlsx/media; raw snapshots kept byte-exact."
+ },
+ {
+  "part": 1,
+  "path": ".gitignore",
+  "lines": 29,
+  "pgdn": 1,
+  "note": "What stays out of git: secrets, venv, caches, dbt target/logs, Power BI local cache, scratch."
+ },
+ {
+  "part": 1,
+  "path": "pyproject.toml",
+  "lines": 21,
+  "pgdn": 0,
+  "note": "Project metadata, ruff lint rules and pytest configuration."
+ },
+ {
+  "part": 1,
+  "path": "requirements-ci.txt",
+  "lines": 11,
+  "pgdn": 0,
+  "note": "Smaller dependency set used by GitHub Actions."
+ },
+ {
+  "part": 1,
+  "path": "requirements.in",
+  "lines": 19,
+  "pgdn": 0,
+  "note": "Top-level Python dependencies (unpinned intent)."
+ },
+ {
+  "part": 1,
+  "path": "requirements.txt",
+  "lines": 95,
+  "pgdn": 2,
+  "note": "Fully pinned Python environment for the whole pipeline (Python 3.12)."
+ },
+ {
+  "part": 1,
+  "path": ".github/workflows/ci.yml",
+  "lines": 53,
+  "pgdn": 1,
+  "note": "CI: secret scan, ruff, PBIP rebuild check, PBIR schema validation, dbt build on committed data, pytest."
+ },
+ {
+  "part": 1,
+  "path": "ingest/common.py",
+  "lines": 104,
+  "pgdn": 2,
+  "note": "Shared helpers for all ingest modules: HTTP with retry/backoff, raw paths, manifest."
+ },
+ {
+  "part": 1,
+  "path": "ingest/run_all.py",
+  "lines": 31,
+  "pgdn": 1,
+  "note": "Run every ingest module in sequence (one process, low memory). Usage: python -m ingest.run_all [module ...]."
+ },
+ {
+  "part": 1,
+  "path": "ingest/bls.py",
+  "lines": 68,
+  "pgdn": 2,
+  "note": "BLS CPI-U by category via public API v1 (no key; 25 queries/day, <=25 series, <=10 years per query)."
+ },
+ {
+  "part": 1,
+  "path": "ingest/census_country.py",
+  "lines": 45,
+  "pgdn": 1,
+  "note": "US Census Bureau - U.S. trade in goods by country (monthly totals, no key)."
+ },
+ {
+  "part": 1,
+  "path": "ingest/census_hs.py",
+  "lines": 33,
+  "pgdn": 1,
+  "note": "OPTIONAL: US Census International Trade API (HS chapter x country x calculated duty)."
+ },
+ {
+  "part": 1,
+  "path": "ingest/comtrade.py",
+  "lines": 41,
+  "pgdn": 1,
+  "note": "UN Comtrade public preview (no key, one period per call): partner-reported exports TO the USA."
+ },
+ {
+  "part": 1,
+  "path": "ingest/crosswalk.py",
+  "lines": 40,
+  "pgdn": 1,
+  "note": "Census Schedule C country codes -> ISO2 -> ISO3 (via pycountry), joined to Natural Earth label points."
+ },
+ {
+  "part": 1,
+  "path": "ingest/eia.py",
+  "lines": 24,
+  "pgdn": 0,
+  "note": "EIA spot prices (daily): Brent RBRTE and WTI RWTC history workbooks. No key."
+ },
+ {
+  "part": 1,
+  "path": "ingest/eurostat.py",
+  "lines": 37,
+  "pgdn": 1,
+  "note": "Eurostat - EU27 trade with partners by SITC (monthly, EUR millions). JSON-stat API, no key."
+ },
+ {
+  "part": 1,
+  "path": "ingest/fred.py",
+  "lines": 49,
+  "pgdn": 1,
+  "note": "FRED via fredgraph.csv (no key). NOTE: use a plain user agent - browser UAs time out."
+ },
+ {
+  "part": 1,
+  "path": "ingest/gscpi.py",
+  "lines": 31,
+  "pgdn": 1,
+  "note": "NY Fed Global Supply Chain Pressure Index (monthly, no key)."
+ },
+ {
+  "part": 1,
+  "path": "ingest/naturalearth.py",
+  "lines": 57,
+  "pgdn": 1,
+  "note": "Natural Earth 1:110m admin-0 countries: ISO codes, region, label point (map lat/long)."
+ },
+ {
+  "part": 1,
+  "path": "ingest/portwatch.py",
+  "lines": 52,
+  "pgdn": 1,
+  "note": "IMF PortWatch daily chokepoint transits (no key)."
+ },
+ {
+  "part": 1,
+  "path": "ingest/portwatch_ref.py",
+  "lines": 18,
+  "pgdn": 0,
+  "note": "IMF PortWatch chokepoint reference layer (name, lat/lon, industry share) via ArcGIS FeatureServer (no key)."
+ },
+ {
+  "part": 1,
+  "path": "ingest/statcan.py",
+  "lines": 26,
+  "pgdn": 1,
+  "note": "Statistics Canada table 12-10-0011-01: merchandise trade by principal partners (monthly, CAD)."
+ },
+ {
+  "part": 1,
+  "path": "ingest/treasury.py",
+  "lines": 29,
+  "pgdn": 1,
+  "note": "US Treasury Monthly Treasury Statement table 4: Customs Duties receipts (gross, refunds, net). No key."
+ },
+ {
+  "part": 1,
+  "path": "ingest/worldbank.py",
+  "lines": 29,
+  "pgdn": 1,
+  "note": "World Bank WDI API (annual, no key)."
+ },
+ {
+  "part": 1,
+  "path": "ingest/yahoo.py",
+  "lines": 56,
+  "pgdn": 1,
+  "note": "Yahoo Finance chart API (daily OHLC, no key) for global indices, commodities, FX, rates, volatility."
+ },
+ {
+  "part": 1,
+  "path": "dbt/dbt_project.yml",
+  "lines": 54,
+  "pgdn": 1,
+  "note": "dbt project: model folders, schemas per layer, seed column types, analysis window vars, raw-path check hook."
+ },
+ {
+  "part": 1,
+  "path": "dbt/profiles.yml",
+  "lines": 10,
+  "pgdn": 0,
+  "note": "DuckDB connection: warehouse path (TRADEWAR_DB override), 1 thread, 3 GB memory limit."
+ },
+ {
+  "part": 1,
+  "path": "dbt/macros/check_raw_root.sql",
+  "lines": 11,
+  "pgdn": 0,
+  "note": "on-run-start guard: fails fast with a clear message if data/raw is not reachable."
+ },
+ {
+  "part": 1,
+  "path": "dbt/macros/generate_schema_name.sql",
+  "lines": 4,
+  "pgdn": 0,
+  "note": "Clean schema names (staging, core, powerbi) instead of main_staging."
+ },
+ {
+  "part": 1,
+  "path": "dbt/macros/raw.sql",
+  "lines": 3,
+  "pgdn": 0,
+  "note": "raw(source, dataset) macro: reads a data/raw parquet snapshot via read_parquet."
+ },
+ {
+  "part": 1,
+  "path": "dbt/models/staging/stg_bls__cpi.sql",
+  "lines": 2,
+  "pgdn": 0,
+  "note": "Staging view over the raw bls/cpi_categories_monthly snapshot: renames and casts columns."
+ },
+ {
+  "part": 1,
+  "path": "dbt/models/staging/stg_census__trade_monthly.sql",
+  "lines": 12,
+  "pgdn": 0,
+  "note": "US goods trade by Census partner code, monthly, millions USD (NSA)."
+ },
+ {
+  "part": 1,
+  "path": "dbt/models/staging/stg_comtrade__mirror_exports.sql",
+  "lines": 3,
+  "pgdn": 0,
+  "note": "Staging view over the raw comtrade/mirror_exports_to_us_monthly snapshot: renames and casts columns."
+ },
+ {
+  "part": 1,
+  "path": "dbt/models/staging/stg_crosswalk__census_country.sql",
+  "lines": 3,
+  "pgdn": 0,
+  "note": "Staging view over the raw crosswalk/census_country_iso snapshot: renames and casts columns."
+ },
+ {
+  "part": 1,
+  "path": "dbt/models/staging/stg_eia__crude_spot.sql",
+  "lines": 3,
+  "pgdn": 0,
+  "note": "Staging view over the raw eia/crude_spot_daily snapshot: renames and casts columns."
+ },
+ {
+  "part": 1,
+  "path": "dbt/models/staging/stg_eurostat__eu_trade_monthly.sql",
+  "lines": 7,
+  "pgdn": 0,
+  "note": "Staging view over the raw eurostat/eu27_trade_partner_monthly snapshot: renames and casts columns."
+ },
+ {
+  "part": 1,
+  "path": "dbt/models/staging/stg_fred__series.sql",
+  "lines": 2,
+  "pgdn": 0,
+  "note": "Staging view over the raw fred/fred_series snapshot: renames and casts columns."
+ },
+ {
+  "part": 1,
+  "path": "dbt/models/staging/stg_gscpi__monthly.sql",
+  "lines": 1,
+  "pgdn": 0,
+  "note": "Staging view over the raw gscpi/gscpi_monthly snapshot: renames and casts columns."
+ },
+ {
+  "part": 1,
+  "path": "dbt/models/staging/stg_naturalearth__countries.sql",
+  "lines": 6,
+  "pgdn": 0,
+  "note": "Staging view over the raw naturalearth/countries snapshot: renames and casts columns."
+ },
+ {
+  "part": 1,
+  "path": "dbt/models/staging/stg_portwatch__chokepoints_daily.sql",
+  "lines": 15,
+  "pgdn": 0,
+  "note": "IMF PortWatch: daily vessel transits through 28 maritime chokepoints (AIS satellite signals)."
+ },
+ {
+  "part": 1,
+  "path": "dbt/models/staging/stg_portwatch__chokepoints_ref.sql",
+  "lines": 8,
+  "pgdn": 0,
+  "note": "Staging view over the raw portwatch/chokepoints_ref snapshot: renames and casts columns."
+ },
+ {
+  "part": 1,
+  "path": "dbt/models/staging/stg_statcan__trade_monthly.sql",
+  "lines": 12,
+  "pgdn": 0,
+  "note": "Statistics Canada 12-10-0011-01: Canada's merchandise trade with principal partners (customs basis, NSA, C$ millions)."
+ },
+ {
+  "part": 1,
+  "path": "dbt/models/staging/stg_treasury__customs.sql",
+  "lines": 8,
+  "pgdn": 0,
+  "note": "MTS reports amounts in dollars; convert to $ millions. Refunds surge after the Feb-2026 IEEPA ruling."
+ },
+ {
+  "part": 1,
+  "path": "dbt/models/staging/stg_worldbank__wdi.sql",
+  "lines": 3,
+  "pgdn": 0,
+  "note": "Staging view over the raw worldbank/wdi_annual snapshot: renames and casts columns."
+ },
+ {
+  "part": 1,
+  "path": "dbt/models/staging/stg_yahoo__instruments.sql",
+  "lines": 1,
+  "pgdn": 0,
+  "note": "Staging view over the raw yahoo/instruments snapshot: renames and casts columns."
+ },
+ {
+  "part": 1,
+  "path": "dbt/models/staging/stg_yahoo__prices.sql",
+  "lines": 6,
+  "pgdn": 0,
+  "note": "Staging view over the raw yahoo/market_prices_daily snapshot: renames and casts columns."
+ },
+ {
+  "part": 1,
+  "path": "dbt/models/intermediate/int_fred__monthly.sql",
+  "lines": 10,
+  "pgdn": 0,
+  "note": "FRED series collapsed to monthly averages (daily/weekly series) or the monthly value itself."
+ },
+ {
+  "part": 1,
+  "path": "dbt/models/intermediate/int_market__returns.sql",
+  "lines": 12,
+  "pgdn": 0,
+  "note": "Daily returns per instrument with a trading-day index (used for event windows and rolling stats)."
+ },
+ {
+  "part": 1,
+  "path": "dbt/models/intermediate/int_tariff__headline_daily.sql",
+  "lines": 21,
+  "pgdn": 0,
+  "note": "Daily statutory *additional* headline tariff (pct points on top of MFN) per schedule key."
+ },
+ {
+  "part": 1,
+  "path": "dbt/models/intermediate/int_trade__partner_monthly.sql",
+  "lines": 18,
+  "pgdn": 0,
+  "note": "US goods trade by partner (ISO3), monthly, $ millions NSA. Census aggregates (codes < 1000) are excluded."
+ },
+ {
+  "part": 1,
+  "path": "dbt/models/intermediate/int_trade__world_monthly.sql",
+  "lines": 9,
+  "pgdn": 0,
+  "note": "Census published totals: World NSA (0015) and European Union (0003), used for reconciliation tests."
+ },
+ {
+  "part": 2,
+  "path": "dbt/models/marts/core/_core.yml",
+  "lines": 118,
+  "pgdn": 2,
+  "note": "Docs and tests for 13 models (dim_date, dim_country, dim_cpi_category...)."
+ },
+ {
+  "part": 2,
+  "path": "dbt/models/marts/core/dim_chokepoint.sql",
+  "lines": 28,
+  "pgdn": 1,
+  "note": "28 maritime chokepoints (IMF PortWatch) with location and traffic baselines."
+ },
+ {
+  "part": 2,
+  "path": "dbt/models/marts/core/dim_country.sql",
+  "lines": 68,
+  "pgdn": 2,
+  "note": "One row per partner (ISO3) plus bloc rows (EUU = EU-27, ALL = all partners / US total)."
+ },
+ {
+  "part": 2,
+  "path": "dbt/models/marts/core/dim_cpi_category.sql",
+  "lines": 16,
+  "pgdn": 0,
+  "note": "CPI-U categories (BLS, NSA) with tariff-exposure grouping used for pass-through comparisons."
+ },
+ {
+  "part": 2,
+  "path": "dbt/models/marts/core/dim_date.sql",
+  "lines": 32,
+  "pgdn": 1,
+  "note": "Daily calendar 2015-2026 with trade-war and Iran-war phase labels and before/after flags."
+ },
+ {
+  "part": 2,
+  "path": "dbt/models/marts/core/dim_market_instrument.sql",
+  "lines": 28,
+  "pgdn": 1,
+  "note": "Market instruments (Yahoo Finance) with region for the global-markets pages."
+ },
+ {
+  "part": 2,
+  "path": "dbt/models/marts/core/fct_chokepoint_daily.sql",
+  "lines": 22,
+  "pgdn": 0,
+  "note": "Daily chokepoint transits with 7-day averages and comparisons to 2024 and pre-war (Jan 1 - Feb 27 2026) baselines."
+ },
+ {
+  "part": 2,
+  "path": "dbt/models/marts/core/fct_cpi_monthly.sql",
+  "lines": 22,
+  "pgdn": 0,
+  "note": "CPI-U by category (BLS, NSA): YoY, MoM, and index rebased to Jan 2025 = 100 (tariff-era start)."
+ },
+ {
+  "part": 2,
+  "path": "dbt/models/marts/core/fct_customs_revenue_monthly.sql",
+  "lines": 35,
+  "pgdn": 1,
+  "note": "US customs duties (Treasury Monthly Treasury Statement, $M): gross, refunds, net; effective tariff rate proxy."
+ },
+ {
+  "part": 2,
+  "path": "dbt/models/marts/core/fct_macro_monthly.sql",
+  "lines": 55,
+  "pgdn": 1,
+  "note": "Wide monthly US macro panel (FRED monthly averages + NY Fed GSCPI) with derived YoY and real-wage metrics."
+ },
+ {
+  "part": 2,
+  "path": "dbt/models/marts/core/fct_market_daily.sql",
+  "lines": 47,
+  "pgdn": 1,
+  "note": "Daily market panel: returns, 21-day annualised volatility, drawdowns, rebased indices (2025 start and pre-war)."
+ },
+ {
+  "part": 2,
+  "path": "dbt/models/marts/core/fct_oil_daily.sql",
+  "lines": 47,
+  "pgdn": 1,
+  "note": "Daily crude oil: EIA spot (Brent, WTI) plus Yahoo front-month futures (extends past the EIA publication lag)."
+ },
+ {
+  "part": 2,
+  "path": "dbt/models/marts/core/fct_tariff_rate_monthly.sql",
+  "lines": 43,
+  "pgdn": 1,
+  "note": "Monthly statutory additional headline tariff per partner (avg of daily seed schedule via dim_country.tariff_schedule_key)."
+ },
+ {
+  "part": 2,
+  "path": "dbt/models/marts/core/fct_trade_monthly.sql",
+  "lines": 29,
+  "pgdn": 1,
+  "note": "US goods trade with each partner (Census, $M NSA), monthly, with YoY, share and rolling-12m metrics."
+ },
+ {
+  "part": 2,
+  "path": "dbt/models/marts/powerbi/_powerbi.yml",
+  "lines": 37,
+  "pgdn": 1,
+  "note": "Docs and tests for 5 models (mart_country_before_after, mart_trade_diversion, mart_household_impact...)."
+ },
+ {
+  "part": 2,
+  "path": "dbt/models/marts/powerbi/mart_country_before_after.sql",
+  "lines": 65,
+  "pgdn": 2,
+  "note": "Before vs after per partner (+ EU-27 bloc): average monthly trade in 2024 vs Apr 2025 onward, like-for-like."
+ },
+ {
+  "part": 2,
+  "path": "dbt/models/marts/powerbi/mart_household_impact.sql",
+  "lines": 52,
+  "pgdn": 1,
+  "note": "What the trade war and the oil shock cost US households: prices by tariff exposure, wages, sentiment."
+ },
+ {
+  "part": 2,
+  "path": "dbt/models/marts/powerbi/mart_market_event_window.sql",
+  "lines": 35,
+  "pgdn": 1,
+  "note": "Event study: cumulative returns of every instrument around each tariff and war event."
+ },
+ {
+  "part": 2,
+  "path": "dbt/models/marts/powerbi/mart_oil_shock.sql",
+  "lines": 57,
+  "pgdn": 1,
+  "note": "Iran-war oil shock, daily from Oct 2025: crude prices, Strait of Hormuz transits, gasoline, VIX, S&P 500."
+ },
+ {
+  "part": 2,
+  "path": "dbt/models/marts/powerbi/mart_trade_diversion.sql",
+  "lines": 34,
+  "pgdn": 1,
+  "note": "Trade diversion: monthly share of US goods imports by partner group vs the 2024 average share."
+ },
+ {
+  "part": 2,
+  "path": "dbt/models/ml/_ml_sources.yml",
+  "lines": 56,
+  "pgdn": 1,
+  "note": "Declares the ml schema tables written by Python (counterfactuals, IRFs, forecasts...) as dbt sources."
+ },
+ {
+  "part": 2,
+  "path": "dbt/tests/generic/unique_combination.sql",
+  "lines": 7,
+  "pgdn": 0,
+  "note": "Fails for every key combination that appears more than once."
+ },
+ {
+  "part": 2,
+  "path": "dbt/tests/generic/value_between.sql",
+  "lines": 9,
+  "pgdn": 0,
+  "note": "Fails for non-null values outside [min_value, max_value]."
+ },
+ {
+  "part": 2,
+  "path": "dbt/tests/singular/assert_before_window_is_2024.sql",
+  "lines": 3,
+  "pgdn": 0,
+  "note": "The \"Before\" label must be exactly calendar 2024."
+ },
+ {
+  "part": 2,
+  "path": "dbt/tests/singular/assert_customs_net_equals_gross_minus_refunds.sql",
+  "lines": 3,
+  "pgdn": 0,
+  "note": "Net customs receipts must equal gross minus refunds (within $1m rounding)."
+ },
+ {
+  "part": 2,
+  "path": "dbt/tests/singular/assert_data_is_fresh.sql",
+  "lines": 8,
+  "pgdn": 0,
+  "note": "Guard against a silently stale ingest: key facts must reach recent periods."
+ },
+ {
+  "part": 2,
+  "path": "dbt/tests/singular/assert_dim_date_contiguous.sql",
+  "lines": 4,
+  "pgdn": 0,
+  "note": "The calendar must have no gaps."
+ },
+ {
+  "part": 2,
+  "path": "dbt/tests/singular/assert_event_window_dates_ordered.sql",
+  "lines": 3,
+  "pgdn": 0,
+  "note": "Event-window base date must precede the window end date, and base close must be positive."
+ },
+ {
+  "part": 2,
+  "path": "dbt/tests/singular/assert_ml_intervals_ordered.sql",
+  "lines": 7,
+  "pgdn": 0,
+  "note": "ML prediction intervals must nest: lo95 <= lo80 <= point <= hi80 <= hi95."
+ },
+ {
+  "part": 2,
+  "path": "dbt/tests/singular/assert_ml_one_best_model_per_series.sql",
+  "lines": 5,
+  "pgdn": 0,
+  "note": "Exactly one best model per trade series and metric."
+ },
+ {
+  "part": 2,
+  "path": "dbt/tests/singular/assert_no_war_phase_before_war_start.sql",
+  "lines": 3,
+  "pgdn": 0,
+  "note": "Iran-war phases may only start on/after the war start date (28 Feb 2026)."
+ },
+ {
+  "part": 2,
+  "path": "dbt/tests/singular/assert_rolling_vol_non_negative.sql",
+  "lines": 2,
+  "pgdn": 0,
+  "note": "Annualised volatility can never be negative."
+ },
+ {
+  "part": 2,
+  "path": "dbt/tests/singular/assert_tariff_schedule_no_overlap.sql",
+  "lines": 6,
+  "pgdn": 0,
+  "note": "A country's headline tariff schedule rows must not overlap in time."
+ },
+ {
+  "part": 2,
+  "path": "dbt/tests/singular/assert_trade_balance_identity.sql",
+  "lines": 4,
+  "pgdn": 0,
+  "note": "Balance = exports - imports; total trade = exports + imports."
+ },
+ {
+  "part": 2,
+  "path": "dbt/tests/singular/assert_trade_diversion_shares_sum_to_one.sql",
+  "lines": 6,
+  "pgdn": 0,
+  "note": "Partner-group import shares (excluding the all-partners total) sum to ~100% each month."
+ },
+ {
+  "part": 2,
+  "path": "seeds/cpi_category_map.csv",
+  "lines": 26,
+  "pgdn": 1,
+  "note": "Seed with 25 rows: series_id, category, exposure_group, is_headline."
+ },
+ {
+  "part": 2,
+  "path": "seeds/eu27_members.csv",
+  "lines": 28,
+  "pgdn": 1,
+  "note": "Seed with 27 rows: iso3."
+ },
+ {
+  "part": 2,
+  "path": "seeds/event_phases.csv",
+  "lines": 12,
+  "pgdn": 0,
+  "note": "Seed with 11 rows: phase_type, phase_code, phase_order, phase_name, start_date, end_date, description."
+ },
+ {
+  "part": 2,
+  "path": "seeds/tariff_events.csv",
+  "lines": 23,
+  "pgdn": 0,
+  "note": "Seed with 22 rows: event_id, event_date, effective_date, country_iso3, measure, authority, rate_pct, description, source_url, verified."
+ },
+ {
+  "part": 2,
+  "path": "seeds/tariff_headline_schedule.csv",
+  "lines": 51,
+  "pgdn": 1,
+  "note": "Seed with 50 rows: country_iso3, start_date, end_date, headline_rate_pct, basis, verified, source_url."
+ },
+ {
+  "part": 2,
+  "path": "seeds/war_events.csv",
+  "lines": 19,
+  "pgdn": 0,
+  "note": "Seed with 18 rows: event_id, event_date, event, category, brent_usd, source_url, verified."
+ },
+ {
+  "part": 3,
+  "path": "sql/analysis/01_dq_freshness_row_counts.sql",
+  "lines": 10,
+  "pgdn": 0,
+  "note": "DQ: row counts and coverage window of every fact table (is the warehouse fresh?)."
+ },
+ {
+  "part": 3,
+  "path": "sql/analysis/02_dq_null_profile.sql",
+  "lines": 17,
+  "pgdn": 0,
+  "note": "DQ: null-rate profile of key measures since 2024 (gaps that the dashboard must handle)."
+ },
+ {
+  "part": 3,
+  "path": "sql/analysis/03_dq_partner_sum_vs_us_total.sql",
+  "lines": 7,
+  "pgdn": 0,
+  "note": "DQ: do Census partner-level imports add up to the US total goods imports used for the customs effective rate?."
+ },
+ {
+  "part": 3,
+  "path": "sql/analysis/04_dq_customs_reconciliation.sql",
+  "lines": 8,
+  "pgdn": 0,
+  "note": "DQ: recompute effective tariff rate (gross duties / goods imports) and compare with the stored column."
+ },
+ {
+  "part": 3,
+  "path": "sql/analysis/05_top_import_partners_2024_vs_latest_12m.sql",
+  "lines": 21,
+  "pgdn": 0,
+  "note": "Top 15 US import partners: calendar-2024 total vs the latest rolling 12 months, with RANK() shift."
+ },
+ {
+  "part": 3,
+  "path": "sql/analysis/06_partner_rank_shift_before_after.sql",
+  "lines": 12,
+  "pgdn": 0,
+  "note": "Biggest winners/losers in US import share: 2024 baseline vs Apr-2025+ (mart_country_before_after)."
+ },
+ {
+  "part": 3,
+  "path": "sql/analysis/07_focus_partner_imports_yoy.sql",
+  "lines": 7,
+  "pgdn": 0,
+  "note": "Year-over-year import growth for focus partners over the last 8 reported months (LAG-based YoY)."
+ },
+ {
+  "part": 3,
+  "path": "sql/analysis/08_china_imports_mom_3m_avg.sql",
+  "lines": 10,
+  "pgdn": 0,
+  "note": "China: monthly imports with MoM change (LAG) and a 3-month moving average, 2024 onward."
+ },
+ {
+  "part": 3,
+  "path": "sql/analysis/09_bilateral_deficit_before_after.sql",
+  "lines": 10,
+  "pgdn": 0,
+  "note": "US bilateral goods balance with each partner: avg monthly 2024 vs Apr-2025+, largest deficits."
+ },
+ {
+  "part": 3,
+  "path": "sql/analysis/10_us_total_deficit_rolling_12m.sql",
+  "lines": 8,
+  "pgdn": 0,
+  "note": "US total goods trade (sum over partners): monthly balance, rolling 12-month sum (window frame) and YoY change, 2023+."
+ },
+ {
+  "part": 3,
+  "path": "sql/analysis/11_trade_diversion_share_shift.sql",
+  "lines": 12,
+  "pgdn": 0,
+  "note": "Trade diversion: each partner group's share of US imports, 2024 vs the latest 6 months, and implied diverted $."
+ },
+ {
+  "part": 3,
+  "path": "sql/analysis/12_china_substitution_pivot.sql",
+  "lines": 7,
+  "pgdn": 0,
+  "note": "\"China+1\": monthly import share of China vs Vietnam, Taiwan, Mexico, India (PIVOT), 2024 onward."
+ },
+ {
+  "part": 3,
+  "path": "sql/analysis/13_front_loading_q1_2025.sql",
+  "lines": 12,
+  "pgdn": 0,
+  "note": "Front-loading ahead of tariffs: Jan-Mar 2025 imports vs Jan-Mar 2024, then Apr-Jun 2025 hangover."
+ },
+ {
+  "part": 3,
+  "path": "sql/analysis/14_statutory_vs_effective_tariff.sql",
+  "lines": 7,
+  "pgdn": 0,
+  "note": "Statutory (2024-import-weighted headline) tariff vs the effective rate actually collected (customs gross & net / imports)."
+ },
+ {
+  "part": 3,
+  "path": "sql/analysis/15_customs_revenue_trend.sql",
+  "lines": 7,
+  "pgdn": 0,
+  "note": "Customs duties: gross, refunds (post-SCOTUS IEEPA refunds), net, YoY and the US-wide effective tariff rate."
+ },
+ {
+  "part": 3,
+  "path": "sql/analysis/16_incremental_duties_per_household.sql",
+  "lines": 9,
+  "pgdn": 0,
+  "note": "Incremental tariff revenue vs the 2024 run-rate, converted to $ per US household (132.2m), cumulative."
+ },
+ {
+  "part": 3,
+  "path": "sql/analysis/17_trade_by_tariff_phase.sql",
+  "lines": 9,
+  "pgdn": 0,
+  "note": "US total imports/exports by tariff-war phase (dim_date phases from seeds/event_phases.csv), 2024 onward."
+ },
+ {
+  "part": 3,
+  "path": "sql/analysis/18_cpi_tariff_goods_vs_services.sql",
+  "lines": 8,
+  "pgdn": 0,
+  "note": "Household prices: tariff-exposed goods vs domestic services inflation (YoY) and the gap, by month."
+ },
+ {
+  "part": 3,
+  "path": "sql/analysis/19_cpi_category_passthrough_ranking.sql",
+  "lines": 15,
+  "pgdn": 0,
+  "note": "Pass-through ranking: annualised inflation per CPI category before (Dec-2022 -> Dec-2024) vs after (Dec-2024 -> latest)."
+ },
+ {
+  "part": 3,
+  "path": "sql/analysis/20_cpi_by_exposure_group_phase.sql",
+  "lines": 8,
+  "pgdn": 0,
+  "note": "Average YoY inflation by CPI exposure group and tariff/war phase (household lens)."
+ },
+ {
+  "part": 3,
+  "path": "sql/analysis/21_real_wages_sentiment_jobs.sql",
+  "lines": 7,
+  "pgdn": 0,
+  "note": "Household squeeze: wages vs prices (real wage YoY), sentiment, saving rate, unemployment, 2024 onward."
+ },
+ {
+  "part": 3,
+  "path": "sql/analysis/22_import_price_to_core_goods_lag_corr.sql",
+  "lines": 8,
+  "pgdn": 0,
+  "note": "Lead-lag: correlation of import-price (ex fuel) YoY with core-goods CPI YoY k months later (k = 0..9), 2017+."
+ },
+ {
+  "part": 3,
+  "path": "sql/analysis/23_oil_by_war_phase.sql",
+  "lines": 8,
+  "pgdn": 0,
+  "note": "Brent & WTI by Iran-war phase: average, peak and change vs the pre-war close (27 Feb 2026)."
+ },
+ {
+  "part": 3,
+  "path": "sql/analysis/24_brent_running_peak_drawdown.sql",
+  "lines": 11,
+  "pgdn": 0,
+  "note": "Brent since 2025: running peak (window max), drawdown from peak, and the 10 biggest single-day moves."
+ },
+ {
+  "part": 3,
+  "path": "sql/analysis/25_hormuz_transits_by_phase.sql",
+  "lines": 10,
+  "pgdn": 0,
+  "note": "Strait of Hormuz daily transits (all ships / tankers) by war phase vs the 2024 average (IMF PortWatch)."
+ },
+ {
+  "part": 3,
+  "path": "sql/analysis/26_chokepoint_disruption_ranking.sql",
+  "lines": 6,
+  "pgdn": 0,
+  "note": "Which global chokepoints changed most: last 30 days vs pre-war average transits (RANK by disruption)."
+ },
+ {
+  "part": 3,
+  "path": "sql/analysis/27_gasoline_brent_passthrough.sql",
+  "lines": 9,
+  "pgdn": 0,
+  "note": "Pump-price pass-through: regression slope of US gasoline ($/gal) on Brent ($/bbl), monthly, by period."
+ },
+ {
+  "part": 3,
+  "path": "sql/analysis/28_event_window_iran_war_start.sql",
+  "lines": 8,
+  "pgdn": 0,
+  "note": "Event study: cumulative returns of each instrument after the Iran-war start (W02), D0..D+20."
+ },
+ {
+  "part": 3,
+  "path": "sql/analysis/29_event_window_liberation_day.sql",
+  "lines": 6,
+  "pgdn": 0,
+  "note": "Event study: Liberation Day (T05, 2 Apr 2025) and the 90-day pause (T07): equity index returns by window."
+ },
+ {
+  "part": 3,
+  "path": "sql/analysis/30_max_drawdown_by_index.sql",
+  "lines": 11,
+  "pgdn": 0,
+  "note": "Maximum drawdown since 1 Jan 2025 per equity index, with trough date, and recovery to latest."
+ },
+ {
+  "part": 3,
+  "path": "sql/analysis/31_rolling_corr_sp500_brent.sql",
+  "lines": 17,
+  "pgdn": 0,
+  "note": "Rolling 63-trading-day correlation of S&P 500 and Brent daily log returns (window aggregate), month-end values."
+ },
+ {
+  "part": 3,
+  "path": "sql/analysis/32_volatility_regimes_vix.sql",
+  "lines": 8,
+  "pgdn": 0,
+  "note": "Fear gauge by phase: VIX average/peak and share of days in stress (>25) or panic (>30) regimes."
+ },
+ {
+  "part": 3,
+  "path": "sql/analysis/33_cross_asset_returns_by_war_phase.sql",
+  "lines": 7,
+  "pgdn": 0,
+  "note": "Cross-asset scorecard: compounded return of each instrument within each Iran-war phase (exp(sum(log_ret)))."
+ },
+ {
+  "part": 3,
+  "path": "sql/analysis/34_india_deep_dive.sql",
+  "lines": 15,
+  "pgdn": 0,
+  "note": "India lens: US-India trade, tariff rate, INR and Nifty by month (2024 onward)."
+ },
+ {
+  "part": 3,
+  "path": "sql/analysis/35_fx_vs_usd_since_2025.sql",
+  "lines": 8,
+  "pgdn": 0,
+  "note": "Dollar story: FX moves since 1 Jan 2025 (USD-base pairs: >100 = USD stronger) and since the pre-war close."
+ },
+ {
+  "part": 3,
+  "path": "sql/run_all.py",
+  "lines": 56,
+  "pgdn": 1,
+  "note": "Run every numbered DuckDB analysis in sql/analysis/ against the warehouse and save small outputs."
+ },
+ {
+  "part": 3,
+  "path": "ml/common.py",
+  "lines": 91,
+  "pgdn": 2,
+  "note": "Shared helpers: warehouse I/O, experiment tracking, metrics, plotting defaults."
+ },
+ {
+  "part": 3,
+  "path": "ml/run_all.py",
+  "lines": 62,
+  "pgdn": 2,
+  "note": "Run the full ML layer sequentially (one heavy process at a time) and write ml.* tables + docs."
+ },
+ {
+  "part": 3,
+  "path": "ml/cpi_passthrough.py",
+  "lines": 151,
+  "pgdn": 2,
+  "note": "Tariff pass-through to US consumer prices."
+ },
+ {
+  "part": 3,
+  "path": "ml/forecasts.py",
+  "lines": 131,
+  "pgdn": 2,
+  "note": "Forward forecasts with prediction intervals."
+ },
+ {
+  "part": 3,
+  "path": "ml/oil_shock.py",
+  "lines": 151,
+  "pgdn": 2,
+  "note": "Oil-shock analytics."
+ },
+ {
+  "part": 3,
+  "path": "ml/report.py",
+  "lines": 202,
+  "pgdn": 2,
+  "note": "Builds docs/ml_report.md from the ml.* tables so every number in the report comes from the warehouse."
+ },
+ {
+  "part": 3,
+  "path": "ml/trade_counterfactual.py",
+  "lines": 245,
+  "pgdn": 2,
+  "note": "Counterfactual 'no-tariff' US trade forecasts per major partner."
+ },
+ {
+  "part": 3,
+  "path": "ml/vol_regimes.py",
+  "lines": 76,
+  "pgdn": 2,
+  "note": "Volatility regimes: 2-state Markov-switching variance model (statsmodels) + GARCH(1,1)-t (arch)."
+ },
+ {
+  "part": 4,
+  "path": "powerbi/export_for_pbi.py",
+  "lines": 151,
+  "pgdn": 2,
+  "note": "Export the warehouse tables the Power BI model needs to Parquet in powerbi/data/."
+ },
+ {
+  "part": 4,
+  "path": "powerbi/build_pbip.py",
+  "lines": 69,
+  "pgdn": 2,
+  "note": "Build the Power BI project (PBIP: TMDL semantic model + PBIR report) from the exported Parquet schema."
+ },
+ {
+  "part": 4,
+  "path": "powerbi/pbi_measures.py",
+  "lines": 321,
+  "pgdn": 2,
+  "note": "DAX measures for the TradeWar semantic model: (name, display folder, format string, DAX expression)."
+ },
+ {
+  "part": 4,
+  "path": "powerbi/pbi_common.py",
+  "lines": 106,
+  "pgdn": 2,
+  "note": "Shared helpers for the PBIP builder: TMDL writer (semantic model) and PBIR JSON helpers (report)."
+ },
+ {
+  "part": 4,
+  "path": "powerbi/pbi_model.py",
+  "lines": 165,
+  "pgdn": 2,
+  "note": "Write the TMDL semantic model (powerbi/TradeWar.SemanticModel) from powerbi/data/_schema.json + pbi_measures."
+ },
+ {
+  "part": 4,
+  "path": "powerbi/pbi_report.py",
+  "lines": 451,
+  "pgdn": 2,
+  "note": "Write the PBIR report (powerbi/TradeWar.Report): theme, 7 story pages + 1 tooltip page."
+ },
+ {
+  "part": 4,
+  "path": "powerbi/pbi_theme.py",
+  "lines": 58,
+  "pgdn": 1,
+  "note": "Custom report theme: deep navy + amber/teal ('TradeWar Navy Amber'). Written to StaticResources/RegisteredResources."
+ },
+ {
+  "part": 4,
+  "path": "powerbi/validate_pbir.py",
+  "lines": 49,
+  "pgdn": 1,
+  "note": "Validate the PBIR JSON files against Microsoft's published schemas (downloaded once to $PBIR_SCHEMA_CACHE or the temp dir)."
+ },
+ {
+  "part": 4,
+  "path": "powerbi/tools/crop_screenshots.py",
+  "lines": 28,
+  "pgdn": 1,
+  "note": "Crop raw 1600x900 Power BI Desktop captures to the report canvas + page tabs (drops title bar, ribbon, side rail."
+ },
+ {
+  "part": 4,
+  "path": "powerbi/tools/pbi_gui.ps1",
+  "lines": 132,
+  "pgdn": 2,
+  "note": "PowerShell helpers that drive Power BI Desktop (open, page navigation, panes, screenshots, close)."
+ },
+ {
+  "part": 4,
+  "path": "powerbi/tools/record_demo.ps1",
+  "lines": 90,
+  "pgdn": 2,
+  "note": "Record the demo: VS Code tour of the repo, then a walk through the 7 Power BI pages."
+ },
+ {
+  "part": 4,
+  "path": "powerbi/tools/snap_pages.ps1",
+  "lines": 23,
+  "pgdn": 0,
+  "note": "Captures all 7 report pages from Power BI Desktop for docs/screenshots."
+ },
+ {
+  "part": 4,
+  "path": "powerbi/TradeWar.pbip",
+  "lines": 14,
+  "pgdn": 0,
+  "note": "Power BI project entry point: open this in Power BI Desktop."
+ },
+ {
+  "part": 4,
+  "path": "powerbi/TradeWar.SemanticModel/definition/tables/_Measures.tmdl",
+  "lines": 1020,
+  "pgdn": 2,
+  "note": "All 171 DAX measures, grouped in display folders (generated from pbi_measures.py)."
+ },
+ {
+  "part": 4,
+  "path": "powerbi/TradeWar.SemanticModel/.platform",
+  "lines": 11,
+  "pgdn": 0,
+  "note": "Fabric/PBIP item metadata for the semantic model."
+ },
+ {
+  "part": 4,
+  "path": "powerbi/TradeWar.SemanticModel/definition.pbism",
+  "lines": 4,
+  "pgdn": 0,
+  "note": "Semantic model definition settings."
+ },
+ {
+  "part": 4,
+  "path": "powerbi/TradeWar.SemanticModel/definition/database.tmdl",
+  "lines": 3,
+  "pgdn": 0,
+  "note": "TMDL database header (compatibility level)."
+ },
+ {
+  "part": 4,
+  "path": "powerbi/TradeWar.SemanticModel/definition/expressions.tmdl",
+  "lines": 7,
+  "pgdn": 0,
+  "note": "DataRoot M parameter: folder the Parquet tables are imported from."
+ },
+ {
+  "part": 4,
+  "path": "powerbi/TradeWar.SemanticModel/definition/model.tmdl",
+  "lines": 43,
+  "pgdn": 1,
+  "note": "TMDL model: culture, table order, query groups."
+ },
+ {
+  "part": 4,
+  "path": "powerbi/TradeWar.SemanticModel/definition/relationships.tmdl",
+  "lines": 100,
+  "pgdn": 2,
+  "note": "Star-schema relationships between dimensions (Date, Country...) and fact tables."
+ },
+ {
+  "part": 4,
+  "path": "powerbi/TradeWar.SemanticModel/definition/tables/Chokepoint Daily.tmdl",
+  "lines": 133,
+  "pgdn": 2,
+  "note": "Table 'Chokepoint Daily': 14 columns imported from powerbi/data/Chokepoint Daily.parquet."
+ },
+ {
+  "part": 4,
+  "path": "powerbi/TradeWar.SemanticModel/definition/tables/Chokepoint.tmdl",
+  "lines": 111,
+  "pgdn": 2,
+  "note": "Table 'Chokepoint': 11 columns imported from powerbi/data/Chokepoint.parquet."
+ },
+ {
+  "part": 4,
+  "path": "powerbi/TradeWar.SemanticModel/definition/tables/Counterfactual.tmdl",
+  "lines": 223,
+  "pgdn": 2,
+  "note": "Table 'Counterfactual': 24 columns imported from powerbi/data/Counterfactual.parquet."
+ },
+ {
+  "part": 4,
+  "path": "powerbi/TradeWar.SemanticModel/definition/tables/Country Before After.tmdl",
+  "lines": 304,
+  "pgdn": 2,
+  "note": "Table 'Country Before After': 33 columns imported from powerbi/data/Country Before After.parquet."
+ },
+ {
+  "part": 4,
+  "path": "powerbi/TradeWar.SemanticModel/definition/tables/Country.tmdl",
+  "lines": 156,
+  "pgdn": 2,
+  "note": "Table 'Country': 17 columns imported from powerbi/data/Country.parquet."
+ },
+ {
+  "part": 4,
+  "path": "powerbi/TradeWar.SemanticModel/definition/tables/CPI Category.tmdl",
+  "lines": 53,
+  "pgdn": 1,
+  "note": "Table 'CPI Category': 5 columns imported from powerbi/data/CPI Category.parquet."
+ },
+ {
+  "part": 4,
+  "path": "powerbi/TradeWar.SemanticModel/definition/tables/CPI.tmdl",
+  "lines": 84,
+  "pgdn": 2,
+  "note": "Table 'CPI': 8 columns imported from powerbi/data/CPI.parquet."
+ },
+ {
+  "part": 4,
+  "path": "powerbi/TradeWar.SemanticModel/definition/tables/Customs.tmdl",
+  "lines": 130,
+  "pgdn": 2,
+  "note": "Table 'Customs': 13 columns imported from powerbi/data/Customs.parquet."
+ },
+ {
+  "part": 4,
+  "path": "powerbi/TradeWar.SemanticModel/definition/tables/Date.tmdl",
+  "lines": 164,
+  "pgdn": 2,
+  "note": "Table 'Date': 18 columns imported from powerbi/data/Date.parquet."
+ },
+ {
+  "part": 4,
+  "path": "powerbi/TradeWar.SemanticModel/definition/tables/Event Study.tmdl",
+  "lines": 164,
+  "pgdn": 2,
+  "note": "Table 'Event Study': 18 columns imported from powerbi/data/Event Study.parquet."
+ },
+ {
+  "part": 4,
+  "path": "powerbi/TradeWar.SemanticModel/definition/tables/Events.tmdl",
+  "lines": 80,
+  "pgdn": 2,
+  "note": "Table 'Events': 8 columns imported from powerbi/data/Events.parquet."
+ },
+ {
+  "part": 4,
+  "path": "powerbi/TradeWar.SemanticModel/definition/tables/Forecasts.tmdl",
+  "lines": 152,
+  "pgdn": 2,
+  "note": "Table 'Forecasts': 16 columns imported from powerbi/data/Forecasts.parquet."
+ },
+ {
+  "part": 4,
+  "path": "powerbi/TradeWar.SemanticModel/definition/tables/Household.tmdl",
+  "lines": 308,
+  "pgdn": 2,
+  "note": "Table 'Household': 33 columns imported from powerbi/data/Household.parquet."
+ },
+ {
+  "part": 4,
+  "path": "powerbi/TradeWar.SemanticModel/definition/tables/Instrument.tmdl",
+  "lines": 102,
+  "pgdn": 2,
+  "note": "Table 'Instrument': 11 columns imported from powerbi/data/Instrument.parquet."
+ },
+ {
+  "part": 4,
+  "path": "powerbi/TradeWar.SemanticModel/definition/tables/IRF.tmdl",
+  "lines": 123,
+  "pgdn": 2,
+  "note": "Table 'IRF': 13 columns imported from powerbi/data/IRF.parquet."
+ },
+ {
+  "part": 4,
+  "path": "powerbi/TradeWar.SemanticModel/definition/tables/Macro.tmdl",
+  "lines": 346,
+  "pgdn": 2,
+  "note": "Table 'Macro': 37 columns imported from powerbi/data/Macro.parquet."
+ },
+ {
+  "part": 4,
+  "path": "powerbi/TradeWar.SemanticModel/definition/tables/Market.tmdl",
+  "lines": 154,
+  "pgdn": 2,
+  "note": "Table 'Market': 16 columns imported from powerbi/data/Market.parquet."
+ },
+ {
+  "part": 4,
+  "path": "powerbi/TradeWar.SemanticModel/definition/tables/Model Metrics.tmdl",
+  "lines": 80,
+  "pgdn": 2,
+  "note": "Table 'Model Metrics': 8 columns imported from powerbi/data/Model Metrics.parquet."
+ },
+ {
+  "part": 4,
+  "path": "powerbi/TradeWar.SemanticModel/definition/tables/Oil Shock.tmdl",
+  "lines": 222,
+  "pgdn": 2,
+  "note": "Table 'Oil Shock': 24 columns imported from powerbi/data/Oil Shock.parquet."
+ },
+ {
+  "part": 4,
+  "path": "powerbi/TradeWar.SemanticModel/definition/tables/Oil.tmdl",
+  "lines": 147,
+  "pgdn": 2,
+  "note": "Table 'Oil': 15 columns imported from powerbi/data/Oil.parquet."
+ },
+ {
+  "part": 4,
+  "path": "powerbi/TradeWar.SemanticModel/definition/tables/Partner.tmdl",
+  "lines": 46,
+  "pgdn": 1,
+  "note": "Table 'Partner': 4 columns imported from powerbi/data/Partner.parquet."
+ },
+ {
+  "part": 4,
+  "path": "powerbi/TradeWar.SemanticModel/definition/tables/Pass-through.tmdl",
+  "lines": 150,
+  "pgdn": 2,
+  "note": "Table 'Pass-through': 16 columns imported from powerbi/data/Pass-through.parquet."
+ },
+ {
+  "part": 4,
+  "path": "powerbi/TradeWar.SemanticModel/definition/tables/Tariff Effect.tmdl",
+  "lines": 185,
+  "pgdn": 2,
+  "note": "Table 'Tariff Effect': 20 columns imported from powerbi/data/Tariff Effect.parquet."
+ },
+ {
+  "part": 4,
+  "path": "powerbi/TradeWar.SemanticModel/definition/tables/Tariff Rate.tmdl",
+  "lines": 82,
+  "pgdn": 2,
+  "note": "Table 'Tariff Rate': 8 columns imported from powerbi/data/Tariff Rate.parquet."
+ },
+ {
+  "part": 4,
+  "path": "powerbi/TradeWar.SemanticModel/definition/tables/Trade Diversion.tmdl",
+  "lines": 119,
+  "pgdn": 2,
+  "note": "Table 'Trade Diversion': 12 columns imported from powerbi/data/Trade Diversion.parquet."
+ },
+ {
+  "part": 4,
+  "path": "powerbi/TradeWar.SemanticModel/definition/tables/Trade Metric.tmdl",
+  "lines": 30,
+  "pgdn": 1,
+  "note": "Table 'Trade Metric': 2 columns imported from powerbi/data/Trade Metric.parquet."
+ },
+ {
+  "part": 4,
+  "path": "powerbi/TradeWar.SemanticModel/definition/tables/Trade.tmdl",
+  "lines": 155,
+  "pgdn": 2,
+  "note": "Table 'Trade': 16 columns imported from powerbi/data/Trade.parquet."
+ },
+ {
+  "part": 4,
+  "path": "powerbi/TradeWar.SemanticModel/definition/tables/Vol Regimes.tmdl",
+  "lines": 89,
+  "pgdn": 2,
+  "note": "Table 'Vol Regimes': 9 columns imported from powerbi/data/Vol Regimes.parquet."
+ },
+ {
+  "part": 5,
+  "path": "powerbi/TradeWar.Report/.platform",
+  "lines": 11,
+  "pgdn": 0,
+  "note": "Fabric/PBIP item metadata for the report."
+ },
+ {
+  "part": 5,
+  "path": "powerbi/TradeWar.Report/definition.pbir",
+  "lines": 8,
+  "pgdn": 0,
+  "note": "Report definition: binds the report to the semantic model by relative path."
+ },
+ {
+  "part": 5,
+  "path": "powerbi/TradeWar.Report/definition/pages/p01_exec/page.json",
+  "lines": 34,
+  "pgdn": 1,
+  "note": "Page 'Executive Summary': canvas size, visibility and display settings."
+ },
+ {
+  "part": 5,
+  "path": "powerbi/TradeWar.Report/definition/pages/p02_map/page.json",
+  "lines": 34,
+  "pgdn": 1,
+  "note": "Page 'Global Trade Map': canvas size, visibility and display settings."
+ },
+ {
+  "part": 5,
+  "path": "powerbi/TradeWar.Report/definition/pages/p03_deepdive/page.json",
+  "lines": 74,
+  "pgdn": 2,
+  "note": "Page 'Country Deep-Dive': canvas size, visibility and display settings."
+ },
+ {
+  "part": 5,
+  "path": "powerbi/TradeWar.Report/definition/pages/p04_household/page.json",
+  "lines": 34,
+  "pgdn": 1,
+  "note": "Page 'Household Economy': canvas size, visibility and display settings."
+ },
+ {
+  "part": 5,
+  "path": "powerbi/TradeWar.Report/definition/pages/p05_oil/page.json",
+  "lines": 34,
+  "pgdn": 1,
+  "note": "Page 'Iran War & Oil Shock': canvas size, visibility and display settings."
+ },
+ {
+  "part": 5,
+  "path": "powerbi/TradeWar.Report/definition/pages/p06_markets/page.json",
+  "lines": 34,
+  "pgdn": 1,
+  "note": "Page 'Global Markets Reaction': canvas size, visibility and display settings."
+ },
+ {
+  "part": 5,
+  "path": "powerbi/TradeWar.Report/definition/pages/p07_forecast/page.json",
+  "lines": 34,
+  "pgdn": 1,
+  "note": "Page 'Forecast & Scenarios': canvas size, visibility and display settings."
+ },
+ {
+  "part": 5,
+  "path": "powerbi/TradeWar.Report/definition/pages/p08_tooltip/page.json",
+  "lines": 40,
+  "pgdn": 1,
+  "note": "Page 'Country Tooltip': canvas size, visibility and display settings."
+ },
+ {
+  "part": 5,
+  "path": "powerbi/TradeWar.Report/definition/pages/pages.json",
+  "lines": 14,
+  "pgdn": 0,
+  "note": "Page order and the default (first) page."
+ },
+ {
+  "part": 5,
+  "path": "powerbi/TradeWar.Report/definition/report.json",
+  "lines": 50,
+  "pgdn": 1,
+  "note": "Report-level settings: custom theme, collapsed panes, page settings."
+ },
+ {
+  "part": 5,
+  "path": "powerbi/TradeWar.Report/definition/version.json",
+  "lines": 4,
+  "pgdn": 0,
+  "note": "PBIR format version."
+ },
+ {
+  "part": 5,
+  "path": "powerbi/TradeWar.Report/StaticResources/RegisteredResources/TradeWarNavyAmber.json",
+  "lines": 414,
+  "pgdn": 2,
+  "note": "Custom navy/amber report theme (colours, fonts, visual defaults)."
+ },
+ {
+  "part": 5,
+  "path": "tests/conftest.py",
+  "lines": 20,
+  "pgdn": 0,
+  "note": "Shared fixtures. Warehouse-dependent tests skip cleanly when the DuckDB file is absent (e.g. in CI)."
+ },
+ {
+  "part": 5,
+  "path": "tests/test_ml_outputs.py",
+  "lines": 63,
+  "pgdn": 2,
+  "note": "Smoke tests on the ML outputs written to the ml schema by `python -m ml.run_all`."
+ },
+ {
+  "part": 5,
+  "path": "tests/test_seeds.py",
+  "lines": 41,
+  "pgdn": 1,
+  "note": "Seeds are the hand-verified event timeline: they must parse and carry sources."
+ },
+ {
+  "part": 5,
+  "path": "tests/test_sql_analyses.py",
+  "lines": 22,
+  "pgdn": 0,
+  "note": "Every numbered analysis in sql/analysis must run and return rows."
+ },
+ {
+  "part": 5,
+  "path": "tests/test_warehouse.py",
+  "lines": 30,
+  "pgdn": 1,
+  "note": "Smoke tests on the built DuckDB warehouse (star schema + Power BI marts)."
+ },
+ {
+  "part": 5,
+  "path": "tools/gen_data_dictionary.py",
+  "lines": 73,
+  "pgdn": 2,
+  "note": "Generate docs/data_dictionary.md from the built warehouse (column names/types) and dbt YAML descriptions."
+ },
+ {
+  "part": 5,
+  "path": "tools/secret_scan.py",
+  "lines": 85,
+  "pgdn": 2,
+  "note": "Light secret scanner: working tree (tracked + to-be-committed data) and full git history."
+ },
+ {
+  "part": 5,
+  "path": "docs/data_dictionary.md",
+  "lines": 624,
+  "pgdn": 2,
+  "note": "Data dictionary: every warehouse table and column with types and descriptions."
+ },
+ {
+  "part": 5,
+  "path": "docs/ml_report.md",
+  "lines": 262,
+  "pgdn": 2,
+  "note": "Generated ML report: methods, tables and figures for every model, with caveats."
+ }
+]
