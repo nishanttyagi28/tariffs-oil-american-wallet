@@ -1,0 +1,42 @@
+﻿name: tradewar
+version: "1.0.0"
+config-version: 2
+profile: tradewar
+
+model-paths: ["models"]
+seed-paths: ["../seeds"]
+test-paths: ["tests"]
+macro-paths: ["macros"]
+target-path: "target"
+clean-targets: ["target", "dbt_packages"]
+
+vars:
+  raw_root: "../data/raw"
+  baseline_year: 2024
+
+models:
+  tradewar:
+    staging:
+      +materialized: view
+      +schema: staging
+    intermediate:
+      +materialized: view
+      +schema: intermediate
+    marts:
+      +materialized: table
+      core:
+        +schema: core
+      powerbi:
+        +schema: powerbi
+
+seeds:
+  tradewar:
+    +schema: seeds
+    tariff_events:
+      +column_types: {event_date: date, effective_date: date, rate_pct: double, verified: boolean}
+    tariff_headline_schedule:
+      +column_types: {start_date: date, end_date: date, headline_rate_pct: double, verified: boolean}
+    war_events:
+      +column_types: {event_date: date, brent_usd: double, verified: boolean}
+    cpi_category_map:
+      +column_types: {is_headline: boolean}

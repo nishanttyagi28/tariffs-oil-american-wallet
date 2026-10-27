@@ -1,0 +1,19 @@
+﻿event_id,event_date,event,category,brent_usd,source_url,verified
+W01,2026-02-27,Last trading day before war,baseline,71.32,https://www.congress.gov/crs_external_products/R/PDF/R45281/R45281.6.pdf,TRUE
+W02,2026-02-28,US and Israel begin large-scale strikes on Iran; Khamenei killed on day one,war_start,,https://www.theguardian.com/world/ng-interactive/2026/aug/28/how-the-iran-war-unfolded-every-attack-and-oil-price-change-visualised,TRUE
+W03,2026-03-01,Iran restricts Strait of Hormuz; traffic falls ~80%,hormuz,,https://www.theguardian.com/world/ng-interactive/2026/aug/28/how-the-iran-war-unfolded-every-attack-and-oil-price-change-visualised,TRUE
+W04,2026-03-02,Brent first trading day after strikes,price,77.24,https://www.congress.gov/crs_external_products/R/PDF/R45281/R45281.6.pdf,TRUE
+W05,2026-03-06,Brent +28% in a week (week to Mar 6),price,92.69,https://infocheck.me/oil_prices_2026,TRUE
+W06,2026-03-11,IEA members agree record 400m bbl emergency stock release,policy,,https://infocheck.me/oil_prices_2026,TRUE
+W07,2026-03-23,Trump postpones strikes on Iranian energy infrastructure,de_escalation,,https://infocheck.me/oil_prices_2026,TRUE
+W08,2026-04-08,US-Iran ceasefire; largest one-day oil drop since Apr 2020,ceasefire,94.75,https://infocheck.me/oil_prices_2026,TRUE
+W09,2026-04-13,US naval blockade of Iranian ports begins,escalation,,https://infocheck.me/oil_prices_2026,TRUE
+W10,2026-04-29,Trump says blockade continues until deal; Brent highest close of year,escalation,118.03,https://infocheck.me/oil_prices_2026,TRUE
+W11,2026-05-04,US launches Project Freedom ship escorts (paused two days later),policy,114.40,https://infocheck.me/oil_prices_2026,TRUE
+W12,2026-06-17,Islamabad MoU extends ceasefire,ceasefire,,https://infocheck.me/oil_prices_2026,TRUE
+W13,2026-06-24,Tankers resume moving through Hormuz,de_escalation,73.74,https://infocheck.me/oil_prices_2026,TRUE
+W14,2026-07-08,Truce collapses after ship attacks; US strikes Iran,escalation,,https://infocheck.me/oil_prices_2026,TRUE
+W15,2026-07-14,US naval blockade reinstated,escalation,,https://infocheck.me/oil_prices_2026,TRUE
+W16,2026-09-10,Drones hit Saudi East-West pipeline (main Hormuz bypass); pipeline shut,escalation,,https://infocheck.me/oil_prices_2026,TRUE
+W17,2026-09-22,East-West pipeline partially resumes,de_escalation,,https://infocheck.me/oil_prices_2026,TRUE
+W18,2026-10-23,Brent settles at highest close since Apr 29,price,116.72,https://infocheck.me/oil_prices_2026,TRUE

@@ -1,0 +1,29 @@
+﻿country_iso3,start_date,end_date,headline_rate_pct,basis,verified
+CHN,2025-02-04,2025-03-03,10,IEEPA fentanyl,TRUE
+CHN,2025-03-04,2025-04-04,20,IEEPA fentanyl,TRUE
+CHN,2025-04-05,2025-04-09,30,fentanyl 20 + baseline 10 (Apr 9 interim 104% step not modelled),FALSE
+CHN,2025-04-10,2025-05-13,145,peak escalation,TRUE
+CHN,2025-05-14,2025-11-09,30,Geneva truce (+ extension),TRUE
+CHN,2025-11-10,2026-02-23,20,Busan: fentanyl 10 + reciprocal 10,TRUE
+CHN,2026-02-24,2026-07-23,10,Section 122,TRUE
+CHN,2026-07-24,2099-12-31,10,Section 301 forced labor (China rate assumed 10),FALSE
+CAN,2025-03-04,2025-07-31,25,IEEPA fentanyl (USMCA-compliant goods exempt),FALSE
+CAN,2025-08-01,2026-02-23,35,IEEPA fentanyl (USMCA-compliant goods exempt),TRUE
+CAN,2026-02-24,2026-07-23,10,Section 122 (USMCA treatment not verified),FALSE
+CAN,2026-07-24,2099-12-31,10,Section 301 forced labor (USMCA-compliant exempt; rate assumed),FALSE
+MEX,2025-03-04,2026-02-23,25,IEEPA fentanyl (USMCA-compliant goods exempt),FALSE
+MEX,2026-02-24,2026-07-23,10,Section 122 (USMCA treatment not verified),FALSE
+MEX,2026-07-24,2099-12-31,10,Section 301 forced labor (USMCA-compliant exempt; rate assumed),FALSE
+IND,2025-04-05,2025-08-06,10,IEEPA baseline (country rate paused),TRUE
+IND,2025-08-07,2025-08-26,25,IEEPA reciprocal,TRUE
+IND,2025-08-27,2026-02-06,50,reciprocal 25 + Russian-oil 25,TRUE
+IND,2026-02-07,2026-02-23,25,reciprocal 25 (18% never implemented),TRUE
+IND,2026-02-24,2026-07-23,10,Section 122,TRUE
+IND,2026-07-24,2099-12-31,10,Section 301 forced labor,TRUE
+EUU,2025-04-05,2025-08-06,10,IEEPA baseline (20% paused),TRUE
+EUU,2025-08-07,2026-02-23,15,US-EU framework (all-in 15% incl. MFN),TRUE
+EUU,2026-02-24,2026-07-23,10,Section 122 (on top of MFN),TRUE
+EUU,2026-07-24,2099-12-31,10,Section 301 forced labor (EU rate assumed),FALSE
+WLD,2025-04-05,2026-02-23,10,IEEPA baseline for other partners,TRUE
+WLD,2026-02-24,2026-07-23,10,Section 122,TRUE
+WLD,2026-07-24,2099-12-31,10,Section 301 forced labor (applies to 60 economies; assumed),FALSE

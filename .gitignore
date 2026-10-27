@@ -1,0 +1,20 @@
+﻿# Python / envs
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+# secrets
+.env
+# data (raw snapshots are reproducible via `python -m ingest.run_all`)
+data/raw/
+data/_probe/
+warehouse/*.duckdb
+warehouse/*.duckdb.wal
+# dbt
+dbt/target/
+dbt/logs/
+dbt/dbt_packages/
+logs/
+# Power BI local caches
+powerbi/**/.pbi/localSettings.json
+powerbi/**/.pbi/cache.abf

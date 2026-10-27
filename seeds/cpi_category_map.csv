@@ -1,0 +1,26 @@
+﻿series_id,category,exposure_group,is_headline
+CUUR0000SA0,All items,aggregate,TRUE
+CUUR0000SA0L1E,Core (less food & energy),aggregate,TRUE
+CUUR0000SACL1E,Core goods (commodities less food & energy),tariff_exposed_goods,TRUE
+CUUR0000SASLE,Core services (services less energy),domestic_services,TRUE
+CUUR0000SAA,Apparel,tariff_exposed_goods,FALSE
+CUUR0000SEAE,Footwear,tariff_exposed_goods,FALSE
+CUUR0000SAH3,Household furnishings & supplies,tariff_exposed_goods,FALSE
+CUUR0000SEHJ,Furniture & bedding,tariff_exposed_goods,FALSE
+CUUR0000SEHK,Appliances,tariff_exposed_goods,FALSE
+CUUR0000SETA01,New vehicles,tariff_exposed_goods,FALSE
+CUUR0000SETA02,Used cars & trucks,domestic_goods,FALSE
+CUUR0000SEEE01,Computers & peripherals,tariff_exposed_goods,FALSE
+CUUR0000SERE01,Toys,tariff_exposed_goods,FALSE
+CUUR0000SEFP01,Coffee,tariff_exposed_goods,FALSE
+CUUR0000SERA,Video & audio,tariff_exposed_goods,FALSE
+CUUR0000SEHM,"Tools, hardware, outdoor equipment",tariff_exposed_goods,FALSE
+CUUR0000SAF11,Food at home,food,FALSE
+CUUR0000SEFV,Food away from home,domestic_services,FALSE
+CUUR0000SETB01,Gasoline (all types),energy,FALSE
+CUUR0000SEHF01,Electricity,energy,FALSE
+CUUR0000SAH1,Shelter,domestic_services,FALSE
+CUUR0000SEHA,Rent of primary residence,domestic_services,FALSE
+CUUR0000SAM2,Medical care services,domestic_services,FALSE
+CUUR0000SETD,Motor vehicle maintenance & repair,domestic_services,FALSE
+CUUR0000SETG01,Airline fares,energy_sensitive_services,FALSE

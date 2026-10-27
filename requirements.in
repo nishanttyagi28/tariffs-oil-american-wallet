@@ -1,0 +1,19 @@
+﻿# Top-level dependencies (exact pins in requirements.txt)
+duckdb
+dbt-core
+dbt-duckdb
+pandas
+pyarrow
+requests
+openpyxl
+xlrd
+python-dotenv
+pytest
+# later phases (ML)
+lightgbm
+statsmodels
+scikit-learn
+arch
+shap
+matplotlib
+pycountry

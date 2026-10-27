@@ -1,0 +1,10 @@
+﻿tradewar:
+  target: dev
+  outputs:
+    dev:
+      type: duckdb
+      path: "{{ env_var('TRADEWAR_DB', '../warehouse/tradewar.duckdb') }}"
+      threads: 1
+      settings:
+        memory_limit: "3GB"
+        threads: 2
