@@ -28,7 +28,7 @@ git lfs pull            # optional: harmless no-op today (no LFS files), kept fo
 py -3.12 -m venv .venv
 .venv\Scripts\activate
 python -m pip install --upgrade pip
-pip install -r requirements.txt          # pinned versions; ~5 minutes
+pip install -r requirements.txt          # pinned versions (incl. dbt, pytest, ruff); 5-15 minutes
 ```
 
 If PowerShell refuses to run `activate`, run `Set-ExecutionPolicy -Scope CurrentUser RemoteSigned` once,
@@ -59,10 +59,12 @@ To run from elsewhere, set `TRADEWAR_RAW` (absolute path to `data/raw`) and `TRA
 
 ```powershell
 cd dbt
-dbt deps --profiles-dir .                # no packages today; harmless
-dbt build --profiles-dir .               # seeds + staging/intermediate/marts + tests, ~2-4 min
+dbt build --profiles-dir .               # seeds + staging/intermediate/marts + tests, ~1-3 min
 cd ..
 ```
+
+Expected: `Done. PASS=144 WARN=0 ERROR=0`. dbt also prints a `MissingArgumentsPropertyInGenericTestDeprecation` summary; it is a
+deprecation notice from dbt 1.12, not an error. With the committed data you can run `pytest -q` straight after this step (78 tests).
 
 ## 4. ML models, then rebuild the marts that read their outputs
 
@@ -99,9 +101,9 @@ python powerbi/validate_pbir.py          # optional: validates against Microsoft
 
 | Step | Time |
 |---|---|
-| `pip install -r requirements.txt` | 3-6 min |
+| `pip install -r requirements.txt` | 5-15 min (mostly unpacking wheels; faster with a warm pip cache) |
 | `python -m ingest.run_all` (option B only) | 3-6 min |
-| `dbt build` | 2-4 min |
+| `dbt build` | 1-3 min |
 | `python -m ml.run_all` | 3-8 min |
 | export + build_pbip | < 1 min |
 | Power BI refresh | about 1 min |
@@ -118,6 +120,7 @@ python powerbi/validate_pbir.py          # optional: validates against Microsoft
 | `git diff` shows every line changed / CRLF warnings | The repo stores text as LF (`.gitattributes`). Leave `core.autocrlf` at the default, and re-run `python powerbi/build_pbip.py` after saving in Power BI Desktop. |
 | `git status` shows `warehouse/tradewar.duckdb` modified | Any dbt/ML run rewrites the warehouse. Commit it if you intend to publish new numbers; otherwise `git checkout -- warehouse/tradewar.duckdb`. |
 | Power BI visuals are blank after opening | Click Refresh. If it errors, check the DataRoot parameter (step 6.3). Maps need the security option above. |
+| `git status` shows `powerbi/data/*.parquet` and `expressions.tmdl` modified after step 5 | Expected: the export rewrites the Parquet files (tiny floating-point and date-spine differences) and `DataRoot` now points at your clone. Commit only if you are publishing. |
 | `tests` are skipped | Tests that need the warehouse skip when `warehouse/tradewar.duckdb` is missing; it is committed, so check you are in the repo root. |
 
 ## What is in git, and what is not
