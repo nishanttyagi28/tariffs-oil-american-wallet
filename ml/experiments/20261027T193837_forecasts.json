@@ -1,0 +1,28 @@
+{
+  "task": "forecasts",
+  "run_at": "20261027T193837",
+  "params": {
+    "end": "2027-03-01"
+  },
+  "metrics": {
+    "brent_q4_2026_model": 123.55,
+    "brent_q4_2026_eia": 105.0,
+    "brent_q4_2026_ar1_alt": 117.38,
+    "brent_mar2027_ar1_alt": 102.95,
+    "brent_q1_2027_model": 125.0,
+    "brent_last_actual_month": "2026-10-01",
+    "models": {
+      "gas": {
+        "aic": -412.30036362431446,
+        "brent_coef": 0.21756434860923762
+      },
+      "cpi_sa": {
+        "aic": -1083.0838499727963,
+        "brent_coef": 0.8769670624127148
+      }
+    }
+  },
+  "artifacts": [
+    "docs/figures/forecasts.png"
+  ]
+}
