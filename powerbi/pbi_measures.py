@@ -166,7 +166,7 @@ m("IRF Hi 95", F, "0.00", "AVERAGE ( IRF[CI Hi 95] )")
 m("Gasoline IRF 1m (%)", F, "+0.0;-0.0", "CALCULATE ( [IRF (%)], IRF[Outcome] = \"gasoline_cpi\", IRF[Horizon Months] = 1 )")
 m("Days Since War Began", F, NUM0, f"DATEDIFF ( {WAR}, TODAY (), DAY )")
 m("Oil Title", F, "",
-  "\"Brent & WTI ($/bbl) with Iran-war events, Brent latest \" & FORMAT ( [Brent Latest ($/bbl)], \"$0.0\" ) & \" (\" &\n"
+  "\"Brent & WTI in 2026 ($/bbl): Brent latest \" & FORMAT ( [Brent Latest ($/bbl)], \"$0.0\" ) & \" (\" &\n"
   "FORMAT ( [Brent vs Pre-war %], \"+0%;-0%\" ) & \" vs pre-war)\"")
 
 # ---------------------------------------------------------------- Markets

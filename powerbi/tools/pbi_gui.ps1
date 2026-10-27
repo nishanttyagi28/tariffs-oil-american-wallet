@@ -24,7 +24,7 @@ function Show-Pbi {
   [PbiUser32]::keybd_event(0x12,0,0,0); [PbiUser32]::keybd_event(0x12,0,2,0)
   [void][PbiUser32]::ShowWindow($p.MainWindowHandle, 3)
   [void][PbiUser32]::SetForegroundWindow($p.MainWindowHandle)
-  Start-Sleep -Milliseconds 600; return $true
+  Start-Sleep -Milliseconds 600; [System.Windows.Forms.SendKeys]::SendWait("{ESC}"); Start-Sleep -Milliseconds 200; return $true
 }
 
 function Save-Screen([string]$Path) {
@@ -99,13 +99,20 @@ function Open-Pbi([string]$Pbip, [int]$TimeoutSec = 240) {
 
 
 function Collapse-Panes {
+  # collapse the Data and Visualizations side panes (report view) so the canvas gets the full width
   Show-Pbi | Out-Null
-  $d = Find-Uia 'Data' 2
-  if ($d -and $d.Current.ClassName -eq 'toggle-button' -and $d.Current.BoundingRectangle.Width -lt 200) { Click-At 1510 178; Start-Sleep 2 }
-  $v = Find-Uia 'Visualizations' 2
-  if ($v -and $v.Current.ControlType -eq [System.Windows.Automation.ControlType]::Button) { try { $v.GetCurrentPattern([System.Windows.Automation.InvokePattern]::Pattern).Invoke() } catch {}; Start-Sleep 2 }
+  foreach ($nm in 'Data', 'Visualizations') {
+    $root = [System.Windows.Automation.AutomationElement]::FromHandle((Get-PbiProc).MainWindowHandle)
+    $c1 = New-Object System.Windows.Automation.PropertyCondition([System.Windows.Automation.AutomationElement]::NameProperty, $nm)
+    $c2 = New-Object System.Windows.Automation.PropertyCondition([System.Windows.Automation.AutomationElement]::ControlTypeProperty, [System.Windows.Automation.ControlType]::Button)
+    $hits = $root.FindAll([System.Windows.Automation.TreeScope]::Descendants, (New-Object System.Windows.Automation.AndCondition($c1, $c2)))
+    $btn = $hits | Where-Object { $_.Current.ClassName -match 'toggle-button' -and -not $_.Current.IsOffscreen -and $_.Current.BoundingRectangle.Y -lt 200 } |
+           Sort-Object { $_.Current.BoundingRectangle.X } -Descending | Select-Object -First 1
+    if ($btn) { try { $btn.GetCurrentPattern([System.Windows.Automation.InvokePattern]::Pattern).Invoke() }
+                catch { $r = $btn.Current.BoundingRectangle; Click-At ([int]($r.X + $r.Width/2)) ([int]($r.Y + $r.Height/2)) }
+                Start-Sleep 2 }
+  }
 }
-
 function Apply-External {
   Show-Pbi | Out-Null; Send-Keys '{ESC}'
   if (-not (Invoke-Uia 'Apply external changes' 10)) { return $false }
@@ -121,3 +128,5 @@ function Apply-External {
   }
   return $false
 }
+
+

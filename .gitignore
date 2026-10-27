@@ -23,3 +23,7 @@ warehouse/*.tmp
 warehouse/*.duckdb.tmp
 
 .scratch/
+# Power BI Desktop-written artifacts (the generator is the source of truth)
+powerbi/**/.pbi/editorSettings.json
+powerbi/**/diagramLayout.json
+powerbi/**/definition/cultures/

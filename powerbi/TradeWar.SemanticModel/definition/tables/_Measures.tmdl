@@ -508,7 +508,7 @@ table _Measures
 		lineageTag: 8ee9208a-7385-56ef-be14-3911e1326ea5
 
 	measure 'Oil Title' =
-			"Brent & WTI ($/bbl) with Iran-war events, Brent latest " & FORMAT ( [Brent Latest ($/bbl)], "$0.0" ) & " (" &
+			"Brent & WTI in 2026 ($/bbl): Brent latest " & FORMAT ( [Brent Latest ($/bbl)], "$0.0" ) & " (" &
 			FORMAT ( [Brent vs Pre-war %], "+0%;-0%" ) & " vs pre-war)"
 		displayFolder: Oil
 		lineageTag: 2eb78d43-420f-5afc-9347-aa255772d065
