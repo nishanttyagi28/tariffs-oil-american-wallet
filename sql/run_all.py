@@ -31,7 +31,7 @@ def main() -> int:
     index, failed = [], []
     for f in files:
         sql = f.read_text(encoding="utf-8")
-        title = next((l[2:].strip() for l in sql.splitlines() if l.startswith("--")), f.stem)
+        title = next((ln[2:].strip() for ln in sql.splitlines() if ln.startswith("--")), f.stem)
         t0 = time.perf_counter()
         try:
             df = con.execute(sql).df()

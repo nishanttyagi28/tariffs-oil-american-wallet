@@ -47,8 +47,12 @@
               },
               "queryRef": "_Measures.Effect since Apr 2025 ($bn)",
               "nativeQueryRef": "Effect since Apr 2025 ($bn)",
-              "displayName": "Effect"
-            },
+              "displayName": "Gap vs counterfactual ($bn)"
+            }
+          ]
+        },
+        "Tooltips": {
+          "projections": [
             {
               "field": {
                 "Measure": {
@@ -62,7 +66,7 @@
               },
               "queryRef": "_Measures.Effect Lo 95 ($bn)",
               "nativeQueryRef": "Effect Lo 95 ($bn)",
-              "displayName": "95% low"
+              "displayName": "95% interval, low ($bn)"
             },
             {
               "field": {
@@ -77,7 +81,22 @@
               },
               "queryRef": "_Measures.Effect Hi 95 ($bn)",
               "nativeQueryRef": "Effect Hi 95 ($bn)",
-              "displayName": "95% high"
+              "displayName": "95% interval, high ($bn)"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "Effect since Apr 2025 %"
+                }
+              },
+              "queryRef": "_Measures.Effect since Apr 2025 %",
+              "nativeQueryRef": "Effect since Apr 2025 %",
+              "displayName": "Gap (%)"
             }
           ]
         }
@@ -109,8 +128,13 @@
               "solid": {
                 "color": {
                   "expr": {
-                    "Literal": {
-                      "Value": "'#0B1F3A'"
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "_Measures"
+                        }
+                      },
+                      "Property": "Effect Colour"
                     }
                   }
                 }
@@ -118,43 +142,33 @@
             }
           },
           "selector": {
-            "metadata": "_Measures.Effect since Apr 2025 ($bn)"
+            "data": [
+              {
+                "dataViewWildcard": {
+                  "matchingOption": 1
+                }
+              }
+            ]
           }
-        },
+        }
+      ],
+      "labels": [
         {
           "properties": {
-            "fill": {
-              "solid": {
-                "color": {
-                  "expr": {
-                    "Literal": {
-                      "Value": "'#C9D2DE'"
-                    }
-                  }
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "9D"
                 }
               }
             }
-          },
-          "selector": {
-            "metadata": "_Measures.Effect Lo 95 ($bn)"
-          }
-        },
-        {
-          "properties": {
-            "fill": {
-              "solid": {
-                "color": {
-                  "expr": {
-                    "Literal": {
-                      "Value": "'#9FB3CC'"
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "selector": {
-            "metadata": "_Measures.Effect Hi 95 ($bn)"
           }
         }
       ]
@@ -173,7 +187,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Counterfactual gap in imports since Apr 2025 with 95% interval ($bn)'"
+                  "Value": "'Counterfactual gap in imports since Apr 2025 ($bn); hover a bar for the 95% interval'"
                 }
               }
             }

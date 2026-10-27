@@ -1,6 +1,6 @@
 """Yahoo Finance chart API (daily OHLC, no key) for global indices, commodities, FX, rates, volatility."""
 import time
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 
 import pandas as pd
 
@@ -26,10 +26,10 @@ INSTRUMENTS = {
 
 
 def run(start: str = "2015-01-01"):
-    p1 = int(datetime.fromisoformat(start).replace(tzinfo=timezone.utc).timestamp())
-    p2 = int(datetime.now(timezone.utc).timestamp())
+    p1 = int(datetime.fromisoformat(start).replace(tzinfo=UTC).timestamp())
+    p2 = int(datetime.now(UTC).timestamp())
     frames, failed = [], []
-    for sym, (name, cls, iso3, ccy) in INSTRUMENTS.items():
+    for sym, (_name, _cls, _iso3, _ccy) in INSTRUMENTS.items():
         try:
             js = http_get(URL.format(sym=sym), params={"period1": p1, "period2": p2, "interval": "1d",
                                                        "events": "div,splits"}, ua=BROWSER_UA).json()

@@ -32,7 +32,6 @@ def run() -> dict:
         p_hi = np.clip(ms.smoothed_marginal_probabilities[:, hi], 0.0, 1.0)  # remove float noise (e.g. 1+1e-16)
         P = ms.regime_transition
         stay_hi = float(P[hi, hi, 0]) if P.ndim == 3 else float(P[hi, hi])
-        gp = None
         g = arch_model(r.values, mean="Constant", vol="GARCH", p=1, q=1, dist="t").fit(disp="off")
         d = d.assign(ret_pct=r.values, prob_high_vol=p_hi, regime=np.where(p_hi > 0.5, "high-vol", "calm"),
                      garch_vol_ann_pct=g.conditional_volatility * np.sqrt(252), instrument_name=name)

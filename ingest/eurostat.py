@@ -9,7 +9,7 @@ URL = "https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/ext_s
 
 
 def _jsonstat_to_df(js: dict) -> pd.DataFrame:
-    ids, sizes = js["id"], js["size"]
+    ids = js["id"]
     cats = []
     for d in ids:
         idx = js["dimension"][d]["category"]["index"]

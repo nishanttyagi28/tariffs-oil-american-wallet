@@ -1,0 +1,21 @@
+[project]
+name = "tariffs-oil-american-wallet"
+version = "1.0.0"
+description = "Trump trade war 2025-26, the Iran-war oil shock and the US household: DuckDB + dbt + ML + Power BI (PBIP)"
+requires-python = ">=3.12"
+
+[tool.ruff]
+line-length = 140
+target-version = "py312"
+extend-exclude = [".venv", "dbt/target", "dbt/dbt_packages", ".scratch"]
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "B", "UP"]
+ignore = ["E501", "B008", "B905"]
+
+[tool.ruff.lint.per-file-ignores]
+"powerbi/build_pbip.py" = ["E402"]
+"tests/*" = ["B011"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

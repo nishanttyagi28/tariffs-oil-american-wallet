@@ -1,0 +1,11 @@
+# Light CI subset (lint, tests that do not need the warehouse, PBIP build/validation, dbt parse).
+# Full pinned environment for running the pipeline: requirements.txt
+duckdb==2.0.0
+dbt-core==1.12.6
+dbt-duckdb==1.11.1
+pandas==3.1.0
+pyarrow==26.0.0
+pytest==9.1.1
+jsonschema==4.26.0
+referencing==0.37.0
+ruff==0.17.3

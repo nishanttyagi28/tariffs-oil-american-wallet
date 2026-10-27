@@ -5,7 +5,7 @@ import json
 import logging
 import os
 import time
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 from pathlib import Path
 
 import pandas as pd
@@ -87,7 +87,7 @@ def record(source: str, name: str, df: pd.DataFrame | None, *, url: str, date_co
         "source": source,
         "dataset": name,
         "url": url,
-        "fetched_at_utc": datetime.now(timezone.utc).isoformat(timespec="seconds"),
+        "fetched_at_utc": datetime.now(UTC).isoformat(timespec="seconds"),
         "rows": int(len(df)) if df is not None else 0,
         "status": status,
         "note": note,

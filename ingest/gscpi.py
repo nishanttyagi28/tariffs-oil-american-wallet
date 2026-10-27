@@ -13,8 +13,8 @@ def run():
     save_bytes(content, "gscpi", "gscpi_data.xlsx")
     sheets = pd.read_excel(io.BytesIO(content), sheet_name=None, header=None)
     best = None
-    for name, s in sheets.items():
-        for i in range(min(10, len(s))):
+    for _name, s in sheets.items():
+        for _i in range(min(10, len(s))):
             d = pd.to_datetime(s.iloc[:, 0], errors="coerce", format="mixed")
             v = pd.to_numeric(s.iloc[:, 1], errors="coerce")
             ok = d.notna() & v.notna()

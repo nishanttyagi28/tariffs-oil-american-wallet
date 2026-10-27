@@ -5,7 +5,7 @@ import shutil
 from pathlib import Path
 
 from pbi_common import F, color, filter_in, gid, hid, lit, meas, num, proj, write_json
-from pbi_theme import AMBER, CORAL, NAVY, SKY, SLATE, TEAL, THEME
+from pbi_theme import AMBER, CORAL, NAVY, SKY, SLATE, TEAL
 
 SCH = "https://developer.microsoft.com/json-schemas/fabric/item/report/definition"
 V_VIS, V_PAGE, V_REP = "2.4.0", "2.0.0", "3.0.0"
@@ -213,7 +213,7 @@ def build_pages() -> list[Page]:
           roles={"Category": ["Country.Map Name"], "Y": [("m:Import Change Top 20 %", "Import change vs 2024")]},
           title="Partner ranking: top-20 2024 import partners, change in average monthly imports",
           objects={**fill_measure("Map Colour Imports"),
-                   "labels": [{"properties": {"show": lit(True), "fontSize": num(7), "labelPrecision": lit(0)}}]},
+                   "labels": [{"properties": {"show": lit(True), "fontSize": num(9), "labelPrecision": lit(0)}}]},
           sort=[("m:Import Change Top 20 %", "Descending")], key="ranking")
     p.add("lineChart", 788, 496, 476, 216,
           roles={"Category": ["Date.Month"], "Y": [("m:Selected Trade Metric ($bn)", "This year"), ("m:Selected Trade Metric LY ($bn)", "Last year")]},
@@ -347,16 +347,17 @@ def build_pages() -> list[Page]:
           roles={"Rows": ["Event Study.Event Name"], "Columns": ["Instrument.Short Name"], "Values": [("m:CAR D+5 %", "CAR D0..D+5")]},
           title="Cumulative abnormal returns D0..D+5 by event (market model; red = sell-off)",
           objects={"values": [{"properties": {"backColor": {"solid": {"color": {"expr": meas("CAR Colour")}}}},
-                               "selector": {"data": [{"dataViewWildcard": {"matchingOption": 1}}], "metadata": "_Measures.CAR D+5 %"}}],
+                               "selector": {"data": [{"dataViewWildcard": {"matchingOption": 1}}], "metadata": "_Measures.CAR D+5 %"}},
+                              {"properties": {"fontSize": num(8)}}],
                    "subTotals": [{"properties": {"rowSubtotals": lit(False), "columnSubtotals": lit(False)}}],
                    "columnHeaders": [{"properties": {"fontSize": num(8), "wordWrap": lit(True)}}],
-                   "rowHeaders": [{"properties": {"fontSize": num(8)}}],
-                   "values": [{"properties": {"fontSize": num(8)}}]},
+                   "rowHeaders": [{"properties": {"fontSize": num(8)}}]},
           filters=[filter_in("Instrument", "Symbol", key_syms)], key="carmatrix")
     p.add("lineChart", 900, 204, 364, 256,
           roles={"Category": ["Date.Date"], "Y": [("m:Index (pre-war = 100)", "Index")], "Series": ["Instrument.Short Name"]},
           title="Equity indices rebased to the last pre-war close (= 100)",
-          filters=yr([2026]) + [filter_in("Instrument", "Symbol", ["^GSPC", "^NSEI", "^STOXX50E", "^N225", "000001.SS"])], objects={"legend": [{"properties": {"showTitle": lit(False)}}]}, key="indices")
+          filters=yr([2026]) + [filter_in("Instrument", "Symbol", ["^GSPC", "^NSEI", "^STOXX50E", "^N225", "000001.SS"])],
+          objects={"legend": [{"properties": {"showTitle": lit(False), "position": lit("Bottom"), "fontSize": num(8)}}]}, key="indices")
     p.add("areaChart", 16, 472, 620, 240,
           roles={"Category": ["Date.Date"], "Y": [("m:High-vol Probability", "P(high-vol regime)")], "Series": ["Instrument.Short Name"]},
           title="Markov-switching probability of the high-volatility regime (shaded)",
@@ -393,12 +394,11 @@ def build_pages() -> list[Page]:
           filters=[filter_in("Model Metrics", "Task", ["trade_counterfactual"]), filter_in("Model Metrics", "Metric", ["wape"]),
                    filter_in("Model Metrics", "Is Best", [True])], sort=[("Model Metrics.Value", "Ascending")], key="wape")
     p.add("clusteredBarChart", 16, 472, 620, 240,
-          roles={"Category": ["Partner.Partner"], "Y": [("m:Effect since Apr 2025 ($bn)", "Effect"), ("m:Effect Lo 95 ($bn)", "95% low"),
-                                                        ("m:Effect Hi 95 ($bn)", "95% high")]},
-          title="Counterfactual gap in imports since Apr 2025 with 95% interval ($bn)",
-          objects={"dataPoint": [{"properties": {"fill": color(NAVY)}, "selector": {"metadata": "_Measures.Effect since Apr 2025 ($bn)"}},
-                                 {"properties": {"fill": color("#C9D2DE")}, "selector": {"metadata": "_Measures.Effect Lo 95 ($bn)"}},
-                                 {"properties": {"fill": color("#9FB3CC")}, "selector": {"metadata": "_Measures.Effect Hi 95 ($bn)"}}]},
+          roles={"Category": ["Partner.Partner"], "Y": [("m:Effect since Apr 2025 ($bn)", "Gap vs counterfactual ($bn)")],
+                 "Tooltips": [("m:Effect Lo 95 ($bn)", "95% interval, low ($bn)"), ("m:Effect Hi 95 ($bn)", "95% interval, high ($bn)"),
+                              ("m:Effect since Apr 2025 %", "Gap (%)")]},
+          title="Counterfactual gap in imports since Apr 2025 ($bn); hover a bar for the 95% interval",
+          objects={**fill_measure("Effect Colour"), "labels": [{"properties": {"show": lit(True), "fontSize": num(9)}}]},
           filters=[filter_in("Tariff Effect", "Flow", ["imports"])], sort=[("m:Effect since Apr 2025 ($bn)", "Ascending")], key="gapbar")
     p.add("lineChart", 648, 472, 616, 240,
           roles={"Category": ["Date.Month"], "Y": [("m:CPI Actual YoY %", "Actual"), ("m:CPI Forecast YoY %", "Forecast"),

@@ -1,15 +1,17 @@
-"""Validate the PBIR JSON files against Microsoft's published schemas (downloaded once to E:/caches/pbir-schemas)."""
+"""Validate the PBIR JSON files against Microsoft's published schemas (downloaded once to $PBIR_SCHEMA_CACHE or the temp dir)."""
 from __future__ import annotations
 
 import json
+import os
 import sys
+import tempfile
 import urllib.request
 from pathlib import Path
 
 from jsonschema import Draft7Validator
 from referencing import Registry, Resource
 
-CACHE = Path("E:/caches/pbir-schemas")
+CACHE = Path(os.environ.get("PBIR_SCHEMA_CACHE", Path(tempfile.gettempdir()) / "pbir-schemas"))
 WEB = "https://developer.microsoft.com/json-schemas/"
 RAW = "https://raw.githubusercontent.com/microsoft/json-schemas/main/"
 

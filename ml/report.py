@@ -58,7 +58,8 @@ def build(timings: dict | None = None) -> None:
     q4m = q4.groupby("kind")["value"].mean().mean() if len(q4) else float("nan")
     hc = fc[(fc.target == "headline_cpi") & (fc.kind == "forecast")]
 
-    g = lambda sid: eff[(eff.effect_window == "Apr 2025-latest") & (eff.series_id == sid)].iloc[0]
+    def g(sid):
+        return eff[(eff.effect_window == "Apr 2025-latest") & (eff.series_id == sid)].iloc[0]
     chn, tot, twn, vnm = g("CHN|imports"), g("TOTAL|imports"), g("TWN|imports"), g("VNM|imports")
     gas = irf[(irf.outcome == "gasoline_cpi")].set_index("horizon_months")
     hcp = irf[(irf.outcome == "headline_cpi")].set_index("horizon_months")

@@ -131,7 +131,7 @@ def _plot(es, irf):
     fig.savefig(FIG_DIR / "event_study_war.png")
     plt.close(fig)
     fig, axes = plt.subplots(2, 2, figsize=(10, 6))
-    for ax, (k, g) in zip(axes.flat, irf.groupby("outcome")):
+    for ax, (_k, g) in zip(axes.flat, irf.groupby("outcome")):
         ax.plot(g.horizon_months, g.irf, color="#1f3b73", marker="o", ms=3)
         ax.fill_between(g.horizon_months, g.ci_lo95, g.ci_hi95, alpha=0.15, color="#1f3b73")
         ax.fill_between(g.horizon_months, g.ci_lo90, g.ci_hi90, alpha=0.2, color="#1f3b73")
