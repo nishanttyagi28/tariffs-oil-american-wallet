@@ -1,3 +1,4 @@
 * text=auto eol=lf
 *.xlsx binary
-*.png binary*.parquet binary
+*.png binary
+*.parquet binary
