@@ -10,7 +10,7 @@
     "tabOrder": 8000
   },
   "visual": {
-    "visualType": "lineClusteredColumnComboChart",
+    "visualType": "lineChart",
     "query": {
       "queryState": {
         "Category": {
@@ -33,25 +33,6 @@
           ]
         },
         "Y": {
-          "projections": [
-            {
-              "field": {
-                "Measure": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "_Measures"
-                    }
-                  },
-                  "Property": "War Events (#)"
-                }
-              },
-              "queryRef": "_Measures.War Events (#)",
-              "nativeQueryRef": "War Events (#)",
-              "displayName": "Iran-war events"
-            }
-          ]
-        },
-        "Y2": {
           "projections": [
             {
               "field": {
@@ -96,24 +77,6 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#E4572E'"
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "selector": {
-            "metadata": "_Measures.War Events (#)"
-          }
-        },
-        {
-          "properties": {
-            "fill": {
-              "solid": {
-                "color": {
-                  "expr": {
-                    "Literal": {
                       "Value": "'#0B1F3A'"
                     }
                   }
@@ -135,6 +98,36 @@
                       "Value": "'#F2A541'"
                     }
                   }
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "_Measures.WTI ($/bbl)"
+          }
+        }
+      ],
+      "lineStyles": [
+        {
+          "properties": {
+            "strokeWidth": {
+              "expr": {
+                "Literal": {
+                  "Value": "2.5D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "_Measures.Brent ($/bbl)"
+          }
+        },
+        {
+          "properties": {
+            "strokeWidth": {
+              "expr": {
+                "Literal": {
+                  "Value": "2D"
                 }
               }
             }

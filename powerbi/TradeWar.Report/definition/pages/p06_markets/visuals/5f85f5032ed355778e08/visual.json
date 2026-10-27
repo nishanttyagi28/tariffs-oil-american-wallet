@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
   "name": "5f85f5032ed355778e08",
   "position": {
-    "x": 788,
+    "x": 900,
     "y": 204,
     "z": 9000,
     "height": 256,
-    "width": 476,
+    "width": 364,
     "tabOrder": 9000
   },
   "visual": {
@@ -61,16 +61,31 @@
                       "Entity": "Instrument"
                     }
                   },
-                  "Property": "Instrument"
+                  "Property": "Short Name"
                 }
               },
-              "queryRef": "Instrument.Instrument",
-              "nativeQueryRef": "Instrument",
+              "queryRef": "Instrument.Short Name",
+              "nativeQueryRef": "Short Name",
               "active": true
             }
           ]
         }
       }
+    },
+    "objects": {
+      "legend": [
+        {
+          "properties": {
+            "showTitle": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ]
     },
     "visualContainerObjects": {
       "title": [

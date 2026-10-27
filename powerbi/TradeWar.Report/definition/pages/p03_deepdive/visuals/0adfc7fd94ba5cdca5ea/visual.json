@@ -28,7 +28,7 @@
               },
               "queryRef": "_Measures.DD Effect CI Text",
               "nativeQueryRef": "DD Effect CI Text",
-              "displayName": "95% interval"
+              "displayName": "95% interval of the import effect"
             }
           ]
         }
@@ -41,7 +41,7 @@
             "fontSize": {
               "expr": {
                 "Literal": {
-                  "Value": "11D"
+                  "Value": "15D"
                 }
               }
             },

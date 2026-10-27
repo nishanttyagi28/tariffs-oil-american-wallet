@@ -725,12 +725,12 @@ table _Measures
 		displayFolder: Forecast & ML
 		lineageTag: d9e10246-b35c-54d7-a188-ab3cc83558a6
 
-	measure 'WAPE (best model)' = CALCULATE ( AVERAGE ( 'Model Metrics'[Value] ), 'Model Metrics'[Metric] = "wape", 'Model Metrics'[Is Best] = TRUE () )
+	measure 'WAPE (best model)' = CALCULATE ( AVERAGE ( 'Model Metrics'[Value] ) / 100, 'Model Metrics'[Metric] = "wape", 'Model Metrics'[Is Best] = TRUE () )
 		formatString: 0.0%
 		displayFolder: Forecast & ML
 		lineageTag: 85ff16a6-a12d-5848-b4de-07730e4c9980
 
-	measure 'Median WAPE (best models)' = MEDIANX ( VALUES ( 'Model Metrics'[Series ID] ), CALCULATE ( AVERAGE ( 'Model Metrics'[Value] ), 'Model Metrics'[Metric] = "wape", 'Model Metrics'[Is Best] = TRUE () ) )
+	measure 'Median WAPE (best models)' = MEDIANX ( VALUES ( 'Model Metrics'[Series ID] ), CALCULATE ( AVERAGE ( 'Model Metrics'[Value] ) / 100, 'Model Metrics'[Metric] = "wape", 'Model Metrics'[Is Best] = TRUE () ) )
 		formatString: 0.0%
 		displayFolder: Forecast & ML
 		lineageTag: 10167e3e-813b-59e0-ade3-28e5e1f1b3f9
@@ -909,7 +909,7 @@ table _Measures
 		displayFolder: Deep-dive
 		lineageTag: 7f0ab352-327b-5f49-b04e-69b36e419c63
 
-	measure 'DD Effect CI Text' = "95% interval " & FORMAT ( [DD Import Effect Lo 95 ($bn)], "$#,0;-$#,0" ) & "bn to " & FORMAT ( [DD Import Effect Hi 95 ($bn)], "$#,0;-$#,0" ) & "bn"
+	measure 'DD Effect CI Text' = FORMAT ( [DD Import Effect Lo 95 ($bn)], "$#,0;-$#,0" ) & "bn to " & FORMAT ( [DD Import Effect Hi 95 ($bn)], "$#,0;-$#,0" ) & "bn"
 		displayFolder: Deep-dive
 		lineageTag: 15c30170-8cc7-5218-a724-99a0bd075d5e
 
@@ -945,22 +945,22 @@ table _Measures
 		displayFolder: Story
 		lineageTag: 9d609a1d-2fbe-56a1-918b-5c770f39f5dd
 
-	measure 'CPI Actual YoY %' = CALCULATE ( AVERAGE ( Forecasts[YoY Value] ), REMOVEFILTERS ( Forecasts ), Forecasts[Target] = "headline_cpi", Forecasts[Kind] = "actual" )
+	measure 'CPI Actual YoY %' = CALCULATE ( AVERAGE ( Forecasts[YoY Value] ), REMOVEFILTERS ( Forecasts[Target], Forecasts[Target Label], Forecasts[Unit], Forecasts[Model] ), Forecasts[Target] = "headline_cpi", Forecasts[Kind] = "actual" )
 		formatString: 0.0%
 		displayFolder: Forecast & ML
 		lineageTag: 8b4afdbc-d807-5410-a90c-812a1f2a689e
 
-	measure 'CPI Forecast YoY %' = CALCULATE ( AVERAGE ( Forecasts[YoY Value] ), REMOVEFILTERS ( Forecasts ), Forecasts[Target] = "headline_cpi", Forecasts[Kind] = "forecast" )
+	measure 'CPI Forecast YoY %' = CALCULATE ( AVERAGE ( Forecasts[YoY Value] ), REMOVEFILTERS ( Forecasts[Target], Forecasts[Target Label], Forecasts[Unit], Forecasts[Model] ), Forecasts[Target] = "headline_cpi", Forecasts[Kind] = "forecast" )
 		formatString: 0.0%
 		displayFolder: Forecast & ML
 		lineageTag: 17bf88c0-e3b7-5f3f-b590-6be5cb547eba
 
-	measure 'CPI Forecast YoY Lo 80' = CALCULATE ( AVERAGE ( Forecasts[YoY Lo 80] ), REMOVEFILTERS ( Forecasts ), Forecasts[Target] = "headline_cpi", Forecasts[Kind] = "forecast" )
+	measure 'CPI Forecast YoY Lo 80' = CALCULATE ( AVERAGE ( Forecasts[YoY Lo 80] ), REMOVEFILTERS ( Forecasts[Target], Forecasts[Target Label], Forecasts[Unit], Forecasts[Model] ), Forecasts[Target] = "headline_cpi", Forecasts[Kind] = "forecast" )
 		formatString: 0.0%
 		displayFolder: Forecast & ML
 		lineageTag: 5ff31eec-aa1f-57ff-86ac-4b1d0c9efdcb
 
-	measure 'CPI Forecast YoY Hi 80' = CALCULATE ( AVERAGE ( Forecasts[YoY Hi 80] ), REMOVEFILTERS ( Forecasts ), Forecasts[Target] = "headline_cpi", Forecasts[Kind] = "forecast" )
+	measure 'CPI Forecast YoY Hi 80' = CALCULATE ( AVERAGE ( Forecasts[YoY Hi 80] ), REMOVEFILTERS ( Forecasts[Target], Forecasts[Target Label], Forecasts[Unit], Forecasts[Model] ), Forecasts[Target] = "headline_cpi", Forecasts[Kind] = "forecast" )
 		formatString: 0.0%
 		displayFolder: Forecast & ML
 		lineageTag: fc4269f3-537f-5b13-af10-077e175a9b6b

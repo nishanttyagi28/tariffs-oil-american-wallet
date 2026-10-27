@@ -225,9 +225,9 @@ m("Headline CPI Forecast Mar-27 %", F, PCT, _fc("headline_cpi", "forecast", "DAT
 m("Forecast Title", F, "",
   "\"Forecast: \" & SELECTEDVALUE ( Forecasts[Target Label], \"Brent (default, pick a target)\" ) & \", central path with 80% / 95% intervals, AR(1) alternative and EIA STEO\"")
 m("WAPE (best model)", F, PCT,
-  "CALCULATE ( AVERAGE ( 'Model Metrics'[Value] ), 'Model Metrics'[Metric] = \"wape\", 'Model Metrics'[Is Best] = TRUE () )")
+  "CALCULATE ( AVERAGE ( 'Model Metrics'[Value] ) / 100, 'Model Metrics'[Metric] = \"wape\", 'Model Metrics'[Is Best] = TRUE () )")
 m("Median WAPE (best models)", F, PCT,
-  "MEDIANX ( VALUES ( 'Model Metrics'[Series ID] ), CALCULATE ( AVERAGE ( 'Model Metrics'[Value] ), 'Model Metrics'[Metric] = \"wape\", 'Model Metrics'[Is Best] = TRUE () ) )")
+  "MEDIANX ( VALUES ( 'Model Metrics'[Series ID] ), CALCULATE ( AVERAGE ( 'Model Metrics'[Value] ) / 100, 'Model Metrics'[Metric] = \"wape\", 'Model Metrics'[Is Best] = TRUE () ) )")
 m("Actual ($bn)", F, BN, "DIVIDE ( SUM ( Counterfactual[Actual $M] ), 1000 )")
 for nm, col in [("Counterfactual ($bn)", "Counterfactual $M"), ("CF Lo 95 ($bn)", "CF Lo 95"), ("CF Hi 95 ($bn)", "CF Hi 95"),
                 ("CF Lo 80 ($bn)", "CF Lo 80"), ("CF Hi 80 ($bn)", "CF Hi 80")]:
@@ -267,7 +267,7 @@ m("DD Import Effect %", F, SPCT,
   "VAR _p = [DD Code]\nRETURN CALCULATE ( AVERAGE ( 'Tariff Effect'[Effect %] ), REMOVEFILTERS ( Partner ), 'Tariff Effect'[Partner Code] = _p,\n"
   "    'Tariff Effect'[Flow] = \"imports\", 'Tariff Effect'[Effect Window] = \"Apr 2025-latest\" )")
 m("DD Effect CI Text", F, "",
-  "\"95% interval \" & FORMAT ( [DD Import Effect Lo 95 ($bn)], \"$#,0;-$#,0\" ) & \"bn to \" & FORMAT ( [DD Import Effect Hi 95 ($bn)], \"$#,0;-$#,0\" ) & \"bn\"")
+  "FORMAT ( [DD Import Effect Lo 95 ($bn)], \"$#,0;-$#,0\" ) & \"bn to \" & FORMAT ( [DD Import Effect Hi 95 ($bn)], \"$#,0;-$#,0\" ) & \"bn\"")
 m("DD Title", F, "",
   "\"Country deep-dive: \" & [DD Partner] & IF ( ISFILTERED ( Partner[Partner] ) || ISFILTERED ( Partner[Partner Code] ), \"\", \" (default; pick a partner or drill through from any partner chart)\" )")
 
@@ -289,7 +289,7 @@ m("Tooltip Country", "Story", "", "SELECTEDVALUE ( Country[Map Name], \"Country\
 F = "Forecast & ML"
 for nm, col, kind in [("CPI Actual YoY %", "YoY Value", "actual"), ("CPI Forecast YoY %", "YoY Value", "forecast"),
                       ("CPI Forecast YoY Lo 80", "YoY Lo 80", "forecast"), ("CPI Forecast YoY Hi 80", "YoY Hi 80", "forecast")]:
-    m(nm, F, PCT, f"CALCULATE ( AVERAGE ( Forecasts[{col}] ), REMOVEFILTERS ( Forecasts ), Forecasts[Target] = \"headline_cpi\", Forecasts[Kind] = \"{kind}\" )")
+    m(nm, F, PCT, f"CALCULATE ( AVERAGE ( Forecasts[{col}] ), REMOVEFILTERS ( Forecasts[Target], Forecasts[Target Label], Forecasts[Unit], Forecasts[Model] ), Forecasts[Target] = \"headline_cpi\", Forecasts[Kind] = \"{kind}\" )")
 
 F = "Story"
 m("Story Tariffs", F, "",

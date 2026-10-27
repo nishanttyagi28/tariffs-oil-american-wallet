@@ -33,6 +33,13 @@ RELS = [
     ("Counterfactual", "Partner Code", "Partner", "Partner Code"), ("Tariff Effect", "Partner Code", "Partner", "Partner Code"),
 ]
 HIDDEN_TABLES: set[str] = set()
+# calculated columns: table -> [(name, dataType, DAX)]
+CALC_COLS: dict[str, list[tuple[str, str, str]]] = {
+    "Instrument": [("Short Name", "string",
+                    'SWITCH ( Instrument[Symbol], "^GSPC", "S&P 500", "^NSEI", "Nifty 50", "^STOXX50E", "Euro Stoxx 50", '
+                    '"^N225", "Nikkei 225", "000001.SS", "Shanghai", "BZ=F", "Brent", "CL=F", "WTI", "GC=F", "Gold", '
+                    '"^VIX", "VIX", "^BSESN", "Sensex", "^GDAXI", "DAX", Instrument[Instrument] )')],
+}
 
 
 def col_format(table: str, name: str, dtype: str) -> str | None:
@@ -98,6 +105,10 @@ def build_model(root: Path, data_root: str) -> dict:
             if (t, c["name"]) in SORT_BY:
                 L.append(f"\t\tsortByColumn: {q(SORT_BY[(t, c['name'])])}")
             L += ["", "\t\tannotation SummarizationSetBy = User", ""]
+        for cn, ct, cx in CALC_COLS.get(t, []):
+            cols[t].add(cn)
+            L += [f"\tcolumn {q(cn)} = {cx}", f"\t\tdataType: {ct}", f"\t\tlineageTag: {gid('col', t, cn)}",
+                  "\t\tsummarizeBy: none", "", "\t\tannotation SummarizationSetBy = Automatic", ""]
         L += [f"\tpartition {q(t)} = m", "\t\tmode: import", "\t\tsource =", "\t\t\t\tlet",
               f"\t\t\t\t    Source = Parquet.Document(File.Contents(DataRoot & \"\\{t}.parquet\"))",
               "\t\t\t\tin", "\t\t\t\t    Source", "", "\tannotation PBI_ResultType = Table", ""]

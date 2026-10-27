@@ -6,7 +6,7 @@
     "y": 204,
     "z": 8000,
     "height": 256,
-    "width": 760,
+    "width": 872,
     "tabOrder": 8000
   },
   "visual": {
@@ -42,11 +42,11 @@
                       "Entity": "Instrument"
                     }
                   },
-                  "Property": "Instrument"
+                  "Property": "Short Name"
                 }
               },
-              "queryRef": "Instrument.Instrument",
-              "nativeQueryRef": "Instrument",
+              "queryRef": "Instrument.Short Name",
+              "nativeQueryRef": "Short Name",
               "active": true
             }
           ]
@@ -76,32 +76,13 @@
       "values": [
         {
           "properties": {
-            "backColor": {
-              "solid": {
-                "color": {
-                  "expr": {
-                    "Measure": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "_Measures"
-                        }
-                      },
-                      "Property": "CAR Colour"
-                    }
-                  }
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "8D"
                 }
               }
             }
-          },
-          "selector": {
-            "data": [
-              {
-                "dataViewWildcard": {
-                  "matchingOption": 1
-                }
-              }
-            ],
-            "metadata": "_Measures.CAR D+5 %"
           }
         }
       ],
@@ -119,6 +100,39 @@
               "expr": {
                 "Literal": {
                   "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "columnHeaders": [
+        {
+          "properties": {
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "8D"
+                }
+              }
+            },
+            "wordWrap": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "rowHeaders": [
+        {
+          "properties": {
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "8D"
                 }
               }
             }

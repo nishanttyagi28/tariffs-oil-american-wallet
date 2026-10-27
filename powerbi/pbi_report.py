@@ -113,7 +113,8 @@ class Page:
         return self.add("card", x, y, w, h, roles={"Values": [f"m:{measure}"]}, title=title, key=f"text_{measure}",
                         objects={"labels": [{"properties": {"fontSize": num(size), "wordWrap": lit(True), "color": color(NAVY),
                                                             "fontFamily": lit("Segoe UI")}}],
-                                 "categoryLabels": [{"properties": {"show": lit(False)}}]})
+                                 "categoryLabels": [{"properties": {"show": lit(False)}}],
+                                 "wordWrap": [{"properties": {"show": lit(True)}}]})
 
     # -------------------------------------------------------------- serialisation
     def write(self, root: Path):
@@ -180,14 +181,7 @@ def build_pages() -> list[Page]:
                                  {"properties": {"fill": color(CORAL)}, "selector": {"metadata": "_Measures.War Events (#)"}},
                                  {"properties": {"fill": color(TEAL)}, "selector": {"metadata": "_Measures.Effective Tariff Rate %"}}]},
           filters=yr(YEARS_24_26), key="timeline")
-    p.add("multiRowCard", 848, 204, 416, 248,
-          roles={"Values": [("m:Story Tariffs", "Tariffs"), ("m:Story Trade", "Trade"), ("m:Story Households", "Households"),
-                            ("m:Story Oil", "Oil & prices")]},
-          title="The story so far",
-          objects={"dataLabels": [{"properties": {"fontSize": num(10), "color": color(NAVY)}}],
-                   "categoryLabels": [{"properties": {"show": lit(True), "fontSize": num(9), "color": color(AMBER)}}],
-                   "cards": [{"properties": {"barShow": lit(True), "barColor": color(TEAL), "barWeight": num(3)}}]},
-          key="story")
+    p.text_card(848, 204, 416, 248, "Executive Story", "The story so far", size=11)
     p.add("clusteredBarChart", 16, 464, 616, 248,
           roles={"Category": ["Partner.Partner"], "Y": [("m:Effect since Apr 2025 ($bn)", "Effect vs counterfactual ($bn)")]},
           title="Imports vs no-tariff counterfactual since Apr 2025 ($bn); right-click a bar to drill through",
@@ -218,7 +212,8 @@ def build_pages() -> list[Page]:
     p.add("clusteredColumnChart", 16, 496, 760, 216,
           roles={"Category": ["Country.Map Name"], "Y": [("m:Import Change Top 20 %", "Import change vs 2024")]},
           title="Partner ranking: top-20 2024 import partners, change in average monthly imports",
-          objects={**fill_measure("Map Colour Imports"), "labels": [{"properties": {"show": lit(True)}}]},
+          objects={**fill_measure("Map Colour Imports"),
+                   "labels": [{"properties": {"show": lit(True), "fontSize": num(7), "labelPrecision": lit(0)}}]},
           sort=[("m:Import Change Top 20 %", "Descending")], key="ranking")
     p.add("lineChart", 788, 496, 476, 216,
           roles={"Category": ["Date.Month"], "Y": [("m:Selected Trade Metric ($bn)", "This year"), ("m:Selected Trade Metric LY ($bn)", "Last year")]},
@@ -238,7 +233,7 @@ def build_pages() -> list[Page]:
     p.slicer(16, 108, 200, 84, "Partner.Partner", title="Partner", single=True)
     p.kpi_row([("DD Import Effect ($bn)", "Import effect since Apr-25 ($bn)"),
                ("DD Import Effect %", "Import effect (%)"),
-               ("DD Effect CI Text", "95% interval", 11),
+               ("DD Effect CI Text", "95% interval of the import effect", 15),
                ("DD Peak Tariff %", "Peak statutory tariff"),
                ("DD Current Tariff %", "Current statutory tariff")], x0=228, total_w=1036)
     p.add("lineChart", 16, 204, 820, 256,
@@ -313,13 +308,10 @@ def build_pages() -> list[Page]:
                ("Brent Drawdown from War Peak %", "Brent vs war-time peak"),
                ("Hormuz Latest vs Pre-war %", "Hormuz transits vs pre-war"),
                ("Gasoline IRF 1m (%)", "Gas CPI after +10% Brent, 1m")], x0=228, total_w=1036)
-    p.add("lineClusteredColumnComboChart", 16, 204, 820, 256,
-          roles={"Category": ["Date.Date"], "Y": [("m:War Events (#)", "Iran-war events")],
-                 "Y2": [("m:Brent ($/bbl)", "Brent"), ("m:WTI ($/bbl)", "WTI")]},
+    p.add("lineChart", 16, 204, 820, 256,
+          roles={"Category": ["Date.Date"], "Y": [("m:Brent ($/bbl)", "Brent"), ("m:WTI ($/bbl)", "WTI")]},
           title="m:Oil Title",
-          objects={"dataPoint": [{"properties": {"fill": color(CORAL)}, "selector": {"metadata": "_Measures.War Events (#)"}},
-                                 {"properties": {"fill": color(NAVY)}, "selector": {"metadata": "_Measures.Brent ($/bbl)"}},
-                                 {"properties": {"fill": color(AMBER)}, "selector": {"metadata": "_Measures.WTI ($/bbl)"}}]},
+          objects=series_style({"Brent ($/bbl)": (NAVY, None, 2.5), "WTI ($/bbl)": (AMBER, None, 2)}),
           filters=yr([2026]), key="brent")
     p.add("lineChart", 848, 204, 416, 256,
           roles={"Category": ["Date.Date"], "Y": [("m:Hormuz Transits (7d avg)", "All transits"), ("m:Hormuz Tankers (7d avg)", "Tankers"),
@@ -351,25 +343,28 @@ def build_pages() -> list[Page]:
                ("S&P 500 vs Pre-war %", "S&P 500 vs pre-war close"),
                ("Significant CARs %", "CARs significant at 5%")], x0=228, total_w=1036)
     key_syms = ["^GSPC", "^NSEI", "^STOXX50E", "^N225", "000001.SS", "BZ=F", "GC=F", "^VIX"]
-    p.add("pivotTable", 16, 204, 760, 256,
-          roles={"Rows": ["Event Study.Event Name"], "Columns": ["Instrument.Instrument"], "Values": [("m:CAR D+5 %", "CAR D0..D+5")]},
+    p.add("pivotTable", 16, 204, 872, 256,
+          roles={"Rows": ["Event Study.Event Name"], "Columns": ["Instrument.Short Name"], "Values": [("m:CAR D+5 %", "CAR D0..D+5")]},
           title="Cumulative abnormal returns D0..D+5 by event (market model; red = sell-off)",
           objects={"values": [{"properties": {"backColor": {"solid": {"color": {"expr": meas("CAR Colour")}}}},
                                "selector": {"data": [{"dataViewWildcard": {"matchingOption": 1}}], "metadata": "_Measures.CAR D+5 %"}}],
-                   "subTotals": [{"properties": {"rowSubtotals": lit(False), "columnSubtotals": lit(False)}}]},
+                   "subTotals": [{"properties": {"rowSubtotals": lit(False), "columnSubtotals": lit(False)}}],
+                   "columnHeaders": [{"properties": {"fontSize": num(8), "wordWrap": lit(True)}}],
+                   "rowHeaders": [{"properties": {"fontSize": num(8)}}],
+                   "values": [{"properties": {"fontSize": num(8)}}]},
           filters=[filter_in("Instrument", "Symbol", key_syms)], key="carmatrix")
-    p.add("lineChart", 788, 204, 476, 256,
-          roles={"Category": ["Date.Date"], "Y": [("m:Index (pre-war = 100)", "Index")], "Series": ["Instrument.Instrument"]},
+    p.add("lineChart", 900, 204, 364, 256,
+          roles={"Category": ["Date.Date"], "Y": [("m:Index (pre-war = 100)", "Index")], "Series": ["Instrument.Short Name"]},
           title="Equity indices rebased to the last pre-war close (= 100)",
-          filters=yr([2026]) + [filter_in("Instrument", "Symbol", ["^GSPC", "^NSEI", "^STOXX50E", "^N225", "000001.SS"])], key="indices")
+          filters=yr([2026]) + [filter_in("Instrument", "Symbol", ["^GSPC", "^NSEI", "^STOXX50E", "^N225", "000001.SS"])], objects={"legend": [{"properties": {"showTitle": lit(False)}}]}, key="indices")
     p.add("areaChart", 16, 472, 620, 240,
-          roles={"Category": ["Date.Date"], "Y": [("m:High-vol Probability", "P(high-vol regime)")], "Series": ["Instrument.Instrument"]},
+          roles={"Category": ["Date.Date"], "Y": [("m:High-vol Probability", "P(high-vol regime)")], "Series": ["Instrument.Short Name"]},
           title="Markov-switching probability of the high-volatility regime (shaded)",
-          filters=yr(YEARS_25_26), key="regimes")
+          filters=yr(YEARS_25_26), objects={"legend": [{"properties": {"showTitle": lit(False)}}]}, key="regimes")
     p.add("lineChart", 648, 472, 616, 240,
-          roles={"Category": ["Date.Date"], "Y": [("m:GARCH Vol (ann.)", "GARCH vol (ann.)")], "Series": ["Instrument.Instrument"]},
+          roles={"Category": ["Date.Date"], "Y": [("m:GARCH Vol (ann.)", "GARCH vol (ann.)")], "Series": ["Instrument.Short Name"]},
           title="GARCH(1,1) conditional volatility, annualised",
-          filters=yr(YEARS_25_26), key="garch")
+          filters=yr(YEARS_25_26), objects={"legend": [{"properties": {"showTitle": lit(False)}}]}, key="garch")
     pages.append(p)
 
     # 7 ---------------------------------------------------------------- Forecast & scenarios
@@ -393,10 +388,10 @@ def build_pages() -> list[Page]:
                    "markers": [{"properties": {"show": lit(True), "markerSize": num(3)}}]},
           filters=[filter_in("Date", "Year", [2024, 2025, 2026, 2027])], key="fan")
     p.add("tableEx", 848, 204, 416, 256,
-          roles={"Values": ["Model Metrics.Series ID", "Model Metrics.Model", ("m:WAPE (best model)", "WAPE (best)")]},
+          roles={"Values": ["Model Metrics.Series ID", "Model Metrics.Model", ("Model Metrics.Value", "WAPE (%)")]},
           title="Counterfactual model accuracy: backtest WAPE of the best model per series",
           filters=[filter_in("Model Metrics", "Task", ["trade_counterfactual"]), filter_in("Model Metrics", "Metric", ["wape"]),
-                   filter_in("Model Metrics", "Is Best", [True])], sort=[("m:WAPE (best model)", "Ascending")], key="wape")
+                   filter_in("Model Metrics", "Is Best", [True])], sort=[("Model Metrics.Value", "Ascending")], key="wape")
     p.add("clusteredBarChart", 16, 472, 620, 240,
           roles={"Category": ["Partner.Partner"], "Y": [("m:Effect since Apr 2025 ($bn)", "Effect"), ("m:Effect Lo 95 ($bn)", "95% low"),
                                                         ("m:Effect Hi 95 ($bn)", "95% high")]},
@@ -445,6 +440,7 @@ def build_report(root: Path, theme: dict) -> list[Page]:
                                             "type": "RegisteredResources"}},
         "resourcePackages": [{"name": "RegisteredResources", "type": "RegisteredResources",
                               "items": [{"name": THEME_FILE, "path": THEME_FILE, "type": "CustomTheme"}]}],
+        "objects": {"outspacePane": [{"properties": {"expanded": lit(False)}}]},
         "settings": {"useStylableVisualContainerHeader": True, "exportDataMode": "AllowSummarized", "defaultDrillFilterOtherVisuals": True,
                      "allowChangeFilterTypes": True, "useEnhancedTooltips": True, "useDefaultAggregateDisplayName": True}})
     pages = build_pages()

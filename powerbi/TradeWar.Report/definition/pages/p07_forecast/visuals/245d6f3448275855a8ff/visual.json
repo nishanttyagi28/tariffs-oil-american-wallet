@@ -47,18 +47,19 @@
             },
             {
               "field": {
-                "Measure": {
+                "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "_Measures"
+                      "Entity": "Model Metrics"
                     }
                   },
-                  "Property": "WAPE (best model)"
+                  "Property": "Value"
                 }
               },
-              "queryRef": "_Measures.WAPE (best model)",
-              "nativeQueryRef": "WAPE (best model)",
-              "displayName": "WAPE (best)"
+              "queryRef": "Model Metrics.Value",
+              "nativeQueryRef": "Value",
+              "displayName": "WAPE (%)",
+              "active": true
             }
           ]
         }
@@ -67,13 +68,13 @@
         "sort": [
           {
             "field": {
-              "Measure": {
+              "Column": {
                 "Expression": {
                   "SourceRef": {
-                    "Entity": "_Measures"
+                    "Entity": "Model Metrics"
                   }
                 },
-                "Property": "WAPE (best model)"
+                "Property": "Value"
               }
             },
             "direction": "Ascending"

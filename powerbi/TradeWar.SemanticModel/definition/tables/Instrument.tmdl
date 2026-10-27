@@ -83,6 +83,13 @@ table Instrument
 
 		annotation SummarizationSetBy = User
 
+	column 'Short Name' = SWITCH ( Instrument[Symbol], "^GSPC", "S&P 500", "^NSEI", "Nifty 50", "^STOXX50E", "Euro Stoxx 50", "^N225", "Nikkei 225", "000001.SS", "Shanghai", "BZ=F", "Brent", "CL=F", "WTI", "GC=F", "Gold", "^VIX", "VIX", "^BSESN", "Sensex", "^GDAXI", "DAX", Instrument[Instrument] )
+		dataType: string
+		lineageTag: ec98376d-1c99-51e5-b743-4d7c7a72f985
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
 	partition Instrument = m
 		mode: import
 		source =

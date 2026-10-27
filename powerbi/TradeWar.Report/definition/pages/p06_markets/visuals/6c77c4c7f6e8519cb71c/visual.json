@@ -61,16 +61,31 @@
                       "Entity": "Instrument"
                     }
                   },
-                  "Property": "Instrument"
+                  "Property": "Short Name"
                 }
               },
-              "queryRef": "Instrument.Instrument",
-              "nativeQueryRef": "Instrument",
+              "queryRef": "Instrument.Short Name",
+              "nativeQueryRef": "Short Name",
               "active": true
             }
           ]
         }
       }
+    },
+    "objects": {
+      "legend": [
+        {
+          "properties": {
+            "showTitle": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ]
     },
     "visualContainerObjects": {
       "title": [
