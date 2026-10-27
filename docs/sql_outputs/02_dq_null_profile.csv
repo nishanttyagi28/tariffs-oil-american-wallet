@@ -1,0 +1,9 @@
+tbl,column_name,null_pct
+fct_macro_monthly,cpi_sa,5.9
+fct_macro_monthly,core_cpi_sa,5.9
+fct_macro_monthly,import_price_ex_food_fuel,5.9
+fct_macro_monthly,avg_hourly_earnings_usd,2.9
+fct_macro_monthly,consumer_sentiment,2.9
+fct_macro_monthly,gscpi,2.9
+fct_macro_monthly,gasoline_usd_gal,0.0
+fct_macro_monthly,brent_usd,0.0

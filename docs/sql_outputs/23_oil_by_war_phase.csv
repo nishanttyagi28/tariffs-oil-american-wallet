@@ -1,0 +1,5 @@
+war_phase_order,war_phase,days,avg_brent,max_brent,min_brent,avg_brent_vs_prewar_pct,avg_brent_wti_spread,avg_vol_21d
+0,Pre-war,298,69.01,83.48,59.93,-3.2,3.97,31.3
+1,War & Hormuz closure,26,106.31,138.21,77.24,49.1,11.92,78.3
+2,Ceasefire & blockade,64,99.02,124.24,68.53,38.8,6.79,82.3
+3,Truce collapse & renewed blockade,80,103.95,135.51,74.34,45.8,12.85,69.0

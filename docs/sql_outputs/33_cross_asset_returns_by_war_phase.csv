@@ -1,0 +1,101 @@
+asset_class,symbol,instrument_name,war_phase_order,war_phase,phase_return_pct,ann_vol_pct
+commodity,BZ=F,Brent crude futures,0,Pre-war,14.68,30.7
+commodity,BZ=F,Brent crude futures,1,War & Hormuz closure,50.76,96.0
+commodity,BZ=F,Brent crude futures,2,Ceasefire & blockade,-32.13,60.0
+commodity,BZ=F,Brent crude futures,3,Truce collapse & renewed blockade,48.45,50.5
+commodity,CL=F,WTI crude futures,0,Pre-war,14.47,30.7
+commodity,CL=F,WTI crude futures,1,War & Hormuz closure,68.53,90.8
+commodity,CL=F,WTI crude futures,2,Ceasefire & blockade,-37.64,67.1
+commodity,CL=F,WTI crude futures,3,Truce collapse & renewed blockade,43.2,48.4
+commodity,GC=F,Gold futures,0,Pre-war,23.34,35.4
+commodity,GC=F,Gold futures,1,War & Hormuz closure,-10.73,38.0
+commodity,GC=F,Gold futures,2,Ceasefire & blockade,-11.26,23.6
+commodity,GC=F,Gold futures,3,Truce collapse & renewed blockade,-2.85,21.0
+commodity,NG=F,Natural gas futures,0,Pre-war,-41.05,164.3
+commodity,NG=F,Natural gas futures,1,War & Hormuz closure,0.38,54.7
+commodity,NG=F,Natural gas futures,2,Ceasefire & blockade,13.76,42.4
+commodity,NG=F,Natural gas futures,3,Truce collapse & renewed blockade,-6.92,51.3
+equity_index,000001.SS,Shanghai Composite,0,Pre-war,7.05,11.2
+equity_index,000001.SS,Shanghai Composite,1,War & Hormuz closure,-6.55,18.0
+equity_index,000001.SS,Shanghai Composite,2,Ceasefire & blockade,2.57,15.1
+equity_index,000001.SS,Shanghai Composite,3,Truce collapse & renewed blockade,-8.57,15.3
+equity_index,^BSESN,BSE Sensex,0,Pre-war,-5.16,10.4
+equity_index,^BSESN,BSE Sensex,1,War & Hormuz closure,-8.21,25.2
+equity_index,^BSESN,BSE Sensex,2,Ceasefire & blockade,4.78,15.6
+equity_index,^BSESN,BSE Sensex,3,Truce collapse & renewed blockade,-5.86,11.8
+equity_index,^FTSE,FTSE 100,0,Pre-war,12.24,8.6
+equity_index,^FTSE,FTSE 100,1,War & Hormuz closure,-5.15,19.7
+equity_index,^FTSE,FTSE 100,2,Ceasefire & blockade,3.06,12.9
+equity_index,^FTSE,FTSE 100,3,Truce collapse & renewed blockade,0.15,9.6
+equity_index,^GDAXI,DAX,0,Pre-war,6.07,11.1
+equity_index,^GDAXI,DAX,1,War & Hormuz closure,-9.34,25.5
+equity_index,^GDAXI,DAX,2,Ceasefire & blockade,11.1,19.1
+equity_index,^GDAXI,DAX,3,Truce collapse & renewed blockade,0.17,12.4
+equity_index,^GSPC,S&P 500,0,Pre-war,0.43,10.8
+equity_index,^GSPC,S&P 500,1,War & Hormuz closure,-3.81,17.0
+equity_index,^GSPC,S&P 500,2,Ceasefire & blockade,13.41,13.8
+equity_index,^GSPC,S&P 500,3,Truce collapse & renewed blockade,2.3,10.9
+equity_index,^GSPTSE,S&P/TSX Composite,0,Pre-war,9.42,14.0
+equity_index,^GSPTSE,S&P/TSX Composite,1,War & Hormuz closure,-3.21,18.7
+equity_index,^GSPTSE,S&P/TSX Composite,2,Ceasefire & blockade,6.12,12.1
+equity_index,^GSPTSE,S&P/TSX Composite,3,Truce collapse & renewed blockade,1.9,11.9
+equity_index,^HSI,Hang Seng,0,Pre-war,2.98,18.1
+equity_index,^HSI,Hang Seng,1,War & Hormuz closure,-5.69,25.1
+equity_index,^HSI,Hang Seng,2,Ceasefire & blockade,-6.45,18.3
+equity_index,^HSI,Hang Seng,3,Truce collapse & renewed blockade,-1.94,16.9
+equity_index,^IXIC,Nasdaq Composite,0,Pre-war,-2.99,14.6
+equity_index,^IXIC,Nasdaq Composite,1,War & Hormuz closure,-2.87,22.3
+equity_index,^IXIC,Nasdaq Composite,2,Ceasefire & blockade,17.26,21.0
+equity_index,^IXIC,Nasdaq Composite,3,Truce collapse & renewed blockade,1.36,17.2
+equity_index,^MXX,Mexico IPC,0,Pre-war,12.28,16.4
+equity_index,^MXX,Mexico IPC,1,War & Hormuz closure,-4.03,27.9
+equity_index,^MXX,Mexico IPC,2,Ceasefire & blockade,-2.71,17.0
+equity_index,^MXX,Mexico IPC,3,Truce collapse & renewed blockade,4.19,13.1
+equity_index,^N225,Nikkei 225,0,Pre-war,17.11,21.6
+equity_index,^N225,Nikkei 225,1,War & Hormuz closure,-9.21,39.2
+equity_index,^N225,Nikkei 225,2,Ceasefire & blockade,27.75,32.7
+equity_index,^N225,Nikkei 225,3,Truce collapse & renewed blockade,-7.31,28.1
+equity_index,^NSEI,Nifty 50,0,Pre-war,-3.91,10.7
+equity_index,^NSEI,Nifty 50,1,War & Hormuz closure,-8.16,25.1
+equity_index,^NSEI,Nifty 50,2,Ceasefire & blockade,5.51,14.6
+equity_index,^NSEI,Nifty 50,3,Truce collapse & renewed blockade,-6.76,11.6
+equity_index,^STOXX50E,Euro Stoxx 50,0,Pre-war,8.3,11.3
+equity_index,^STOXX50E,Euro Stoxx 50,1,War & Hormuz closure,-8.23,24.8
+equity_index,^STOXX50E,Euro Stoxx 50,2,Ceasefire & blockade,12.19,18.2
+equity_index,^STOXX50E,Euro Stoxx 50,3,Truce collapse & renewed blockade,-2.82,12.4
+fx,CAD=X,USD/CAD,0,Pre-war,-2.5,5.1
+fx,CAD=X,USD/CAD,1,War & Hormuz closure,1.22,4.1
+fx,CAD=X,USD/CAD,2,Ceasefire & blockade,2.61,3.9
+fx,CAD=X,USD/CAD,3,Truce collapse & renewed blockade,-1.3,4.1
+fx,CNY=X,USD/CNY,0,Pre-war,-3.32,1.8
+fx,CNY=X,USD/CNY,1,War & Hormuz closure,0.23,5.4
+fx,CNY=X,USD/CNY,2,Ceasefire & blockade,-0.92,2.0
+fx,CNY=X,USD/CNY,3,Truce collapse & renewed blockade,-2.02,1.2
+fx,DX-Y.NYB,US Dollar Index (DXY),0,Pre-war,-1.86,5.2
+fx,DX-Y.NYB,US Dollar Index (DXY),1,War & Hormuz closure,2.08,7.6
+fx,DX-Y.NYB,US Dollar Index (DXY),2,Ceasefire & blockade,1.51,4.7
+fx,DX-Y.NYB,US Dollar Index (DXY),3,Truce collapse & renewed blockade,1.01,4.7
+fx,EURUSD=X,EUR/USD,0,Pre-war,1.75,5.7
+fx,EURUSD=X,EUR/USD,1,War & Hormuz closure,-0.99,9.0
+fx,EURUSD=X,EUR/USD,2,Ceasefire & blockade,-2.42,4.7
+fx,EURUSD=X,EUR/USD,3,Truce collapse & renewed blockade,-2.18,4.4
+fx,INR=X,USD/INR,0,Pre-war,1.84,5.4
+fx,INR=X,USD/INR,1,War & Hormuz closure,2.04,8.9
+fx,INR=X,USD/INR,2,Ceasefire & blockade,2.94,9.0
+fx,INR=X,USD/INR,3,Truce collapse & renewed blockade,-0.51,7.6
+fx,JPY=X,USD/JPY,0,Pre-war,-0.27,9.1
+fx,JPY=X,USD/JPY,1,War & Hormuz closure,1.83,7.5
+fx,JPY=X,USD/JPY,2,Ceasefire & blockade,2.3,5.4
+fx,JPY=X,USD/JPY,3,Truce collapse & renewed blockade,-2.82,8.4
+fx,MXN=X,USD/MXN,0,Pre-war,-6.15,7.4
+fx,MXN=X,USD/MXN,1,War & Hormuz closure,1.81,15.1
+fx,MXN=X,USD/MXN,2,Ceasefire & blockade,0.06,7.2
+fx,MXN=X,USD/MXN,3,Truce collapse & renewed blockade,6.12,8.2
+rates,^TNX,US 10Y yield (x10 quote),0,Pre-war,-1.37,12.8
+rates,^TNX,US 10Y yield (x10 quote),1,War & Hormuz closure,9.62,19.3
+rates,^TNX,US 10Y yield (x10 quote),2,Ceasefire & blockade,4.28,15.1
+rates,^TNX,US 10Y yield (x10 quote),3,Truce collapse & renewed blockade,9.91,15.4
+volatility,^VIX,CBOE VIX,0,Pre-war,21.47,114.6
+volatility,^VIX,CBOE VIX,1,War & Hormuz closure,29.81,157.6
+volatility,^VIX,CBOE VIX,2,Ceasefire & blockade,-37.43,123.7
+volatility,^VIX,CBOE VIX,3,Truce collapse & renewed blockade,9.73,105.6

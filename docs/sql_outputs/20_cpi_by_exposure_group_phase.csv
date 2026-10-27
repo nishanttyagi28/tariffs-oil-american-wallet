@@ -1,0 +1,49 @@
+exposure_group,trade_phase_order,trade_phase,war_phase,avg_yoy_pct,obs
+domestic_goods,0,Pre-tariff baseline,Pre-war,-5.31,13
+domestic_goods,1,Threats & fentanyl tariffs,Pre-war,0.95,3
+domestic_goods,2,Liberation Day escalation,Pre-war,1.8,1
+domestic_goods,3,Truces & framework deals,Pre-war,4.54,3
+domestic_goods,4,Reciprocal-tariff regime,Pre-war,1.62,6
+domestic_goods,5,Post-SCOTUS Section 122,Ceasefire & blockade,-1.88,3
+domestic_goods,5,Post-SCOTUS Section 122,War & Hormuz closure,-2.93,2
+domestic_goods,6,Section 301 regime,Truce collapse & renewed blockade,-1.89,2
+domestic_services,0,Pre-tariff baseline,Pre-war,4.64,65
+domestic_services,1,Threats & fentanyl tariffs,Pre-war,4.06,15
+domestic_services,2,Liberation Day escalation,Pre-war,3.93,5
+domestic_services,3,Truces & framework deals,Pre-war,4.38,15
+domestic_services,4,Reciprocal-tariff regime,Pre-war,3.96,25
+domestic_services,5,Post-SCOTUS Section 122,Ceasefire & blockade,3.85,15
+domestic_services,5,Post-SCOTUS Section 122,War & Hormuz closure,3.71,10
+domestic_services,6,Section 301 regime,Truce collapse & renewed blockade,3.47,10
+energy,0,Pre-tariff baseline,Pre-war,-0.28,26
+energy,1,Threats & fentanyl tariffs,Pre-war,-2.63,6
+energy,2,Liberation Day escalation,Pre-war,-3.73,2
+energy,3,Truces & framework deals,Pre-war,-1.14,6
+energy,4,Reciprocal-tariff regime,Pre-war,1.1,11
+energy,5,Post-SCOTUS Section 122,Ceasefire & blockade,17.66,6
+energy,5,Post-SCOTUS Section 122,War & Hormuz closure,14.5,4
+energy,6,Section 301 regime,Truce collapse & renewed blockade,17.43,4
+energy_sensitive_services,0,Pre-tariff baseline,Pre-war,-1.16,13
+energy_sensitive_services,1,Threats & fentanyl tariffs,Pre-war,-4.59,3
+energy_sensitive_services,2,Liberation Day escalation,Pre-war,-7.35,1
+energy_sensitive_services,3,Truces & framework deals,Pre-war,0.16,3
+energy_sensitive_services,4,Reciprocal-tariff regime,Pre-war,0.75,5
+energy_sensitive_services,5,Post-SCOTUS Section 122,Ceasefire & blockade,26.26,3
+energy_sensitive_services,5,Post-SCOTUS Section 122,War & Hormuz closure,17.8,2
+energy_sensitive_services,6,Section 301 regime,Truce collapse & renewed blockade,22.93,2
+food,0,Pre-tariff baseline,Pre-war,1.25,13
+food,1,Threats & fentanyl tariffs,Pre-war,2.11,3
+food,2,Liberation Day escalation,Pre-war,2.23,1
+food,3,Truces & framework deals,Pre-war,2.41,3
+food,4,Reciprocal-tariff regime,Pre-war,2.31,5
+food,5,Post-SCOTUS Section 122,Ceasefire & blockade,2.72,3
+food,5,Post-SCOTUS Section 122,War & Hormuz closure,2.4,2
+food,6,Section 301 regime,Truce collapse & renewed blockade,2.0,2
+tariff_exposed_goods,0,Pre-tariff baseline,Pre-war,-1.55,143
+tariff_exposed_goods,1,Threats & fentanyl tariffs,Pre-war,-0.13,33
+tariff_exposed_goods,2,Liberation Day escalation,Pre-war,0.96,11
+tariff_exposed_goods,3,Truces & framework deals,Pre-war,2.51,33
+tariff_exposed_goods,4,Reciprocal-tariff regime,Pre-war,3.41,56
+tariff_exposed_goods,5,Post-SCOTUS Section 122,Ceasefire & blockade,3.2,33
+tariff_exposed_goods,5,Post-SCOTUS Section 122,War & Hormuz closure,4.16,22
+tariff_exposed_goods,6,Section 301 regime,Truce collapse & renewed blockade,3.0,22

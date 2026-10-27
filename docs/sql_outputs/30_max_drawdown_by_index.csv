@@ -1,0 +1,13 @@
+symbol,instrument_name,max_drawdown_pct,trough_date,latest_index_2025_100
+^IXIC,Nasdaq Composite,-23.9,2025-04-08,135.7
+^N225,Nikkei 225,-22.3,2025-04-07,161.0
+^HSI,Hang Seng,-20.0,2025-04-07,117.4
+^GSPC,S&P 500,-18.9,2025-04-08,130.8
+^STOXX50E,Euro Stoxx 50,-16.6,2025-04-09,126.1
+^BSESN,BSE Sensex,-16.5,2026-10-08,93.7
+^GDAXI,DAX,-16.0,2025-04-09,127.4
+^NSEI,Nifty 50,-15.6,2026-10-08,95.8
+000001.SS,Shanghai Composite,-14.0,2026-10-27,111.8
+^FTSE,FTSE 100,-13.4,2025-04-09,129.3
+^GSPTSE,S&P/TSX Composite,-12.8,2025-04-08,144.4
+^MXX,Mexico IPC,-11.5,2026-09-18,139.6

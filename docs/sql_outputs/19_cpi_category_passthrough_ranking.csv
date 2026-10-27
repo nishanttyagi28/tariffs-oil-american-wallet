@@ -1,0 +1,26 @@
+category,exposure_group,ann_infl_2023_24_pct,ann_infl_since_2025_pct,acceleration_pp
+Gasoline (all types),energy,-2.68,21.97,24.65
+Coffee,tariff_exposed_goods,1.06,13.55,12.5
+Airline fares,energy_sensitive_services,-1.12,11.16,12.27
+Computers & peripherals,tariff_exposed_goods,-4.37,7.54,11.91
+Toys,tariff_exposed_goods,-4.19,6.17,10.35
+Appliances,tariff_exposed_goods,-3.73,3.2,6.93
+Apparel,tariff_exposed_goods,1.1,5.58,4.47
+"Tools, hardware, outdoor equipment",tariff_exposed_goods,-0.59,3.68,4.27
+Footwear,tariff_exposed_goods,0.67,4.43,3.76
+Furniture & bedding,tariff_exposed_goods,-2.9,0.8,3.71
+Electricity,energy,3.05,6.68,3.63
+Used cars & trucks,domestic_goods,-2.29,1.29,3.58
+Household furnishings & supplies,tariff_exposed_goods,0.54,3.39,2.85
+Core goods (commodities less food & energy),tariff_exposed_goods,-0.18,1.94,2.12
+Medical care services,domestic_services,1.43,3.25,1.83
+Video & audio,tariff_exposed_goods,1.91,3.53,1.62
+Food at home,food,1.54,2.46,0.92
+All items,aggregate,3.12,3.81,0.69
+New vehicles,tariff_exposed_goods,0.31,0.74,0.43
+Motor vehicle maintenance & repair,domestic_services,6.64,6.83,0.19
+Core (less food & energy),aggregate,3.58,3.03,-0.55
+Food away from home,domestic_services,4.43,3.63,-0.79
+Core services (services less energy),domestic_services,4.86,3.38,-1.48
+Shelter,domestic_services,5.36,3.44,-1.92
+Rent of primary residence,domestic_services,5.37,2.94,-2.43

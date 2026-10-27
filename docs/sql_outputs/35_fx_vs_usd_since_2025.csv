@@ -1,0 +1,8 @@
+symbol,instrument_name,is_usd_base_fx,latest_index_2025_100,latest_index_prewar_100,usd_change_since_2025_pct
+MXN=X,USD/MXN,True,89.28,108.1,-10.72
+CNY=X,USD/CNY,True,91.2,97.3,-8.8
+EURUSD=X,EUR/USD,False,107.77,94.52,-7.77
+CAD=X,USD/CAD,True,97.53,102.51,-2.47
+JPY=X,USD/JPY,True,100.05,101.24,0.05
+DX-Y.NYB,US Dollar Index (DXY),False,93.39,104.66,6.61
+INR=X,USD/INR,True,110.86,104.5,10.86

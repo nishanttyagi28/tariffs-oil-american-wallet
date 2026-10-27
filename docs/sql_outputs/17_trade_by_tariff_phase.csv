@@ -1,0 +1,8 @@
+trade_phase_order,trade_phase,months,avg_monthly_imports_musd,avg_monthly_exports_musd,avg_monthly_balance_musd
+0,Pre-tariff baseline,13,275531.0,171387.0,-104144.0
+1,Threats & fentanyl tariffs,3,301928.0,182595.0,-119333.0
+2,Liberation Day escalation,1,275791.0,184210.0,-91581.0
+3,Truces & framework deals,3,273377.0,178481.0,-94896.0
+4,Reciprocal-tariff regime,6,268149.0,188162.0,-79987.0
+5,Post-SCOTUS Section 122,5,312985.0,211000.0,-101985.0
+6,Section 301 regime,1,336170.0,204749.0,-131421.0

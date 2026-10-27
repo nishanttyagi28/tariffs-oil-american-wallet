@@ -1,0 +1,11 @@
+trade_phase,war_phase,days,avg_vix,max_vix,pct_days_above_25,pct_days_above_30
+Pre-tariff baseline,Pre-war,263,15.7,38.6,1.5,0.4
+Threats & fentanyl tariffs,Pre-war,50,19.0,27.9,4.0,0.0
+Liberation Day escalation,Pre-war,27,30.1,52.3,59.3,44.4
+Truces & framework deals,Pre-war,60,17.7,22.3,0.0,0.0
+Reciprocal-tariff regime,Pre-war,135,17.0,26.4,1.5,0.0
+Post-SCOTUS Section 122,Pre-war,6,19.3,21.0,0.0,0.0
+Post-SCOTUS Section 122,War & Hormuz closure,26,25.4,31.0,53.8,7.7
+Post-SCOTUS Section 122,Ceasefire & blockade,63,17.8,22.2,0.0,0.0
+Post-SCOTUS Section 122,Truce collapse & renewed blockade,12,17.0,18.8,0.0,0.0
+Section 301 regime,Truce collapse & renewed blockade,68,16.1,20.7,0.0,0.0

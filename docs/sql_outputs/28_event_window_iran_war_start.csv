@@ -1,0 +1,26 @@
+symbol,instrument_name,asset_class,D0,D+1,D+5,D+10,D+20
+BZ=F,Brent crude futures,commodity,7.26,12.31,27.88,42.3,55.31
+CL=F,WTI crude futures,commodity,6.28,11.25,35.63,47.28,48.67
+GC=F,Gold futures,commodity,1.21,-2.37,-1.7,-3.55,-14.39
+NG=F,Natural gas futures,commodity,3.53,6.82,11.44,9.51,8.25
+000001.SS,Shanghai Composite,equity_index,0.47,-0.97,-0.93,-1.62,-5.99
+^BSESN,BSE Sensex,equity_index,-1.29,-2.67,-4.58,-7.12,-10.03
+^FTSE,FTSE 100,equity_index,-1.2,-3.91,-5.74,-5.95,-8.64
+^GDAXI,DAX,equity_index,-2.56,-5.91,-6.7,-7.27,-11.8
+^GSPC,S&P 500,equity_index,0.04,-0.9,-2.02,-3.59,-7.41
+^GSPTSE,S&P/TSX Composite,equity_index,0.59,-1.62,-3.66,-5.24,-6.93
+^HSI,Hang Seng,equity_index,-2.14,-3.24,-3.28,-4.37,-6.3
+^IXIC,Nasdaq Composite,equity_index,0.36,-0.67,-1.24,-2.48,-7.59
+^MXX,Mexico IPC,equity_index,-1.15,-4.16,-5.73,-8.06,-6.05
+^N225,Nikkei 225,equity_index,-1.35,-4.37,-5.49,-8.55,-11.83
+^NSEI,Nifty 50,equity_index,-1.24,-2.77,-4.57,-7.03,-9.93
+^STOXX50E,Euro Stoxx 50,equity_index,-2.47,-5.97,-6.82,-6.87,-10.31
+CAD=X,USD/CAD,fx,-0.05,-0.04,-0.04,-0.32,1.29
+CNY=X,USD/CNY,fx,0.25,0.6,0.82,0.41,1.02
+DX-Y.NYB,US Dollar Index (DXY),fx,0.79,1.48,1.41,2.82,2.6
+EURUSD=X,EUR/USD,fx,-0.37,-0.9,-1.65,-2.38,-2.27
+INR=X,USD/INR,fx,0.08,0.61,0.86,1.52,3.63
+JPY=X,USD/JPY,fx,0.5,0.9,1.07,2.15,2.47
+MXN=X,USD/MXN,fx,0.66,0.58,2.9,3.67,4.13
+^TNX,US 10Y yield (x10 quote),rates,0.09,0.09,0.17,0.32,0.48
+^VIX,CBOE VIX,volatility,1.58,3.71,9.63,7.33,11.19

@@ -1,0 +1,29 @@
+disruption_rank,chokepoint_name,is_energy_route,avg_2024,avg_prewar,avg_last30,last30_vs_prewar_pct,last_obs_date
+1,Kerch Strait,False,4.7,12.5,0.1,-99.5,2026-10-18
+2,Strait of Hormuz,True,91.1,68.1,3.4,-95.0,2026-10-18
+3,Bosporus Strait,True,97.7,80.0,48.8,-39.0,2026-10-18
+4,Bab el-Mandeb Strait,True,32.5,35.2,27.7,-21.4,2026-10-18
+5,Panama Canal,True,26.5,31.4,27.0,-14.3,2026-10-18
+6,Oresund Strait,False,45.3,42.5,38.7,-9.1,2026-10-18
+7,Bohai Strait,False,172.1,166.6,153.6,-7.8,2026-10-18
+8,Malacca Strait,True,223.4,241.6,223.1,-7.6,2026-10-18
+9,Torres Strait,False,9.4,8.9,8.3,-6.9,2026-10-18
+10,Windward Passage,False,15.1,15.2,14.2,-6.4,2026-10-18
+11,Sunda Strait,False,32.2,35.9,33.7,-6.1,2026-10-18
+12,Cape of Good Hope,True,87.0,87.7,86.3,-1.6,2026-10-18
+13,Lombok Strait,False,37.1,37.4,37.0,-1.2,2026-10-18
+14,Gibraltar Strait,False,133.3,131.7,130.7,-0.8,2026-10-18
+15,Taiwan Strait,False,235.1,227.0,230.3,1.4,2026-10-18
+16,Dover Strait,False,171.8,165.7,170.1,2.6,2026-10-18
+17,Yucatan Channel,False,47.9,48.6,50.1,3.0,2026-10-18
+18,Suez Canal,True,39.6,40.2,42.3,5.2,2026-10-18
+19,Ombai Strait,False,11.0,9.4,10.0,6.2,2026-10-18
+20,Balabac Strait,False,11.3,9.5,10.1,6.7,2026-10-18
+21,Mona Passage,False,10.8,10.6,11.8,11.3,2026-10-18
+22,Korea Strait,False,234.8,188.1,209.8,11.5,2026-10-18
+23,Makassar Strait,False,54.7,46.6,54.8,17.6,2026-10-18
+24,Tsugaru Strait,False,46.3,40.4,49.9,23.3,2026-10-18
+25,Luzon Strait,False,79.7,67.3,95.4,41.7,2026-10-18
+26,Mindoro Strait,False,43.4,36.8,53.2,44.6,2026-10-18
+27,Magellan Strait,False,4.7,3.1,5.5,78.3,2026-10-18
+28,Bering Strait,False,0.9,0.1,5.0,7101.7,2026-10-18
