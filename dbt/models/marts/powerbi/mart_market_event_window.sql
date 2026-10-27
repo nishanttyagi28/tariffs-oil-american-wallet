@@ -8,10 +8,13 @@ with events as (
     from {{ ref('war_events') }} where category <> 'baseline'
 ),
 r as (select symbol, trade_date, adj_close, trading_day_idx from {{ ref('int_market__returns') }}),
+syms as (select distinct symbol from r),
+-- ASOF join: first trading day on/after the event date, per symbol (avoids a large inequality join).
 t0 as (
-    select e.*, r.symbol, min(r.trading_day_idx) as t0_idx
-    from events e join r on r.trade_date >= e.event_date
-    group by all
+    select e.*, s.symbol, r.trading_day_idx as t0_idx
+    from events e
+    cross join syms s
+    asof join r on r.symbol = s.symbol and r.trade_date >= e.event_date
 ),
 windows as (
     select * from (values ('D0', 0), ('D+1', 1), ('D+5', 4), ('D+10', 9), ('D+20', 19)) as w(window_label, k)

@@ -1,3 +1,4 @@
+{{ config(materialized='table') }}
 -- Daily returns per instrument with a trading-day index (used for event windows and rolling stats).
 select
     p.trade_date,
