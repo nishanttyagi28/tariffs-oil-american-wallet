@@ -1,0 +1,118 @@
+version: 2
+models:
+  - name: dim_date
+    description: Daily calendar 2015-2026 with tariff-war and Iran-war phase labels from seeds/event_phases.csv.
+    columns:
+      - name: date_day
+        tests: [unique, not_null]
+      - name: trade_phase_code
+        tests: [not_null]
+      - name: war_phase_code
+        tests: [not_null]
+      - name: before_after
+        tests:
+          - accepted_values: {values: ['Before (2024)', 'After (Apr 2025+)', 'Other']}
+  - name: dim_country
+    description: Countries + reporting aggregates with ISO3, region, US partner group and centroid lat/long.
+    columns:
+      - name: country_iso3
+        tests: [unique, not_null]
+      - name: partner_group
+        tests: [not_null]
+      - name: latitude
+        tests: [{value_between: {min_value: -90, max_value: 90}}]
+      - name: longitude
+        tests: [{value_between: {min_value: -180, max_value: 180}}]
+  - name: dim_cpi_category
+    columns:
+      - name: series_id
+        tests: [unique, not_null]
+      - name: exposure_group
+        tests: [not_null]
+  - name: dim_market_instrument
+    columns:
+      - name: symbol
+        tests: [unique, not_null]
+      - name: asset_class
+        tests: [not_null]
+  - name: dim_chokepoint
+    columns:
+      - name: chokepoint_id
+        tests: [unique, not_null]
+      - name: latitude
+        tests: [not_null, {value_between: {min_value: -90, max_value: 90}}]
+  - name: fct_trade_monthly
+    description: US goods trade by partner and month (Census), with shares, rolling 12m and YoY.
+    tests:
+      - unique_combination: {columns: [month_date, country_iso3]}
+    columns:
+      - name: country_iso3
+        tests:
+          - not_null
+          - relationships: {to: ref('dim_country'), field: country_iso3}
+      - name: imports_musd
+        tests: [{value_between: {min_value: 0}}]
+      - name: exports_musd
+        tests: [{value_between: {min_value: 0}}]
+      - name: share_of_us_imports
+        tests: [{value_between: {min_value: 0, max_value: 1.0001}}]
+  - name: fct_tariff_rate_monthly
+    tests:
+      - unique_combination: {columns: [month_date, country_iso3]}
+    columns:
+      - name: country_iso3
+        tests:
+          - not_null
+          - relationships: {to: ref('dim_country'), field: country_iso3}
+      - name: statutory_rate_pct
+        tests: [{value_between: {min_value: 0, max_value: 200}}]
+  - name: fct_customs_revenue_monthly
+    columns:
+      - name: month_date
+        tests: [unique, not_null]
+      - name: gross_receipts_musd
+        tests: [not_null, {value_between: {min_value: 0}}]
+  - name: fct_cpi_monthly
+    tests:
+      - unique_combination: {columns: [series_id, month_date]}
+    columns:
+      - name: series_id
+        tests:
+          - not_null
+          - relationships: {to: ref('dim_cpi_category'), field: series_id}
+      - name: index_value
+        tests: [not_null, {value_between: {min_value: 0}}]
+  - name: fct_macro_monthly
+    columns:
+      - name: month_date
+        tests: [unique, not_null]
+      - name: unemployment_rate_pct
+        tests: [{value_between: {min_value: 0, max_value: 30}}]
+  - name: fct_market_daily
+    tests:
+      - unique_combination: {columns: [trade_date, symbol]}
+    columns:
+      - name: symbol
+        tests:
+          - not_null
+          - relationships: {to: ref('dim_market_instrument'), field: symbol}
+      - name: adj_close
+        tests: [not_null]
+      - name: drawdown_pct
+        tests: [{value_between: {max_value: 0.000001}}]
+  - name: fct_oil_daily
+    columns:
+      - name: obs_date
+        tests: [unique, not_null]
+      - name: brent_usd
+        tests: [{value_between: {min_value: 0, max_value: 300}}]
+  - name: fct_chokepoint_daily
+    tests:
+      - unique_combination: {columns: [obs_date, chokepoint_id]}
+    columns:
+      - name: chokepoint_id
+        tests:
+          - not_null
+          - relationships: {to: ref('dim_chokepoint'), field: chokepoint_id}
+      - name: n_total
+        tests: [{value_between: {min_value: 0}}]

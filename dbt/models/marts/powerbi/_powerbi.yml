@@ -1,0 +1,37 @@
+version: 2
+models:
+  - name: mart_country_before_after
+    description: One row per partner - 2024 baseline vs Apr-2025+ averages, ranks, share change, peak/current tariff.
+    columns:
+      - name: country_iso3
+        tests: [unique, not_null]
+      - name: import_rank_before
+        tests: [{value_between: {min_value: 1}}]
+  - name: mart_trade_diversion
+    tests:
+      - unique_combination: {columns: [month_date, partner_group]}
+    columns:
+      - name: partner_group
+        tests: [not_null]
+      - name: import_share
+        tests: [{value_between: {min_value: 0, max_value: 1.0001}}]
+  - name: mart_household_impact
+    columns:
+      - name: month_date
+        tests: [unique, not_null]
+  - name: mart_oil_shock
+    columns:
+      - name: obs_date
+        tests: [unique, not_null]
+      - name: war_phase
+        tests: [not_null]
+  - name: mart_market_event_window
+    tests:
+      - unique_combination: {columns: [event_id, symbol, window_label]}
+    columns:
+      - name: event_family
+        tests:
+          - accepted_values: {values: ['tariff', 'war']}
+      - name: window_label
+        tests:
+          - accepted_values: {values: ['D0', 'D+1', 'D+5', 'D+10', 'D+20']}
