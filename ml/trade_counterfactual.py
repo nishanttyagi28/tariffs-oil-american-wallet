@@ -188,11 +188,11 @@ def run() -> dict:
     summ = []
     p = df[df.is_post & df.actual_musd.notna()].copy()
     p["month_date"] = pd.to_datetime(p["month_date"])
-    for window, start in (("Feb 2025-latest", "2025-02-01"), ("Apr 2025-latest", "2025-04-01")):
+    for effect_window, start in (("Feb 2025-latest", "2025-02-01"), ("Apr 2025-latest", "2025-04-01")):
         g = p[p.month_date >= start].groupby(["series_id", "partner", "flow", "best_model"], as_index=False).agg(
             months=("month_date", "count"), actual_musd=("actual_musd", "sum"), counterfactual_musd=("counterfactual_musd", "sum"),
             cf_lo95=("cf_lo95", "sum"), cf_hi95=("cf_hi95", "sum"), cf_lo80=("cf_lo80", "sum"), cf_hi80=("cf_hi80", "sum"))
-        g["window"] = window
+        g["effect_window"] = effect_window
         summ.append(g)
     s = pd.concat(summ)
     s["effect_musd"] = s.actual_musd - s.counterfactual_musd
