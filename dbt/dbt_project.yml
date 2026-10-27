@@ -41,7 +41,7 @@ seeds:
     tariff_events:
       +column_types: {event_date: date, effective_date: date, rate_pct: double, verified: boolean}
     tariff_headline_schedule:
-      +column_types: {start_date: date, end_date: date, headline_rate_pct: double, verified: boolean}
+      +column_types: {start_date: date, end_date: date, headline_rate_pct: double, verified: boolean, basis: varchar, source_url: varchar, country_iso3: varchar}
     war_events:
       +column_types: {event_date: date, brent_usd: double, verified: boolean}
     cpi_category_map:

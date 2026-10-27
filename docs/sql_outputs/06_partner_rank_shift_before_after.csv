@@ -1,20 +1,20 @@
 country_name,partner_group,import_rank_before,import_rank_after,rank_gain,share_before_pct,share_after_pct,share_change_pp,imports_change_pct,peak_statutory_rate_pct,current_statutory_rate_pct
-Taiwan,Taiwan,8,4,4,3.56,7.26,3.69,115.0,10.0,10.0
-Vietnam,Vietnam,6,5,1,4.18,6.77,2.59,71.0,10.0,10.0
+Taiwan,Taiwan,8,4,4,3.56,7.26,3.69,115.0,20.0,10.0
+Vietnam,Vietnam,6,5,1,4.18,6.77,2.59,71.0,20.0,10.0
 Thailand,Rest of Asia-Pacific,14,9,5,1.93,3.41,1.48,86.6,10.0,10.0
 Mexico,Mexico,1,1,0,15.41,16.85,1.43,15.4,25.0,10.0
 Malaysia,Rest of Asia-Pacific,16,13,3,1.6,2.07,0.47,36.7,10.0,10.0
 India,India,10,10,0,2.67,2.95,0.28,16.5,50.0,10.0
 Indonesia,Rest of Asia-Pacific,21,19,2,0.85,1.0,0.15,24.1,10.0,10.0
 France,European Union,15,14,1,1.83,1.98,0.15,14.1,15.0,10.0
-South Korea (Republic of Korea),South Korea,7,8,-1,4.03,4.17,0.15,9.4,10.0,10.0
+South Korea (Republic of Korea),South Korea,7,8,-1,4.03,4.17,0.15,9.4,15.0,10.0
 Italy,European Union,11,12,-1,2.33,2.18,-0.15,-1.1,15.0,10.0
 Netherlands,European Union,19,20,-1,1.04,0.87,-0.18,-12.2,15.0,10.0
 Brazil,Rest of Americas,18,17,1,1.3,1.08,-0.21,-11.7,10.0,10.0
 United Kingdom,United Kingdom,12,15,-3,2.09,1.85,-0.24,-6.6,10.0,10.0
-Japan,Japan,5,7,-2,4.51,4.2,-0.31,-1.6,10.0,10.0
+Japan,Japan,5,7,-2,4.51,4.2,-0.31,-1.6,15.0,10.0
 Singapore,Rest of World,17,18,-1,1.33,1.02,-0.31,-19.1,10.0,10.0
-Switzerland,Switzerland,13,16,-3,1.94,1.59,-0.35,-13.6,10.0,10.0
+Switzerland,Switzerland,13,16,-3,1.94,1.59,-0.35,-13.6,39.0,10.0
 Germany (Federal Republic of Germany),European Union,4,6,-2,4.91,4.39,-0.52,-5.6,15.0,10.0
 Ireland,European Union,9,11,-2,3.16,2.31,-0.86,-23.0,15.0,10.0
 Canada,Canada,3,2,1,12.62,11.12,-1.5,-6.9,35.0,10.0

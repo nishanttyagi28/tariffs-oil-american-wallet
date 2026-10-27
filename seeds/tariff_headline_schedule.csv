@@ -1,29 +1,51 @@
-country_iso3,start_date,end_date,headline_rate_pct,basis,verified
-CHN,2025-02-04,2025-03-03,10,IEEPA fentanyl,TRUE
-CHN,2025-03-04,2025-04-04,20,IEEPA fentanyl,TRUE
-CHN,2025-04-05,2025-04-09,30,fentanyl 20 + baseline 10 (Apr 9 interim 104% step not modelled),FALSE
-CHN,2025-04-10,2025-05-13,145,peak escalation,TRUE
-CHN,2025-05-14,2025-11-09,30,Geneva truce (+ extension),TRUE
-CHN,2025-11-10,2026-02-23,20,Busan: fentanyl 10 + reciprocal 10,TRUE
-CHN,2026-02-24,2026-07-23,10,Section 122,TRUE
-CHN,2026-07-24,2099-12-31,10,Section 301 forced labor (China rate assumed 10),FALSE
-CAN,2025-03-04,2025-07-31,25,IEEPA fentanyl (USMCA-compliant goods exempt),FALSE
-CAN,2025-08-01,2026-02-23,35,IEEPA fentanyl (USMCA-compliant goods exempt),TRUE
-CAN,2026-02-24,2026-07-23,10,Section 122 (USMCA treatment not verified),FALSE
-CAN,2026-07-24,2099-12-31,10,Section 301 forced labor (USMCA-compliant exempt; rate assumed),FALSE
-MEX,2025-03-04,2026-02-23,25,IEEPA fentanyl (USMCA-compliant goods exempt),FALSE
-MEX,2026-02-24,2026-07-23,10,Section 122 (USMCA treatment not verified),FALSE
-MEX,2026-07-24,2099-12-31,10,Section 301 forced labor (USMCA-compliant exempt; rate assumed),FALSE
-IND,2025-04-05,2025-08-06,10,IEEPA baseline (country rate paused),TRUE
-IND,2025-08-07,2025-08-26,25,IEEPA reciprocal,TRUE
-IND,2025-08-27,2026-02-06,50,reciprocal 25 + Russian-oil 25,TRUE
-IND,2026-02-07,2026-02-23,25,reciprocal 25 (18% never implemented),TRUE
-IND,2026-02-24,2026-07-23,10,Section 122,TRUE
-IND,2026-07-24,2099-12-31,10,Section 301 forced labor,TRUE
-EUU,2025-04-05,2025-08-06,10,IEEPA baseline (20% paused),TRUE
-EUU,2025-08-07,2026-02-23,15,US-EU framework (all-in 15% incl. MFN),TRUE
-EUU,2026-02-24,2026-07-23,10,Section 122 (on top of MFN),TRUE
-EUU,2026-07-24,2099-12-31,10,Section 301 forced labor (EU rate assumed),FALSE
-WLD,2025-04-05,2026-02-23,10,IEEPA baseline for other partners,TRUE
-WLD,2026-02-24,2026-07-23,10,Section 122,TRUE
-WLD,2026-07-24,2099-12-31,10,Section 301 forced labor (applies to 60 economies; assumed),FALSE
+country_iso3,start_date,end_date,headline_rate_pct,basis,verified,source_url
+CHN,2025-02-04,2025-03-03,10,IEEPA fentanyl (EO 14195),TRUE,https://www.supremecourt.gov/opinions/25pdf/24-1287_new_3135.pdf
+CHN,2025-03-04,2025-04-04,20,IEEPA fentanyl raised (EO 14228),TRUE,https://www.federalregister.gov/documents/full_text/html/2025/11/07/2025-19825.html
+CHN,2025-04-05,2025-04-08,30,fentanyl 20 + 10% global baseline (EO 14257),TRUE,https://www.congress.gov/crs_external_products/R/HTML/R48549.html
+CHN,2025-04-09,2025-04-09,104,fentanyl 20 + reciprocal 84 (one-day step),FALSE,https://www.congress.gov/crs_external_products/R/HTML/R48549.html
+CHN,2025-04-10,2025-05-13,145,fentanyl 20 + reciprocal 125,TRUE,https://www.reuters.com/world/what-have-china-united-states-agreed-geneva-2025-05-12/
+CHN,2025-05-14,2025-11-09,30,Geneva truce: fentanyl 20 + reciprocal 10 (extended Aug 11),TRUE,https://www.reuters.com/world/what-have-china-united-states-agreed-geneva-2025-05-12/
+CHN,2025-11-10,2026-02-23,20,Busan: fentanyl 10 + reciprocal 10,TRUE,https://www.whitehouse.gov/fact-sheets/2025/11/fact-sheet-president-donald-j-trump-strikes-deal-on-economic-and-trade-relations-with-china/
+CHN,2026-02-24,2026-07-23,10,Section 122 after SCOTUS struck IEEPA tariffs,TRUE,https://www.everycrsreport.com/reports/R49481.html
+CHN,2026-07-24,2099-12-31,10,Section 301 forced labor 10-12.5% (China rate assumed 10; 232 sector duties not modelled),FALSE,https://www.everycrsreport.com/reports/R49481.html
+CAN,2025-03-04,2025-07-31,25,IEEPA fentanyl (USMCA-compliant goods exempt; energy/potash 10),FALSE,https://www.congress.gov/crs_external_products/R/HTML/R48549.html
+CAN,2025-08-01,2026-02-23,35,IEEPA fentanyl raised (USMCA-compliant goods exempt),TRUE,https://www.congress.gov/crs_external_products/R/HTML/R48549.html
+CAN,2026-02-24,2026-07-23,10,Section 122 (USMCA treatment not verified),FALSE,https://www.everycrsreport.com/reports/R49481.html
+CAN,2026-07-24,2099-12-31,10,Section 301 forced labor (USMCA-compliant exempt; rate assumed; Sep 14 Sec 338 50% on select goods not in headline),FALSE,https://www.everycrsreport.com/reports/R49481.html
+MEX,2025-03-04,2026-02-23,25,IEEPA fentanyl (USMCA-compliant goods exempt),FALSE,https://www.congress.gov/crs_external_products/R/HTML/R48549.html
+MEX,2026-02-24,2026-07-23,10,Section 122 (USMCA treatment not verified),FALSE,https://www.everycrsreport.com/reports/R49481.html
+MEX,2026-07-24,2099-12-31,10,Section 301 forced labor (USMCA-compliant exempt; rate assumed),FALSE,https://www.everycrsreport.com/reports/R49481.html
+IND,2025-04-05,2025-08-06,10,IEEPA baseline (26% country rate paused),TRUE,https://airliftusa.com/tariff-updates/india
+IND,2025-08-07,2025-08-26,25,IEEPA reciprocal (EO 14326 Annex I),TRUE,https://www.whitehouse.gov/presidential-actions/2025/07/further-modifying-the-reciprocal-tariff-rates/
+IND,2025-08-27,2026-02-06,50,reciprocal 25 + Russian-oil 25 (EO 14329),TRUE,https://www.reuters.com/world/india/trumps-doubling-tariffs-hits-india-damaging-ties-2025-08-27/
+IND,2026-02-07,2026-02-23,25,penalty removed (EO 14384); 18% framework never implemented,TRUE,https://www.federalregister.gov/documents/full_text/html/2026/02/11/2026-02818.html
+IND,2026-02-24,2026-07-23,10,Section 122,TRUE,https://www.everycrsreport.com/reports/R49481.html
+IND,2026-07-24,2099-12-31,10,Section 301 forced labor,TRUE,https://www.everycrsreport.com/reports/R49481.html
+EUU,2025-04-05,2025-08-06,10,IEEPA baseline (20% country rate paused),TRUE,https://www.congress.gov/crs_external_products/R/HTML/R48549.html
+EUU,2025-08-07,2026-02-23,15,US-EU framework: 15% all-in ceiling incl. MFN (EO 14326),TRUE,https://www.whitehouse.gov/presidential-actions/2025/07/further-modifying-the-reciprocal-tariff-rates/
+EUU,2026-02-24,2026-07-23,10,Section 122 (on top of MFN),TRUE,https://www.everycrsreport.com/reports/R49481.html
+EUU,2026-07-24,2099-12-31,10,Section 301 forced labor 10-12.5% (EU rate assumed 10),FALSE,https://www.everycrsreport.com/reports/R49481.html
+JPN,2025-04-05,2025-08-06,10,IEEPA baseline (24% country rate paused),TRUE,https://www.congress.gov/crs_external_products/R/HTML/R48549.html
+JPN,2025-08-07,2026-02-23,15,EO 14326 Annex I (15% ceiling incl. MFN from Sep 4),TRUE,https://www.whitehouse.gov/presidential-actions/2025/07/further-modifying-the-reciprocal-tariff-rates/
+JPN,2026-02-24,2026-07-23,10,Section 122,TRUE,https://www.everycrsreport.com/reports/R49481.html
+JPN,2026-07-24,2099-12-31,10,Section 301 forced labor (rate assumed),FALSE,https://www.everycrsreport.com/reports/R49481.html
+KOR,2025-04-05,2025-08-06,10,IEEPA baseline (25% country rate paused),TRUE,https://www.congress.gov/crs_external_products/R/HTML/R48549.html
+KOR,2025-08-07,2026-02-23,15,EO 14326 Annex I (15% ceiling implemented Dec 4),TRUE,https://www.whitehouse.gov/presidential-actions/2025/07/further-modifying-the-reciprocal-tariff-rates/
+KOR,2026-02-24,2026-07-23,10,Section 122,TRUE,https://www.everycrsreport.com/reports/R49481.html
+KOR,2026-07-24,2099-12-31,10,Section 301 forced labor (rate assumed),FALSE,https://www.everycrsreport.com/reports/R49481.html
+VNM,2025-04-05,2025-08-06,10,IEEPA baseline (46% country rate paused),TRUE,https://www.congress.gov/crs_external_products/R/HTML/R48549.html
+VNM,2025-08-07,2026-02-23,20,EO 14326 Annex I,TRUE,https://www.whitehouse.gov/presidential-actions/2025/07/further-modifying-the-reciprocal-tariff-rates/
+VNM,2026-02-24,2026-07-23,10,Section 122,TRUE,https://www.everycrsreport.com/reports/R49481.html
+VNM,2026-07-24,2099-12-31,10,Section 301 forced labor (rate assumed),FALSE,https://www.everycrsreport.com/reports/R49481.html
+TWN,2025-04-05,2025-08-06,10,IEEPA baseline (32% country rate paused),TRUE,https://www.congress.gov/crs_external_products/R/HTML/R48549.html
+TWN,2025-08-07,2026-02-23,20,EO 14326 Annex I (later deal changes not verified),FALSE,https://www.whitehouse.gov/presidential-actions/2025/07/further-modifying-the-reciprocal-tariff-rates/
+TWN,2026-02-24,2026-07-23,10,Section 122,TRUE,https://www.everycrsreport.com/reports/R49481.html
+TWN,2026-07-24,2099-12-31,10,Section 301 forced labor (rate assumed),FALSE,https://www.everycrsreport.com/reports/R49481.html
+CHE,2025-04-05,2025-08-06,10,IEEPA baseline (31% country rate paused),TRUE,https://www.congress.gov/crs_external_products/R/HTML/R48549.html
+CHE,2025-08-07,2025-11-13,39,EO 14326 Annex I,TRUE,https://www.whitehouse.gov/presidential-actions/2025/07/further-modifying-the-reciprocal-tariff-rates/
+CHE,2025-11-14,2026-02-23,15,US-Switzerland joint statement: 15% ceiling,TRUE,https://www.congress.gov/crs_external_products/R/HTML/R48549.html
+CHE,2026-02-24,2026-07-23,10,Section 122,TRUE,https://www.everycrsreport.com/reports/R49481.html
+CHE,2026-07-24,2099-12-31,10,Section 301 forced labor (rate assumed),FALSE,https://www.everycrsreport.com/reports/R49481.html
+WLD,2025-04-05,2026-02-23,10,IEEPA baseline for other partners (country rates 10-41% from Aug 7 not modelled individually),TRUE,https://www.congress.gov/crs_external_products/R/HTML/R48549.html
+WLD,2026-02-24,2026-07-23,10,Section 122,TRUE,https://www.everycrsreport.com/reports/R49481.html
+WLD,2026-07-24,2099-12-31,10,Section 301 forced labor (applies to 60 economies; assumed),FALSE,https://www.everycrsreport.com/reports/R49481.html
