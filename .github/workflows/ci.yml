@@ -14,8 +14,9 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 20
     env:
-      # warehouse-dependent tests skip when this file does not exist; dbt parse never opens it
+      # CI works on a copy of the committed warehouse, rebuilt by dbt from the committed data/raw snapshots.
       TRADEWAR_DB: /tmp/ci/tradewar.duckdb
+      TRADEWAR_REQUIRE_DB: "1"   # warehouse/ML/SQL tests must run, not skip
       PBIR_SCHEMA_CACHE: /tmp/pbir-schemas
     steps:
       - uses: actions/checkout@v5
@@ -34,9 +35,6 @@ jobs:
       - name: Lint (ruff)
         run: ruff check .
 
-      - name: Tests (pytest)
-        run: pytest -q
-
       - name: PBIP builder is reproducible (generated TMDL/PBIR match the commit)
         run: |
           python powerbi/build_pbip.py
@@ -45,6 +43,11 @@ jobs:
       - name: Validate PBIR JSON against Microsoft's published schemas
         run: python powerbi/validate_pbir.py
 
-      - name: dbt parse (models, tests, sources compile into a manifest)
+      - name: dbt build on the committed data/raw (seeds, models, data tests)
         working-directory: dbt
-        run: dbt parse --profiles-dir .
+        run: |
+          mkdir -p /tmp/ci && cp ../warehouse/tradewar.duckdb /tmp/ci/tradewar.duckdb
+          dbt build --profiles-dir . --threads 1
+
+      - name: Tests (pytest, incl. warehouse, ML-output and SQL-analysis tests)
+        run: pytest -q -rs

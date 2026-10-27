@@ -1,4 +1,6 @@
 """Smoke tests on the ML outputs written to the ml schema by `python -m ml.run_all`."""
+import os
+
 import pytest
 
 ML_TABLES = ["ml_trade_counterfactual", "ml_trade_effect_summary", "ml_model_metrics", "ml_cpi_passthrough",
@@ -9,6 +11,8 @@ ML_TABLES = ["ml_trade_counterfactual", "ml_trade_effect_summary", "ml_model_met
 def ml(con):
     have = {r[0] for r in con.execute("select table_name from information_schema.tables where table_schema='ml'").fetchall()}
     if not set(ML_TABLES) <= have:
+        if os.environ.get("TRADEWAR_REQUIRE_DB"):
+            pytest.fail("ml tables missing from the warehouse")
         pytest.skip("ml tables not built (run python -m ml.run_all)")
     return con
 
