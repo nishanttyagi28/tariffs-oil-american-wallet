@@ -22,3 +22,4 @@ dbt/.user.yml
 warehouse/*.tmp
 warehouse/*.duckdb.tmp
 
+.scratch/

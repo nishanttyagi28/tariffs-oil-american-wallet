@@ -42,11 +42,11 @@
                       "Entity": "_Measures"
                     }
                   },
-                  "Property": "Actual YoY %"
+                  "Property": "CPI Actual YoY %"
                 }
               },
-              "queryRef": "_Measures.Actual YoY %",
-              "nativeQueryRef": "Actual YoY %",
+              "queryRef": "_Measures.CPI Actual YoY %",
+              "nativeQueryRef": "CPI Actual YoY %",
               "displayName": "Actual"
             },
             {
@@ -57,11 +57,11 @@
                       "Entity": "_Measures"
                     }
                   },
-                  "Property": "Forecast YoY %"
+                  "Property": "CPI Forecast YoY %"
                 }
               },
-              "queryRef": "_Measures.Forecast YoY %",
-              "nativeQueryRef": "Forecast YoY %",
+              "queryRef": "_Measures.CPI Forecast YoY %",
+              "nativeQueryRef": "CPI Forecast YoY %",
               "displayName": "Forecast"
             },
             {
@@ -72,11 +72,11 @@
                       "Entity": "_Measures"
                     }
                   },
-                  "Property": "Forecast YoY Lo 80"
+                  "Property": "CPI Forecast YoY Lo 80"
                 }
               },
-              "queryRef": "_Measures.Forecast YoY Lo 80",
-              "nativeQueryRef": "Forecast YoY Lo 80",
+              "queryRef": "_Measures.CPI Forecast YoY Lo 80",
+              "nativeQueryRef": "CPI Forecast YoY Lo 80",
               "displayName": "80% low"
             },
             {
@@ -87,11 +87,11 @@
                       "Entity": "_Measures"
                     }
                   },
-                  "Property": "Forecast YoY Hi 80"
+                  "Property": "CPI Forecast YoY Hi 80"
                 }
               },
-              "queryRef": "_Measures.Forecast YoY Hi 80",
-              "nativeQueryRef": "Forecast YoY Hi 80",
+              "queryRef": "_Measures.CPI Forecast YoY Hi 80",
+              "nativeQueryRef": "CPI Forecast YoY Hi 80",
               "displayName": "80% high"
             }
           ]
@@ -115,7 +115,7 @@
             }
           },
           "selector": {
-            "metadata": "_Measures.Actual YoY %"
+            "metadata": "_Measures.CPI Actual YoY %"
           }
         },
         {
@@ -133,7 +133,7 @@
             }
           },
           "selector": {
-            "metadata": "_Measures.Forecast YoY %"
+            "metadata": "_Measures.CPI Forecast YoY %"
           }
         },
         {
@@ -151,7 +151,7 @@
             }
           },
           "selector": {
-            "metadata": "_Measures.Forecast YoY Lo 80"
+            "metadata": "_Measures.CPI Forecast YoY Lo 80"
           }
         },
         {
@@ -169,7 +169,7 @@
             }
           },
           "selector": {
-            "metadata": "_Measures.Forecast YoY Hi 80"
+            "metadata": "_Measures.CPI Forecast YoY Hi 80"
           }
         }
       ],
@@ -185,7 +185,7 @@
             }
           },
           "selector": {
-            "metadata": "_Measures.Actual YoY %"
+            "metadata": "_Measures.CPI Actual YoY %"
           }
         },
         {
@@ -199,7 +199,7 @@
             }
           },
           "selector": {
-            "metadata": "_Measures.Forecast YoY %"
+            "metadata": "_Measures.CPI Forecast YoY %"
           }
         },
         {
@@ -220,7 +220,7 @@
             }
           },
           "selector": {
-            "metadata": "_Measures.Forecast YoY Lo 80"
+            "metadata": "_Measures.CPI Forecast YoY Lo 80"
           }
         },
         {
@@ -241,7 +241,7 @@
             }
           },
           "selector": {
-            "metadata": "_Measures.Forecast YoY Hi 80"
+            "metadata": "_Measures.CPI Forecast YoY Hi 80"
           }
         }
       ]
@@ -335,59 +335,6 @@
                       {
                         "Literal": {
                           "Value": "2027L"
-                        }
-                      }
-                    ]
-                  ]
-                }
-              }
-            }
-          ]
-        }
-      },
-      {
-        "name": "e271f19a263c5624b0ca",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Forecasts"
-              }
-            },
-            "Property": "Target"
-          }
-        },
-        "type": "Categorical",
-        "filter": {
-          "Version": 2,
-          "From": [
-            {
-              "Name": "f",
-              "Entity": "Forecasts",
-              "Type": 0
-            }
-          ],
-          "Where": [
-            {
-              "Condition": {
-                "In": {
-                  "Expressions": [
-                    {
-                      "Column": {
-                        "Expression": {
-                          "SourceRef": {
-                            "Source": "f"
-                          }
-                        },
-                        "Property": "Target"
-                      }
-                    }
-                  ],
-                  "Values": [
-                    [
-                      {
-                        "Literal": {
-                          "Value": "'headline_cpi'"
                         }
                       }
                     ]

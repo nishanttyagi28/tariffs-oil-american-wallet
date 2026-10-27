@@ -28,7 +28,7 @@
               },
               "queryRef": "_Measures.China Import Effect ($bn)",
               "nativeQueryRef": "China Import Effect ($bn)",
-              "displayName": "China imports vs counterfactual ($bn)"
+              "displayName": "China imports vs CF ($bn)"
             }
           ]
         }

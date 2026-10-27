@@ -28,7 +28,7 @@
               },
               "queryRef": "_Measures.Brent War CAR D+5 %",
               "nativeQueryRef": "Brent War CAR D+5 %",
-              "displayName": "Brent abnormal return, war D0..D+5"
+              "displayName": "Brent CAR, war D0-D5"
             }
           ]
         }

@@ -233,7 +233,7 @@ for nm, col in [("Counterfactual ($bn)", "Counterfactual $M"), ("CF Lo 95 ($bn)"
                 ("CF Lo 80 ($bn)", "CF Lo 80"), ("CF Hi 80 ($bn)", "CF Hi 80")]:
     m(nm, F, BN, f"DIVIDE ( CALCULATE ( SUM ( Counterfactual[{col}] ), Counterfactual[Is Post-Tariff] = TRUE () ), 1000 )")
 m("Monthly Tariff Effect ($bn)", F, BN, "DIVIDE ( CALCULATE ( SUM ( Counterfactual[Effect $M] ), Counterfactual[Is Post-Tariff] = TRUE () ), 1000 )")
-EW = "'Tariff Effect'[Effect Window] = \"Apr 2025-latest\", 'Tariff Effect'[Partner Code] <> \"TOTAL\""
+EW = "'Tariff Effect'[Effect Window] = \"Apr 2025-latest\", KEEPFILTERS ( 'Tariff Effect'[Partner Code] <> \"TOTAL\" )"
 m("Effect since Apr 2025 ($bn)", F, BN, f"DIVIDE ( CALCULATE ( SUM ( 'Tariff Effect'[Effect $M] ), {EW} ), 1000 )")
 m("Effect Lo 95 ($bn)", F, BN, f"DIVIDE ( CALCULATE ( SUM ( 'Tariff Effect'[Effect Lo 95] ), {EW} ), 1000 )")
 m("Effect Hi 95 ($bn)", F, BN, f"DIVIDE ( CALCULATE ( SUM ( 'Tariff Effect'[Effect Hi 95] ), {EW} ), 1000 )")
@@ -252,12 +252,13 @@ for nm, col in [("DD Actual Imports ($bn)", "Actual $M"), ("DD Counterfactual ($
     post = "" if nm.startswith("DD Actual") else ", Counterfactual[Is Post-Tariff] = TRUE ()"
     m(nm, F, BN, f"VAR _p = [DD Code]\nRETURN DIVIDE ( CALCULATE ( SUM ( Counterfactual[{col}] ), REMOVEFILTERS ( Partner ),\n"
                  f"    Counterfactual[Partner Code] = _p, Counterfactual[Flow] = \"imports\"{post} ), 1000 )")
+m("DD Tariff ISO3", F, "", "LOOKUPVALUE ( Partner[Tariff ISO3], Partner[Partner Code], [DD Code] )")
 m("DD Statutory Tariff %", F, PCT,
-  "VAR _p = [DD Code]\nRETURN CALCULATE ( AVERAGE ( 'Tariff Rate'[Statutory Rate %] ), REMOVEFILTERS ( Partner ), Partner[Partner Code] = _p )")
+  "VAR _iso = [DD Tariff ISO3]\nRETURN CALCULATE ( AVERAGE ( 'Tariff Rate'[Statutory Rate %] ), 'Tariff Rate'[ISO3] = _iso )")
 m("DD Current Tariff %", F, PCT,
-  "VAR _p = [DD Code]\nRETURN CALCULATE ( [Statutory Tariff Latest %], REMOVEFILTERS ( Partner ), Partner[Partner Code] = _p )")
+  "VAR _iso = [DD Tariff ISO3]\nRETURN CALCULATE ( [Statutory Tariff Latest %], 'Tariff Rate'[ISO3] = _iso )")
 m("DD Peak Tariff %", F, PCT,
-  "VAR _p = [DD Code]\nRETURN CALCULATE ( MAX ( 'Tariff Rate'[Max Rate in Month %] ), REMOVEFILTERS ( Partner ), REMOVEFILTERS ( 'Date' ), Partner[Partner Code] = _p )")
+  "VAR _iso = [DD Tariff ISO3]\nRETURN CALCULATE ( MAX ( 'Tariff Rate'[Max Rate in Month %] ), REMOVEFILTERS ( 'Date' ), 'Tariff Rate'[ISO3] = _iso )")
 for nm, col, flow in [("DD Import Effect ($bn)", "Effect $M", "imports"), ("DD Export Effect ($bn)", "Effect $M", "exports"),
                       ("DD Import Effect Lo 95 ($bn)", "Effect Lo 95", "imports"), ("DD Import Effect Hi 95 ($bn)", "Effect Hi 95", "imports")]:
     m(nm, F, BN, f"VAR _p = [DD Code]\nRETURN DIVIDE ( CALCULATE ( SUM ( 'Tariff Effect'[{col}] ), REMOVEFILTERS ( Partner ), 'Tariff Effect'[Partner Code] = _p,\n"
@@ -285,3 +286,21 @@ m("Data Freshness", F, "",
 m("Event-study Title", "Household", "",
   "\"Pass-through event study: exposed goods minus services CPI (pp/month vs quarter -1). DiD \" & FORMAT ( [Pass-through DiD (pp/yr)], \"+0.0\" ) & \" pp/yr, \" & [Pass-through DiD Text]")
 m("Tooltip Country", "Story", "", "SELECTEDVALUE ( Country[Map Name], \"Country\" )")
+F = "Forecast & ML"
+for nm, col, kind in [("CPI Actual YoY %", "YoY Value", "actual"), ("CPI Forecast YoY %", "YoY Value", "forecast"),
+                      ("CPI Forecast YoY Lo 80", "YoY Lo 80", "forecast"), ("CPI Forecast YoY Hi 80", "YoY Hi 80", "forecast")]:
+    m(nm, F, PCT, f"CALCULATE ( AVERAGE ( Forecasts[{col}] ), REMOVEFILTERS ( Forecasts ), Forecasts[Target] = \"headline_cpi\", Forecasts[Kind] = \"{kind}\" )")
+
+F = "Story"
+m("Story Tariffs", F, "",
+  "\"Effective US tariff rate: \" & FORMAT ( [Effective Tariff 2024 %], \"0.0%\" ) & \" in 2024, \" & FORMAT ( [Effective Tariff Latest %], \"0.0%\" ) &\n"
+  "\" in the latest month; the Supreme Court IEEPA ruling (Feb 2026) cut it and triggered refunds.\"")
+m("Story Trade", F, "",
+  "\"Imports from China are \" & FORMAT ( [China Import Effect ($bn)], \"$#,0;-$#,0\" ) & \"bn (\" & FORMAT ( [China Import Effect %], \"+0%;-0%\" ) &\n"
+  "\") vs a no-tariff counterfactual since Apr 2025; Vietnam and Taiwan gained as trade was diverted.\"")
+m("Story Households", F, "",
+  "\"Customs collections above 2024 levels add up to about \" & FORMAT ( [Household Tariff Cost to Date ($)], \"$#,0\" ) &\n"
+  "\" per household; tariff-exposed goods inflation outpaced services by \" & FORMAT ( [Pass-through DiD (pp/yr)], \"0.0\" ) & \" pp a year (DiD).\"")
+m("Story Oil", F, "",
+  "\"Since the Iran war began on 28 Feb 2026, Brent is \" & FORMAT ( [Brent Latest ($/bbl)], \"$0\" ) & \"/bbl (\" & FORMAT ( [Brent vs Pre-war %], \"+0%;-0%\" ) &\n"
+  "\" vs pre-war), Hormuz traffic is \" & FORMAT ( [Hormuz Latest vs Pre-war %], \"+0%;-0%\" ) & \" and headline CPI is \" & FORMAT ( [Headline CPI Latest YoY %], \"0.0%\" ) & \" YoY.\"")

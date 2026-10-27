@@ -28,7 +28,7 @@
               },
               "queryRef": "_Measures.Headline CPI Latest YoY %",
               "nativeQueryRef": "Headline CPI Latest YoY %",
-              "displayName": "Headline CPI, YoY (latest)"
+              "displayName": "Headline CPI YoY"
             }
           ]
         }

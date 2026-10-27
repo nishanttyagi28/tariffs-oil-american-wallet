@@ -28,7 +28,7 @@
               },
               "queryRef": "_Measures.S&P 500 War CAR D+20 %",
               "nativeQueryRef": "S&P 500 War CAR D+20 %",
-              "displayName": "S&P 500 abnormal return, war D0..D+20"
+              "displayName": "S&P 500 CAR, war D0-D20"
             }
           ]
         }

@@ -28,7 +28,7 @@
               },
               "queryRef": "_Measures.Brent Latest ($/bbl)",
               "nativeQueryRef": "Brent Latest ($/bbl)",
-              "displayName": "Brent crude, latest ($/bbl)"
+              "displayName": "Brent crude ($/bbl)"
             }
           ]
         }

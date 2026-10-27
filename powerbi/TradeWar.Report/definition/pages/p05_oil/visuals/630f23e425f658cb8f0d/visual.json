@@ -28,7 +28,7 @@
               },
               "queryRef": "_Measures.Gasoline IRF 1m (%)",
               "nativeQueryRef": "Gasoline IRF 1m (%)",
-              "displayName": "Gasoline CPI after +10% Brent, 1m (%)"
+              "displayName": "Gas CPI after +10% Brent, 1m"
             }
           ]
         }

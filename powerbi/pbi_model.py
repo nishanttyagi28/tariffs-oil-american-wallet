@@ -31,7 +31,6 @@ RELS = [
     ("Event Study", "Symbol", "Instrument", "Symbol"),
     ("Chokepoint Daily", "Chokepoint ID", "Chokepoint", "Chokepoint ID"),
     ("Counterfactual", "Partner Code", "Partner", "Partner Code"), ("Tariff Effect", "Partner Code", "Partner", "Partner Code"),
-    ("Tariff Rate", "ISO3", "Partner", "Tariff ISO3"),
 ]
 HIDDEN_TABLES: set[str] = set()
 

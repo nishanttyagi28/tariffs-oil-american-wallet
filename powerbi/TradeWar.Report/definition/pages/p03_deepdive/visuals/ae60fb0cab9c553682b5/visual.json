@@ -28,7 +28,7 @@
               },
               "queryRef": "_Measures.DD Import Effect ($bn)",
               "nativeQueryRef": "DD Import Effect ($bn)",
-              "displayName": "Imports vs counterfactual since Apr 2025 ($bn)"
+              "displayName": "Import effect since Apr-25 ($bn)"
             }
           ]
         }

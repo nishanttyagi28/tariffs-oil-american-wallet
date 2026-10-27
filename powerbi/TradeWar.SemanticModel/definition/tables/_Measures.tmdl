@@ -770,22 +770,22 @@ table _Measures
 		displayFolder: Forecast & ML
 		lineageTag: 5f25ad7f-9854-5018-8ae6-d99055bb7a37
 
-	measure 'Effect since Apr 2025 ($bn)' = DIVIDE ( CALCULATE ( SUM ( 'Tariff Effect'[Effect $M] ), 'Tariff Effect'[Effect Window] = "Apr 2025-latest", 'Tariff Effect'[Partner Code] <> "TOTAL" ), 1000 )
+	measure 'Effect since Apr 2025 ($bn)' = DIVIDE ( CALCULATE ( SUM ( 'Tariff Effect'[Effect $M] ), 'Tariff Effect'[Effect Window] = "Apr 2025-latest", KEEPFILTERS ( 'Tariff Effect'[Partner Code] <> "TOTAL" ) ), 1000 )
 		formatString: $#,0.0;-$#,0.0;$0.0
 		displayFolder: Forecast & ML
 		lineageTag: 9a67dda8-ea74-5b7f-b43a-473e667ef47b
 
-	measure 'Effect Lo 95 ($bn)' = DIVIDE ( CALCULATE ( SUM ( 'Tariff Effect'[Effect Lo 95] ), 'Tariff Effect'[Effect Window] = "Apr 2025-latest", 'Tariff Effect'[Partner Code] <> "TOTAL" ), 1000 )
+	measure 'Effect Lo 95 ($bn)' = DIVIDE ( CALCULATE ( SUM ( 'Tariff Effect'[Effect Lo 95] ), 'Tariff Effect'[Effect Window] = "Apr 2025-latest", KEEPFILTERS ( 'Tariff Effect'[Partner Code] <> "TOTAL" ) ), 1000 )
 		formatString: $#,0.0;-$#,0.0;$0.0
 		displayFolder: Forecast & ML
 		lineageTag: ecae7a3f-26c7-52f6-aef5-8405376648e4
 
-	measure 'Effect Hi 95 ($bn)' = DIVIDE ( CALCULATE ( SUM ( 'Tariff Effect'[Effect Hi 95] ), 'Tariff Effect'[Effect Window] = "Apr 2025-latest", 'Tariff Effect'[Partner Code] <> "TOTAL" ), 1000 )
+	measure 'Effect Hi 95 ($bn)' = DIVIDE ( CALCULATE ( SUM ( 'Tariff Effect'[Effect Hi 95] ), 'Tariff Effect'[Effect Window] = "Apr 2025-latest", KEEPFILTERS ( 'Tariff Effect'[Partner Code] <> "TOTAL" ) ), 1000 )
 		formatString: $#,0.0;-$#,0.0;$0.0
 		displayFolder: Forecast & ML
 		lineageTag: 166c4208-20ed-581c-95fa-1e0b184ed0b1
 
-	measure 'Effect since Apr 2025 %' = CALCULATE ( AVERAGE ( 'Tariff Effect'[Effect %] ), 'Tariff Effect'[Effect Window] = "Apr 2025-latest", 'Tariff Effect'[Partner Code] <> "TOTAL" )
+	measure 'Effect since Apr 2025 %' = CALCULATE ( AVERAGE ( 'Tariff Effect'[Effect %] ), 'Tariff Effect'[Effect Window] = "Apr 2025-latest", KEEPFILTERS ( 'Tariff Effect'[Partner Code] <> "TOTAL" ) )
 		formatString: +0.0%;-0.0%;0.0%
 		displayFolder: Forecast & ML
 		lineageTag: 1cc72b8d-9c5c-5a61-a2bc-9dfdf22d64c9
@@ -844,23 +844,27 @@ table _Measures
 		displayFolder: Deep-dive
 		lineageTag: d7b1265d-66b8-5ac4-a902-0f033ec54309
 
+	measure 'DD Tariff ISO3' = LOOKUPVALUE ( Partner[Tariff ISO3], Partner[Partner Code], [DD Code] )
+		displayFolder: Deep-dive
+		lineageTag: 5f248c24-3683-5d56-be64-2907813a8050
+
 	measure 'DD Statutory Tariff %' =
-			VAR _p = [DD Code]
-			RETURN CALCULATE ( AVERAGE ( 'Tariff Rate'[Statutory Rate %] ), REMOVEFILTERS ( Partner ), Partner[Partner Code] = _p )
+			VAR _iso = [DD Tariff ISO3]
+			RETURN CALCULATE ( AVERAGE ( 'Tariff Rate'[Statutory Rate %] ), 'Tariff Rate'[ISO3] = _iso )
 		formatString: 0.0%
 		displayFolder: Deep-dive
 		lineageTag: bcfd43c3-335f-59aa-9b0d-643daedcd6f6
 
 	measure 'DD Current Tariff %' =
-			VAR _p = [DD Code]
-			RETURN CALCULATE ( [Statutory Tariff Latest %], REMOVEFILTERS ( Partner ), Partner[Partner Code] = _p )
+			VAR _iso = [DD Tariff ISO3]
+			RETURN CALCULATE ( [Statutory Tariff Latest %], 'Tariff Rate'[ISO3] = _iso )
 		formatString: 0.0%
 		displayFolder: Deep-dive
 		lineageTag: 3669a8ab-8eec-5bbd-9c16-d2851791503f
 
 	measure 'DD Peak Tariff %' =
-			VAR _p = [DD Code]
-			RETURN CALCULATE ( MAX ( 'Tariff Rate'[Max Rate in Month %] ), REMOVEFILTERS ( Partner ), REMOVEFILTERS ( 'Date' ), Partner[Partner Code] = _p )
+			VAR _iso = [DD Tariff ISO3]
+			RETURN CALCULATE ( MAX ( 'Tariff Rate'[Max Rate in Month %] ), REMOVEFILTERS ( 'Date' ), 'Tariff Rate'[ISO3] = _iso )
 		formatString: 0.0%
 		displayFolder: Deep-dive
 		lineageTag: 03bea7e2-315b-5123-8ec1-03d3dfdb9955
@@ -940,6 +944,50 @@ table _Measures
 	measure 'Tooltip Country' = SELECTEDVALUE ( Country[Map Name], "Country" )
 		displayFolder: Story
 		lineageTag: 9d609a1d-2fbe-56a1-918b-5c770f39f5dd
+
+	measure 'CPI Actual YoY %' = CALCULATE ( AVERAGE ( Forecasts[YoY Value] ), REMOVEFILTERS ( Forecasts ), Forecasts[Target] = "headline_cpi", Forecasts[Kind] = "actual" )
+		formatString: 0.0%
+		displayFolder: Forecast & ML
+		lineageTag: 8b4afdbc-d807-5410-a90c-812a1f2a689e
+
+	measure 'CPI Forecast YoY %' = CALCULATE ( AVERAGE ( Forecasts[YoY Value] ), REMOVEFILTERS ( Forecasts ), Forecasts[Target] = "headline_cpi", Forecasts[Kind] = "forecast" )
+		formatString: 0.0%
+		displayFolder: Forecast & ML
+		lineageTag: 17bf88c0-e3b7-5f3f-b590-6be5cb547eba
+
+	measure 'CPI Forecast YoY Lo 80' = CALCULATE ( AVERAGE ( Forecasts[YoY Lo 80] ), REMOVEFILTERS ( Forecasts ), Forecasts[Target] = "headline_cpi", Forecasts[Kind] = "forecast" )
+		formatString: 0.0%
+		displayFolder: Forecast & ML
+		lineageTag: 5ff31eec-aa1f-57ff-86ac-4b1d0c9efdcb
+
+	measure 'CPI Forecast YoY Hi 80' = CALCULATE ( AVERAGE ( Forecasts[YoY Hi 80] ), REMOVEFILTERS ( Forecasts ), Forecasts[Target] = "headline_cpi", Forecasts[Kind] = "forecast" )
+		formatString: 0.0%
+		displayFolder: Forecast & ML
+		lineageTag: fc4269f3-537f-5b13-af10-077e175a9b6b
+
+	measure 'Story Tariffs' =
+			"Effective US tariff rate: " & FORMAT ( [Effective Tariff 2024 %], "0.0%" ) & " in 2024, " & FORMAT ( [Effective Tariff Latest %], "0.0%" ) &
+			" in the latest month; the Supreme Court IEEPA ruling (Feb 2026) cut it and triggered refunds."
+		displayFolder: Story
+		lineageTag: b18ae4c0-db55-57ff-9f57-8c4918f6e89f
+
+	measure 'Story Trade' =
+			"Imports from China are " & FORMAT ( [China Import Effect ($bn)], "$#,0;-$#,0" ) & "bn (" & FORMAT ( [China Import Effect %], "+0%;-0%" ) &
+			") vs a no-tariff counterfactual since Apr 2025; Vietnam and Taiwan gained as trade was diverted."
+		displayFolder: Story
+		lineageTag: 8884d276-5027-5726-834f-dd43617f97ee
+
+	measure 'Story Households' =
+			"Customs collections above 2024 levels add up to about " & FORMAT ( [Household Tariff Cost to Date ($)], "$#,0" ) &
+			" per household; tariff-exposed goods inflation outpaced services by " & FORMAT ( [Pass-through DiD (pp/yr)], "0.0" ) & " pp a year (DiD)."
+		displayFolder: Story
+		lineageTag: f16a97cd-b3a9-572e-b8bc-68907d63d0ec
+
+	measure 'Story Oil' =
+			"Since the Iran war began on 28 Feb 2026, Brent is " & FORMAT ( [Brent Latest ($/bbl)], "$0" ) & "/bbl (" & FORMAT ( [Brent vs Pre-war %], "+0%;-0%" ) &
+			" vs pre-war), Hormuz traffic is " & FORMAT ( [Hormuz Latest vs Pre-war %], "+0%;-0%" ) & " and headline CPI is " & FORMAT ( [Headline CPI Latest YoY %], "0.0%" ) & " YoY."
+		displayFolder: Story
+		lineageTag: e1152924-23e5-5bf8-97dc-aecad234e0a0
 
 	column Dummy
 		dataType: string

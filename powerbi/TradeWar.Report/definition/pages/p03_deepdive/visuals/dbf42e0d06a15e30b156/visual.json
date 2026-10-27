@@ -28,7 +28,7 @@
               },
               "queryRef": "_Measures.DD Import Effect %",
               "nativeQueryRef": "DD Import Effect %",
-              "displayName": "Imports vs counterfactual (%)"
+              "displayName": "Import effect (%)"
             }
           ]
         }

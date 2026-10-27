@@ -98,7 +98,3 @@ relationship 4ea75473-f9df-5923-9863-b1bf9a61091b
 	fromColumn: 'Tariff Effect'.'Partner Code'
 	toColumn: Partner.'Partner Code'
 
-relationship 461dc783-7170-5283-8de5-eb036068b5d1
-	fromColumn: 'Tariff Rate'.ISO3
-	toColumn: Partner.'Tariff ISO3'
-

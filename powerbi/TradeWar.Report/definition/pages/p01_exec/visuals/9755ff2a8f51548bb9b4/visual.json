@@ -28,7 +28,7 @@
               },
               "queryRef": "_Measures.Household Tariff Cost to Date ($)",
               "nativeQueryRef": "Household Tariff Cost to Date ($)",
-              "displayName": "Tariff cost per household to date"
+              "displayName": "Tariff cost per household"
             }
           ]
         }

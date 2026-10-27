@@ -28,7 +28,7 @@
               },
               "queryRef": "_Measures.Effective Tariff Latest %",
               "nativeQueryRef": "Effective Tariff Latest %",
-              "displayName": "Effective US tariff rate (latest month)"
+              "displayName": "Effective tariff rate"
             }
           ]
         }

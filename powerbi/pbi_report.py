@@ -85,9 +85,9 @@ class Page:
                                    {"properties": {"fillColor": color(NAVY)}, "selector": {"id": "selected"}}],
                           "outline": [{"properties": {"show": lit(True), "lineColor": color("#DCE3EE")}}]})
 
-    def kpi(self, x, y, w, h, measure: str, label: str, accent: str = AMBER):
+    def kpi(self, x, y, w, h, measure: str, label: str, accent: str = AMBER, size: int = 20):
         return self.add("card", x, y, w, h, roles={"Values": [(f"m:{measure}", label)]}, key=f"kpi_{measure}",
-                        objects={"labels": [{"properties": {"fontSize": num(20), "labelDisplayUnits": num(1), "color": color(NAVY)}}],
+                        objects={"labels": [{"properties": {"fontSize": num(size), "labelDisplayUnits": num(1), "color": color(NAVY)}}],
                                  "categoryLabels": [{"properties": {"show": lit(True), "fontSize": num(9)}}]},
                         vco={"border": [{"properties": {"show": lit(True), "color": color(accent), "radius": num(10)}}],
                              "title": [{"properties": {"show": lit(False)}}]})
@@ -96,8 +96,10 @@ class Page:
         n = len(items)
         w = (total_w - gap * (n - 1)) // n
         accents = [AMBER, TEAL, SKY, CORAL, AMBER, TEAL]
-        for i, (msr, label) in enumerate(items):
-            self.kpi(x0 + i * (w + gap), y, w, h, msr, label, accents[i % len(accents)])
+        for i, it in enumerate(items):
+            msr, label = it[0], it[1]
+            size = it[2] if len(it) > 2 else 20
+            self.kpi(x0 + i * (w + gap), y, w, h, msr, label, accents[i % len(accents)], size)
 
     def slicer(self, x, y, w, h, field: str, mode: str = "Dropdown", title: str | None = None, single: bool = False):
         objs = {"data": [{"properties": {"mode": lit(mode)}}]}
@@ -164,12 +166,12 @@ def build_pages() -> list[Page]:
 
     # 1 ---------------------------------------------------------------- Executive
     p = Page("p01_exec", "Executive Summary", "Trump trade war 2025-26, the Iran war oil shock, and what both mean for US households")
-    p.kpi_row([("Effective Tariff Latest %", "Effective US tariff rate (latest month)"),
-               ("Customs Windfall to Date ($bn)", "Extra customs vs 2024 since Feb 2025 ($bn)"),
-               ("Household Tariff Cost to Date ($)", "Tariff cost per household to date"),
-               ("China Import Effect ($bn)", "China imports vs counterfactual ($bn)"),
-               ("Brent Latest ($/bbl)", "Brent crude, latest ($/bbl)"),
-               ("Headline CPI Latest YoY %", "Headline CPI, YoY (latest)")])
+    p.kpi_row([("Effective Tariff Latest %", "Effective tariff rate"),
+               ("Customs Windfall to Date ($bn)", "Extra customs since Feb-25 ($bn)"),
+               ("Household Tariff Cost to Date ($)", "Tariff cost per household"),
+               ("China Import Effect ($bn)", "China imports vs CF ($bn)"),
+               ("Brent Latest ($/bbl)", "Brent crude ($/bbl)"),
+               ("Headline CPI Latest YoY %", "Headline CPI YoY")])
     p.add("lineClusteredColumnComboChart", 16, 204, 820, 248,
           roles={"Category": ["Date.Month"], "Y": [("m:Tariff Events (#)", "Tariff events"), ("m:War Events (#)", "Iran-war events")],
                  "Y2": [("m:Effective Tariff Rate %", "Effective tariff rate")]},
@@ -178,7 +180,14 @@ def build_pages() -> list[Page]:
                                  {"properties": {"fill": color(CORAL)}, "selector": {"metadata": "_Measures.War Events (#)"}},
                                  {"properties": {"fill": color(TEAL)}, "selector": {"metadata": "_Measures.Effective Tariff Rate %"}}]},
           filters=yr(YEARS_24_26), key="timeline")
-    p.text_card(848, 204, 416, 248, "Executive Story", "The story so far")
+    p.add("multiRowCard", 848, 204, 416, 248,
+          roles={"Values": [("m:Story Tariffs", "Tariffs"), ("m:Story Trade", "Trade"), ("m:Story Households", "Households"),
+                            ("m:Story Oil", "Oil & prices")]},
+          title="The story so far",
+          objects={"dataLabels": [{"properties": {"fontSize": num(10), "color": color(NAVY)}}],
+                   "categoryLabels": [{"properties": {"show": lit(True), "fontSize": num(9), "color": color(AMBER)}}],
+                   "cards": [{"properties": {"barShow": lit(True), "barColor": color(TEAL), "barWeight": num(3)}}]},
+          key="story")
     p.add("clusteredBarChart", 16, 464, 616, 248,
           roles={"Category": ["Partner.Partner"], "Y": [("m:Effect since Apr 2025 ($bn)", "Effect vs counterfactual ($bn)")]},
           title="Imports vs no-tariff counterfactual since Apr 2025 ($bn); right-click a bar to drill through",
@@ -227,9 +236,9 @@ def build_pages() -> list[Page]:
     p.binding = {"name": "ddBinding", "type": "Drillthrough",
                  "parameters": [{"name": "ddPartner", "boundFilter": "ddPartnerFilter", "fieldExpr": F("Partner.Partner")}]}
     p.slicer(16, 108, 200, 84, "Partner.Partner", title="Partner", single=True)
-    p.kpi_row([("DD Import Effect ($bn)", "Imports vs counterfactual since Apr 2025 ($bn)"),
-               ("DD Import Effect %", "Imports vs counterfactual (%)"),
-               ("DD Effect CI Text", "95% interval"),
+    p.kpi_row([("DD Import Effect ($bn)", "Import effect since Apr-25 ($bn)"),
+               ("DD Import Effect %", "Import effect (%)"),
+               ("DD Effect CI Text", "95% interval", 11),
                ("DD Peak Tariff %", "Peak statutory tariff"),
                ("DD Current Tariff %", "Current statutory tariff")], x0=228, total_w=1036)
     p.add("lineChart", 16, 204, 820, 256,
@@ -262,7 +271,7 @@ def build_pages() -> list[Page]:
     # 4 ---------------------------------------------------------------- Household economy
     p = Page("p04_household", "Household Economy", "Who pays? Tariff collections per household, CPI by category and the goods-vs-services pass-through test")
     p.slicer(16, 108, 200, 84, "CPI Category.Exposure Group", title="CPI exposure group")
-    p.kpi_row([("Household Tariff Cost to Date ($)", "Tariff cost per household since Feb 2025"),
+    p.kpi_row([("Household Tariff Cost to Date ($)", "Tariff cost per household"),
                ("Headline CPI Latest YoY %", "Headline CPI YoY"),
                ("Core Goods Latest YoY %", "Core goods CPI YoY"),
                ("Pass-through DiD (pp/yr)", "Pass-through DiD (pp/yr)"),
@@ -302,8 +311,8 @@ def build_pages() -> list[Page]:
     p.kpi_row([("Brent Latest ($/bbl)", "Brent, latest ($/bbl)"),
                ("Brent vs Pre-war %", "Brent vs 27 Feb 2026"),
                ("Brent Drawdown from War Peak %", "Brent vs war-time peak"),
-               ("Hormuz Latest vs Pre-war %", "Hormuz transits vs pre-war (7d)"),
-               ("Gasoline IRF 1m (%)", "Gasoline CPI after +10% Brent, 1m (%)")], x0=228, total_w=1036)
+               ("Hormuz Latest vs Pre-war %", "Hormuz transits vs pre-war"),
+               ("Gasoline IRF 1m (%)", "Gas CPI after +10% Brent, 1m")], x0=228, total_w=1036)
     p.add("lineClusteredColumnComboChart", 16, 204, 820, 256,
           roles={"Category": ["Date.Date"], "Y": [("m:War Events (#)", "Iran-war events")],
                  "Y2": [("m:Brent ($/bbl)", "Brent"), ("m:WTI ($/bbl)", "WTI")]},
@@ -336,11 +345,11 @@ def build_pages() -> list[Page]:
     # 6 ---------------------------------------------------------------- Global markets reaction
     p = Page("p06_markets", "Global Markets Reaction", "Event-study abnormal returns, equity paths since the war and volatility regimes")
     p.slicer(16, 108, 200, 84, "Instrument.Asset Class", title="Asset class")
-    p.kpi_row([("S&P 500 War CAR D+20 %", "S&P 500 abnormal return, war D0..D+20"),
-               ("Brent War CAR D+5 %", "Brent abnormal return, war D0..D+5"),
+    p.kpi_row([("S&P 500 War CAR D+20 %", "S&P 500 CAR, war D0-D20"),
+               ("Brent War CAR D+5 %", "Brent CAR, war D0-D5"),
                ("VIX Latest", "VIX, latest"),
                ("S&P 500 vs Pre-war %", "S&P 500 vs pre-war close"),
-               ("Significant CARs %", "Share of CARs significant at 5%")], x0=228, total_w=1036)
+               ("Significant CARs %", "CARs significant at 5%")], x0=228, total_w=1036)
     key_syms = ["^GSPC", "^NSEI", "^STOXX50E", "^N225", "000001.SS", "BZ=F", "GC=F", "^VIX"]
     p.add("pivotTable", 16, 204, 760, 256,
           roles={"Rows": ["Event Study.Event Name"], "Columns": ["Instrument.Instrument"], "Values": [("m:CAR D+5 %", "CAR D0..D+5")]},
@@ -386,7 +395,8 @@ def build_pages() -> list[Page]:
     p.add("tableEx", 848, 204, 416, 256,
           roles={"Values": ["Model Metrics.Series ID", "Model Metrics.Model", ("m:WAPE (best model)", "WAPE (best)")]},
           title="Counterfactual model accuracy: backtest WAPE of the best model per series",
-          filters=[filter_in("Model Metrics", "Task", ["trade_counterfactual"])], sort=[("m:WAPE (best model)", "Ascending")], key="wape")
+          filters=[filter_in("Model Metrics", "Task", ["trade_counterfactual"]), filter_in("Model Metrics", "Metric", ["wape"]),
+                   filter_in("Model Metrics", "Is Best", [True])], sort=[("m:WAPE (best model)", "Ascending")], key="wape")
     p.add("clusteredBarChart", 16, 472, 620, 240,
           roles={"Category": ["Partner.Partner"], "Y": [("m:Effect since Apr 2025 ($bn)", "Effect"), ("m:Effect Lo 95 ($bn)", "95% low"),
                                                         ("m:Effect Hi 95 ($bn)", "95% high")]},
@@ -396,12 +406,12 @@ def build_pages() -> list[Page]:
                                  {"properties": {"fill": color("#9FB3CC")}, "selector": {"metadata": "_Measures.Effect Hi 95 ($bn)"}}]},
           filters=[filter_in("Tariff Effect", "Flow", ["imports"])], sort=[("m:Effect since Apr 2025 ($bn)", "Ascending")], key="gapbar")
     p.add("lineChart", 648, 472, 616, 240,
-          roles={"Category": ["Date.Month"], "Y": [("m:Actual YoY %", "Actual"), ("m:Forecast YoY %", "Forecast"),
-                                                   ("m:Forecast YoY Lo 80", "80% low"), ("m:Forecast YoY Hi 80", "80% high")]},
+          roles={"Category": ["Date.Month"], "Y": [("m:CPI Actual YoY %", "Actual"), ("m:CPI Forecast YoY %", "Forecast"),
+                                                   ("m:CPI Forecast YoY Lo 80", "80% low"), ("m:CPI Forecast YoY Hi 80", "80% high")]},
           title="Headline CPI YoY: actual vs SARIMAX + Brent forecast (80% band)",
-          objects=series_style({"Actual YoY %": (NAVY, None, 2.5), "Forecast YoY %": (AMBER, None, 2.5),
-                                "Forecast YoY Lo 80": (AMBER, "dashed", 1), "Forecast YoY Hi 80": (AMBER, "dashed", 1)}),
-          filters=[filter_in("Date", "Year", [2024, 2025, 2026, 2027]), filter_in("Forecasts", "Target", ["headline_cpi"])], key="cpifc")
+          objects=series_style({"CPI Actual YoY %": (NAVY, None, 2.5), "CPI Forecast YoY %": (AMBER, None, 2.5),
+                                "CPI Forecast YoY Lo 80": (AMBER, "dashed", 1), "CPI Forecast YoY Hi 80": (AMBER, "dashed", 1)}),
+          filters=[filter_in("Date", "Year", [2024, 2025, 2026, 2027])], key="cpifc")
     pages.append(p)
 
     # 8 ---------------------------------------------------------------- tooltip page

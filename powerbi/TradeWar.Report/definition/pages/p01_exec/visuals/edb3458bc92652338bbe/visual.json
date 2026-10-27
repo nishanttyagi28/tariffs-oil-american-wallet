@@ -28,7 +28,7 @@
               },
               "queryRef": "_Measures.Customs Windfall to Date ($bn)",
               "nativeQueryRef": "Customs Windfall to Date ($bn)",
-              "displayName": "Extra customs vs 2024 since Feb 2025 ($bn)"
+              "displayName": "Extra customs since Feb-25 ($bn)"
             }
           ]
         }

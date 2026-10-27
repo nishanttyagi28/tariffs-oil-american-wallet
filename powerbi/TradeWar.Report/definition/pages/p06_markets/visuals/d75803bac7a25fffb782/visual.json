@@ -28,7 +28,7 @@
               },
               "queryRef": "_Measures.Significant CARs %",
               "nativeQueryRef": "Significant CARs %",
-              "displayName": "Share of CARs significant at 5%"
+              "displayName": "CARs significant at 5%"
             }
           ]
         }
