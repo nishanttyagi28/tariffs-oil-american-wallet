@@ -1,0 +1,123 @@
+table IRF
+	lineageTag: 8fc0dcb0-ab5f-55b8-96bd-af1694162775
+
+	column Shock
+		dataType: string
+		lineageTag: 50d57526-c0a2-5764-bbf4-596e902ef613
+		summarizeBy: none
+		sourceColumn: Shock
+
+		annotation SummarizationSetBy = User
+
+	column Outcome
+		dataType: string
+		lineageTag: bae08481-9a64-52d8-bf52-550af24ef4b9
+		summarizeBy: none
+		sourceColumn: Outcome
+
+		annotation SummarizationSetBy = User
+
+	column 'Outcome Label'
+		dataType: string
+		lineageTag: 3a50a4ce-1740-51f7-8ec8-6fd74cdc8a13
+		summarizeBy: none
+		sourceColumn: Outcome Label
+
+		annotation SummarizationSetBy = User
+
+	column Units
+		dataType: string
+		lineageTag: ec821d69-c43c-588d-b531-565f2bc3322a
+		summarizeBy: none
+		sourceColumn: Units
+
+		annotation SummarizationSetBy = User
+
+	column 'Horizon Months'
+		dataType: int64
+		lineageTag: 8f502664-8f54-5c6c-a538-3e955e117316
+		summarizeBy: none
+		sourceColumn: Horizon Months
+
+		annotation SummarizationSetBy = User
+
+	column IRF
+		dataType: double
+		formatString: #,0.00
+		lineageTag: 66be2b00-aff2-5c2a-9da8-b8740e14344d
+		summarizeBy: none
+		sourceColumn: IRF
+
+		annotation SummarizationSetBy = User
+
+	column SE
+		dataType: double
+		formatString: #,0.00
+		lineageTag: 5ddb1475-f39d-526e-b953-1737c9ff38c8
+		summarizeBy: none
+		sourceColumn: SE
+
+		annotation SummarizationSetBy = User
+
+	column 'CI Lo 90'
+		dataType: double
+		formatString: #,0.00
+		lineageTag: 8258f079-3e23-5825-b55c-b62427b43277
+		summarizeBy: none
+		sourceColumn: CI Lo 90
+
+		annotation SummarizationSetBy = User
+
+	column 'CI Hi 90'
+		dataType: double
+		formatString: #,0.00
+		lineageTag: c1c802e2-4067-50b9-8365-add63239cea9
+		summarizeBy: none
+		sourceColumn: CI Hi 90
+
+		annotation SummarizationSetBy = User
+
+	column 'CI Lo 95'
+		dataType: double
+		formatString: #,0.00
+		lineageTag: a173cbb0-7979-5bc6-80c1-79edfa3b9e45
+		summarizeBy: none
+		sourceColumn: CI Lo 95
+
+		annotation SummarizationSetBy = User
+
+	column 'CI Hi 95'
+		dataType: double
+		formatString: #,0.00
+		lineageTag: 096e0a2f-a6e5-58d6-8836-64321c79f54b
+		summarizeBy: none
+		sourceColumn: CI Hi 95
+
+		annotation SummarizationSetBy = User
+
+	column '# Obs'
+		dataType: int64
+		lineageTag: a2a05884-9301-5167-abef-22843529a0ef
+		summarizeBy: none
+		sourceColumn: # Obs
+
+		annotation SummarizationSetBy = User
+
+	column Method
+		dataType: string
+		lineageTag: 7fcfb25a-e0fe-57f4-87ef-031f857852e0
+		summarizeBy: none
+		sourceColumn: Method
+
+		annotation SummarizationSetBy = User
+
+	partition IRF = m
+		mode: import
+		source =
+				let
+				    Source = Parquet.Document(File.Contents(DataRoot & "\IRF.parquet"))
+				in
+				    Source
+
+	annotation PBI_ResultType = Table
+

@@ -1,0 +1,152 @@
+table Forecasts
+	lineageTag: 70ae97ba-f53c-5b3d-9f7c-a83e208a2c2c
+
+	column Target
+		dataType: string
+		lineageTag: b49d0320-4a8f-5367-8216-f8a70de0477a
+		summarizeBy: none
+		sourceColumn: Target
+
+		annotation SummarizationSetBy = User
+
+	column 'Target Label'
+		dataType: string
+		lineageTag: 3261658b-b44c-5c28-90a3-f79235ce2d2c
+		summarizeBy: none
+		sourceColumn: Target Label
+
+		annotation SummarizationSetBy = User
+
+	column Unit
+		dataType: string
+		lineageTag: 6b6cfdb2-3a53-5c3e-bd55-36c99553b152
+		summarizeBy: none
+		sourceColumn: Unit
+
+		annotation SummarizationSetBy = User
+
+	column Model
+		dataType: string
+		lineageTag: 12768710-8dc5-5fd3-b369-3036647c3d89
+		summarizeBy: none
+		sourceColumn: Model
+
+		annotation SummarizationSetBy = User
+
+	column Kind
+		dataType: string
+		lineageTag: 002a6a7c-89ad-5ea5-b6e2-fb99cc717deb
+		summarizeBy: none
+		sourceColumn: Kind
+
+		annotation SummarizationSetBy = User
+
+	column Month
+		dataType: dateTime
+		formatString: mmm yyyy
+		lineageTag: 08198a04-745a-5398-bc67-54dba2932228
+		summarizeBy: none
+		sourceColumn: Month
+
+		annotation SummarizationSetBy = User
+
+	column Value
+		dataType: double
+		formatString: #,0.00
+		lineageTag: c415e63b-98d7-57b5-83d5-5f01262cf7e7
+		summarizeBy: none
+		sourceColumn: Value
+
+		annotation SummarizationSetBy = User
+
+	column 'Lo 80'
+		dataType: double
+		formatString: #,0.00
+		lineageTag: 019e52d6-a47e-5e43-9e83-8414bd0e7d9e
+		summarizeBy: none
+		sourceColumn: Lo 80
+
+		annotation SummarizationSetBy = User
+
+	column 'Hi 80'
+		dataType: double
+		formatString: #,0.00
+		lineageTag: 9e288a4f-45a9-5fbe-b061-d69ad0fd65ee
+		summarizeBy: none
+		sourceColumn: Hi 80
+
+		annotation SummarizationSetBy = User
+
+	column 'Lo 95'
+		dataType: double
+		formatString: #,0.00
+		lineageTag: 86da4840-ccd3-58a3-a60f-0239bdcd7dbe
+		summarizeBy: none
+		sourceColumn: Lo 95
+
+		annotation SummarizationSetBy = User
+
+	column 'Hi 95'
+		dataType: double
+		formatString: #,0.00
+		lineageTag: fbf924e0-8c26-5b66-b8dc-a8bbf9ccc295
+		summarizeBy: none
+		sourceColumn: Hi 95
+
+		annotation SummarizationSetBy = User
+
+	column 'YoY Value'
+		dataType: double
+		formatString: #,0.00
+		lineageTag: 3d7e0b17-3ad5-5ba3-8ba4-d87fefbea902
+		summarizeBy: none
+		sourceColumn: YoY Value
+
+		annotation SummarizationSetBy = User
+
+	column 'YoY Lo 80'
+		dataType: double
+		formatString: #,0.00
+		lineageTag: b5766675-d322-5542-98b0-3a0b590a8e75
+		summarizeBy: none
+		sourceColumn: YoY Lo 80
+
+		annotation SummarizationSetBy = User
+
+	column 'YoY Hi 80'
+		dataType: double
+		formatString: #,0.00
+		lineageTag: 8913c48b-0aeb-5dc5-97cf-5bfa6c10186d
+		summarizeBy: none
+		sourceColumn: YoY Hi 80
+
+		annotation SummarizationSetBy = User
+
+	column 'YoY Lo 95'
+		dataType: double
+		formatString: #,0.00
+		lineageTag: 78161a78-feb5-5256-be41-a8ef79266cdd
+		summarizeBy: none
+		sourceColumn: YoY Lo 95
+
+		annotation SummarizationSetBy = User
+
+	column 'YoY Hi 95'
+		dataType: double
+		formatString: #,0.00
+		lineageTag: 44dbe26a-bdb2-5b33-bd12-75cfa91573ce
+		summarizeBy: none
+		sourceColumn: YoY Hi 95
+
+		annotation SummarizationSetBy = User
+
+	partition Forecasts = m
+		mode: import
+		source =
+				let
+				    Source = Parquet.Document(File.Contents(DataRoot & "\Forecasts.parquet"))
+				in
+				    Source
+
+	annotation PBI_ResultType = Table
+

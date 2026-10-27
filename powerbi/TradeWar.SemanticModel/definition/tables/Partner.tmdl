@@ -1,0 +1,46 @@
+table Partner
+	lineageTag: 85b17c75-7f1b-5cc2-a80d-68f873703b18
+
+	column 'Partner Code'
+		dataType: string
+		lineageTag: 25beb9c3-55ff-5e5f-a7ef-31082dff2787
+		summarizeBy: none
+		sourceColumn: Partner Code
+
+		annotation SummarizationSetBy = User
+
+	column Partner
+		dataType: string
+		lineageTag: 9f645d6c-e817-5c23-bb1a-cd0896ee311f
+		summarizeBy: none
+		sourceColumn: Partner
+		sortByColumn: 'Partner Order'
+
+		annotation SummarizationSetBy = User
+
+	column 'Tariff ISO3'
+		dataType: string
+		lineageTag: c94c7f1d-f7c4-5893-8f92-c203b5926427
+		summarizeBy: none
+		sourceColumn: Tariff ISO3
+
+		annotation SummarizationSetBy = User
+
+	column 'Partner Order'
+		dataType: int64
+		lineageTag: ac449fb4-4ca9-58c5-856d-df54e6ed0e42
+		summarizeBy: none
+		sourceColumn: Partner Order
+
+		annotation SummarizationSetBy = User
+
+	partition Partner = m
+		mode: import
+		source =
+				let
+				    Source = Parquet.Document(File.Contents(DataRoot & "\Partner.parquet"))
+				in
+				    Source
+
+	annotation PBI_ResultType = Table
+

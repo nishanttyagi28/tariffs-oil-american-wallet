@@ -1,0 +1,133 @@
+table 'Chokepoint Daily'
+	lineageTag: 8ce3fe8b-69fe-59fa-8d3e-ad19f47906d3
+
+	column Date
+		dataType: dateTime
+		formatString: yyyy-mm-dd
+		lineageTag: 021f0d3b-ce4e-57a1-aa2c-da009165a22e
+		summarizeBy: none
+		sourceColumn: Date
+
+		annotation SummarizationSetBy = User
+
+	column 'Chokepoint ID'
+		dataType: string
+		lineageTag: a754ee34-c405-5911-a78c-bf80dbb692f0
+		summarizeBy: none
+		sourceColumn: Chokepoint ID
+
+		annotation SummarizationSetBy = User
+
+	column Transits
+		dataType: int64
+		lineageTag: 761afd96-9104-5180-a46e-08a05ce0676c
+		summarizeBy: none
+		sourceColumn: Transits
+
+		annotation SummarizationSetBy = User
+
+	column 'Tanker Transits'
+		dataType: int64
+		lineageTag: 2a76318f-efec-587c-b959-8aed03eab064
+		summarizeBy: none
+		sourceColumn: Tanker Transits
+
+		annotation SummarizationSetBy = User
+
+	column '# Container'
+		dataType: int64
+		lineageTag: 92689968-5b2d-57a0-837c-5dd24c04ef4c
+		summarizeBy: none
+		sourceColumn: # Container
+
+		annotation SummarizationSetBy = User
+
+	column '# Dry Bulk'
+		dataType: int64
+		lineageTag: eee98445-08ee-570c-bbe1-8686381edfc6
+		summarizeBy: none
+		sourceColumn: # Dry Bulk
+
+		annotation SummarizationSetBy = User
+
+	column '# Cargo'
+		dataType: int64
+		lineageTag: b848e2c3-228b-52c9-952c-0997f7ba6eec
+		summarizeBy: none
+		sourceColumn: # Cargo
+
+		annotation SummarizationSetBy = User
+
+	column 'Capacity DWT'
+		dataType: double
+		formatString: #,0.00
+		lineageTag: 464d25ff-19f5-5d0a-9940-379a5440ab48
+		summarizeBy: none
+		sourceColumn: Capacity DWT
+
+		annotation SummarizationSetBy = User
+
+	column 'Capacity Tanker DWT'
+		dataType: double
+		formatString: #,0.00
+		lineageTag: 3626cc70-223f-5a5e-b275-8da0cd6dee9a
+		summarizeBy: none
+		sourceColumn: Capacity Tanker DWT
+
+		annotation SummarizationSetBy = User
+
+	column 'Transits 7d Avg'
+		dataType: double
+		formatString: #,0.00
+		lineageTag: 937bae18-c962-5c99-8679-3a804046167f
+		summarizeBy: none
+		sourceColumn: Transits 7d Avg
+
+		annotation SummarizationSetBy = User
+
+	column 'Tanker Transits 7d Avg'
+		dataType: double
+		formatString: #,0.00
+		lineageTag: 595fe37e-651e-56f5-a68f-3101ec8b8e28
+		summarizeBy: none
+		sourceColumn: Tanker Transits 7d Avg
+
+		annotation SummarizationSetBy = User
+
+	column 'Total 7d vs 2024 %'
+		dataType: double
+		formatString: 0.0%
+		lineageTag: 5d4d72e1-7c4a-5065-a8b8-8cf8e964f560
+		summarizeBy: none
+		sourceColumn: Total 7d vs 2024 %
+
+		annotation SummarizationSetBy = User
+
+	column 'Total 7d vs Prewar %'
+		dataType: double
+		formatString: 0.0%
+		lineageTag: f590f028-b770-55e9-90ae-b38aab2efd1f
+		summarizeBy: none
+		sourceColumn: Total 7d vs Prewar %
+
+		annotation SummarizationSetBy = User
+
+	column 'Tanker 7d vs Prewar %'
+		dataType: double
+		formatString: 0.0%
+		lineageTag: 53663cc3-7cd6-5615-8c51-1d69262dc85f
+		summarizeBy: none
+		sourceColumn: Tanker 7d vs Prewar %
+
+		annotation SummarizationSetBy = User
+
+	partition 'Chokepoint Daily' = m
+		mode: import
+		source =
+				let
+				    Source = Parquet.Document(File.Contents(DataRoot & "\Chokepoint Daily.parquet"))
+				in
+				    Source
+
+	annotation PBI_ResultType = Table
+

@@ -1,0 +1,7 @@
+expression DataRoot = "E:\da-flagship\powerbi\data" meta [IsParameterQuery=true, Type="Text", IsParameterQueryRequired=true]
+	lineageTag: 767cbef0-bc6f-56a6-848d-0eb33ffc703d
+
+	annotation PBI_ResultType = Text
+
+	annotation PBI_NavigationStepName = Navigation
+

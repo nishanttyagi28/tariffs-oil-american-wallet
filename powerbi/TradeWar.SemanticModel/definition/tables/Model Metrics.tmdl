@@ -1,0 +1,80 @@
+table 'Model Metrics'
+	lineageTag: 58c155d5-b827-5be7-9e65-25fecde4e9a3
+
+	column Task
+		dataType: string
+		lineageTag: 47cba01f-9811-562c-a20b-3446092d94d9
+		summarizeBy: none
+		sourceColumn: Task
+
+		annotation SummarizationSetBy = User
+
+	column 'Series ID'
+		dataType: string
+		lineageTag: d6982af8-a6d1-5111-8ccc-c5b70ba7a22b
+		summarizeBy: none
+		sourceColumn: Series ID
+
+		annotation SummarizationSetBy = User
+
+	column Model
+		dataType: string
+		lineageTag: 6c5f47b9-0e77-57e6-9f7e-35f6836aa166
+		summarizeBy: none
+		sourceColumn: Model
+
+		annotation SummarizationSetBy = User
+
+	column Metric
+		dataType: string
+		lineageTag: 702f7d91-fa9c-50a9-9f7b-42275a89ef9b
+		summarizeBy: none
+		sourceColumn: Metric
+
+		annotation SummarizationSetBy = User
+
+	column Value
+		dataType: double
+		formatString: #,0.00
+		lineageTag: c8d5bc63-75db-58eb-82ea-367c07f04949
+		summarizeBy: none
+		sourceColumn: Value
+
+		annotation SummarizationSetBy = User
+
+	column 'Is Best'
+		dataType: boolean
+		lineageTag: a256db74-a9dd-5a76-bd93-28a044567812
+		summarizeBy: none
+		sourceColumn: Is Best
+
+		annotation SummarizationSetBy = User
+
+	column '# Folds'
+		dataType: double
+		formatString: #,0.00
+		lineageTag: 437fd49e-f406-5e51-9e42-ce4c0b7d383c
+		summarizeBy: none
+		sourceColumn: # Folds
+
+		annotation SummarizationSetBy = User
+
+	column 'Horizon Months'
+		dataType: double
+		formatString: #,0.00
+		lineageTag: 35fbc4be-62dd-5809-9887-79cfe63622ea
+		summarizeBy: none
+		sourceColumn: Horizon Months
+
+		annotation SummarizationSetBy = User
+
+	partition 'Model Metrics' = m
+		mode: import
+		source =
+				let
+				    Source = Parquet.Document(File.Contents(DataRoot & "\Model Metrics.parquet"))
+				in
+				    Source
+
+	annotation PBI_ResultType = Table
+

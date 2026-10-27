@@ -1,0 +1,111 @@
+table Chokepoint
+	lineageTag: 625b26b6-98c4-5461-9b63-fe2a18c1e403
+
+	column 'Chokepoint ID'
+		dataType: string
+		lineageTag: 3e830715-7efc-5eef-b45b-bc9461f5cb5a
+		summarizeBy: none
+		sourceColumn: Chokepoint ID
+
+		annotation SummarizationSetBy = User
+
+	column Chokepoint
+		dataType: string
+		lineageTag: 786c9b27-bdd7-544c-8c22-e3bb9ee4ecbc
+		summarizeBy: none
+		sourceColumn: Chokepoint
+
+		annotation SummarizationSetBy = User
+
+	column Latitude
+		dataType: double
+		formatString: #,0.00
+		dataCategory: Latitude
+		lineageTag: 591e0488-8d1e-5b20-8954-2c82b30a9788
+		summarizeBy: none
+		sourceColumn: Latitude
+
+		annotation SummarizationSetBy = User
+
+	column Longitude
+		dataType: double
+		formatString: #,0.00
+		dataCategory: Longitude
+		lineageTag: 1bd52082-2e60-5827-9d07-27abdd6878b0
+		summarizeBy: none
+		sourceColumn: Longitude
+
+		annotation SummarizationSetBy = User
+
+	column 'Is Energy Route'
+		dataType: boolean
+		lineageTag: e794aea7-070a-530e-963b-07e8cca0990f
+		summarizeBy: none
+		sourceColumn: Is Energy Route
+
+		annotation SummarizationSetBy = User
+
+	column 'Avg Daily Transits 2024'
+		dataType: double
+		formatString: #,0.00
+		lineageTag: 710a9b54-10f6-5084-8d92-60a6ff595037
+		summarizeBy: none
+		sourceColumn: Avg Daily Transits 2024
+
+		annotation SummarizationSetBy = User
+
+	column 'Avg Daily Transits Prewar'
+		dataType: double
+		formatString: #,0.00
+		lineageTag: 3e798e86-5aee-57d9-a1fe-63971bd4e255
+		summarizeBy: none
+		sourceColumn: Avg Daily Transits Prewar
+
+		annotation SummarizationSetBy = User
+
+	column 'Avg Daily Transits Last30'
+		dataType: double
+		formatString: #,0.00
+		lineageTag: 27a5ad1d-4dce-5fb5-b482-bd8c8b43ac67
+		summarizeBy: none
+		sourceColumn: Avg Daily Transits Last30
+
+		annotation SummarizationSetBy = User
+
+	column 'Avg Daily Tankers 2024'
+		dataType: double
+		formatString: #,0.00
+		lineageTag: d83f8578-17c4-5692-a0e3-6641a75e9d47
+		summarizeBy: none
+		sourceColumn: Avg Daily Tankers 2024
+
+		annotation SummarizationSetBy = User
+
+	column 'Last30 vs Prewar %'
+		dataType: double
+		formatString: 0.0%
+		lineageTag: 59ecf1e0-4d79-563c-97f3-76ea3de3ba9e
+		summarizeBy: none
+		sourceColumn: Last30 vs Prewar %
+
+		annotation SummarizationSetBy = User
+
+	column 'Last Obs Date'
+		dataType: dateTime
+		formatString: yyyy-mm-dd
+		lineageTag: 941cbfc6-83a4-5d30-8b1b-6ad3e4c2176b
+		summarizeBy: none
+		sourceColumn: Last Obs Date
+
+		annotation SummarizationSetBy = User
+
+	partition Chokepoint = m
+		mode: import
+		source =
+				let
+				    Source = Parquet.Document(File.Contents(DataRoot & "\Chokepoint.parquet"))
+				in
+				    Source
+
+	annotation PBI_ResultType = Table
+

@@ -1,0 +1,89 @@
+table 'Vol Regimes'
+	lineageTag: f0fac3bf-1814-509f-b9a3-d39396619c5f
+
+	column Date
+		dataType: dateTime
+		formatString: yyyy-mm-dd
+		lineageTag: 4964d487-d93a-564a-834c-289470e0f41d
+		summarizeBy: none
+		sourceColumn: Date
+
+		annotation SummarizationSetBy = User
+
+	column Symbol
+		dataType: string
+		lineageTag: af1228a6-7ca2-5821-961c-0acffdedd66d
+		summarizeBy: none
+		sourceColumn: Symbol
+
+		annotation SummarizationSetBy = User
+
+	column Instrument
+		dataType: string
+		lineageTag: c4b5185f-764c-53a7-95e1-a2d8bd36687a
+		summarizeBy: none
+		sourceColumn: Instrument
+
+		annotation SummarizationSetBy = User
+
+	column 'Ret %'
+		dataType: double
+		formatString: 0.0%
+		lineageTag: f797e178-1bfb-54d1-9c65-cdc3857e9f87
+		summarizeBy: none
+		sourceColumn: Ret %
+
+		annotation SummarizationSetBy = User
+
+	column 'Prob High Vol'
+		dataType: double
+		formatString: 0.0%
+		lineageTag: 42d48a42-141b-529f-b2b9-07b97c6bc871
+		summarizeBy: none
+		sourceColumn: Prob High Vol
+
+		annotation SummarizationSetBy = User
+
+	column Regime
+		dataType: string
+		lineageTag: acced843-76eb-5195-9871-718cc04a43be
+		summarizeBy: none
+		sourceColumn: Regime
+
+		annotation SummarizationSetBy = User
+
+	column 'Garch Vol Ann. %'
+		dataType: double
+		formatString: 0.0%
+		lineageTag: 106e1ffa-994b-5b67-ac35-cd6f6f55205d
+		summarizeBy: none
+		sourceColumn: Garch Vol Ann. %
+
+		annotation SummarizationSetBy = User
+
+	column 'Trade Phase'
+		dataType: string
+		lineageTag: 188e460f-08d3-53e7-b241-1262fb1dd22a
+		summarizeBy: none
+		sourceColumn: Trade Phase
+
+		annotation SummarizationSetBy = User
+
+	column 'War Phase'
+		dataType: string
+		lineageTag: 8a2c06c2-be2f-5b44-a665-c608a5018828
+		summarizeBy: none
+		sourceColumn: War Phase
+
+		annotation SummarizationSetBy = User
+
+	partition 'Vol Regimes' = m
+		mode: import
+		source =
+				let
+				    Source = Parquet.Document(File.Contents(DataRoot & "\Vol Regimes.parquet"))
+				in
+				    Source
+
+	annotation PBI_ResultType = Table
+

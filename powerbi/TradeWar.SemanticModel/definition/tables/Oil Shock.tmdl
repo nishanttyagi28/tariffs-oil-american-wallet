@@ -1,0 +1,222 @@
+table 'Oil Shock'
+	lineageTag: 01539b91-f617-5d48-8a1a-89c1ff5b6cf9
+
+	column Date
+		dataType: dateTime
+		formatString: yyyy-mm-dd
+		lineageTag: b5a75e71-a116-5445-ac18-b8aa4c34c953
+		summarizeBy: none
+		sourceColumn: Date
+
+		annotation SummarizationSetBy = User
+
+	column 'War Phase'
+		dataType: string
+		lineageTag: 24ed81c1-e20f-58f2-8668-3aefd94b42bc
+		summarizeBy: none
+		sourceColumn: War Phase
+		sortByColumn: 'War Phase Order'
+
+		annotation SummarizationSetBy = User
+
+	column 'War Phase Order'
+		dataType: int64
+		lineageTag: da085eb1-0d28-5160-be6a-69d03f0992c3
+		summarizeBy: none
+		sourceColumn: War Phase Order
+
+		annotation SummarizationSetBy = User
+
+	column 'Brent USD'
+		dataType: double
+		formatString: #,0.00
+		lineageTag: a0240d9e-643c-5aaa-a032-7334de6e165d
+		summarizeBy: none
+		sourceColumn: Brent USD
+
+		annotation SummarizationSetBy = User
+
+	column 'WTI USD'
+		dataType: double
+		formatString: #,0.00
+		lineageTag: d8ac4d37-1604-5537-a44d-5fb858ab6c95
+		summarizeBy: none
+		sourceColumn: WTI USD
+
+		annotation SummarizationSetBy = User
+
+	column 'Brent Source'
+		dataType: string
+		lineageTag: 1657c451-c577-5f62-80da-fa7d16f6c43a
+		summarizeBy: none
+		sourceColumn: Brent Source
+
+		annotation SummarizationSetBy = User
+
+	column 'Brent vs Prewar %'
+		dataType: double
+		formatString: 0.0%
+		lineageTag: 4a4ed2f7-87ee-5360-b3ea-3148c3c7cdef
+		summarizeBy: none
+		sourceColumn: Brent vs Prewar %
+
+		annotation SummarizationSetBy = User
+
+	column 'WTI vs Prewar %'
+		dataType: double
+		formatString: 0.0%
+		lineageTag: d0da1d6e-f056-5906-b8bb-6c88e946dc17
+		summarizeBy: none
+		sourceColumn: WTI vs Prewar %
+
+		annotation SummarizationSetBy = User
+
+	column 'Brent Vol 21d Ann.'
+		dataType: double
+		formatString: #,0.00
+		lineageTag: d823e2bd-aa54-5908-9c71-e437e6162375
+		summarizeBy: none
+		sourceColumn: Brent Vol 21d Ann.
+
+		annotation SummarizationSetBy = User
+
+	column 'Brent 7d Avg'
+		dataType: double
+		formatString: #,0.00
+		lineageTag: 0e44d679-f535-50c6-99e1-34bb7311e439
+		summarizeBy: none
+		sourceColumn: Brent 7d Avg
+
+		annotation SummarizationSetBy = User
+
+	column 'Hormuz Transits'
+		dataType: int64
+		lineageTag: 7783c396-7443-54a1-8a35-a967f252a322
+		summarizeBy: none
+		sourceColumn: Hormuz Transits
+
+		annotation SummarizationSetBy = User
+
+	column 'Hormuz Tankers'
+		dataType: int64
+		lineageTag: 800ad067-1f50-5aed-9778-ced4c5f5677a
+		summarizeBy: none
+		sourceColumn: Hormuz Tankers
+
+		annotation SummarizationSetBy = User
+
+	column 'Hormuz Transits 7d'
+		dataType: double
+		formatString: #,0.00
+		lineageTag: 9f2012d9-237e-5d2a-bb7d-6fe86ad46677
+		summarizeBy: none
+		sourceColumn: Hormuz Transits 7d
+
+		annotation SummarizationSetBy = User
+
+	column 'Hormuz Tankers 7d'
+		dataType: double
+		formatString: #,0.00
+		lineageTag: 0aa8cede-afe8-552e-b335-5f95eddaff73
+		summarizeBy: none
+		sourceColumn: Hormuz Tankers 7d
+
+		annotation SummarizationSetBy = User
+
+	column 'Hormuz 7d vs Prewar %'
+		dataType: double
+		formatString: 0.0%
+		lineageTag: 6f07f7e1-45fa-598e-8a52-02bd4a2962e6
+		summarizeBy: none
+		sourceColumn: Hormuz 7d vs Prewar %
+
+		annotation SummarizationSetBy = User
+
+	column 'Bab El Mandeb Transits 7d'
+		dataType: double
+		formatString: #,0.00
+		lineageTag: afa1f8f1-0cc3-50d8-a1f9-1d4b885cb0c8
+		summarizeBy: none
+		sourceColumn: Bab El Mandeb Transits 7d
+
+		annotation SummarizationSetBy = User
+
+	column VIX
+		dataType: double
+		formatString: #,0.00
+		lineageTag: 3bd0f39b-fa5f-5955-8f99-ff2651c6a705
+		summarizeBy: none
+		sourceColumn: VIX
+
+		annotation SummarizationSetBy = User
+
+	column 'S&P 500 Prewar 100'
+		dataType: double
+		formatString: #,0.00
+		lineageTag: ae304a5c-1fbf-57c4-aa97-b3b28d7babd7
+		summarizeBy: none
+		sourceColumn: S&P 500 Prewar 100
+
+		annotation SummarizationSetBy = User
+
+	column 'Gold USD'
+		dataType: double
+		formatString: #,0.00
+		lineageTag: d75284a9-51c0-55a2-8bf6-f0dfa1710f1b
+		summarizeBy: none
+		sourceColumn: Gold USD
+
+		annotation SummarizationSetBy = User
+
+	column DXY
+		dataType: double
+		formatString: #,0.00
+		lineageTag: f7a86373-3b1f-5c7d-b2fe-455181c72590
+		summarizeBy: none
+		sourceColumn: DXY
+
+		annotation SummarizationSetBy = User
+
+	column 'War Event'
+		dataType: string
+		lineageTag: d437d4a4-b336-5d21-878f-8df894bc61da
+		summarizeBy: none
+		sourceColumn: War Event
+
+		annotation SummarizationSetBy = User
+
+	column 'War Event Category'
+		dataType: string
+		lineageTag: c36299ce-9ac7-5605-b99b-72f7fad16c7a
+		summarizeBy: none
+		sourceColumn: War Event Category
+
+		annotation SummarizationSetBy = User
+
+	column 'Gasoline USD Gal'
+		dataType: double
+		formatString: #,0.00
+		lineageTag: 3076e0fb-a886-5e1c-95cd-80abbebb20e7
+		summarizeBy: none
+		sourceColumn: Gasoline USD Gal
+
+		annotation SummarizationSetBy = User
+
+	column 'Is War Period'
+		dataType: boolean
+		lineageTag: de36f7c1-4b70-5fce-b516-42dce999642a
+		summarizeBy: none
+		sourceColumn: Is War Period
+
+		annotation SummarizationSetBy = User
+
+	partition 'Oil Shock' = m
+		mode: import
+		source =
+				let
+				    Source = Parquet.Document(File.Contents(DataRoot & "\Oil Shock.parquet"))
+				in
+				    Source
+
+	annotation PBI_ResultType = Table
+

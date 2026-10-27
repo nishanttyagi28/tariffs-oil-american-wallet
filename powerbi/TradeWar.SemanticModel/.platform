@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "SemanticModel",
+    "displayName": "TradeWar"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "81cdfe4c-5672-531e-b1fb-49ecc14e8e6a"
+  }
+}

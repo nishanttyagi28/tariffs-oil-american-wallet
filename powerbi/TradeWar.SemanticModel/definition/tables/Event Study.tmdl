@@ -1,0 +1,164 @@
+table 'Event Study'
+	lineageTag: e33c1f9e-a8a8-56af-b891-49079c32a349
+
+	column 'Event ID'
+		dataType: string
+		lineageTag: 72dc1000-e76c-560d-99ad-af602c44714d
+		summarizeBy: none
+		sourceColumn: Event ID
+
+		annotation SummarizationSetBy = User
+
+	column 'Event Date'
+		dataType: dateTime
+		formatString: yyyy-mm-dd
+		lineageTag: b3cedc0d-ad1a-565b-bbf6-ad8663f4e0a4
+		summarizeBy: none
+		sourceColumn: Event Date
+
+		annotation SummarizationSetBy = User
+
+	column 'Event Name'
+		dataType: string
+		lineageTag: 643b7d64-ab03-5837-8db4-7a7cc4a240dc
+		summarizeBy: none
+		sourceColumn: Event Name
+
+		annotation SummarizationSetBy = User
+
+	column 'Event Family'
+		dataType: string
+		lineageTag: 37265371-0f36-5ef0-8f1b-44b51cf87fa3
+		summarizeBy: none
+		sourceColumn: Event Family
+
+		annotation SummarizationSetBy = User
+
+	column Symbol
+		dataType: string
+		lineageTag: 6732b819-9417-5538-8058-4b91b112f2c1
+		summarizeBy: none
+		sourceColumn: Symbol
+
+		annotation SummarizationSetBy = User
+
+	column Instrument
+		dataType: string
+		lineageTag: 68774490-fc2d-5258-9e46-92ce0300aaec
+		summarizeBy: none
+		sourceColumn: Instrument
+
+		annotation SummarizationSetBy = User
+
+	column 'Asset Class'
+		dataType: string
+		lineageTag: ec23a052-0a65-5f51-b24e-36bf7d4cb814
+		summarizeBy: none
+		sourceColumn: Asset Class
+
+		annotation SummarizationSetBy = User
+
+	column 'Model Type'
+		dataType: string
+		lineageTag: dd6280b0-3cdc-53d3-8f22-4c225d8c9ed6
+		summarizeBy: none
+		sourceColumn: Model Type
+
+		annotation SummarizationSetBy = User
+
+	column Beta
+		dataType: double
+		formatString: #,0.00
+		lineageTag: ae6a7f0f-efe5-584e-9065-33962922cad6
+		summarizeBy: none
+		sourceColumn: Beta
+
+		annotation SummarizationSetBy = User
+
+	column 'Est # Days'
+		dataType: int64
+		lineageTag: 6b08f275-2fe5-5731-9087-aeb48045748f
+		summarizeBy: none
+		sourceColumn: Est # Days
+
+		annotation SummarizationSetBy = User
+
+	column 'Window Label'
+		dataType: string
+		lineageTag: 714dc190-860b-5c91-9f53-d7427efb068d
+		summarizeBy: none
+		sourceColumn: Window Label
+
+		annotation SummarizationSetBy = User
+
+	column 'Window Days'
+		dataType: int64
+		lineageTag: d73858cd-dae9-5bd8-a569-6b3b857acd81
+		summarizeBy: none
+		sourceColumn: Window Days
+
+		annotation SummarizationSetBy = User
+
+	column 'T0 Date'
+		dataType: dateTime
+		formatString: yyyy-mm-dd
+		lineageTag: d00d8c1b-7563-5e08-ac58-ac5deb218615
+		summarizeBy: none
+		sourceColumn: T0 Date
+
+		annotation SummarizationSetBy = User
+
+	column 'Raw Return %'
+		dataType: double
+		formatString: 0.0%
+		lineageTag: 78600824-91fb-5f30-997e-a8115c4d5edd
+		summarizeBy: none
+		sourceColumn: Raw Return %
+
+		annotation SummarizationSetBy = User
+
+	column 'CAR %'
+		dataType: double
+		formatString: 0.0%
+		lineageTag: a5afd0c3-ecd7-5e63-b33d-26ff84f650d4
+		summarizeBy: none
+		sourceColumn: CAR %
+
+		annotation SummarizationSetBy = User
+
+	column 'T Stat'
+		dataType: double
+		formatString: #,0.00
+		lineageTag: f3fa0df9-8907-5ff3-a9c2-ac9eeb4cd32d
+		summarizeBy: none
+		sourceColumn: T Stat
+
+		annotation SummarizationSetBy = User
+
+	column 'P Value'
+		dataType: double
+		formatString: #,0.00
+		lineageTag: cc40efec-b015-5710-b77e-62b74615eb3e
+		summarizeBy: none
+		sourceColumn: P Value
+
+		annotation SummarizationSetBy = User
+
+	column 'Significant 5%'
+		dataType: boolean
+		lineageTag: 244e3c8d-26ab-56cf-9322-c346d163a8ef
+		summarizeBy: none
+		sourceColumn: Significant 5%
+
+		annotation SummarizationSetBy = User
+
+	partition 'Event Study' = m
+		mode: import
+		source =
+				let
+				    Source = Parquet.Document(File.Contents(DataRoot & "\Event Study.parquet"))
+				in
+				    Source
+
+	annotation PBI_ResultType = Table
+

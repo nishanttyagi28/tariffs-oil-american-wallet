@@ -1,0 +1,95 @@
+table Instrument
+	lineageTag: a674dd35-ca39-59b9-ac87-a50b88daed1b
+
+	column Symbol
+		dataType: string
+		lineageTag: 293d2a2e-3ce9-506b-a1ec-fb097e8a16c2
+		summarizeBy: none
+		sourceColumn: Symbol
+
+		annotation SummarizationSetBy = User
+
+	column Instrument
+		dataType: string
+		lineageTag: 3d28cf27-ee49-59d2-8dc9-f61a62bc6039
+		summarizeBy: none
+		sourceColumn: Instrument
+
+		annotation SummarizationSetBy = User
+
+	column 'Asset Class'
+		dataType: string
+		lineageTag: e86065c8-8b58-5c03-ac80-eb8ced854cd8
+		summarizeBy: none
+		sourceColumn: Asset Class
+
+		annotation SummarizationSetBy = User
+
+	column ISO3
+		dataType: string
+		lineageTag: 964f1b60-6a47-5466-99d1-5d4a412ccf79
+		summarizeBy: none
+		sourceColumn: ISO3
+
+		annotation SummarizationSetBy = User
+
+	column Currency
+		dataType: string
+		lineageTag: 57007e0c-2ecf-557f-9c60-345adfddcbde
+		summarizeBy: none
+		sourceColumn: Currency
+
+		annotation SummarizationSetBy = User
+
+	column 'Market Region'
+		dataType: string
+		lineageTag: 22386144-f7cc-5a38-b896-5020aef86b6d
+		summarizeBy: none
+		sourceColumn: Market Region
+
+		annotation SummarizationSetBy = User
+
+	column 'Is USD Base Fx'
+		dataType: boolean
+		lineageTag: 5b4a16a1-8187-5d2a-8b94-828bb617e7b4
+		summarizeBy: none
+		sourceColumn: Is USD Base Fx
+
+		annotation SummarizationSetBy = User
+
+	column 'First Date'
+		dataType: dateTime
+		formatString: yyyy-mm-dd
+		lineageTag: b5b34e69-3924-59a2-b962-a41a01896557
+		summarizeBy: none
+		sourceColumn: First Date
+
+		annotation SummarizationSetBy = User
+
+	column 'Last Date'
+		dataType: dateTime
+		formatString: yyyy-mm-dd
+		lineageTag: 845b35fd-2966-51ce-8ae7-483f11afe408
+		summarizeBy: none
+		sourceColumn: Last Date
+
+		annotation SummarizationSetBy = User
+
+	column '# Days'
+		dataType: int64
+		lineageTag: 87e9a7d7-7301-5398-8423-e16a350c904f
+		summarizeBy: none
+		sourceColumn: # Days
+
+		annotation SummarizationSetBy = User
+
+	partition Instrument = m
+		mode: import
+		source =
+				let
+				    Source = Parquet.Document(File.Contents(DataRoot & "\Instrument.parquet"))
+				in
+				    Source
+
+	annotation PBI_ResultType = Table
+

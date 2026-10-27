@@ -1,0 +1,185 @@
+table 'Tariff Effect'
+	lineageTag: 17dafe2a-6b3f-5b67-aefd-561672928c23
+
+	column 'Partner Code'
+		dataType: string
+		lineageTag: ca3de0b4-1bb1-552b-b2d9-0c5c31380a47
+		summarizeBy: none
+		sourceColumn: Partner Code
+
+		annotation SummarizationSetBy = User
+
+	column 'Series ID'
+		dataType: string
+		lineageTag: 2dcba3f8-2882-57b9-ae90-38f12ce600e9
+		summarizeBy: none
+		sourceColumn: Series ID
+
+		annotation SummarizationSetBy = User
+
+	column Partner
+		dataType: string
+		lineageTag: 21fb2f15-c6c5-5cd0-9f37-3d2d77a88b77
+		summarizeBy: none
+		sourceColumn: Partner
+
+		annotation SummarizationSetBy = User
+
+	column Flow
+		dataType: string
+		lineageTag: 43c299d2-00ae-5a5d-9e9d-efbc8667804c
+		summarizeBy: none
+		sourceColumn: Flow
+
+		annotation SummarizationSetBy = User
+
+	column 'Best Model'
+		dataType: string
+		lineageTag: 455ed68d-1c9f-5e24-9a15-b4961a20d0f8
+		summarizeBy: none
+		sourceColumn: Best Model
+
+		annotation SummarizationSetBy = User
+
+	column Months
+		dataType: int64
+		lineageTag: b9f9ba89-0138-5355-8327-3833b7c5af68
+		summarizeBy: none
+		sourceColumn: Months
+
+		annotation SummarizationSetBy = User
+
+	column 'Actual $M'
+		dataType: double
+		formatString: #,0
+		lineageTag: 89e14e6f-bcf4-5845-b4d9-45aeaaccf261
+		summarizeBy: none
+		sourceColumn: Actual $M
+
+		annotation SummarizationSetBy = User
+
+	column 'Counterfactual $M'
+		dataType: double
+		formatString: #,0
+		lineageTag: 211ed30b-557d-5736-af8c-22efaa6fbb87
+		summarizeBy: none
+		sourceColumn: Counterfactual $M
+
+		annotation SummarizationSetBy = User
+
+	column 'CF Lo 95'
+		dataType: double
+		formatString: #,0
+		lineageTag: 52b21d28-7a73-55cf-a4c4-35f1b6cb3811
+		summarizeBy: none
+		sourceColumn: CF Lo 95
+
+		annotation SummarizationSetBy = User
+
+	column 'CF Hi 95'
+		dataType: double
+		formatString: #,0
+		lineageTag: 0cddcaa8-7fd1-5ccd-b2dd-53b64e6d2fb9
+		summarizeBy: none
+		sourceColumn: CF Hi 95
+
+		annotation SummarizationSetBy = User
+
+	column 'CF Lo 80'
+		dataType: double
+		formatString: #,0
+		lineageTag: dce16b40-6b96-5d17-919d-eb8bae1a54b5
+		summarizeBy: none
+		sourceColumn: CF Lo 80
+
+		annotation SummarizationSetBy = User
+
+	column 'CF Hi 80'
+		dataType: double
+		formatString: #,0
+		lineageTag: 471f91b1-8160-56d2-b3b2-d68b9da6f655
+		summarizeBy: none
+		sourceColumn: CF Hi 80
+
+		annotation SummarizationSetBy = User
+
+	column 'Effect Window'
+		dataType: string
+		lineageTag: 1a094b88-c977-54bf-8492-2139ab92c42b
+		summarizeBy: none
+		sourceColumn: Effect Window
+
+		annotation SummarizationSetBy = User
+
+	column 'Effect $M'
+		dataType: double
+		formatString: #,0
+		lineageTag: 010c7974-27c5-5adc-9c13-fdc803b245d7
+		summarizeBy: none
+		sourceColumn: Effect $M
+
+		annotation SummarizationSetBy = User
+
+	column 'Effect %'
+		dataType: double
+		formatString: 0.0%
+		lineageTag: 6b83b26d-0895-5002-8708-d7a2787d6b85
+		summarizeBy: none
+		sourceColumn: Effect %
+
+		annotation SummarizationSetBy = User
+
+	column 'Effect Lo 95'
+		dataType: double
+		formatString: #,0
+		lineageTag: 4abbaa7b-babc-51ef-b7b9-2be896ef09ee
+		summarizeBy: none
+		sourceColumn: Effect Lo 95
+
+		annotation SummarizationSetBy = User
+
+	column 'Effect Hi 95'
+		dataType: double
+		formatString: #,0
+		lineageTag: e61ec9ac-acdf-5bed-951b-f6f3ff976f51
+		summarizeBy: none
+		sourceColumn: Effect Hi 95
+
+		annotation SummarizationSetBy = User
+
+	column 'Effect Lo 80'
+		dataType: double
+		formatString: #,0
+		lineageTag: 4d7cc17c-8b7e-59f8-8d21-316f7c43ed49
+		summarizeBy: none
+		sourceColumn: Effect Lo 80
+
+		annotation SummarizationSetBy = User
+
+	column 'Effect Hi 80'
+		dataType: double
+		formatString: #,0
+		lineageTag: c7fcf3a0-0af4-5aef-b3a1-43f47383f339
+		summarizeBy: none
+		sourceColumn: Effect Hi 80
+
+		annotation SummarizationSetBy = User
+
+	column 'Significant 95'
+		dataType: boolean
+		lineageTag: bfb9d6f0-3543-583a-8a61-70ebffec081c
+		summarizeBy: none
+		sourceColumn: Significant 95
+
+		annotation SummarizationSetBy = User
+
+	partition 'Tariff Effect' = m
+		mode: import
+		source =
+				let
+				    Source = Parquet.Document(File.Contents(DataRoot & "\Tariff Effect.parquet"))
+				in
+				    Source
+
+	annotation PBI_ResultType = Table
+

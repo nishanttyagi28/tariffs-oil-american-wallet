@@ -1,0 +1,82 @@
+table 'Tariff Rate'
+	lineageTag: 91ce4913-0347-5e11-933a-edd16ffa04e3
+
+	column Month
+		dataType: dateTime
+		formatString: mmm yyyy
+		lineageTag: 0e525bf3-77c2-5c6e-8cc8-dbca68ef7e97
+		summarizeBy: none
+		sourceColumn: Month
+
+		annotation SummarizationSetBy = User
+
+	column ISO3
+		dataType: string
+		lineageTag: 43b85494-2ff7-533a-8d40-4fa41c610a90
+		summarizeBy: none
+		sourceColumn: ISO3
+
+		annotation SummarizationSetBy = User
+
+	column 'Tariff Schedule Key'
+		dataType: string
+		lineageTag: f3b61ca3-e791-559b-bc42-f1a25637c43d
+		summarizeBy: none
+		sourceColumn: Tariff Schedule Key
+
+		annotation SummarizationSetBy = User
+
+	column 'Statutory Rate %'
+		dataType: double
+		formatString: 0.0%
+		lineageTag: fe925495-b073-5642-bfdc-6455b19182fe
+		summarizeBy: none
+		sourceColumn: Statutory Rate %
+
+		annotation SummarizationSetBy = User
+
+	column 'Max Rate in Month %'
+		dataType: double
+		formatString: 0.0%
+		lineageTag: 3ec8205d-3a7e-5318-ac33-54aea123e2b5
+		summarizeBy: none
+		sourceColumn: Max Rate in Month %
+
+		annotation SummarizationSetBy = User
+
+	column 'All Days Verified'
+		dataType: boolean
+		lineageTag: 9e256eac-6453-557f-8c34-b31de4d9d342
+		summarizeBy: none
+		sourceColumn: All Days Verified
+
+		annotation SummarizationSetBy = User
+
+	column 'Effective Rate Gross %'
+		dataType: double
+		formatString: 0.0%
+		lineageTag: f865e53f-07c9-5815-9cad-e7a4c74f2eb1
+		summarizeBy: none
+		sourceColumn: Effective Rate Gross %
+
+		annotation SummarizationSetBy = User
+
+	column 'Effective Rate Net %'
+		dataType: double
+		formatString: 0.0%
+		lineageTag: 8f154725-4f93-5095-ba82-71f1205e2f6e
+		summarizeBy: none
+		sourceColumn: Effective Rate Net %
+
+		annotation SummarizationSetBy = User
+
+	partition 'Tariff Rate' = m
+		mode: import
+		source =
+				let
+				    Source = Parquet.Document(File.Contents(DataRoot & "\Tariff Rate.parquet"))
+				in
+				    Source
+
+	annotation PBI_ResultType = Table
+

@@ -1,0 +1,155 @@
+table Trade
+	lineageTag: 148be9bd-c58a-524e-8e8d-465b8dd47a89
+
+	column Month
+		dataType: dateTime
+		formatString: mmm yyyy
+		lineageTag: 3e377136-4b05-59ca-9dfc-c46ad93f65a8
+		summarizeBy: none
+		sourceColumn: Month
+
+		annotation SummarizationSetBy = User
+
+	column ISO3
+		dataType: string
+		lineageTag: 3aaa7920-38c4-57cb-974d-7ae6ecb0737b
+		summarizeBy: none
+		sourceColumn: ISO3
+
+		annotation SummarizationSetBy = User
+
+	column 'Imports $M'
+		dataType: double
+		formatString: #,0
+		lineageTag: aa9084e2-d1ae-5df9-b820-2bac32737a1a
+		summarizeBy: none
+		sourceColumn: Imports $M
+
+		annotation SummarizationSetBy = User
+
+	column 'Exports $M'
+		dataType: double
+		formatString: #,0
+		lineageTag: 4b5fd928-7820-5d52-bab2-ef6fd415a89c
+		summarizeBy: none
+		sourceColumn: Exports $M
+
+		annotation SummarizationSetBy = User
+
+	column 'Balance $M'
+		dataType: double
+		formatString: #,0
+		lineageTag: bb948e0e-0ab3-5d4e-8f1c-f52575130484
+		summarizeBy: none
+		sourceColumn: Balance $M
+
+		annotation SummarizationSetBy = User
+
+	column 'Total Trade $M'
+		dataType: double
+		formatString: #,0
+		lineageTag: cd6d431a-8247-5c2e-9716-2940aaa5756d
+		summarizeBy: none
+		sourceColumn: Total Trade $M
+
+		annotation SummarizationSetBy = User
+
+	column 'Share of US Imports'
+		dataType: double
+		formatString: 0.0%
+		lineageTag: 073f9a31-28ed-5a35-bc05-8b24880f9cf9
+		summarizeBy: none
+		sourceColumn: Share of US Imports
+
+		annotation SummarizationSetBy = User
+
+	column 'Share of US Exports'
+		dataType: double
+		formatString: 0.0%
+		lineageTag: 6d14a56d-0fbf-59a7-b19a-643b74fb3051
+		summarizeBy: none
+		sourceColumn: Share of US Exports
+
+		annotation SummarizationSetBy = User
+
+	column 'Imports R12M $M'
+		dataType: double
+		formatString: #,0
+		lineageTag: 9815e7c4-6ea8-595c-9b36-082d52578f40
+		summarizeBy: none
+		sourceColumn: Imports R12M $M
+
+		annotation SummarizationSetBy = User
+
+	column 'Exports R12M $M'
+		dataType: double
+		formatString: #,0
+		lineageTag: 9f562cc3-01d9-5aa7-8e57-d389efbf9cef
+		summarizeBy: none
+		sourceColumn: Exports R12M $M
+
+		annotation SummarizationSetBy = User
+
+	column 'Months in R12M'
+		dataType: int64
+		lineageTag: 91b3beb7-aff8-5f1e-bd94-498e10b6e6a3
+		summarizeBy: none
+		sourceColumn: Months in R12M
+
+		annotation SummarizationSetBy = User
+
+	column 'Imports $M LY'
+		dataType: double
+		formatString: #,0
+		lineageTag: 14f7eb39-11ba-50db-ba7e-7603204df18e
+		summarizeBy: none
+		sourceColumn: Imports $M LY
+
+		annotation SummarizationSetBy = User
+
+	column 'Exports $M LY'
+		dataType: double
+		formatString: #,0
+		lineageTag: 78bf4518-54b9-5187-aee7-73dd0557fc26
+		summarizeBy: none
+		sourceColumn: Exports $M LY
+
+		annotation SummarizationSetBy = User
+
+	column 'Imports YoY %'
+		dataType: double
+		formatString: 0.0%
+		lineageTag: 08fac64f-80e2-5e28-8c78-9413e2dec677
+		summarizeBy: none
+		sourceColumn: Imports YoY %
+
+		annotation SummarizationSetBy = User
+
+	column 'Exports YoY %'
+		dataType: double
+		formatString: 0.0%
+		lineageTag: d6560580-7084-58fc-ae01-aa43116c07fa
+		summarizeBy: none
+		sourceColumn: Exports YoY %
+
+		annotation SummarizationSetBy = User
+
+	column 'Balance YoY Change $M'
+		dataType: double
+		formatString: #,0
+		lineageTag: 0ae73e84-f419-5c97-9aac-b676d3de436c
+		summarizeBy: none
+		sourceColumn: Balance YoY Change $M
+
+		annotation SummarizationSetBy = User
+
+	partition Trade = m
+		mode: import
+		source =
+				let
+				    Source = Parquet.Document(File.Contents(DataRoot & "\Trade.parquet"))
+				in
+				    Source
+
+	annotation PBI_ResultType = Table
+

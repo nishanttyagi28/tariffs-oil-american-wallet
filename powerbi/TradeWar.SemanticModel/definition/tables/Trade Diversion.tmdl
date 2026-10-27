@@ -1,0 +1,119 @@
+table 'Trade Diversion'
+	lineageTag: 6b97dde0-36c0-520a-969d-7804cee491ca
+
+	column Month
+		dataType: dateTime
+		formatString: mmm yyyy
+		lineageTag: e3f5de1b-7a54-5c5b-b6f3-f7f406aa0111
+		summarizeBy: none
+		sourceColumn: Month
+
+		annotation SummarizationSetBy = User
+
+	column 'Partner Group'
+		dataType: string
+		lineageTag: 7fd42de8-0870-54fa-82e7-b8e7ef590cd0
+		summarizeBy: none
+		sourceColumn: Partner Group
+
+		annotation SummarizationSetBy = User
+
+	column 'Imports $M'
+		dataType: double
+		formatString: #,0
+		lineageTag: 9f6fffce-b469-5366-b252-94e19b6ec135
+		summarizeBy: none
+		sourceColumn: Imports $M
+
+		annotation SummarizationSetBy = User
+
+	column 'Exports $M'
+		dataType: double
+		formatString: #,0
+		lineageTag: ee0b6232-2266-51de-b647-72c93bc54efa
+		summarizeBy: none
+		sourceColumn: Exports $M
+
+		annotation SummarizationSetBy = User
+
+	column 'Balance $M'
+		dataType: double
+		formatString: #,0
+		lineageTag: dca0505d-ac97-5a3e-9e44-52ca76b72c60
+		summarizeBy: none
+		sourceColumn: Balance $M
+
+		annotation SummarizationSetBy = User
+
+	column 'US Imports $M'
+		dataType: double
+		formatString: #,0
+		lineageTag: 333d0959-6da1-5447-a424-e2002eb4ade5
+		summarizeBy: none
+		sourceColumn: US Imports $M
+
+		annotation SummarizationSetBy = User
+
+	column 'Import Share'
+		dataType: double
+		formatString: 0.0%
+		lineageTag: 4a7c3d92-6f11-5ae1-b6fb-faf058b1935f
+		summarizeBy: none
+		sourceColumn: Import Share
+
+		annotation SummarizationSetBy = User
+
+	column 'Import Share 2024'
+		dataType: double
+		formatString: 0.0%
+		lineageTag: bcb2d347-a192-5524-984e-0c520244e6f0
+		summarizeBy: none
+		sourceColumn: Import Share 2024
+
+		annotation SummarizationSetBy = User
+
+	column 'Share Change pp'
+		dataType: double
+		formatString: #,0.00
+		lineageTag: 95e1e2c2-47e4-5a47-9133-e5b9adaad7cf
+		summarizeBy: none
+		sourceColumn: Share Change pp
+
+		annotation SummarizationSetBy = User
+
+	column 'Diverted Imports $M'
+		dataType: double
+		formatString: #,0
+		lineageTag: 4ff24891-90f2-538c-911f-c8a6ebd8b681
+		summarizeBy: none
+		sourceColumn: Diverted Imports $M
+
+		annotation SummarizationSetBy = User
+
+	column 'Imports R12M $M'
+		dataType: double
+		formatString: #,0
+		lineageTag: 872083bd-e752-5eed-9889-5892afbed51d
+		summarizeBy: none
+		sourceColumn: Imports R12M $M
+
+		annotation SummarizationSetBy = User
+
+	column 'Rank in Month'
+		dataType: int64
+		lineageTag: 8cd6d923-ad18-5365-b02b-fcfd778f9ee0
+		summarizeBy: none
+		sourceColumn: Rank in Month
+
+		annotation SummarizationSetBy = User
+
+	partition 'Trade Diversion' = m
+		mode: import
+		source =
+				let
+				    Source = Parquet.Document(File.Contents(DataRoot & "\Trade Diversion.parquet"))
+				in
+				    Source
+
+	annotation PBI_ResultType = Table
+

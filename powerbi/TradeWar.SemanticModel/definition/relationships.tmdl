@@ -1,0 +1,104 @@
+relationship fccc9450-630f-598e-95bd-c68784e2d28f
+	fromColumn: Trade.Month
+	toColumn: Date.Date
+
+relationship caf01b9a-9709-5718-bbc4-fd4225fdaa53
+	fromColumn: 'Tariff Rate'.Month
+	toColumn: Date.Date
+
+relationship 1049cc91-f159-50bc-9a09-6f41bf60879f
+	fromColumn: Customs.Month
+	toColumn: Date.Date
+
+relationship be6d8fdc-2485-5553-8694-712e2ee7897d
+	fromColumn: CPI.Month
+	toColumn: Date.Date
+
+relationship 89b9dfb8-34cd-55b0-ba61-db9e0d7f8beb
+	fromColumn: Macro.Month
+	toColumn: Date.Date
+
+relationship c426a115-4a0f-5800-b496-49c234656642
+	fromColumn: Household.Month
+	toColumn: Date.Date
+
+relationship fd301b07-2e63-5a29-94c1-5b902b0a8730
+	fromColumn: 'Trade Diversion'.Month
+	toColumn: Date.Date
+
+relationship 5ea8e535-c29b-584e-ba17-e42dc2ddbaf0
+	fromColumn: Counterfactual.Month
+	toColumn: Date.Date
+
+relationship 2d2e6ab7-0cd5-5393-9775-771017076df7
+	fromColumn: Forecasts.Month
+	toColumn: Date.Date
+
+relationship a056e98b-3810-5b5e-8b2c-987474933627
+	fromColumn: Market.Date
+	toColumn: Date.Date
+
+relationship c232192e-300c-5983-bf76-e9fb6742f327
+	fromColumn: Oil.Date
+	toColumn: Date.Date
+
+relationship a1e735a9-d2a5-506c-9043-027c798535f7
+	fromColumn: 'Chokepoint Daily'.Date
+	toColumn: Date.Date
+
+relationship 10902104-8d9d-53e0-8639-a38a12e43e6d
+	fromColumn: 'Oil Shock'.Date
+	toColumn: Date.Date
+
+relationship e3b8ecc9-bd92-54e3-93af-6f0269e473c1
+	fromColumn: 'Vol Regimes'.Date
+	toColumn: Date.Date
+
+relationship 2f657b63-97ce-5916-8952-c7db331f940c
+	fromColumn: Events.'Event Date'
+	toColumn: Date.Date
+
+relationship 01bb0e31-b155-5328-917e-1825164259a9
+	fromColumn: Trade.ISO3
+	toColumn: Country.ISO3
+
+relationship adbd6a25-f122-54af-b681-52be28a1f62b
+	fromColumn: 'Tariff Rate'.ISO3
+	toColumn: Country.ISO3
+
+relationship 666c54aa-b08c-5b49-b418-2dc76d126c00
+	fromColumn: 'Country Before After'.ISO3
+	toColumn: Country.ISO3
+
+relationship e72f11fc-ad90-5fbd-a6a4-f14fe5295c9a
+	fromColumn: CPI.'Series ID'
+	toColumn: 'CPI Category'.'Series ID'
+
+relationship f133ef8a-5ce6-50f0-b977-0b0e76969cdf
+	fromColumn: Market.Symbol
+	toColumn: Instrument.Symbol
+
+relationship b176e259-ad4a-5daf-933e-9d199422109d
+	fromColumn: 'Vol Regimes'.Symbol
+	toColumn: Instrument.Symbol
+
+relationship 4e8a5304-d5f6-53a8-a439-7b7fe177f200
+	fromColumn: 'Event Study'.Symbol
+	toColumn: Instrument.Symbol
+
+relationship 7ade35c4-f604-58c1-80aa-49d233fb571d
+	fromColumn: 'Chokepoint Daily'.'Chokepoint ID'
+	toColumn: Chokepoint.'Chokepoint ID'
+
+relationship 0b5c6af5-135b-555d-859e-3b040cb75f9b
+	fromColumn: Counterfactual.'Partner Code'
+	toColumn: Partner.'Partner Code'
+
+relationship 4ea75473-f9df-5923-9863-b1bf9a61091b
+	fromColumn: 'Tariff Effect'.'Partner Code'
+	toColumn: Partner.'Partner Code'
+
+relationship 461dc783-7170-5283-8de5-eb036068b5d1
+	fromColumn: 'Tariff Rate'.ISO3
+	toColumn: Partner.'Tariff ISO3'
+

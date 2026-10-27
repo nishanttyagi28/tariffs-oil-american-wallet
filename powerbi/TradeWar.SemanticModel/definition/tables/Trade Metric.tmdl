@@ -1,0 +1,30 @@
+table 'Trade Metric'
+	lineageTag: 62340bac-6a32-5fdd-bc75-4498ddff5c79
+
+	column Metric
+		dataType: string
+		lineageTag: 3e24270f-a0bc-5be7-847b-6df86e05cf7c
+		summarizeBy: none
+		sourceColumn: Metric
+		sortByColumn: 'Metric Order'
+
+		annotation SummarizationSetBy = User
+
+	column 'Metric Order'
+		dataType: int64
+		lineageTag: f715581d-8747-5663-9406-a4000040bd0a
+		summarizeBy: none
+		sourceColumn: Metric Order
+
+		annotation SummarizationSetBy = User
+
+	partition 'Trade Metric' = m
+		mode: import
+		source =
+				let
+				    Source = Parquet.Document(File.Contents(DataRoot & "\Trade Metric.parquet"))
+				in
+				    Source
+
+	annotation PBI_ResultType = Table
+

@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Report",
+    "displayName": "TradeWar"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "95ec4cc0-0fb0-5d6e-a4d3-d922e2d4aca0"
+  }
+}

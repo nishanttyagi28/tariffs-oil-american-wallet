@@ -1,0 +1,147 @@
+table Oil
+	lineageTag: 631fd112-2e9b-5d8e-bcde-503aec8575ea
+
+	column Date
+		dataType: dateTime
+		formatString: yyyy-mm-dd
+		lineageTag: 6b940d66-a2f5-55a6-a54d-b70eab3f671d
+		summarizeBy: none
+		sourceColumn: Date
+
+		annotation SummarizationSetBy = User
+
+	column 'Brent Spot USD'
+		dataType: double
+		formatString: #,0.00
+		lineageTag: eb3a404f-582e-5071-8a80-eb44b35646ad
+		summarizeBy: none
+		sourceColumn: Brent Spot USD
+
+		annotation SummarizationSetBy = User
+
+	column 'WTI Spot USD'
+		dataType: double
+		formatString: #,0.00
+		lineageTag: a378d5fa-8aea-5ad3-9d44-76c1563358d8
+		summarizeBy: none
+		sourceColumn: WTI Spot USD
+
+		annotation SummarizationSetBy = User
+
+	column 'Brent Futures USD'
+		dataType: double
+		formatString: #,0.00
+		lineageTag: 02408b3d-348f-5e47-95f0-ffc2c5fdb3c1
+		summarizeBy: none
+		sourceColumn: Brent Futures USD
+
+		annotation SummarizationSetBy = User
+
+	column 'WTI Futures USD'
+		dataType: double
+		formatString: #,0.00
+		lineageTag: 1505ed13-cb60-5faf-8be5-2a5d018bf777
+		summarizeBy: none
+		sourceColumn: WTI Futures USD
+
+		annotation SummarizationSetBy = User
+
+	column 'Brent USD'
+		dataType: double
+		formatString: #,0.00
+		lineageTag: 13c07388-ee0c-5e17-ad64-65ea1b00db29
+		summarizeBy: none
+		sourceColumn: Brent USD
+
+		annotation SummarizationSetBy = User
+
+	column 'WTI USD'
+		dataType: double
+		formatString: #,0.00
+		lineageTag: 59973e21-5ea0-5067-98b9-30856621fce1
+		summarizeBy: none
+		sourceColumn: WTI USD
+
+		annotation SummarizationSetBy = User
+
+	column 'Brent Source'
+		dataType: string
+		lineageTag: 5a51a9f2-bc2a-50fa-81b3-264592205ca3
+		summarizeBy: none
+		sourceColumn: Brent Source
+
+		annotation SummarizationSetBy = User
+
+	column 'Brent WTI Spread USD'
+		dataType: double
+		formatString: #,0.00
+		lineageTag: 6a58148f-18aa-5e90-92db-0eabbfbb0812
+		summarizeBy: none
+		sourceColumn: Brent WTI Spread USD
+
+		annotation SummarizationSetBy = User
+
+	column 'Brent Ret'
+		dataType: double
+		formatString: 0.0%
+		lineageTag: 83351c4b-b0e4-5749-adab-ea26f8c9b4d5
+		summarizeBy: none
+		sourceColumn: Brent Ret
+
+		annotation SummarizationSetBy = User
+
+	column 'Brent Vol 21d Ann.'
+		dataType: double
+		formatString: #,0.00
+		lineageTag: 85f68709-f69d-5b0e-8468-a6ffc97f1fa3
+		summarizeBy: none
+		sourceColumn: Brent Vol 21d Ann.
+
+		annotation SummarizationSetBy = User
+
+	column 'Brent Drawdown 52w %'
+		dataType: double
+		formatString: 0.0%
+		lineageTag: 35730df0-6593-519d-bd98-8022e283b910
+		summarizeBy: none
+		sourceColumn: Brent Drawdown 52w %
+
+		annotation SummarizationSetBy = User
+
+	column 'Brent vs Prewar %'
+		dataType: double
+		formatString: 0.0%
+		lineageTag: 469118df-af63-54b7-85bf-28e6d7c5bae4
+		summarizeBy: none
+		sourceColumn: Brent vs Prewar %
+
+		annotation SummarizationSetBy = User
+
+	column 'WTI vs Prewar %'
+		dataType: double
+		formatString: 0.0%
+		lineageTag: 4bcb1c86-125b-5504-b31a-7a01615299d9
+		summarizeBy: none
+		sourceColumn: WTI vs Prewar %
+
+		annotation SummarizationSetBy = User
+
+	column 'Brent 7d Avg'
+		dataType: double
+		formatString: #,0.00
+		lineageTag: 7595d741-da07-5703-b109-dda83f57fdc6
+		summarizeBy: none
+		sourceColumn: Brent 7d Avg
+
+		annotation SummarizationSetBy = User
+
+	partition Oil = m
+		mode: import
+		source =
+				let
+				    Source = Parquet.Document(File.Contents(DataRoot & "\Oil.parquet"))
+				in
+				    Source
+
+	annotation PBI_ResultType = Table
+

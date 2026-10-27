@@ -1,0 +1,346 @@
+table Macro
+	lineageTag: 86807f6b-88da-511c-9e22-dc5c2435355a
+
+	column Month
+		dataType: dateTime
+		formatString: mmm yyyy
+		lineageTag: 67798e0c-a2db-53bf-b80b-de8eeca177d3
+		summarizeBy: none
+		sourceColumn: Month
+
+		annotation SummarizationSetBy = User
+
+	column 'CPI SA'
+		dataType: double
+		formatString: #,0.00
+		lineageTag: 645b1b77-6d61-5665-b64b-c7cdb40b9845
+		summarizeBy: none
+		sourceColumn: CPI SA
+
+		annotation SummarizationSetBy = User
+
+	column 'Core CPI SA'
+		dataType: double
+		formatString: #,0.00
+		lineageTag: f1ce2772-f8e2-56db-b222-7f18d054b107
+		summarizeBy: none
+		sourceColumn: Core CPI SA
+
+		annotation SummarizationSetBy = User
+
+	column 'PCE Index'
+		dataType: double
+		formatString: #,0.00
+		lineageTag: 0fc9a258-408c-5377-8203-cc5f8ac123be
+		summarizeBy: none
+		sourceColumn: PCE Index
+
+		annotation SummarizationSetBy = User
+
+	column 'Core PCE Index'
+		dataType: double
+		formatString: #,0.00
+		lineageTag: dc68bb3b-3286-51cd-9915-f952078bcfcd
+		summarizeBy: none
+		sourceColumn: Core PCE Index
+
+		annotation SummarizationSetBy = User
+
+	column 'Avg Hourly Earnings USD'
+		dataType: double
+		formatString: #,0.00
+		lineageTag: 93897aa8-382d-5f36-8d54-37ad03eaf6af
+		summarizeBy: none
+		sourceColumn: Avg Hourly Earnings USD
+
+		annotation SummarizationSetBy = User
+
+	column 'Unemployment Rate %'
+		dataType: double
+		formatString: 0.0%
+		lineageTag: c0b3805b-b052-5919-9e91-040761e1d0a5
+		summarizeBy: none
+		sourceColumn: Unemployment Rate %
+
+		annotation SummarizationSetBy = User
+
+	column 'Nonfarm Payrolls K'
+		dataType: double
+		formatString: #,0.00
+		lineageTag: 041a9425-b96b-59f3-b660-c97b08c9e6f4
+		summarizeBy: none
+		sourceColumn: Nonfarm Payrolls K
+
+		annotation SummarizationSetBy = User
+
+	column 'Consumer Sentiment'
+		dataType: double
+		formatString: #,0.00
+		lineageTag: 2c7358de-249a-5a74-8ad6-0338fd0cb4eb
+		summarizeBy: none
+		sourceColumn: Consumer Sentiment
+
+		annotation SummarizationSetBy = User
+
+	column 'Personal Saving Rate %'
+		dataType: double
+		formatString: 0.0%
+		lineageTag: 99ec03c2-1923-51ae-a192-a1c12b6c9506
+		summarizeBy: none
+		sourceColumn: Personal Saving Rate %
+
+		annotation SummarizationSetBy = User
+
+	column 'Retail Sales $M'
+		dataType: double
+		formatString: #,0
+		lineageTag: 28e67d7f-acf3-5960-8062-235e80d3dc4a
+		summarizeBy: none
+		sourceColumn: Retail Sales $M
+
+		annotation SummarizationSetBy = User
+
+	column 'Import Price Index'
+		dataType: double
+		formatString: #,0.00
+		lineageTag: a076bca5-0d69-574c-8511-5b869a0a702f
+		summarizeBy: none
+		sourceColumn: Import Price Index
+
+		annotation SummarizationSetBy = User
+
+	column 'Import Price Ex Food Fuel'
+		dataType: double
+		formatString: #,0.00
+		lineageTag: c1ef2ecc-184f-5d0a-b8fc-49ab91cda396
+		summarizeBy: none
+		sourceColumn: Import Price Ex Food Fuel
+
+		annotation SummarizationSetBy = User
+
+	column 'Import Price Ex Petroleum'
+		dataType: double
+		formatString: #,0.00
+		lineageTag: 5cdbe4c3-0c0f-58b5-b126-2c750424e291
+		summarizeBy: none
+		sourceColumn: Import Price Ex Petroleum
+
+		annotation SummarizationSetBy = User
+
+	column 'Trade Balance G&S $M'
+		dataType: double
+		formatString: #,0
+		lineageTag: 34ad70bb-3284-5389-bad6-94ba460a577e
+		summarizeBy: none
+		sourceColumn: Trade Balance G&S $M
+
+		annotation SummarizationSetBy = User
+
+	column 'Gasoline USD Gal'
+		dataType: double
+		formatString: #,0.00
+		lineageTag: 08371df7-4efa-5989-9caf-01d42b3e0ed4
+		summarizeBy: none
+		sourceColumn: Gasoline USD Gal
+
+		annotation SummarizationSetBy = User
+
+	column 'Mortgage 30y %'
+		dataType: double
+		formatString: 0.0%
+		lineageTag: 40c7a1ef-f0c3-5044-9812-e6f305127786
+		summarizeBy: none
+		sourceColumn: Mortgage 30y %
+
+		annotation SummarizationSetBy = User
+
+	column 'Fed Funds %'
+		dataType: double
+		formatString: 0.0%
+		lineageTag: 3bf013ff-a1cb-531e-a1f2-88b295f74ce9
+		summarizeBy: none
+		sourceColumn: Fed Funds %
+
+		annotation SummarizationSetBy = User
+
+	column 'UST 10y %'
+		dataType: double
+		formatString: 0.0%
+		lineageTag: 9662b860-fbc7-575e-a317-e7d7127f3c51
+		summarizeBy: none
+		sourceColumn: UST 10y %
+
+		annotation SummarizationSetBy = User
+
+	column 'UST 2y %'
+		dataType: double
+		formatString: 0.0%
+		lineageTag: 5335ed6e-15ac-54c6-a617-134053b25ab3
+		summarizeBy: none
+		sourceColumn: UST 2y %
+
+		annotation SummarizationSetBy = User
+
+	column 'Breakeven 10y %'
+		dataType: double
+		formatString: 0.0%
+		lineageTag: f9457430-1a3f-5330-b9ea-ea25d30ae10a
+		summarizeBy: none
+		sourceColumn: Breakeven 10y %
+
+		annotation SummarizationSetBy = User
+
+	column 'USD Broad Index'
+		dataType: double
+		formatString: #,0.00
+		lineageTag: 9df2f1b5-d4e0-5405-9418-03ba16ff58fc
+		summarizeBy: none
+		sourceColumn: USD Broad Index
+
+		annotation SummarizationSetBy = User
+
+	column VIX
+		dataType: double
+		formatString: #,0.00
+		lineageTag: 8248d6b8-b62e-5c02-a073-4680d3fb747b
+		summarizeBy: none
+		sourceColumn: VIX
+
+		annotation SummarizationSetBy = User
+
+	column 'Brent USD'
+		dataType: double
+		formatString: #,0.00
+		lineageTag: 9023169f-602c-5f15-b316-17273402c733
+		summarizeBy: none
+		sourceColumn: Brent USD
+
+		annotation SummarizationSetBy = User
+
+	column 'WTI USD'
+		dataType: double
+		formatString: #,0.00
+		lineageTag: e142dde4-e650-5afa-ae66-e61ac7f8d8cc
+		summarizeBy: none
+		sourceColumn: WTI USD
+
+		annotation SummarizationSetBy = User
+
+	column 'Henry Hub USD'
+		dataType: double
+		formatString: #,0.00
+		lineageTag: 12030066-ac4a-51e8-8aaa-16a2c016b954
+		summarizeBy: none
+		sourceColumn: Henry Hub USD
+
+		annotation SummarizationSetBy = User
+
+	column GSCPI
+		dataType: double
+		formatString: #,0.00
+		lineageTag: d5df1da7-dd6c-5ce2-bd73-44d62787915b
+		summarizeBy: none
+		sourceColumn: GSCPI
+
+		annotation SummarizationSetBy = User
+
+	column 'Yield Curve 10y2y %'
+		dataType: double
+		formatString: 0.0%
+		lineageTag: 1ef7c2a5-5a71-52ba-982c-af91e7179e38
+		summarizeBy: none
+		sourceColumn: Yield Curve 10y2y %
+
+		annotation SummarizationSetBy = User
+
+	column 'CPI YoY %'
+		dataType: double
+		formatString: 0.0%
+		lineageTag: fd0941cf-9086-55cb-b5b8-b7e85daee4d8
+		summarizeBy: none
+		sourceColumn: CPI YoY %
+
+		annotation SummarizationSetBy = User
+
+	column 'Core CPI YoY %'
+		dataType: double
+		formatString: 0.0%
+		lineageTag: 929e8d60-3c04-5d79-a81c-41c4dbdeb3ad
+		summarizeBy: none
+		sourceColumn: Core CPI YoY %
+
+		annotation SummarizationSetBy = User
+
+	column 'PCE YoY %'
+		dataType: double
+		formatString: 0.0%
+		lineageTag: 7e36e177-6a01-5f79-8d37-62a8776380e4
+		summarizeBy: none
+		sourceColumn: PCE YoY %
+
+		annotation SummarizationSetBy = User
+
+	column 'AHE YoY %'
+		dataType: double
+		formatString: 0.0%
+		lineageTag: 88a031ed-17f8-57fd-ab98-19b7e37cacc8
+		summarizeBy: none
+		sourceColumn: AHE YoY %
+
+		annotation SummarizationSetBy = User
+
+	column 'Real Wage YoY %'
+		dataType: double
+		formatString: 0.0%
+		lineageTag: 032e89b5-9268-5ff8-b487-8fadaecd32db
+		summarizeBy: none
+		sourceColumn: Real Wage YoY %
+
+		annotation SummarizationSetBy = User
+
+	column 'Retail Sales YoY %'
+		dataType: double
+		formatString: 0.0%
+		lineageTag: 5b52b82e-90c6-5d25-99d9-55334799dc5c
+		summarizeBy: none
+		sourceColumn: Retail Sales YoY %
+
+		annotation SummarizationSetBy = User
+
+	column 'Import Price Ex Fuel YoY %'
+		dataType: double
+		formatString: 0.0%
+		lineageTag: e7088cfb-a0af-5e4d-b5c1-9bee0688c46a
+		summarizeBy: none
+		sourceColumn: Import Price Ex Fuel YoY %
+
+		annotation SummarizationSetBy = User
+
+	column 'Gasoline YoY %'
+		dataType: double
+		formatString: 0.0%
+		lineageTag: 38f6fcd9-7157-5724-ac2d-74a3e7f24421
+		summarizeBy: none
+		sourceColumn: Gasoline YoY %
+
+		annotation SummarizationSetBy = User
+
+	column 'CPI MoM %'
+		dataType: double
+		formatString: 0.0%
+		lineageTag: 8de35619-417c-5cca-aaf7-d9afb95d60a8
+		summarizeBy: none
+		sourceColumn: CPI MoM %
+
+		annotation SummarizationSetBy = User
+
+	partition Macro = m
+		mode: import
+		source =
+				let
+				    Source = Parquet.Document(File.Contents(DataRoot & "\Macro.parquet"))
+				in
+				    Source
+
+	annotation PBI_ResultType = Table
+

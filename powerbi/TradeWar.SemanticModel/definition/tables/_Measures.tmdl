@@ -1,0 +1,962 @@
+table _Measures
+	lineageTag: dad67363-213c-5e0a-b998-8d0bfb982adc
+
+	measure 'Imports ($bn)' = DIVIDE ( SUM ( Trade[Imports $M] ), 1000 )
+		formatString: $#,0.0;-$#,0.0;$0.0
+		displayFolder: Trade
+		lineageTag: 8f6460a5-b8af-5bad-a605-5f6348cb1849
+
+	measure 'Exports ($bn)' = DIVIDE ( SUM ( Trade[Exports $M] ), 1000 )
+		formatString: $#,0.0;-$#,0.0;$0.0
+		displayFolder: Trade
+		lineageTag: f0473d5a-2404-50c9-8887-242fccca9696
+
+	measure 'Trade Balance ($bn)' = DIVIDE ( SUM ( Trade[Balance $M] ), 1000 )
+		formatString: $#,0.0;-$#,0.0;$0.0
+		displayFolder: Trade
+		lineageTag: 0b89cf89-06e1-554d-ba13-5d8649df98d9
+
+	measure 'Total Trade ($bn)' = DIVIDE ( SUM ( Trade[Total Trade $M] ), 1000 )
+		formatString: $#,0.0;-$#,0.0;$0.0
+		displayFolder: Trade
+		lineageTag: a11a6a66-7c8b-5aaf-81eb-50ae4ad734f6
+
+	measure 'Imports LY ($bn)' = CALCULATE ( [Imports ($bn)], DATEADD ( 'Date'[Date], -1, YEAR ) )
+		formatString: $#,0.0;-$#,0.0;$0.0
+		displayFolder: Trade
+		lineageTag: 8eab641c-782e-567c-a06e-8cf57a4792ca
+
+	measure 'Exports LY ($bn)' = CALCULATE ( [Exports ($bn)], DATEADD ( 'Date'[Date], -1, YEAR ) )
+		formatString: $#,0.0;-$#,0.0;$0.0
+		displayFolder: Trade
+		lineageTag: d081cb6a-c531-5e64-8c39-3618ee9efc02
+
+	measure 'Imports YoY %' =
+			VAR _cy = [Imports ($bn)]
+			VAR _ly = [Imports LY ($bn)]
+			RETURN IF ( NOT ISBLANK ( _cy ) && NOT ISBLANK ( _ly ), DIVIDE ( _cy - _ly, _ly ) )
+		formatString: +0.0%;-0.0%;0.0%
+		displayFolder: Trade
+		lineageTag: 5b5969cb-67e8-5352-8caa-8ad19b35e8c2
+
+	measure 'Exports YoY %' =
+			VAR _cy = [Exports ($bn)]
+			VAR _ly = [Exports LY ($bn)]
+			RETURN IF ( NOT ISBLANK ( _cy ) && NOT ISBLANK ( _ly ), DIVIDE ( _cy - _ly, _ly ) )
+		formatString: +0.0%;-0.0%;0.0%
+		displayFolder: Trade
+		lineageTag: 01179163-8521-5cc4-9e3d-44a1bdde1886
+
+	measure 'Imports YTD ($bn)' = TOTALYTD ( [Imports ($bn)], 'Date'[Date] )
+		formatString: $#,0.0;-$#,0.0;$0.0
+		displayFolder: Trade
+		lineageTag: c403dba8-3f56-5686-9837-9477d56b53c0
+
+	measure 'Last Trade Month' = CALCULATE ( MAX ( Trade[Month] ), REMOVEFILTERS ( 'Date' ) )
+		formatString: mmm yyyy
+		displayFolder: Trade
+		lineageTag: 71df6bf3-f60e-560c-89e4-7ae91b9f2786
+
+	measure 'Imports Last 12M ($bn)' =
+			VAR _m = [Last Trade Month]
+			RETURN CALCULATE ( [Imports ($bn)], REMOVEFILTERS ( 'Date' ), 'Date'[Date] > EDATE ( _m, -12 ), 'Date'[Date] <= _m )
+		formatString: $#,0.0;-$#,0.0;$0.0
+		displayFolder: Trade
+		lineageTag: 5a96ccaa-b267-5d1a-9610-1adb8801174d
+
+	measure 'Share of US Imports %' = DIVIDE ( [Imports ($bn)], CALCULATE ( [Imports ($bn)], REMOVEFILTERS ( Country ) ) )
+		formatString: 0.0%
+		displayFolder: Trade
+		lineageTag: 4dad6c92-2ceb-5da9-8768-01fc75c590d5
+
+	measure 'Import Rank' = IF ( HASONEVALUE ( Country[Country] ) && NOT ISBLANK ( [Imports ($bn)] ), RANKX ( ALLSELECTED ( Country[Country] ), [Imports ($bn)], , DESC, DENSE ) )
+		formatString: #,0
+		displayFolder: Trade
+		lineageTag: 8536eb73-4410-5633-af1b-864873782824
+
+	measure 'Avg Monthly Imports 2024 ($bn)' = DIVIDE ( CALCULATE ( SUM ( Trade[Imports $M] ), REMOVEFILTERS ( 'Date' ), 'Date'[Year] = 2024 ), 12000 )
+		formatString: $#,0.0;-$#,0.0;$0.0
+		displayFolder: Trade
+		lineageTag: 9a537fe7-96e4-5235-8398-d29c6eea6963
+
+	measure 'Avg Monthly Imports After ($bn)' =
+			VAR _v = CALCULATE ( SUM ( Trade[Imports $M] ), KEEPFILTERS ( 'Date'[Date] >= DATE ( 2025, 4, 1 ) ) )
+			VAR _n = CALCULATE ( DISTINCTCOUNT ( Trade[Month] ), KEEPFILTERS ( 'Date'[Date] >= DATE ( 2025, 4, 1 ) ), REMOVEFILTERS ( Country ) )
+			RETURN DIVIDE ( _v, _n * 1000 )
+		formatString: $#,0.0;-$#,0.0;$0.0
+		displayFolder: Trade
+		lineageTag: 042172aa-b335-5163-b97a-40aad9a775c9
+
+	measure 'Import Change vs 2024 %' =
+			VAR _a = [Avg Monthly Imports After ($bn)]
+			VAR _b = [Avg Monthly Imports 2024 ($bn)]
+			RETURN IF ( _a > 0 && _b > 0, _a / _b - 1 )
+		formatString: +0.0%;-0.0%;0.0%
+		displayFolder: Trade
+		lineageTag: 63dac98a-d9d5-5cea-888b-d377d1f3dc6d
+
+	measure 'Import Change Top 20 %' = IF ( SELECTEDVALUE ( Country[Entity Type] ) = "country" && MIN ( 'Country Before After'[Import Rank Before] ) <= 20, [Import Change vs 2024 %] )
+		formatString: +0.0%;-0.0%;0.0%
+		displayFolder: Trade
+		lineageTag: b6be162b-3b59-535f-adb7-0fdcb7ee64e6
+
+	measure 'Map Colour Imports' =
+			VAR _x = [Import Change vs 2024 %]
+			RETURN SWITCH ( TRUE (), ISBLANK ( _x ) || SELECTEDVALUE ( Country[Entity Type] ) <> "country", BLANK (),
+			    _x <= -0.30, "#B23A1E", _x <= -0.10, "#E4572E", _x < 0, "#F4A582", _x < 0.10, "#A6DBD5", _x < 0.30, "#1AA39A", "#0E6B64" )
+		displayFolder: Trade
+		lineageTag: 36585970-0a29-5f97-a597-fa1fad16452b
+
+	measure 'Selected Trade Metric ($bn)' =
+			SWITCH ( SELECTEDVALUE ( 'Trade Metric'[Metric], "Imports" ),
+			    "Imports", [Imports ($bn)],
+			    "Exports", [Exports ($bn)],
+			    "Trade balance", [Trade Balance ($bn)],
+			    "Total trade", [Total Trade ($bn)] )
+		formatString: $#,0.0;-$#,0.0;$0.0
+		displayFolder: Trade
+		lineageTag: d45e5d5b-7a45-5e87-a786-cdc3484f61bb
+
+	measure 'Selected Trade Metric LY ($bn)' = CALCULATE ( [Selected Trade Metric ($bn)], DATEADD ( 'Date'[Date], -1, YEAR ) )
+		formatString: $#,0.0;-$#,0.0;$0.0
+		displayFolder: Trade
+		lineageTag: 0ad4adfe-4a16-51b8-a6c2-1298a358bb8a
+
+	measure 'Selected Trade Metric YoY %' =
+			VAR _cy = [Selected Trade Metric ($bn)]
+			VAR _ly = [Selected Trade Metric LY ($bn)]
+			RETURN IF ( NOT ISBLANK ( _ly ), DIVIDE ( _cy - _ly, ABS ( _ly ) ) )
+		formatString: +0.0%;-0.0%;0.0%
+		displayFolder: Trade
+		lineageTag: c90fa835-a493-5822-9f2e-a8d4e2681490
+
+	measure 'Trade Trend Title' =
+			SELECTEDVALUE ( 'Trade Metric'[Metric], "Imports" ) & " by month ($bn), " &
+			IF ( HASONEVALUE ( Country[Map Name] ), VALUES ( Country[Map Name] ), "all partners" ) & " (with same month last year)"
+		displayFolder: Trade
+		lineageTag: b1e964c6-ca4d-5a60-8109-518993bc3bdd
+
+	measure 'Diverted Imports ($bn)' = DIVIDE ( SUM ( 'Trade Diversion'[Diverted Imports $M] ), 1000 )
+		formatString: $#,0.0;-$#,0.0;$0.0
+		displayFolder: Trade
+		lineageTag: ec3aea31-5d22-57a7-b839-d54638ab2205
+
+	measure 'Import Share of Group %' = AVERAGE ( 'Trade Diversion'[Import Share] )
+		formatString: 0.0%
+		displayFolder: Trade
+		lineageTag: 917fba16-74d0-5d6e-8ef1-2a9f7c7332c2
+
+	measure 'Share Change vs 2024 (pp)' = AVERAGE ( 'Trade Diversion'[Share Change pp] )
+		formatString: +0.0;-0.0;0.0
+		displayFolder: Trade
+		lineageTag: 797944c5-3782-5520-91a1-ab5441967dd1
+
+	measure 'Statutory Tariff Rate %' = AVERAGE ( 'Tariff Rate'[Statutory Rate %] )
+		formatString: 0.0%
+		displayFolder: Tariffs
+		lineageTag: beca98ad-ef9f-5b73-babd-f6bf710f063a
+
+	measure 'Peak Statutory Rate %' = MAX ( 'Tariff Rate'[Max Rate in Month %] )
+		formatString: 0.0%
+		displayFolder: Tariffs
+		lineageTag: e37675c4-5305-5327-8df0-17b9e6e09c63
+
+	measure 'Statutory Tariff Latest %' =
+			VAR _m = DATE ( YEAR ( TODAY () ), MONTH ( TODAY () ), 1 )
+			RETURN CALCULATE ( AVERAGE ( 'Tariff Rate'[Statutory Rate %] ), REMOVEFILTERS ( 'Date' ), 'Tariff Rate'[Month] = _m )
+		formatString: 0.0%
+		displayFolder: Tariffs
+		lineageTag: cdf3b67f-31b1-5374-9db3-330bbbc5ae23
+
+	measure 'Map Colour Tariff' =
+			VAR _x = [Peak Statutory Rate %]
+			RETURN SWITCH ( TRUE (), ISBLANK ( _x ) || SELECTEDVALUE ( Country[Entity Type] ) <> "country", BLANK (),
+			    _x >= 0.5, "#7A2E0E", _x >= 0.3, "#C8553D", _x >= 0.2, "#F2A541", _x >= 0.15, "#F6C985", _x >= 0.1, "#FBE6C2", "#DCE3EE" )
+		displayFolder: Tariffs
+		lineageTag: 988a5f2d-ccbc-5373-a45b-7a878a3f84fa
+
+	measure 'Customs Gross ($bn)' = DIVIDE ( SUM ( Customs[Gross Receipts $M] ), 1000 )
+		formatString: $#,0.0;-$#,0.0;$0.0
+		displayFolder: Tariffs
+		lineageTag: 4b691fa0-5cca-5fe5-8508-a36726f8b6f8
+
+	measure 'Customs Refunds ($bn)' = DIVIDE ( SUM ( Customs[Refunds $M] ), 1000 )
+		formatString: $#,0.0;-$#,0.0;$0.0
+		displayFolder: Tariffs
+		lineageTag: 58b17af2-65b9-5cca-bc1b-a6ab6dbba4d1
+
+	measure 'Customs Net ($bn)' = DIVIDE ( SUM ( Customs[Net Receipts $M] ), 1000 )
+		formatString: $#,0.0;-$#,0.0;$0.0
+		displayFolder: Tariffs
+		lineageTag: b1261046-5eb1-5294-88f1-ee0fbb741ae6
+
+	measure 'Effective Tariff Rate %' = DIVIDE ( SUM ( Customs[Gross Receipts $M] ), SUM ( Customs[US Imports $M] ) )
+		formatString: 0.0%
+		displayFolder: Tariffs
+		lineageTag: 0b9a48e7-4636-51e3-acaa-4a842196e1cd
+
+	measure 'Effective Tariff Rate Net %' = DIVIDE ( SUM ( Customs[Net Receipts $M] ), SUM ( Customs[US Imports $M] ) )
+		formatString: 0.0%
+		displayFolder: Tariffs
+		lineageTag: 116a52ba-2d27-57df-af20-a288e71ed6de
+
+	measure 'Effective Tariff Latest %' =
+			VAR _last = CALCULATE ( MAX ( Customs[Month] ), REMOVEFILTERS ( 'Date' ), FILTER ( ALL ( Customs[Effective Rate Gross %] ), NOT ISBLANK ( Customs[Effective Rate Gross %] ) ) )
+			RETURN CALCULATE ( [Effective Tariff Rate %], REMOVEFILTERS ( 'Date' ), Customs[Month] = _last )
+		formatString: 0.0%
+		displayFolder: Tariffs
+		lineageTag: 0ba9dc24-c8d0-50e0-9702-7cc18b2d8bed
+
+	measure 'Effective Tariff 2024 %' = CALCULATE ( [Effective Tariff Rate %], REMOVEFILTERS ( 'Date' ), 'Date'[Year] = 2024 )
+		formatString: 0.0%
+		displayFolder: Tariffs
+		lineageTag: ac80ae4c-fbf5-5925-9d5d-6749c3618072
+
+	measure 'Effective Tariff Change (pp)' = ( [Effective Tariff Latest %] - [Effective Tariff 2024 %] ) * 100
+		formatString: +0.0;-0.0;0.0
+		displayFolder: Tariffs
+		lineageTag: c2ed3526-24e2-5c25-a570-d1f4d4666828
+
+	measure 'Incremental Customs vs 2024 ($bn)' = DIVIDE ( SUM ( Customs[Incremental Net vs 2024 $M] ), 1000 )
+		formatString: $#,0.0;-$#,0.0;$0.0
+		displayFolder: Tariffs
+		lineageTag: c7559e9f-709e-5e9f-b920-f55f74090f84
+
+	measure 'Cumulative Incremental Customs ($bn)' =
+			VAR _d = MAX ( 'Date'[Date] )
+			RETURN IF ( _d >= DATE ( 2025, 2, 1 ), DIVIDE ( CALCULATE ( SUM ( Customs[Incremental Net vs 2024 $M] ), REMOVEFILTERS ( 'Date' ),
+			    Customs[Month] >= DATE ( 2025, 2, 1 ), Customs[Month] <= _d ), 1000 ) )
+		formatString: $#,0.0;-$#,0.0;$0.0
+		displayFolder: Tariffs
+		lineageTag: f147c810-3269-5b75-8f10-474c92975427
+
+	measure 'Customs Windfall to Date ($bn)' = DIVIDE ( CALCULATE ( SUM ( Customs[Incremental Net vs 2024 $M] ), REMOVEFILTERS ( 'Date' ), Customs[Month] >= DATE ( 2025, 2, 1 ) ), 1000 )
+		formatString: $#,0.0;-$#,0.0;$0.0
+		displayFolder: Tariffs
+		lineageTag: 98312b08-be14-5ee4-85ba-46720e1bb688
+
+	measure 'Tariff Events (#)' = CALCULATE ( COUNTROWS ( Events ), Events[Event Family] = "Tariff" )
+		formatString: #,0
+		displayFolder: Tariffs
+		lineageTag: a9c9a8bf-1392-520c-b653-60f8405c0c0e
+
+	measure 'War Events (#)' = CALCULATE ( COUNTROWS ( Events ), Events[Event Family] = "Iran war" )
+		formatString: #,0
+		displayFolder: Tariffs
+		lineageTag: 64a7ba69-7dbe-58d8-a03c-dec3a726ce5b
+
+	measure 'Tariff Cost per Household ($/mo)' = SUM ( Customs[Incremental Gross per Household USD] )
+		formatString: $#,0
+		displayFolder: Household
+		lineageTag: 46e77cb0-ca74-5c8f-a63c-32f499f8808a
+
+	measure 'Household Tariff Cost to Date ($)' = CALCULATE ( SUM ( Customs[Incremental Gross per Household USD] ), REMOVEFILTERS ( 'Date' ), Customs[Month] >= DATE ( 2025, 2, 1 ) )
+		formatString: $#,0
+		displayFolder: Household
+		lineageTag: af3003b1-4cf1-5c8a-bb12-cd2a8594a00a
+
+	measure 'Cumulative Tariff Cost per Household ($)' =
+			VAR _d = MAX ( 'Date'[Date] )
+			RETURN IF ( _d >= DATE ( 2025, 2, 1 ), CALCULATE ( SUM ( Customs[Incremental Gross per Household USD] ), REMOVEFILTERS ( 'Date' ),
+			    Customs[Month] >= DATE ( 2025, 2, 1 ), Customs[Month] <= _d ) )
+		formatString: $#,0
+		displayFolder: Household
+		lineageTag: 39a02b85-81ec-5e26-83d6-42e1f3cf181e
+
+	measure 'CPI YoY %' = AVERAGE ( CPI[YoY %] )
+		formatString: 0.0%
+		displayFolder: Household
+		lineageTag: c9ee0c17-1df6-5176-9fcb-04685fd15b0a
+
+	measure 'CPI YoY Latest %' =
+			VAR _last = CALCULATE ( MAX ( CPI[Month] ), REMOVEFILTERS ( 'Date' ), FILTER ( ALL ( CPI[YoY %] ), NOT ISBLANK ( CPI[YoY %] ) ) )
+			RETURN CALCULATE ( AVERAGE ( CPI[YoY %] ), REMOVEFILTERS ( 'Date' ), CPI[Month] = _last )
+		formatString: 0.0%
+		displayFolder: Household
+		lineageTag: 77446ce2-4f47-562d-9075-355e0cc8f968
+
+	measure 'CPI Change since Jan 2025 %' =
+			VAR _last = CALCULATE ( MAX ( CPI[Month] ), REMOVEFILTERS ( 'Date' ), FILTER ( ALL ( CPI[Change since Jan2025 %] ), NOT ISBLANK ( CPI[Change since Jan2025 %] ) ) )
+			RETURN CALCULATE ( AVERAGE ( CPI[Change since Jan2025 %] ), REMOVEFILTERS ( 'Date' ), CPI[Month] = _last )
+		formatString: +0.0%;-0.0%;0.0%
+		displayFolder: Household
+		lineageTag: d5c2baf4-9132-5049-8293-5d2a7b558c6f
+
+	measure 'Exposure Colour' =
+			SWITCH ( SELECTEDVALUE ( 'CPI Category'[Exposure Group] ), "tariff_exposed_goods", "#F2A541", "domestic_services", "#1AA39A",
+			    "energy", "#E4572E", "energy_sensitive_services", "#E4572E", "food", "#3A86FF", "aggregate", "#0B1F3A", "#5B6B82" )
+		displayFolder: Household
+		lineageTag: b44a395e-63f6-54ea-87b7-9f9df537b099
+
+	measure 'Headline CPI YoY %' = AVERAGE ( Household[CPI Headline YoY %] )
+		formatString: 0.0%
+		displayFolder: Household
+		lineageTag: cf702057-3c00-5493-9410-8b16cc722c12
+
+	measure 'Core CPI YoY %' = AVERAGE ( Household[CPI Core YoY %] )
+		formatString: 0.0%
+		displayFolder: Household
+		lineageTag: 8b2d51c4-2cd7-56bd-82d9-2e1547c65174
+
+	measure 'Core Goods CPI YoY %' = AVERAGE ( Household[CPI Core Goods YoY %] )
+		formatString: 0.0%
+		displayFolder: Household
+		lineageTag: 943dbcf0-7e88-5a42-ac75-8e6a173e9b22
+
+	measure 'Core Services CPI YoY %' = AVERAGE ( Household[CPI Core Services YoY %] )
+		formatString: 0.0%
+		displayFolder: Household
+		lineageTag: 56c82979-ca8e-5376-a2e9-cde8e67da2f3
+
+	measure 'Gasoline CPI YoY %' = AVERAGE ( Household[CPI Gasoline YoY %] )
+		formatString: 0.0%
+		displayFolder: Household
+		lineageTag: 33144f03-4e42-5d63-a4ad-e74171a4f48a
+
+	measure 'Tariff-exposed Goods YoY %' = AVERAGE ( Household[Tariff Exposed Goods YoY %] )
+		formatString: 0.0%
+		displayFolder: Household
+		lineageTag: adf4fef1-1260-5e41-bbcd-202732f23ad6
+
+	measure 'Domestic Services YoY %' = AVERAGE ( Household[Domestic Services YoY %] )
+		formatString: 0.0%
+		displayFolder: Household
+		lineageTag: d3b94edb-c990-523f-b759-2bce8e1fe898
+
+	measure 'Goods minus Services Gap %' = AVERAGE ( Household[Tariff Goods Minus Services pp] )
+		formatString: +0.0%;-0.0%;0.0%
+		displayFolder: Household
+		lineageTag: 3bc43357-59b2-5e0b-b855-2fc43f626620
+
+	measure 'Headline CPI Latest YoY %' =
+			VAR _last = CALCULATE ( MAX ( Household[Month] ), REMOVEFILTERS ( 'Date' ), FILTER ( ALL ( Household[CPI Headline YoY %] ), NOT ISBLANK ( Household[CPI Headline YoY %] ) ) )
+			RETURN CALCULATE ( [Headline CPI YoY %], REMOVEFILTERS ( 'Date' ), Household[Month] = _last )
+		formatString: 0.0%
+		displayFolder: Household
+		lineageTag: 7a00c527-3a47-5a03-86bb-ce0f2b024fb3
+
+	measure 'Core Goods Latest YoY %' =
+			VAR _last = CALCULATE ( MAX ( Household[Month] ), REMOVEFILTERS ( 'Date' ), FILTER ( ALL ( Household[CPI Core Goods YoY %] ), NOT ISBLANK ( Household[CPI Core Goods YoY %] ) ) )
+			RETURN CALCULATE ( [Core Goods CPI YoY %], REMOVEFILTERS ( 'Date' ), Household[Month] = _last )
+		formatString: 0.0%
+		displayFolder: Household
+		lineageTag: 3ab62139-7661-53cd-ac94-7825ea6c037e
+
+	measure 'Real Wage YoY %' = AVERAGE ( Household[Real Wage YoY %] )
+		formatString: +0.0%;-0.0%;0.0%
+		displayFolder: Household
+		lineageTag: fbb779f2-a3ec-5ff9-aff3-27e175c999a4
+
+	measure 'Real Wage Latest YoY %' =
+			VAR _last = CALCULATE ( MAX ( Household[Month] ), REMOVEFILTERS ( 'Date' ), FILTER ( ALL ( Household[Real Wage YoY %] ), NOT ISBLANK ( Household[Real Wage YoY %] ) ) )
+			RETURN CALCULATE ( [Real Wage YoY %], REMOVEFILTERS ( 'Date' ), Household[Month] = _last )
+		formatString: +0.0%;-0.0%;0.0%
+		displayFolder: Household
+		lineageTag: 6a3e013d-a8f0-55d6-a62b-3d9677753ce3
+
+	measure 'Consumer Sentiment' = AVERAGE ( Household[Consumer Sentiment] )
+		formatString: #,0.0
+		displayFolder: Household
+		lineageTag: 4a289753-2975-5e21-b44f-39daadf1acba
+
+	measure 'Gasoline Price ($/gal)' = AVERAGE ( Household[Gasoline USD Gal] )
+		formatString: $#,0.00
+		displayFolder: Household
+		lineageTag: b3f88795-b1ae-5a92-90f6-10c6c0147863
+
+	measure 'Gasoline Latest ($/gal)' =
+			VAR _last = CALCULATE ( MAX ( Household[Month] ), REMOVEFILTERS ( 'Date' ), FILTER ( ALL ( Household[Gasoline USD Gal] ), NOT ISBLANK ( Household[Gasoline USD Gal] ) ) )
+			RETURN CALCULATE ( [Gasoline Price ($/gal)], REMOVEFILTERS ( 'Date' ), Household[Month] = _last )
+		formatString: $#,0.00
+		displayFolder: Household
+		lineageTag: cd5e88cc-c546-5f83-9770-d485cb84eca6
+
+	measure 'Pass-through DiD (pp/yr)' = CALCULATE ( SUM ( 'Pass-through'[Annualised Coef] ), 'Pass-through'[Spec] = "did_main", 'Pass-through'[Term] = "treat_post" )
+		formatString: +0.0;-0.0;0.0
+		displayFolder: Household
+		lineageTag: 199158d9-6230-5d7b-912e-f41395d9cbfc
+
+	measure 'Pass-through DiD Text' =
+			VAR _lo = CALCULATE ( SUM ( 'Pass-through'[CI Lo] ), 'Pass-through'[Spec] = "did_main", 'Pass-through'[Term] = "treat_post" ) * 12
+			VAR _hi = CALCULATE ( SUM ( 'Pass-through'[CI Hi] ), 'Pass-through'[Spec] = "did_main", 'Pass-through'[Term] = "treat_post" ) * 12
+			VAR _p = CALCULATE ( SUM ( 'Pass-through'[P Value] ), 'Pass-through'[Spec] = "did_main", 'Pass-through'[Term] = "treat_post" )
+			RETURN "95% CI " & FORMAT ( _lo, "0.0" ) & " to " & FORMAT ( _hi, "0.0" ) & " pp/yr, p = " & FORMAT ( _p, "0.000" )
+		displayFolder: Household
+		lineageTag: 46771fa6-4b53-520e-a496-226cbfb4067f
+
+	measure 'Event-study Coef (pp/mo)' = CALCULATE ( SUM ( 'Pass-through'[Coef] ), 'Pass-through'[Spec] = "event_study" )
+		formatString: 0.00
+		displayFolder: Household
+		lineageTag: fc0daf26-8577-500d-b72b-fe5e97f8f303
+
+	measure 'Event-study CI Lo' = CALCULATE ( SUM ( 'Pass-through'[CI Lo] ), 'Pass-through'[Spec] = "event_study" )
+		formatString: 0.00
+		displayFolder: Household
+		lineageTag: 77333cc7-5a1f-55fd-8caf-184943946a53
+
+	measure 'Event-study CI Hi' = CALCULATE ( SUM ( 'Pass-through'[CI Hi] ), 'Pass-through'[Spec] = "event_study" )
+		formatString: 0.00
+		displayFolder: Household
+		lineageTag: d7e1d768-8aad-5698-8f68-520e33a3dd18
+
+	measure 'CPI Category Title' = "CPI YoY by category, latest month (" & FORMAT ( CALCULATE ( MAX ( CPI[Month] ), REMOVEFILTERS ( 'Date' ), FILTER ( ALL ( CPI[YoY %] ), NOT ISBLANK ( CPI[YoY %] ) ) ), "mmm yyyy" ) & "), amber = tariff-exposed goods"
+		displayFolder: Household
+		lineageTag: 00d45f44-2f7c-5255-97f6-3b12b661fad7
+
+	measure 'Brent ($/bbl)' = AVERAGE ( Oil[Brent USD] )
+		formatString: $#,0.00
+		displayFolder: Oil
+		lineageTag: 6064ccc3-ff1d-55da-97db-c3fc91da6a24
+
+	measure 'WTI ($/bbl)' = AVERAGE ( Oil[WTI USD] )
+		formatString: $#,0.00
+		displayFolder: Oil
+		lineageTag: bd2d1d51-132d-5ec8-af83-817ce93381f2
+
+	measure 'Brent Latest ($/bbl)' =
+			VAR _last = CALCULATE ( MAX ( Oil[Date] ), REMOVEFILTERS ( 'Date' ), FILTER ( ALL ( Oil[Brent USD] ), NOT ISBLANK ( Oil[Brent USD] ) ) )
+			RETURN CALCULATE ( [Brent ($/bbl)], REMOVEFILTERS ( 'Date' ), Oil[Date] = _last )
+		formatString: $#,0.00
+		displayFolder: Oil
+		lineageTag: 6846bc47-d248-57bb-b06c-b40cbf3c7a3e
+
+	measure 'Brent Pre-war ($/bbl)' = CALCULATE ( [Brent ($/bbl)], REMOVEFILTERS ( 'Date' ), Oil[Date] = DATE(2026, 2, 27) )
+		formatString: $#,0.00
+		displayFolder: Oil
+		lineageTag: 67fcfa00-0129-5e2b-b4d9-fb07b0e40acf
+
+	measure 'Brent vs Pre-war %' = DIVIDE ( [Brent Latest ($/bbl)], [Brent Pre-war ($/bbl)] ) - 1
+		formatString: +0.0%;-0.0%;0.0%
+		displayFolder: Oil
+		lineageTag: 38b5dacb-59a5-5ef1-833d-de8f98e14c6b
+
+	measure 'Brent War Peak ($/bbl)' = CALCULATE ( MAX ( Oil[Brent USD] ), REMOVEFILTERS ( 'Date' ), Oil[Date] >= DATE(2026, 2, 28) )
+		formatString: $#,0.00
+		displayFolder: Oil
+		lineageTag: 793bb67f-8b01-5982-a664-a1e20a9325b6
+
+	measure 'Brent Drawdown from War Peak %' = DIVIDE ( [Brent Latest ($/bbl)], [Brent War Peak ($/bbl)] ) - 1
+		formatString: +0.0%;-0.0%;0.0%
+		displayFolder: Oil
+		lineageTag: 746d9207-4048-5d41-bd2d-b6bdf6d02485
+
+	measure 'Brent 52w Drawdown %' = AVERAGE ( Oil[Brent Drawdown 52w %] )
+		formatString: +0.0%;-0.0%;0.0%
+		displayFolder: Oil
+		lineageTag: d202bb2c-1515-5712-9ecc-c4639e0f2cc1
+
+	measure 'Brent-WTI Spread ($)' = AVERAGE ( Oil[Brent WTI Spread USD] )
+		formatString: $#,0.00
+		displayFolder: Oil
+		lineageTag: fbf9f55c-cb4e-57f7-894c-518df55b7781
+
+	measure 'Brent vs Pre-war (daily) %' = AVERAGE ( 'Oil Shock'[Brent vs Prewar %] )
+		formatString: +0.0%;-0.0%;0.0%
+		displayFolder: Oil
+		lineageTag: 891b0506-8d71-5a77-a032-b0f1d836a004
+
+	measure 'Hormuz Transits (7d avg)' = AVERAGE ( 'Oil Shock'[Hormuz Transits 7d] )
+		formatString: #,0.0
+		displayFolder: Oil
+		lineageTag: 9ba1e487-f935-528d-afba-821865281218
+
+	measure 'Hormuz Tankers (7d avg)' = AVERAGE ( 'Oil Shock'[Hormuz Tankers 7d] )
+		formatString: #,0.0
+		displayFolder: Oil
+		lineageTag: ab306807-626e-523d-bdb0-84955145b789
+
+	measure 'Hormuz Pre-war Baseline' = CALCULATE ( AVERAGE ( 'Oil Shock'[Hormuz Transits 7d] ), REMOVEFILTERS ( 'Date' ), 'Oil Shock'[Date] = DATE(2026, 2, 27) )
+		formatString: #,0.0
+		displayFolder: Oil
+		lineageTag: d00651a2-e510-53d0-84b4-0ee15b47d6a9
+
+	measure 'Hormuz vs Pre-war %' = AVERAGE ( 'Oil Shock'[Hormuz 7d vs Prewar %] )
+		formatString: +0.0%;-0.0%;0.0%
+		displayFolder: Oil
+		lineageTag: 296d00eb-c78e-5395-8c9c-a9fc323439e1
+
+	measure 'Hormuz Latest vs Pre-war %' =
+			VAR _last = CALCULATE ( MAX ( 'Oil Shock'[Date] ), REMOVEFILTERS ( 'Date' ), FILTER ( ALL ( 'Oil Shock'[Hormuz 7d vs Prewar %] ), NOT ISBLANK ( 'Oil Shock'[Hormuz 7d vs Prewar %] ) ) )
+			RETURN CALCULATE ( [Hormuz vs Pre-war %], REMOVEFILTERS ( 'Date' ), 'Oil Shock'[Date] = _last )
+		formatString: +0.0%;-0.0%;0.0%
+		displayFolder: Oil
+		lineageTag: 34594aab-bf03-5f6f-8412-a1241c41fefe
+
+	measure 'IRF (%)' = AVERAGE ( IRF[IRF] )
+		formatString: 0.00
+		displayFolder: Oil
+		lineageTag: f5a8bb4f-4f44-53d1-903d-86bfa54e7d41
+
+	measure 'IRF Lo 95' = AVERAGE ( IRF[CI Lo 95] )
+		formatString: 0.00
+		displayFolder: Oil
+		lineageTag: cb922e6e-392d-59ab-b611-f72f750874c4
+
+	measure 'IRF Hi 95' = AVERAGE ( IRF[CI Hi 95] )
+		formatString: 0.00
+		displayFolder: Oil
+		lineageTag: c237057b-2ffd-5c19-a4ea-c11d65769264
+
+	measure 'Gasoline IRF 1m (%)' = CALCULATE ( [IRF (%)], IRF[Outcome] = "gasoline_cpi", IRF[Horizon Months] = 1 )
+		formatString: +0.0;-0.0
+		displayFolder: Oil
+		lineageTag: cddbcd21-ebf7-5bce-8ba7-6ed36d8a7451
+
+	measure 'Days Since War Began' = DATEDIFF ( DATE(2026, 2, 28), TODAY (), DAY )
+		formatString: #,0
+		displayFolder: Oil
+		lineageTag: 8ee9208a-7385-56ef-be14-3911e1326ea5
+
+	measure 'Oil Title' =
+			"Brent & WTI ($/bbl) with Iran-war events, Brent latest " & FORMAT ( [Brent Latest ($/bbl)], "$0.0" ) & " (" &
+			FORMAT ( [Brent vs Pre-war %], "+0%;-0%" ) & " vs pre-war)"
+		displayFolder: Oil
+		lineageTag: 2eb78d43-420f-5afc-9347-aa255772d065
+
+	measure 'CAR %' = AVERAGE ( 'Event Study'[CAR %] )
+		formatString: +0.0%;-0.0%;0.0%
+		displayFolder: Markets
+		lineageTag: 08f84d4a-fd53-5473-9826-c2022977f18e
+
+	measure 'CAR D+5 %' = CALCULATE ( [CAR %], 'Event Study'[Window Label] = "D+5" )
+		formatString: +0.0%;-0.0%;0.0%
+		displayFolder: Markets
+		lineageTag: 8518b0f5-6c16-5942-811e-e0c0f55087c3
+
+	measure 'CAR D+20 %' = CALCULATE ( [CAR %], 'Event Study'[Window Label] = "D+20" )
+		formatString: +0.0%;-0.0%;0.0%
+		displayFolder: Markets
+		lineageTag: 7897e17b-6633-58a3-905a-4b4a07e17732
+
+	measure 'Brent War CAR D+5 %' = CALCULATE ( [CAR %], REMOVEFILTERS ( 'Event Study' ), 'Event Study'[Symbol] = "BZ=F", 'Event Study'[Event ID] = "W02", 'Event Study'[Window Label] = "D+5" )
+		formatString: +0.0%;-0.0%;0.0%
+		displayFolder: Markets
+		lineageTag: 7109d968-01ec-5695-ae30-c9379e44bc43
+
+	measure 'S&P 500 War CAR D+20 %' = CALCULATE ( [CAR %], REMOVEFILTERS ( 'Event Study' ), 'Event Study'[Symbol] = "^GSPC", 'Event Study'[Event ID] = "W02", 'Event Study'[Window Label] = "D+20" )
+		formatString: +0.0%;-0.0%;0.0%
+		displayFolder: Markets
+		lineageTag: 598d29ca-77e6-576f-9946-a8b89a723235
+
+	measure 'Significant CARs %' = DIVIDE ( CALCULATE ( COUNTROWS ( 'Event Study' ), 'Event Study'[Significant 5%] = TRUE () ), COUNTROWS ( 'Event Study' ) )
+		formatString: 0.0%
+		displayFolder: Markets
+		lineageTag: f810d157-d2fd-5711-933f-b20e1a11ac05
+
+	measure 'CAR Colour' =
+			VAR _x = [CAR D+5 %]
+			RETURN SWITCH ( TRUE (), ISBLANK ( _x ), BLANK (), _x <= -0.05, "#E4572E", _x <= -0.01, "#F4A582", _x < 0.01, "#EEF2F7", _x < 0.05, "#A6DBD5", "#1AA39A" )
+		displayFolder: Markets
+		lineageTag: 105a8295-3d36-5bfa-b06c-e7ea2e76dfbe
+
+	measure 'Index (pre-war = 100)' = AVERAGE ( Market[Index Prewar 100] )
+		formatString: #,0.0
+		displayFolder: Markets
+		lineageTag: 4840a785-0e3e-5a52-9301-a0af8449b703
+
+	measure 'Index (2025 = 100)' = AVERAGE ( Market[Index 2025 100] )
+		formatString: #,0.0
+		displayFolder: Markets
+		lineageTag: a621602d-48b6-5951-a2cc-9099096ecb69
+
+	measure 'Realised Vol 21d' = AVERAGE ( Market[Vol 21d Ann.] )
+		formatString: 0.0%
+		displayFolder: Markets
+		lineageTag: 362afd61-7dad-5659-9274-7f3ee2dc48a4
+
+	measure 'High-vol Probability' = AVERAGE ( 'Vol Regimes'[Prob High Vol] )
+		formatString: 0.0%
+		displayFolder: Markets
+		lineageTag: 2f72bf12-51c9-500f-bad6-eeeedf6f7ee3
+
+	measure 'High-vol Days %' = DIVIDE ( CALCULATE ( COUNTROWS ( 'Vol Regimes' ), 'Vol Regimes'[Regime] = "high-vol" ), COUNTROWS ( 'Vol Regimes' ) )
+		formatString: 0.0%
+		displayFolder: Markets
+		lineageTag: f828897f-246a-5eac-82f9-79e8e22a086c
+
+	measure 'GARCH Vol (ann.)' = AVERAGE ( 'Vol Regimes'[Garch Vol Ann. %] )
+		formatString: 0.0%
+		displayFolder: Markets
+		lineageTag: b3271546-8e83-5c54-8b93-78f259f10775
+
+	measure 'VIX Latest' =
+			VAR _last = CALCULATE ( MAX ( 'Oil Shock'[Date] ), REMOVEFILTERS ( 'Date' ), FILTER ( ALL ( 'Oil Shock'[VIX] ), NOT ISBLANK ( 'Oil Shock'[VIX] ) ) )
+			RETURN CALCULATE ( AVERAGE ( 'Oil Shock'[VIX] ), REMOVEFILTERS ( 'Date' ), 'Oil Shock'[Date] = _last )
+		formatString: #,0.0
+		displayFolder: Markets
+		lineageTag: 66898ce1-5276-5ef8-b464-eba08bbdadab
+
+	measure 'S&P 500 vs Pre-war %' =
+			VAR _last = CALCULATE ( MAX ( Market[Date] ), REMOVEFILTERS ( 'Date' ), Market[Symbol] = "^GSPC" )
+			RETURN CALCULATE ( AVERAGE ( Market[Index Prewar 100] ), REMOVEFILTERS ( 'Date' ), Market[Symbol] = "^GSPC", Market[Date] = _last ) / 100 - 1
+		formatString: +0.0%;-0.0%;0.0%
+		displayFolder: Markets
+		lineageTag: 88aa042a-93ad-59f5-89f8-d4ba8f2402d4
+
+	measure 'Selected Target' = SELECTEDVALUE ( Forecasts[Target], "brent" )
+		displayFolder: Forecast & ML
+		lineageTag: f00b759d-4604-5649-84da-31df632ae9af
+
+	measure 'Actual (series)' =
+			VAR _t = [Selected Target]
+			RETURN CALCULATE ( AVERAGE ( Forecasts[Value] ), Forecasts[Kind] = "actual", Forecasts[Target] = _t )
+		formatString: #,0.0
+		displayFolder: Forecast & ML
+		lineageTag: c57569f0-f531-5545-a451-c291e8257dfa
+
+	measure 'Forecast (central)' =
+			VAR _t = [Selected Target]
+			RETURN CALCULATE ( AVERAGE ( Forecasts[Value] ), Forecasts[Kind] = "forecast", Forecasts[Target] = _t )
+		formatString: #,0.0
+		displayFolder: Forecast & ML
+		lineageTag: 1b23af7b-88a5-5b26-a5a9-71b48873e15d
+
+	measure 'Forecast Lo 80' =
+			VAR _t = [Selected Target]
+			RETURN CALCULATE ( AVERAGE ( Forecasts[Lo 80] ), Forecasts[Kind] = "forecast", Forecasts[Target] = _t )
+		formatString: #,0.0
+		displayFolder: Forecast & ML
+		lineageTag: 5aa24973-8a55-5d88-97b6-f28aa61a4e3b
+
+	measure 'Forecast Hi 80' =
+			VAR _t = [Selected Target]
+			RETURN CALCULATE ( AVERAGE ( Forecasts[Hi 80] ), Forecasts[Kind] = "forecast", Forecasts[Target] = _t )
+		formatString: #,0.0
+		displayFolder: Forecast & ML
+		lineageTag: 3a8f1975-126a-5d7e-99ec-b2056d930737
+
+	measure 'Forecast Lo 95' =
+			VAR _t = [Selected Target]
+			RETURN CALCULATE ( AVERAGE ( Forecasts[Lo 95] ), Forecasts[Kind] = "forecast", Forecasts[Target] = _t )
+		formatString: #,0.0
+		displayFolder: Forecast & ML
+		lineageTag: 27fce6bf-dfb0-5514-a794-f6f4fae8a1b8
+
+	measure 'Forecast Hi 95' =
+			VAR _t = [Selected Target]
+			RETURN CALCULATE ( AVERAGE ( Forecasts[Hi 95] ), Forecasts[Kind] = "forecast", Forecasts[Target] = _t )
+		formatString: #,0.0
+		displayFolder: Forecast & ML
+		lineageTag: 2093a96a-6f27-517f-bc3c-14e2d89825b8
+
+	measure 'AR(1) Alternative' =
+			VAR _t = [Selected Target]
+			RETURN CALCULATE ( AVERAGE ( Forecasts[Value] ), Forecasts[Kind] = "forecast_alt", Forecasts[Target] = _t )
+		formatString: #,0.0
+		displayFolder: Forecast & ML
+		lineageTag: 22fac114-3eb1-597c-b1c8-024ed1eb293e
+
+	measure 'EIA Reference' =
+			VAR _t = [Selected Target]
+			RETURN CALCULATE ( AVERAGE ( Forecasts[Value] ), Forecasts[Kind] = "reference_eia", Forecasts[Target] = _t )
+		formatString: #,0.0
+		displayFolder: Forecast & ML
+		lineageTag: f8871780-6fe0-5064-8b8f-b884b398f605
+
+	measure 'Actual YoY %' =
+			VAR _t = [Selected Target]
+			RETURN CALCULATE ( AVERAGE ( Forecasts[YoY Value] ), Forecasts[Kind] = "actual", Forecasts[Target] = _t )
+		formatString: 0.0%
+		displayFolder: Forecast & ML
+		lineageTag: fad620aa-36db-5742-93fb-c18e43091b39
+
+	measure 'Forecast YoY %' =
+			VAR _t = [Selected Target]
+			RETURN CALCULATE ( AVERAGE ( Forecasts[YoY Value] ), Forecasts[Kind] = "forecast", Forecasts[Target] = _t )
+		formatString: 0.0%
+		displayFolder: Forecast & ML
+		lineageTag: 65a3b9cd-69e2-5d32-9532-8b7cda85f578
+
+	measure 'Forecast YoY Lo 80' =
+			VAR _t = [Selected Target]
+			RETURN CALCULATE ( AVERAGE ( Forecasts[YoY Lo 80] ), Forecasts[Kind] = "forecast", Forecasts[Target] = _t )
+		formatString: 0.0%
+		displayFolder: Forecast & ML
+		lineageTag: d9911569-7a2c-543a-ad35-30f14ce317d2
+
+	measure 'Forecast YoY Hi 80' =
+			VAR _t = [Selected Target]
+			RETURN CALCULATE ( AVERAGE ( Forecasts[YoY Hi 80] ), Forecasts[Kind] = "forecast", Forecasts[Target] = _t )
+		formatString: 0.0%
+		displayFolder: Forecast & ML
+		lineageTag: 59831fd2-7793-5651-9c7e-99c9b10bbf3f
+
+	measure 'Brent Forecast Q4 2026 ($)' =
+			CALCULATE ( AVERAGE ( Forecasts[Value] ), REMOVEFILTERS ( Forecasts ), REMOVEFILTERS ( 'Date' ), Forecasts[Target] = "brent",
+			    Forecasts[Kind] = "forecast", Forecasts[Month] >= DATE ( 2026, 10, 1 ), Forecasts[Month] <= DATE ( 2026, 12, 1 ) )
+		formatString: $#,0.00
+		displayFolder: Forecast & ML
+		lineageTag: dc97a5ad-3b14-5f44-b6db-9995c564f119
+
+	measure 'Brent AR(1) Q4 2026 ($)' =
+			CALCULATE ( AVERAGE ( Forecasts[Value] ), REMOVEFILTERS ( Forecasts ), REMOVEFILTERS ( 'Date' ), Forecasts[Target] = "brent",
+			    Forecasts[Kind] = "forecast_alt", Forecasts[Month] >= DATE ( 2026, 10, 1 ), Forecasts[Month] <= DATE ( 2026, 12, 1 ) )
+		formatString: $#,0.00
+		displayFolder: Forecast & ML
+		lineageTag: c76fe35e-2513-58a2-8150-b7f55389c25e
+
+	measure 'EIA Brent 4Q26 ($)' =
+			CALCULATE ( AVERAGE ( Forecasts[Value] ), REMOVEFILTERS ( Forecasts ), REMOVEFILTERS ( 'Date' ), Forecasts[Kind] = "reference_eia",
+			    Forecasts[Target] = "brent", CONTAINSSTRING ( Forecasts[Model], "4Q26" ) )
+		formatString: $#,0.00
+		displayFolder: Forecast & ML
+		lineageTag: 70ca45b9-738c-577d-86c9-4f8489263301
+
+	measure 'Brent Forecast minus EIA ($)' = [Brent Forecast Q4 2026 ($)] - [EIA Brent 4Q26 ($)]
+		formatString: +$0.0;-$0.0
+		displayFolder: Forecast & ML
+		lineageTag: 652d0fe4-a318-511f-8b85-6d61d2a68107
+
+	measure 'Headline CPI Forecast Oct-26 %' =
+			CALCULATE ( AVERAGE ( Forecasts[YoY Value] ), REMOVEFILTERS ( Forecasts ), REMOVEFILTERS ( 'Date' ), Forecasts[Target] = "headline_cpi",
+			    Forecasts[Kind] = "forecast", Forecasts[Month] >= DATE ( 2026, 10, 1 ), Forecasts[Month] <= DATE ( 2026, 10, 1 ) )
+		formatString: 0.0%
+		displayFolder: Forecast & ML
+		lineageTag: dc852125-70f0-54b7-8227-0858553e83db
+
+	measure 'Headline CPI Forecast Mar-27 %' =
+			CALCULATE ( AVERAGE ( Forecasts[YoY Value] ), REMOVEFILTERS ( Forecasts ), REMOVEFILTERS ( 'Date' ), Forecasts[Target] = "headline_cpi",
+			    Forecasts[Kind] = "forecast", Forecasts[Month] >= DATE ( 2027, 3, 1 ), Forecasts[Month] <= DATE ( 2027, 3, 1 ) )
+		formatString: 0.0%
+		displayFolder: Forecast & ML
+		lineageTag: 9978ad2e-320e-546b-90ed-7502393cfdec
+
+	measure 'Forecast Title' = "Forecast: " & SELECTEDVALUE ( Forecasts[Target Label], "Brent (default, pick a target)" ) & ", central path with 80% / 95% intervals, AR(1) alternative and EIA STEO"
+		displayFolder: Forecast & ML
+		lineageTag: d9e10246-b35c-54d7-a188-ab3cc83558a6
+
+	measure 'WAPE (best model)' = CALCULATE ( AVERAGE ( 'Model Metrics'[Value] ), 'Model Metrics'[Metric] = "wape", 'Model Metrics'[Is Best] = TRUE () )
+		formatString: 0.0%
+		displayFolder: Forecast & ML
+		lineageTag: 85ff16a6-a12d-5848-b4de-07730e4c9980
+
+	measure 'Median WAPE (best models)' = MEDIANX ( VALUES ( 'Model Metrics'[Series ID] ), CALCULATE ( AVERAGE ( 'Model Metrics'[Value] ), 'Model Metrics'[Metric] = "wape", 'Model Metrics'[Is Best] = TRUE () ) )
+		formatString: 0.0%
+		displayFolder: Forecast & ML
+		lineageTag: 10167e3e-813b-59e0-ade3-28e5e1f1b3f9
+
+	measure 'Actual ($bn)' = DIVIDE ( SUM ( Counterfactual[Actual $M] ), 1000 )
+		formatString: $#,0.0;-$#,0.0;$0.0
+		displayFolder: Forecast & ML
+		lineageTag: d485ed9f-3d24-52c3-88b1-371c43e93866
+
+	measure 'Counterfactual ($bn)' = DIVIDE ( CALCULATE ( SUM ( Counterfactual[Counterfactual $M] ), Counterfactual[Is Post-Tariff] = TRUE () ), 1000 )
+		formatString: $#,0.0;-$#,0.0;$0.0
+		displayFolder: Forecast & ML
+		lineageTag: bd7ff2d8-01c3-570b-8c8f-6b2a97b1de22
+
+	measure 'CF Lo 95 ($bn)' = DIVIDE ( CALCULATE ( SUM ( Counterfactual[CF Lo 95] ), Counterfactual[Is Post-Tariff] = TRUE () ), 1000 )
+		formatString: $#,0.0;-$#,0.0;$0.0
+		displayFolder: Forecast & ML
+		lineageTag: 11df555a-c711-5ecc-a163-74122211b29f
+
+	measure 'CF Hi 95 ($bn)' = DIVIDE ( CALCULATE ( SUM ( Counterfactual[CF Hi 95] ), Counterfactual[Is Post-Tariff] = TRUE () ), 1000 )
+		formatString: $#,0.0;-$#,0.0;$0.0
+		displayFolder: Forecast & ML
+		lineageTag: 83b57b51-be90-5e8b-b852-4c0ad0aaa24f
+
+	measure 'CF Lo 80 ($bn)' = DIVIDE ( CALCULATE ( SUM ( Counterfactual[CF Lo 80] ), Counterfactual[Is Post-Tariff] = TRUE () ), 1000 )
+		formatString: $#,0.0;-$#,0.0;$0.0
+		displayFolder: Forecast & ML
+		lineageTag: 7b1ca60c-74c6-563d-ba89-b3a04f15f165
+
+	measure 'CF Hi 80 ($bn)' = DIVIDE ( CALCULATE ( SUM ( Counterfactual[CF Hi 80] ), Counterfactual[Is Post-Tariff] = TRUE () ), 1000 )
+		formatString: $#,0.0;-$#,0.0;$0.0
+		displayFolder: Forecast & ML
+		lineageTag: 01f2c625-0d55-5824-b65b-dc12daeb7532
+
+	measure 'Monthly Tariff Effect ($bn)' = DIVIDE ( CALCULATE ( SUM ( Counterfactual[Effect $M] ), Counterfactual[Is Post-Tariff] = TRUE () ), 1000 )
+		formatString: $#,0.0;-$#,0.0;$0.0
+		displayFolder: Forecast & ML
+		lineageTag: 5f25ad7f-9854-5018-8ae6-d99055bb7a37
+
+	measure 'Effect since Apr 2025 ($bn)' = DIVIDE ( CALCULATE ( SUM ( 'Tariff Effect'[Effect $M] ), 'Tariff Effect'[Effect Window] = "Apr 2025-latest", 'Tariff Effect'[Partner Code] <> "TOTAL" ), 1000 )
+		formatString: $#,0.0;-$#,0.0;$0.0
+		displayFolder: Forecast & ML
+		lineageTag: 9a67dda8-ea74-5b7f-b43a-473e667ef47b
+
+	measure 'Effect Lo 95 ($bn)' = DIVIDE ( CALCULATE ( SUM ( 'Tariff Effect'[Effect Lo 95] ), 'Tariff Effect'[Effect Window] = "Apr 2025-latest", 'Tariff Effect'[Partner Code] <> "TOTAL" ), 1000 )
+		formatString: $#,0.0;-$#,0.0;$0.0
+		displayFolder: Forecast & ML
+		lineageTag: ecae7a3f-26c7-52f6-aef5-8405376648e4
+
+	measure 'Effect Hi 95 ($bn)' = DIVIDE ( CALCULATE ( SUM ( 'Tariff Effect'[Effect Hi 95] ), 'Tariff Effect'[Effect Window] = "Apr 2025-latest", 'Tariff Effect'[Partner Code] <> "TOTAL" ), 1000 )
+		formatString: $#,0.0;-$#,0.0;$0.0
+		displayFolder: Forecast & ML
+		lineageTag: 166c4208-20ed-581c-95fa-1e0b184ed0b1
+
+	measure 'Effect since Apr 2025 %' = CALCULATE ( AVERAGE ( 'Tariff Effect'[Effect %] ), 'Tariff Effect'[Effect Window] = "Apr 2025-latest", 'Tariff Effect'[Partner Code] <> "TOTAL" )
+		formatString: +0.0%;-0.0%;0.0%
+		displayFolder: Forecast & ML
+		lineageTag: 1cc72b8d-9c5c-5a61-a2bc-9dfdf22d64c9
+
+	measure 'Effect Colour' = IF ( [Effect since Apr 2025 ($bn)] < 0, "#E4572E", "#1AA39A" )
+		displayFolder: Forecast & ML
+		lineageTag: ac5dd267-c685-5b2b-80a4-126f598c3b17
+
+	measure 'China Import Effect ($bn)' = CALCULATE ( [Effect since Apr 2025 ($bn)], REMOVEFILTERS ( Partner ), 'Tariff Effect'[Partner Code] = "CHN", 'Tariff Effect'[Flow] = "imports" )
+		formatString: $#,0.0;-$#,0.0;$0.0
+		displayFolder: Forecast & ML
+		lineageTag: cc6403b4-f963-5919-92ec-9eeb2fd4424e
+
+	measure 'China Import Effect %' = CALCULATE ( [Effect since Apr 2025 %], REMOVEFILTERS ( Partner ), 'Tariff Effect'[Partner Code] = "CHN", 'Tariff Effect'[Flow] = "imports" )
+		formatString: +0.0%;-0.0%;0.0%
+		displayFolder: Forecast & ML
+		lineageTag: 8c3a09cb-dc30-5e56-97b8-c2e788c48a06
+
+	measure 'DD Partner' = SELECTEDVALUE ( Partner[Partner], "China" )
+		displayFolder: Deep-dive
+		lineageTag: 972bd38c-8b9b-5c27-9ce5-39f7670539ff
+
+	measure 'DD Code' = SELECTEDVALUE ( Partner[Partner Code], "CHN" )
+		displayFolder: Deep-dive
+		lineageTag: b48bffbd-912b-5f6c-8ed8-7fdf965f38f1
+
+	measure 'DD Actual Imports ($bn)' =
+			VAR _p = [DD Code]
+			RETURN DIVIDE ( CALCULATE ( SUM ( Counterfactual[Actual $M] ), REMOVEFILTERS ( Partner ),
+			    Counterfactual[Partner Code] = _p, Counterfactual[Flow] = "imports" ), 1000 )
+		formatString: $#,0.0;-$#,0.0;$0.0
+		displayFolder: Deep-dive
+		lineageTag: 6f386bdb-7e9d-5e72-b83f-503b1a8e2777
+
+	measure 'DD Counterfactual ($bn)' =
+			VAR _p = [DD Code]
+			RETURN DIVIDE ( CALCULATE ( SUM ( Counterfactual[Counterfactual $M] ), REMOVEFILTERS ( Partner ),
+			    Counterfactual[Partner Code] = _p, Counterfactual[Flow] = "imports", Counterfactual[Is Post-Tariff] = TRUE () ), 1000 )
+		formatString: $#,0.0;-$#,0.0;$0.0
+		displayFolder: Deep-dive
+		lineageTag: 9d5b89f7-31df-59af-a04a-10eb63d5d0a5
+
+	measure 'DD CF Lo 95 ($bn)' =
+			VAR _p = [DD Code]
+			RETURN DIVIDE ( CALCULATE ( SUM ( Counterfactual[CF Lo 95] ), REMOVEFILTERS ( Partner ),
+			    Counterfactual[Partner Code] = _p, Counterfactual[Flow] = "imports", Counterfactual[Is Post-Tariff] = TRUE () ), 1000 )
+		formatString: $#,0.0;-$#,0.0;$0.0
+		displayFolder: Deep-dive
+		lineageTag: 40528cde-d63f-501e-a59a-0b75c21bb78b
+
+	measure 'DD CF Hi 95 ($bn)' =
+			VAR _p = [DD Code]
+			RETURN DIVIDE ( CALCULATE ( SUM ( Counterfactual[CF Hi 95] ), REMOVEFILTERS ( Partner ),
+			    Counterfactual[Partner Code] = _p, Counterfactual[Flow] = "imports", Counterfactual[Is Post-Tariff] = TRUE () ), 1000 )
+		formatString: $#,0.0;-$#,0.0;$0.0
+		displayFolder: Deep-dive
+		lineageTag: d7b1265d-66b8-5ac4-a902-0f033ec54309
+
+	measure 'DD Statutory Tariff %' =
+			VAR _p = [DD Code]
+			RETURN CALCULATE ( AVERAGE ( 'Tariff Rate'[Statutory Rate %] ), REMOVEFILTERS ( Partner ), Partner[Partner Code] = _p )
+		formatString: 0.0%
+		displayFolder: Deep-dive
+		lineageTag: bcfd43c3-335f-59aa-9b0d-643daedcd6f6
+
+	measure 'DD Current Tariff %' =
+			VAR _p = [DD Code]
+			RETURN CALCULATE ( [Statutory Tariff Latest %], REMOVEFILTERS ( Partner ), Partner[Partner Code] = _p )
+		formatString: 0.0%
+		displayFolder: Deep-dive
+		lineageTag: 3669a8ab-8eec-5bbd-9c16-d2851791503f
+
+	measure 'DD Peak Tariff %' =
+			VAR _p = [DD Code]
+			RETURN CALCULATE ( MAX ( 'Tariff Rate'[Max Rate in Month %] ), REMOVEFILTERS ( Partner ), REMOVEFILTERS ( 'Date' ), Partner[Partner Code] = _p )
+		formatString: 0.0%
+		displayFolder: Deep-dive
+		lineageTag: 03bea7e2-315b-5123-8ec1-03d3dfdb9955
+
+	measure 'DD Import Effect ($bn)' =
+			VAR _p = [DD Code]
+			RETURN DIVIDE ( CALCULATE ( SUM ( 'Tariff Effect'[Effect $M] ), REMOVEFILTERS ( Partner ), 'Tariff Effect'[Partner Code] = _p,
+			    'Tariff Effect'[Flow] = "imports", 'Tariff Effect'[Effect Window] = "Apr 2025-latest" ), 1000 )
+		formatString: $#,0.0;-$#,0.0;$0.0
+		displayFolder: Deep-dive
+		lineageTag: 3ee019c8-6992-5e7e-9baf-9162acc36bed
+
+	measure 'DD Export Effect ($bn)' =
+			VAR _p = [DD Code]
+			RETURN DIVIDE ( CALCULATE ( SUM ( 'Tariff Effect'[Effect $M] ), REMOVEFILTERS ( Partner ), 'Tariff Effect'[Partner Code] = _p,
+			    'Tariff Effect'[Flow] = "exports", 'Tariff Effect'[Effect Window] = "Apr 2025-latest" ), 1000 )
+		formatString: $#,0.0;-$#,0.0;$0.0
+		displayFolder: Deep-dive
+		lineageTag: 579e6ef7-d592-55a0-af04-63725494fc3e
+
+	measure 'DD Import Effect Lo 95 ($bn)' =
+			VAR _p = [DD Code]
+			RETURN DIVIDE ( CALCULATE ( SUM ( 'Tariff Effect'[Effect Lo 95] ), REMOVEFILTERS ( Partner ), 'Tariff Effect'[Partner Code] = _p,
+			    'Tariff Effect'[Flow] = "imports", 'Tariff Effect'[Effect Window] = "Apr 2025-latest" ), 1000 )
+		formatString: $#,0.0;-$#,0.0;$0.0
+		displayFolder: Deep-dive
+		lineageTag: ff24d1bb-a5f1-5f5e-b2ff-6c974c22d372
+
+	measure 'DD Import Effect Hi 95 ($bn)' =
+			VAR _p = [DD Code]
+			RETURN DIVIDE ( CALCULATE ( SUM ( 'Tariff Effect'[Effect Hi 95] ), REMOVEFILTERS ( Partner ), 'Tariff Effect'[Partner Code] = _p,
+			    'Tariff Effect'[Flow] = "imports", 'Tariff Effect'[Effect Window] = "Apr 2025-latest" ), 1000 )
+		formatString: $#,0.0;-$#,0.0;$0.0
+		displayFolder: Deep-dive
+		lineageTag: 2079be9e-ed4c-5290-a3fc-46af44ea60f9
+
+	measure 'DD Import Effect %' =
+			VAR _p = [DD Code]
+			RETURN CALCULATE ( AVERAGE ( 'Tariff Effect'[Effect %] ), REMOVEFILTERS ( Partner ), 'Tariff Effect'[Partner Code] = _p,
+			    'Tariff Effect'[Flow] = "imports", 'Tariff Effect'[Effect Window] = "Apr 2025-latest" )
+		formatString: +0.0%;-0.0%;0.0%
+		displayFolder: Deep-dive
+		lineageTag: 7f0ab352-327b-5f49-b04e-69b36e419c63
+
+	measure 'DD Effect CI Text' = "95% interval " & FORMAT ( [DD Import Effect Lo 95 ($bn)], "$#,0;-$#,0" ) & "bn to " & FORMAT ( [DD Import Effect Hi 95 ($bn)], "$#,0;-$#,0" ) & "bn"
+		displayFolder: Deep-dive
+		lineageTag: 15c30170-8cc7-5218-a724-99a0bd075d5e
+
+	measure 'DD Title' = "Country deep-dive: " & [DD Partner] & IF ( ISFILTERED ( Partner[Partner] ) || ISFILTERED ( Partner[Partner Code] ), "", " (default; pick a partner or drill through from any partner chart)" )
+		displayFolder: Deep-dive
+		lineageTag: 58e181a9-fb6b-5a79-a6df-50a3b10f928b
+
+	measure 'Executive Story' =
+			VAR _et = [Effective Tariff Latest %]
+			VAR _e24 = [Effective Tariff 2024 %]
+			VAR _cn = [China Import Effect ($bn)]
+			VAR _hh = [Household Tariff Cost to Date ($)]
+			VAR _b = [Brent Latest ($/bbl)]
+			VAR _bw = [Brent vs Pre-war %]
+			VAR _cpi = [Headline CPI Latest YoY %]
+			RETURN "Tariffs: the effective US tariff rate moved from " & FORMAT ( _e24, "0.0%" ) & " in 2024 to " & FORMAT ( _et, "0.0%" ) &
+			    " in the latest month. Against a no-tariff counterfactual, imports from China are " & FORMAT ( _cn, "$#,0;-$#,0" ) &
+			    "bn since Apr 2025 while Vietnam and Taiwan gained. Households: customs collections above 2024 levels add up to about " &
+			    FORMAT ( _hh, "$#,0" ) & " per household. Oil: since the Iran war began on 28 Feb 2026, Brent is at " & FORMAT ( _b, "$0" ) &
+			    "/bbl (" & FORMAT ( _bw, "+0%;-0%" ) & " vs pre-war) and headline CPI is " & FORMAT ( _cpi, "0.0%" ) & " YoY."
+		displayFolder: Story
+		lineageTag: c44d9aad-5baf-5607-ac47-2504e765f332
+
+	measure 'Data Freshness' = "Trade to " & FORMAT ( [Last Trade Month], "mmm yyyy" ) & "  |  markets to " & FORMAT ( CALCULATE ( MAX ( Oil[Date] ), REMOVEFILTERS ( 'Date' ) ), "d mmm yyyy" )
+		displayFolder: Story
+		lineageTag: 0b3d195b-0018-50af-b202-9d1cc3229426
+
+	measure 'Event-study Title' = "Pass-through event study: exposed goods minus services CPI (pp/month vs quarter -1). DiD " & FORMAT ( [Pass-through DiD (pp/yr)], "+0.0" ) & " pp/yr, " & [Pass-through DiD Text]
+		displayFolder: Household
+		lineageTag: 88d3bc4f-cabb-5e06-aafa-126e9f72baf5
+
+	measure 'Tooltip Country' = SELECTEDVALUE ( Country[Map Name], "Country" )
+		displayFolder: Story
+		lineageTag: 9d609a1d-2fbe-56a1-918b-5c770f39f5dd
+
+	column Dummy
+		dataType: string
+		isHidden
+		lineageTag: f3e3f977-eb0e-5276-ab52-6a2fbff8c38d
+		summarizeBy: none
+		sourceColumn: Dummy
+
+		annotation SummarizationSetBy = Automatic
+
+	partition _Measures = m
+		mode: import
+		source =
+				let
+				    Source = #table(type table [Dummy = text], {})
+				in
+				    Source
+
+	annotation PBI_ResultType = Table
+

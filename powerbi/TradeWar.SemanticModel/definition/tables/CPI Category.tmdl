@@ -1,0 +1,53 @@
+table 'CPI Category'
+	lineageTag: eddfbf6f-ed45-50dd-abfe-01d5a623c350
+
+	column 'Series ID'
+		dataType: string
+		lineageTag: ac12f14f-5c04-5e56-b98f-d2525cc72870
+		summarizeBy: none
+		sourceColumn: Series ID
+
+		annotation SummarizationSetBy = User
+
+	column Category
+		dataType: string
+		lineageTag: 8e31a039-4d72-540c-9711-6829b3f8fc14
+		summarizeBy: none
+		sourceColumn: Category
+
+		annotation SummarizationSetBy = User
+
+	column 'Exposure Group'
+		dataType: string
+		lineageTag: 306512c4-9af1-57f7-b773-55a947d71d26
+		summarizeBy: none
+		sourceColumn: Exposure Group
+
+		annotation SummarizationSetBy = User
+
+	column Exposure
+		dataType: string
+		lineageTag: f67a98b4-d8c9-5f65-bc2e-bc63048d6b4f
+		summarizeBy: none
+		sourceColumn: Exposure
+
+		annotation SummarizationSetBy = User
+
+	column 'Is Headline'
+		dataType: boolean
+		lineageTag: a39b4025-e18b-5b50-8fc7-4ae5234fb386
+		summarizeBy: none
+		sourceColumn: Is Headline
+
+		annotation SummarizationSetBy = User
+
+	partition 'CPI Category' = m
+		mode: import
+		source =
+				let
+				    Source = Parquet.Document(File.Contents(DataRoot & "\CPI Category.parquet"))
+				in
+				    Source
+
+	annotation PBI_ResultType = Table
+

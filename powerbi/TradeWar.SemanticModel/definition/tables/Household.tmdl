@@ -1,0 +1,308 @@
+table Household
+	lineageTag: 39018dcd-832f-5910-9b56-5140c909b7fa
+
+	column Month
+		dataType: dateTime
+		formatString: mmm yyyy
+		lineageTag: 61f3a7ca-db27-523a-aa22-5c26580663e3
+		summarizeBy: none
+		sourceColumn: Month
+
+		annotation SummarizationSetBy = User
+
+	column 'CPI Headline YoY %'
+		dataType: double
+		formatString: 0.0%
+		lineageTag: 3a50eaf0-5788-511c-954e-5ae34fcee2ce
+		summarizeBy: none
+		sourceColumn: CPI Headline YoY %
+
+		annotation SummarizationSetBy = User
+
+	column 'CPI Core YoY %'
+		dataType: double
+		formatString: 0.0%
+		lineageTag: ff36c8fd-8d71-58f5-a8bb-e23a8f83e249
+		summarizeBy: none
+		sourceColumn: CPI Core YoY %
+
+		annotation SummarizationSetBy = User
+
+	column 'CPI Core Goods YoY %'
+		dataType: double
+		formatString: 0.0%
+		lineageTag: b0ce9165-dec2-550b-929d-d2626471230f
+		summarizeBy: none
+		sourceColumn: CPI Core Goods YoY %
+
+		annotation SummarizationSetBy = User
+
+	column 'CPI Core Services YoY %'
+		dataType: double
+		formatString: 0.0%
+		lineageTag: 4e8defe9-39a4-53de-8dee-24187b25e2e5
+		summarizeBy: none
+		sourceColumn: CPI Core Services YoY %
+
+		annotation SummarizationSetBy = User
+
+	column 'CPI Gasoline YoY %'
+		dataType: double
+		formatString: 0.0%
+		lineageTag: 30cedfe5-11f4-582d-80c6-b5a98c75d43d
+		summarizeBy: none
+		sourceColumn: CPI Gasoline YoY %
+
+		annotation SummarizationSetBy = User
+
+	column 'CPI Food Home YoY %'
+		dataType: double
+		formatString: 0.0%
+		lineageTag: f20fade7-bd3f-58d0-a5dd-e87d31135fae
+		summarizeBy: none
+		sourceColumn: CPI Food Home YoY %
+
+		annotation SummarizationSetBy = User
+
+	column 'Tariff Exposed Goods YoY %'
+		dataType: double
+		formatString: 0.0%
+		lineageTag: c76732fb-8161-5fc3-b046-5b7fac87e5e3
+		summarizeBy: none
+		sourceColumn: Tariff Exposed Goods YoY %
+
+		annotation SummarizationSetBy = User
+
+	column 'Domestic Services YoY %'
+		dataType: double
+		formatString: 0.0%
+		lineageTag: 31f182c0-d521-5fdd-b318-dbcd14745c6c
+		summarizeBy: none
+		sourceColumn: Domestic Services YoY %
+
+		annotation SummarizationSetBy = User
+
+	column 'Tariff Exposed since Jan2025 %'
+		dataType: double
+		formatString: 0.0%
+		lineageTag: cf5571f9-1934-5c66-82d1-a65cd54e0c44
+		summarizeBy: none
+		sourceColumn: Tariff Exposed since Jan2025 %
+
+		annotation SummarizationSetBy = User
+
+	column 'Domestic Services since Jan2025 %'
+		dataType: double
+		formatString: 0.0%
+		lineageTag: 4ed4fb4f-0edc-5026-bed0-dd67aecdf140
+		summarizeBy: none
+		sourceColumn: Domestic Services since Jan2025 %
+
+		annotation SummarizationSetBy = User
+
+	column 'Tariff Goods Minus Services pp'
+		dataType: double
+		formatString: #,0.00
+		lineageTag: 75b30520-f013-5a8f-8bbc-1530fe9a494f
+		summarizeBy: none
+		sourceColumn: Tariff Goods Minus Services pp
+
+		annotation SummarizationSetBy = User
+
+	column 'Avg Hourly Earnings USD'
+		dataType: double
+		formatString: #,0.00
+		lineageTag: 4308dff0-4b94-5b91-8d10-e59a9a13b962
+		summarizeBy: none
+		sourceColumn: Avg Hourly Earnings USD
+
+		annotation SummarizationSetBy = User
+
+	column 'AHE YoY %'
+		dataType: double
+		formatString: 0.0%
+		lineageTag: c6cc2b5e-75b2-5c75-aae3-871d09b7c674
+		summarizeBy: none
+		sourceColumn: AHE YoY %
+
+		annotation SummarizationSetBy = User
+
+	column 'Real Wage YoY %'
+		dataType: double
+		formatString: 0.0%
+		lineageTag: d5816863-a0e6-57b6-958f-321245de448d
+		summarizeBy: none
+		sourceColumn: Real Wage YoY %
+
+		annotation SummarizationSetBy = User
+
+	column 'Consumer Sentiment'
+		dataType: double
+		formatString: #,0.00
+		lineageTag: b3d07dbf-547d-523a-9c14-77166397ae61
+		summarizeBy: none
+		sourceColumn: Consumer Sentiment
+
+		annotation SummarizationSetBy = User
+
+	column 'Personal Saving Rate %'
+		dataType: double
+		formatString: 0.0%
+		lineageTag: 6e6fdaf4-cea6-5663-b459-175c8c70fcd4
+		summarizeBy: none
+		sourceColumn: Personal Saving Rate %
+
+		annotation SummarizationSetBy = User
+
+	column 'Unemployment Rate %'
+		dataType: double
+		formatString: 0.0%
+		lineageTag: 30cf1de4-3e73-5d7c-8cb4-6889353ea74c
+		summarizeBy: none
+		sourceColumn: Unemployment Rate %
+
+		annotation SummarizationSetBy = User
+
+	column 'Retail Sales YoY %'
+		dataType: double
+		formatString: 0.0%
+		lineageTag: d77f4acd-b8bf-5798-a739-6c14879aef99
+		summarizeBy: none
+		sourceColumn: Retail Sales YoY %
+
+		annotation SummarizationSetBy = User
+
+	column 'Mortgage 30y %'
+		dataType: double
+		formatString: 0.0%
+		lineageTag: 031df2e9-01e2-50c9-b05c-08c118e2eab1
+		summarizeBy: none
+		sourceColumn: Mortgage 30y %
+
+		annotation SummarizationSetBy = User
+
+	column 'Gasoline USD Gal'
+		dataType: double
+		formatString: #,0.00
+		lineageTag: b2aa9e7d-ecc0-5956-847f-ef891488afb6
+		summarizeBy: none
+		sourceColumn: Gasoline USD Gal
+
+		annotation SummarizationSetBy = User
+
+	column 'Gasoline YoY %'
+		dataType: double
+		formatString: 0.0%
+		lineageTag: 1864e7b4-4bac-5b39-8828-7319051ae8f8
+		summarizeBy: none
+		sourceColumn: Gasoline YoY %
+
+		annotation SummarizationSetBy = User
+
+	column 'Import Price Ex Fuel YoY %'
+		dataType: double
+		formatString: 0.0%
+		lineageTag: 755e58a3-5fa7-5348-91fa-739f6cd45f13
+		summarizeBy: none
+		sourceColumn: Import Price Ex Fuel YoY %
+
+		annotation SummarizationSetBy = User
+
+	column 'Breakeven 10y %'
+		dataType: double
+		formatString: 0.0%
+		lineageTag: 0bf6e6a9-b87c-5f5f-8a98-e924c3e50a8b
+		summarizeBy: none
+		sourceColumn: Breakeven 10y %
+
+		annotation SummarizationSetBy = User
+
+	column 'Customs Net $M'
+		dataType: double
+		formatString: #,0
+		lineageTag: 08345dd8-5a85-556c-92d5-333ce6b44e15
+		summarizeBy: none
+		sourceColumn: Customs Net $M
+
+		annotation SummarizationSetBy = User
+
+	column 'Customs Gross $M'
+		dataType: double
+		formatString: #,0
+		lineageTag: a9faee68-e400-5790-9a16-cdeeedf44777
+		summarizeBy: none
+		sourceColumn: Customs Gross $M
+
+		annotation SummarizationSetBy = User
+
+	column 'Customs Refunds $M'
+		dataType: double
+		formatString: #,0
+		lineageTag: 31a61cc6-686d-50f8-a67b-4ad446b7ecd0
+		summarizeBy: none
+		sourceColumn: Customs Refunds $M
+
+		annotation SummarizationSetBy = User
+
+	column 'Effective Rate Gross %'
+		dataType: double
+		formatString: 0.0%
+		lineageTag: ccb43619-8920-5faa-a374-a4ced0df5435
+		summarizeBy: none
+		sourceColumn: Effective Rate Gross %
+
+		annotation SummarizationSetBy = User
+
+	column 'Incremental Gross per Household USD'
+		dataType: double
+		formatString: #,0.00
+		lineageTag: 187ba77b-fd83-556a-b73c-53aec9cf3bad
+		summarizeBy: none
+		sourceColumn: Incremental Gross per Household USD
+
+		annotation SummarizationSetBy = User
+
+	column 'Incremental Net per Household USD'
+		dataType: double
+		formatString: #,0.00
+		lineageTag: eac0255b-58da-5a04-a067-12a6bee7b156
+		summarizeBy: none
+		sourceColumn: Incremental Net per Household USD
+
+		annotation SummarizationSetBy = User
+
+	column 'Cum Incremental Gross per Household USD'
+		dataType: double
+		formatString: #,0.00
+		lineageTag: e18a538b-7c9d-5a08-99ea-3263c55b3daf
+		summarizeBy: none
+		sourceColumn: Cum Incremental Gross per Household USD
+
+		annotation SummarizationSetBy = User
+
+	column 'Trade Phase'
+		dataType: string
+		lineageTag: be1fa9b0-8aa7-5771-9c83-9ff04a240874
+		summarizeBy: none
+		sourceColumn: Trade Phase
+
+		annotation SummarizationSetBy = User
+
+	column 'War Phase'
+		dataType: string
+		lineageTag: e6eb3a28-51a3-54bd-9d56-205439499283
+		summarizeBy: none
+		sourceColumn: War Phase
+
+		annotation SummarizationSetBy = User
+
+	partition Household = m
+		mode: import
+		source =
+				let
+				    Source = Parquet.Document(File.Contents(DataRoot & "\Household.parquet"))
+				in
+				    Source
+
+	annotation PBI_ResultType = Table
+

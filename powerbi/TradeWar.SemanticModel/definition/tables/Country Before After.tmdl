@@ -1,0 +1,304 @@
+table 'Country Before After'
+	lineageTag: 3dd44f39-61f0-5dc7-a548-517bee6d2e6f
+
+	column ISO3
+		dataType: string
+		lineageTag: 9e964061-cf31-5816-ad20-f885c4e5bb04
+		summarizeBy: none
+		sourceColumn: ISO3
+
+		annotation SummarizationSetBy = User
+
+	column Country
+		dataType: string
+		lineageTag: 2eaaa650-98ae-5b1f-b684-612a3c3eac81
+		summarizeBy: none
+		sourceColumn: Country
+
+		annotation SummarizationSetBy = User
+
+	column 'Partner Group'
+		dataType: string
+		lineageTag: c786282d-29c3-5e24-a6bd-63c55bc46b21
+		summarizeBy: none
+		sourceColumn: Partner Group
+
+		annotation SummarizationSetBy = User
+
+	column 'Region WB'
+		dataType: string
+		lineageTag: 581c4f01-8695-5832-90ff-bb6c21879044
+		summarizeBy: none
+		sourceColumn: Region WB
+
+		annotation SummarizationSetBy = User
+
+	column 'Entity Type'
+		dataType: string
+		lineageTag: 6f9aea82-41b9-5ad0-aa00-cb80e63b0f5c
+		summarizeBy: none
+		sourceColumn: Entity Type
+
+		annotation SummarizationSetBy = User
+
+	column 'Is Focus'
+		dataType: boolean
+		lineageTag: 1f445b32-9a32-57e6-b3b8-52e3cb19d255
+		summarizeBy: none
+		sourceColumn: Is Focus
+
+		annotation SummarizationSetBy = User
+
+	column Latitude
+		dataType: double
+		formatString: #,0.00
+		dataCategory: Latitude
+		lineageTag: 1729b9f7-86b5-52b6-b1a4-d9dc74757a18
+		summarizeBy: none
+		sourceColumn: Latitude
+
+		annotation SummarizationSetBy = User
+
+	column Longitude
+		dataType: double
+		formatString: #,0.00
+		dataCategory: Longitude
+		lineageTag: b092f791-d528-56e5-9944-f49eb39ac6dc
+		summarizeBy: none
+		sourceColumn: Longitude
+
+		annotation SummarizationSetBy = User
+
+	column 'Imports Avg Before $M'
+		dataType: double
+		formatString: #,0
+		lineageTag: 87b3766c-c953-5afe-8e2e-60537f8a52b7
+		summarizeBy: none
+		sourceColumn: Imports Avg Before $M
+
+		annotation SummarizationSetBy = User
+
+	column 'Imports Avg After $M'
+		dataType: double
+		formatString: #,0
+		lineageTag: afa92c6e-6911-5968-8ed3-ee6a165c2c1d
+		summarizeBy: none
+		sourceColumn: Imports Avg After $M
+
+		annotation SummarizationSetBy = User
+
+	column 'Exports Avg Before $M'
+		dataType: double
+		formatString: #,0
+		lineageTag: bed88b86-7e28-579c-b7b7-0a4395229d37
+		summarizeBy: none
+		sourceColumn: Exports Avg Before $M
+
+		annotation SummarizationSetBy = User
+
+	column 'Exports Avg After $M'
+		dataType: double
+		formatString: #,0
+		lineageTag: bae588b1-01f7-5e78-82d8-c664e5159282
+		summarizeBy: none
+		sourceColumn: Exports Avg After $M
+
+		annotation SummarizationSetBy = User
+
+	column 'Balance Avg Before $M'
+		dataType: double
+		formatString: #,0
+		lineageTag: e159228d-8f73-5dde-ae41-493c190a2b33
+		summarizeBy: none
+		sourceColumn: Balance Avg Before $M
+
+		annotation SummarizationSetBy = User
+
+	column 'Balance Avg After $M'
+		dataType: double
+		formatString: #,0
+		lineageTag: 1fbbacab-c64c-5135-a68f-e13230af492c
+		summarizeBy: none
+		sourceColumn: Balance Avg After $M
+
+		annotation SummarizationSetBy = User
+
+	column 'Imports YTD $M'
+		dataType: double
+		formatString: #,0
+		lineageTag: fe20433a-c6ca-550e-88b6-98b805d8eba1
+		summarizeBy: none
+		sourceColumn: Imports YTD $M
+
+		annotation SummarizationSetBy = User
+
+	column 'Imports YTD 2024 $M'
+		dataType: double
+		formatString: #,0
+		lineageTag: 2e2320b5-8ff5-528f-88d5-6fe096f98866
+		summarizeBy: none
+		sourceColumn: Imports YTD 2024 $M
+
+		annotation SummarizationSetBy = User
+
+	column 'Exports YTD $M'
+		dataType: double
+		formatString: #,0
+		lineageTag: 72c45aca-c117-5a60-8a97-7e8095a33ce0
+		summarizeBy: none
+		sourceColumn: Exports YTD $M
+
+		annotation SummarizationSetBy = User
+
+	column 'Exports YTD 2024 $M'
+		dataType: double
+		formatString: #,0
+		lineageTag: 6af290bc-a9bc-5747-8079-b5a0b8b1c4e2
+		summarizeBy: none
+		sourceColumn: Exports YTD 2024 $M
+
+		annotation SummarizationSetBy = User
+
+	column 'Imports 2024 $M'
+		dataType: double
+		formatString: #,0
+		lineageTag: 8cf6a72a-c5db-5b89-b459-54fa0d52f47f
+		summarizeBy: none
+		sourceColumn: Imports 2024 $M
+
+		annotation SummarizationSetBy = User
+
+	column 'Imports 2025 $M'
+		dataType: double
+		formatString: #,0
+		lineageTag: bf0c8275-f455-57dc-bf51-bea8bee84f93
+		summarizeBy: none
+		sourceColumn: Imports 2025 $M
+
+		annotation SummarizationSetBy = User
+
+	column 'Latest Month'
+		dataType: dateTime
+		formatString: mmm yyyy
+		lineageTag: 4b584a8a-3f10-5738-929a-062d20317585
+		summarizeBy: none
+		sourceColumn: Latest Month
+
+		annotation SummarizationSetBy = User
+
+	column 'Imports Change %'
+		dataType: double
+		formatString: 0.0%
+		lineageTag: db775e00-bd6c-50cc-90ac-005450b96488
+		summarizeBy: none
+		sourceColumn: Imports Change %
+
+		annotation SummarizationSetBy = User
+
+	column 'Exports Change %'
+		dataType: double
+		formatString: 0.0%
+		lineageTag: 1096976e-77a4-566f-87b6-9512b1c86693
+		summarizeBy: none
+		sourceColumn: Exports Change %
+
+		annotation SummarizationSetBy = User
+
+	column 'Balance Change $M'
+		dataType: double
+		formatString: #,0
+		lineageTag: 5d745abf-744c-566c-bb62-3990c916722d
+		summarizeBy: none
+		sourceColumn: Balance Change $M
+
+		annotation SummarizationSetBy = User
+
+	column 'Imports YTD vs 2024 %'
+		dataType: double
+		formatString: 0.0%
+		lineageTag: 41b819b9-e2e3-5f07-a399-61885c067891
+		summarizeBy: none
+		sourceColumn: Imports YTD vs 2024 %
+
+		annotation SummarizationSetBy = User
+
+	column 'Exports YTD vs 2024 %'
+		dataType: double
+		formatString: 0.0%
+		lineageTag: 7b2a74c3-033b-55c4-924f-859b0a239590
+		summarizeBy: none
+		sourceColumn: Exports YTD vs 2024 %
+
+		annotation SummarizationSetBy = User
+
+	column 'Import Share Before'
+		dataType: double
+		formatString: 0.0%
+		lineageTag: 58902687-985b-524d-bf81-369e752be28c
+		summarizeBy: none
+		sourceColumn: Import Share Before
+
+		annotation SummarizationSetBy = User
+
+	column 'Import Share After'
+		dataType: double
+		formatString: 0.0%
+		lineageTag: e9faf664-fede-5faf-b49e-17a1702ee1be
+		summarizeBy: none
+		sourceColumn: Import Share After
+
+		annotation SummarizationSetBy = User
+
+	column 'Import Share Change pp'
+		dataType: double
+		formatString: 0.0%
+		lineageTag: b3588837-021f-58bc-8824-5e031542080e
+		summarizeBy: none
+		sourceColumn: Import Share Change pp
+
+		annotation SummarizationSetBy = User
+
+	column 'Import Rank Before'
+		dataType: int64
+		lineageTag: ea440146-f6c3-5264-b38d-8af3049cc60e
+		summarizeBy: none
+		sourceColumn: Import Rank Before
+
+		annotation SummarizationSetBy = User
+
+	column 'Import Rank After'
+		dataType: int64
+		lineageTag: be17cd96-ab9a-516d-a0a1-2b54cbf2f4a2
+		summarizeBy: none
+		sourceColumn: Import Rank After
+
+		annotation SummarizationSetBy = User
+
+	column 'Peak Statutory Rate %'
+		dataType: double
+		formatString: 0.0%
+		lineageTag: d8c70552-b51a-57aa-9f11-4b1b4b0dd8ee
+		summarizeBy: none
+		sourceColumn: Peak Statutory Rate %
+
+		annotation SummarizationSetBy = User
+
+	column 'Current Statutory Rate %'
+		dataType: double
+		formatString: 0.0%
+		lineageTag: d9414acb-ff53-5653-93df-a70e3380f3ac
+		summarizeBy: none
+		sourceColumn: Current Statutory Rate %
+
+		annotation SummarizationSetBy = User
+
+	partition 'Country Before After' = m
+		mode: import
+		source =
+				let
+				    Source = Parquet.Document(File.Contents(DataRoot & "\Country Before After.parquet"))
+				in
+				    Source
+
+	annotation PBI_ResultType = Table
+

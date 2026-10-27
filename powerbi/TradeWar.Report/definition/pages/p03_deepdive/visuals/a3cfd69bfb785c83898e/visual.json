@@ -1,0 +1,165 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "name": "a3cfd69bfb785c83898e",
+  "position": {
+    "x": 648,
+    "y": 472,
+    "z": 11000,
+    "height": 240,
+    "width": 616,
+    "tabOrder": 11000
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Tariff Effect"
+                    }
+                  },
+                  "Property": "Partner"
+                }
+              },
+              "queryRef": "Tariff Effect.Partner",
+              "nativeQueryRef": "Partner",
+              "active": true
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Tariff Effect"
+                    }
+                  },
+                  "Property": "Flow"
+                }
+              },
+              "queryRef": "Tariff Effect.Flow",
+              "nativeQueryRef": "Flow",
+              "active": true
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Tariff Effect"
+                    }
+                  },
+                  "Property": "Effect Window"
+                }
+              },
+              "queryRef": "Tariff Effect.Effect Window",
+              "nativeQueryRef": "Effect Window",
+              "active": true
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Tariff Effect"
+                    }
+                  },
+                  "Property": "Effect $M"
+                }
+              },
+              "queryRef": "Tariff Effect.Effect $M",
+              "nativeQueryRef": "Effect $M",
+              "active": true
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Tariff Effect"
+                    }
+                  },
+                  "Property": "Effect %"
+                }
+              },
+              "queryRef": "Tariff Effect.Effect %",
+              "nativeQueryRef": "Effect %",
+              "active": true
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Tariff Effect"
+                    }
+                  },
+                  "Property": "Effect Lo 95"
+                }
+              },
+              "queryRef": "Tariff Effect.Effect Lo 95",
+              "nativeQueryRef": "Effect Lo 95",
+              "active": true
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Tariff Effect"
+                    }
+                  },
+                  "Property": "Effect Hi 95"
+                }
+              },
+              "queryRef": "Tariff Effect.Effect Hi 95",
+              "nativeQueryRef": "Effect Hi 95",
+              "active": true
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Tariff Effect"
+                    }
+                  },
+                  "Property": "Significant 95"
+                }
+              },
+              "queryRef": "Tariff Effect.Significant 95",
+              "nativeQueryRef": "Significant 95",
+              "active": true
+            }
+          ]
+        }
+      }
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Counterfactual effect by flow and window ($M)'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

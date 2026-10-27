@@ -1,0 +1,130 @@
+table Customs
+	lineageTag: b7d367f9-a205-558c-bdea-bd43174129a2
+
+	column Month
+		dataType: dateTime
+		formatString: mmm yyyy
+		lineageTag: 862b0d82-9b69-595e-a345-a8e06c6467e3
+		summarizeBy: none
+		sourceColumn: Month
+
+		annotation SummarizationSetBy = User
+
+	column 'Gross Receipts $M'
+		dataType: double
+		formatString: #,0
+		lineageTag: 9e8bd6d8-df1e-53d1-8397-c2619e0bc847
+		summarizeBy: none
+		sourceColumn: Gross Receipts $M
+
+		annotation SummarizationSetBy = User
+
+	column 'Refunds $M'
+		dataType: double
+		formatString: #,0
+		lineageTag: 0a265ffd-be1f-5936-935c-0e4ddaf3ae97
+		summarizeBy: none
+		sourceColumn: Refunds $M
+
+		annotation SummarizationSetBy = User
+
+	column 'Net Receipts $M'
+		dataType: double
+		formatString: #,0
+		lineageTag: 2a597bc9-f9b7-5081-ba30-a9f7da4f8019
+		summarizeBy: none
+		sourceColumn: Net Receipts $M
+
+		annotation SummarizationSetBy = User
+
+	column 'US Imports $M'
+		dataType: double
+		formatString: #,0
+		lineageTag: 9df503e7-589a-56d5-b3ce-9c86ad88df9a
+		summarizeBy: none
+		sourceColumn: US Imports $M
+
+		annotation SummarizationSetBy = User
+
+	column 'Effective Rate Gross %'
+		dataType: double
+		formatString: 0.0%
+		lineageTag: 088e40af-7f88-5e37-89e9-817fa7c28c50
+		summarizeBy: none
+		sourceColumn: Effective Rate Gross %
+
+		annotation SummarizationSetBy = User
+
+	column 'Effective Rate Net %'
+		dataType: double
+		formatString: 0.0%
+		lineageTag: d6d208bd-1484-5014-95f9-5a7f32b99b71
+		summarizeBy: none
+		sourceColumn: Effective Rate Net %
+
+		annotation SummarizationSetBy = User
+
+	column 'Incremental Net vs 2024 $M'
+		dataType: double
+		formatString: #,0
+		lineageTag: 3a3d232b-5db8-556e-880b-b68370b0fda7
+		summarizeBy: none
+		sourceColumn: Incremental Net vs 2024 $M
+
+		annotation SummarizationSetBy = User
+
+	column 'Incremental Gross vs 2024 $M'
+		dataType: double
+		formatString: #,0
+		lineageTag: 652c8ff1-240d-5c37-aa03-969dd49a1b1b
+		summarizeBy: none
+		sourceColumn: Incremental Gross vs 2024 $M
+
+		annotation SummarizationSetBy = User
+
+	column 'Net YoY %'
+		dataType: double
+		formatString: 0.0%
+		lineageTag: f6d4ffc8-42b9-5286-95bb-46771553b453
+		summarizeBy: none
+		sourceColumn: Net YoY %
+
+		annotation SummarizationSetBy = User
+
+	column 'Cum Incremental Net since Feb2025 $M'
+		dataType: double
+		formatString: #,0
+		lineageTag: 5622a4df-2fec-5195-bfbd-7b9243167565
+		summarizeBy: none
+		sourceColumn: Cum Incremental Net since Feb2025 $M
+
+		annotation SummarizationSetBy = User
+
+	column 'Incremental Gross per Household USD'
+		dataType: double
+		formatString: #,0.00
+		lineageTag: 6b2abf50-87b2-59bc-a6b0-bdca87535033
+		summarizeBy: none
+		sourceColumn: Incremental Gross per Household USD
+
+		annotation SummarizationSetBy = User
+
+	column 'Incremental Net per Household USD'
+		dataType: double
+		formatString: #,0.00
+		lineageTag: d6f23d7b-158d-5bf9-a795-8a973f149fcf
+		summarizeBy: none
+		sourceColumn: Incremental Net per Household USD
+
+		annotation SummarizationSetBy = User
+
+	partition Customs = m
+		mode: import
+		source =
+				let
+				    Source = Parquet.Document(File.Contents(DataRoot & "\Customs.parquet"))
+				in
+				    Source
+
+	annotation PBI_ResultType = Table
+

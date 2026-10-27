@@ -1,0 +1,154 @@
+table Market
+	lineageTag: a68f9268-b3ac-5576-bb24-721052d77bf2
+
+	column Date
+		dataType: dateTime
+		formatString: yyyy-mm-dd
+		lineageTag: 2ac62c7d-f6f0-5902-bc27-d2aadcd37207
+		summarizeBy: none
+		sourceColumn: Date
+
+		annotation SummarizationSetBy = User
+
+	column Symbol
+		dataType: string
+		lineageTag: be8fcbf6-f436-5a1f-bb14-681f10b9463d
+		summarizeBy: none
+		sourceColumn: Symbol
+
+		annotation SummarizationSetBy = User
+
+	column Close
+		dataType: double
+		formatString: #,0.00
+		lineageTag: 30ed4222-546c-5da4-8918-f6acb3cac1ea
+		summarizeBy: none
+		sourceColumn: Close
+
+		annotation SummarizationSetBy = User
+
+	column 'Adj Close'
+		dataType: double
+		formatString: #,0.00
+		lineageTag: 38d1bc47-6274-5a11-b19e-7660eabcdaae
+		summarizeBy: none
+		sourceColumn: Adj Close
+
+		annotation SummarizationSetBy = User
+
+	column Ret
+		dataType: double
+		formatString: 0.0%
+		lineageTag: bc3d504d-bdb4-5ada-88c6-3a16758c1b67
+		summarizeBy: none
+		sourceColumn: Ret
+
+		annotation SummarizationSetBy = User
+
+	column 'Log Ret'
+		dataType: double
+		formatString: 0.0%
+		lineageTag: fc880087-9f84-5f82-8e3d-8d2ff8bf5b52
+		summarizeBy: none
+		sourceColumn: Log Ret
+
+		annotation SummarizationSetBy = User
+
+	column 'Trading Day Idx'
+		dataType: int64
+		lineageTag: a59292ae-5392-5165-a6d9-8edb2469b870
+		summarizeBy: none
+		sourceColumn: Trading Day Idx
+
+		annotation SummarizationSetBy = User
+
+	column 'Vol 21d Ann.'
+		dataType: double
+		formatString: #,0.00
+		lineageTag: 846c18c3-fe36-5780-805f-a5f2470f5c8f
+		summarizeBy: none
+		sourceColumn: Vol 21d Ann.
+
+		annotation SummarizationSetBy = User
+
+	column 'Vol 63d Ann.'
+		dataType: double
+		formatString: #,0.00
+		lineageTag: 02860569-871b-5300-8101-9025e6d704be
+		summarizeBy: none
+		sourceColumn: Vol 63d Ann.
+
+		annotation SummarizationSetBy = User
+
+	column 'Drawdown %'
+		dataType: double
+		formatString: 0.0%
+		lineageTag: 91f3a322-c694-5037-b6ca-23814a84c2f8
+		summarizeBy: none
+		sourceColumn: Drawdown %
+
+		annotation SummarizationSetBy = User
+
+	column 'Drawdown since 2025 %'
+		dataType: double
+		formatString: 0.0%
+		lineageTag: 5976b600-ea7c-5210-ab98-d55399cb9c1e
+		summarizeBy: none
+		sourceColumn: Drawdown since 2025 %
+
+		annotation SummarizationSetBy = User
+
+	column 'Index 2025 100'
+		dataType: double
+		formatString: #,0.00
+		lineageTag: 7a748421-d12e-5780-ba30-0ecc3635151e
+		summarizeBy: none
+		sourceColumn: Index 2025 100
+
+		annotation SummarizationSetBy = User
+
+	column 'Index Prewar 100'
+		dataType: double
+		formatString: #,0.00
+		lineageTag: 3a9e5a7b-d3cc-53e6-8fa2-06b3599b5622
+		summarizeBy: none
+		sourceColumn: Index Prewar 100
+
+		annotation SummarizationSetBy = User
+
+	column 'SMA 50'
+		dataType: double
+		formatString: #,0.00
+		lineageTag: b67ce3b9-070f-51fe-81a9-970161b8e0a0
+		summarizeBy: none
+		sourceColumn: SMA 50
+
+		annotation SummarizationSetBy = User
+
+	column 'SMA 200'
+		dataType: double
+		formatString: #,0.00
+		lineageTag: ec1621b5-f082-540d-ba05-5c100a8015b7
+		summarizeBy: none
+		sourceColumn: SMA 200
+
+		annotation SummarizationSetBy = User
+
+	column 'Trend vs Sma200'
+		dataType: string
+		lineageTag: bbc5bcb3-9457-5378-bcf5-d43fcbdb0d67
+		summarizeBy: none
+		sourceColumn: Trend vs Sma200
+
+		annotation SummarizationSetBy = User
+
+	partition Market = m
+		mode: import
+		source =
+				let
+				    Source = Parquet.Document(File.Contents(DataRoot & "\Market.parquet"))
+				in
+				    Source
+
+	annotation PBI_ResultType = Table
+

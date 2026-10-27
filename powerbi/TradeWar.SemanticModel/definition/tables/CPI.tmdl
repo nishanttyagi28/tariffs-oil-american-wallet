@@ -1,0 +1,84 @@
+table CPI
+	lineageTag: 2b1546d2-797c-5664-957b-700580e522d8
+
+	column 'Series ID'
+		dataType: string
+		lineageTag: 49941823-3de0-534f-8867-c090e844d506
+		summarizeBy: none
+		sourceColumn: Series ID
+
+		annotation SummarizationSetBy = User
+
+	column Month
+		dataType: dateTime
+		formatString: mmm yyyy
+		lineageTag: 5affe993-983a-5d56-99fd-66d26993b133
+		summarizeBy: none
+		sourceColumn: Month
+
+		annotation SummarizationSetBy = User
+
+	column 'Index Value'
+		dataType: double
+		formatString: #,0.00
+		lineageTag: c5bef74d-a7ce-5d19-81ad-754c3f056f48
+		summarizeBy: none
+		sourceColumn: Index Value
+
+		annotation SummarizationSetBy = User
+
+	column 'YoY %'
+		dataType: double
+		formatString: 0.0%
+		lineageTag: 9541b3c5-edf8-5d06-87e2-682eb6896ee8
+		summarizeBy: none
+		sourceColumn: YoY %
+
+		annotation SummarizationSetBy = User
+
+	column 'MoM %'
+		dataType: double
+		formatString: 0.0%
+		lineageTag: 7badd2cc-3227-538a-93be-99ffb119faf9
+		summarizeBy: none
+		sourceColumn: MoM %
+
+		annotation SummarizationSetBy = User
+
+	column 'Index Jan2025 100'
+		dataType: double
+		formatString: #,0.00
+		lineageTag: 66713540-04e2-5988-990b-d9434801e4d7
+		summarizeBy: none
+		sourceColumn: Index Jan2025 100
+
+		annotation SummarizationSetBy = User
+
+	column 'Change since Jan2025 %'
+		dataType: double
+		formatString: 0.0%
+		lineageTag: d23ab6ce-a50d-5345-b1d4-b8fb5ea5f466
+		summarizeBy: none
+		sourceColumn: Change since Jan2025 %
+
+		annotation SummarizationSetBy = User
+
+	column 'Change vs 2024 Avg %'
+		dataType: double
+		formatString: 0.0%
+		lineageTag: c42b96bb-9f86-5e9c-97ee-75d842157579
+		summarizeBy: none
+		sourceColumn: Change vs 2024 Avg %
+
+		annotation SummarizationSetBy = User
+
+	partition CPI = m
+		mode: import
+		source =
+				let
+				    Source = Parquet.Document(File.Contents(DataRoot & "\CPI.parquet"))
+				in
+				    Source
+
+	annotation PBI_ResultType = Table
+

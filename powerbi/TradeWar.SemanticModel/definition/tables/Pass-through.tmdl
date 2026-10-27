@@ -1,0 +1,150 @@
+table 'Pass-through'
+	lineageTag: 7be15055-8cf3-5219-95f0-67e945a1b51c
+
+	column Spec
+		dataType: string
+		lineageTag: 69d75ca8-e68c-5fb2-973b-52c885a8037d
+		summarizeBy: none
+		sourceColumn: Spec
+
+		annotation SummarizationSetBy = User
+
+	column Term
+		dataType: string
+		lineageTag: f312da99-4663-5637-b12e-6b0a613c126c
+		summarizeBy: none
+		sourceColumn: Term
+
+		annotation SummarizationSetBy = User
+
+	column Coef
+		dataType: double
+		formatString: #,0.00
+		lineageTag: f25ae157-e81a-5e66-9be9-cf70aff5708b
+		summarizeBy: none
+		sourceColumn: Coef
+
+		annotation SummarizationSetBy = User
+
+	column SE
+		dataType: double
+		formatString: #,0.00
+		lineageTag: 78f6b50e-74a0-58d6-a7ea-773437d47384
+		summarizeBy: none
+		sourceColumn: SE
+
+		annotation SummarizationSetBy = User
+
+	column 'CI Lo'
+		dataType: double
+		formatString: #,0.00
+		lineageTag: 9e506b72-4471-5f75-b33c-6e2d535ba84a
+		summarizeBy: none
+		sourceColumn: CI Lo
+
+		annotation SummarizationSetBy = User
+
+	column 'CI Hi'
+		dataType: double
+		formatString: #,0.00
+		lineageTag: 297769db-ff03-578e-9421-484381845c62
+		summarizeBy: none
+		sourceColumn: CI Hi
+
+		annotation SummarizationSetBy = User
+
+	column 'P Value'
+		dataType: double
+		formatString: #,0.00
+		lineageTag: 2fe796bb-2ec9-583a-96e6-58e160e51e7f
+		summarizeBy: none
+		sourceColumn: P Value
+
+		annotation SummarizationSetBy = User
+
+	column '# Obs'
+		dataType: int64
+		lineageTag: 93ed45b9-d7bf-5c6a-bc1a-582b272992b1
+		summarizeBy: none
+		sourceColumn: # Obs
+
+		annotation SummarizationSetBy = User
+
+	column '# Categories'
+		dataType: int64
+		lineageTag: 123d37e6-ab73-540b-ab24-be4e8f8498bf
+		summarizeBy: none
+		sourceColumn: # Categories
+
+		annotation SummarizationSetBy = User
+
+	column 'Cov Type'
+		dataType: string
+		lineageTag: d01605a8-55cc-5489-9411-7cddd3903d0a
+		summarizeBy: none
+		sourceColumn: Cov Type
+
+		annotation SummarizationSetBy = User
+
+	column 'Sample Start'
+		dataType: dateTime
+		formatString: yyyy-mm-dd
+		lineageTag: dc755bf1-13d4-5920-ad5d-2820aa7ee445
+		summarizeBy: none
+		sourceColumn: Sample Start
+
+		annotation SummarizationSetBy = User
+
+	column 'Sample End'
+		dataType: dateTime
+		formatString: yyyy-mm-dd
+		lineageTag: 98bd0474-5d4e-5460-bf71-7e93782a6018
+		summarizeBy: none
+		sourceColumn: Sample End
+
+		annotation SummarizationSetBy = User
+
+	column Notes
+		dataType: string
+		lineageTag: 1ae7b8c3-07ca-5ba5-b3d4-131c93876bdf
+		summarizeBy: none
+		sourceColumn: Notes
+
+		annotation SummarizationSetBy = User
+
+	column Unit
+		dataType: string
+		lineageTag: 9d9afabd-23c4-5b81-a637-75ba3dc49956
+		summarizeBy: none
+		sourceColumn: Unit
+
+		annotation SummarizationSetBy = User
+
+	column 'Rel Quarter'
+		dataType: double
+		formatString: #,0.00
+		lineageTag: 25f01e72-eb62-5d26-a996-591224d1389c
+		summarizeBy: none
+		sourceColumn: Rel Quarter
+
+		annotation SummarizationSetBy = User
+
+	column 'Annualised Coef'
+		dataType: double
+		formatString: #,0.00
+		lineageTag: 1a140702-c92e-56f0-980f-631786e959d3
+		summarizeBy: none
+		sourceColumn: Annualised Coef
+
+		annotation SummarizationSetBy = User
+
+	partition 'Pass-through' = m
+		mode: import
+		source =
+				let
+				    Source = Parquet.Document(File.Contents(DataRoot & "\Pass-through.parquet"))
+				in
+				    Source
+
+	annotation PBI_ResultType = Table
+

@@ -1,0 +1,80 @@
+table Events
+	lineageTag: e8772b48-2c6e-5374-bbc2-e3513c1fe34c
+
+	column 'Event ID'
+		dataType: string
+		lineageTag: 27b1f7d4-6a29-59bc-90af-cc87308c5c9c
+		summarizeBy: none
+		sourceColumn: Event ID
+
+		annotation SummarizationSetBy = User
+
+	column 'Event Date'
+		dataType: dateTime
+		formatString: yyyy-mm-dd
+		lineageTag: 8e7bf091-a4ef-5288-8767-ede32146d017
+		summarizeBy: none
+		sourceColumn: Event Date
+
+		annotation SummarizationSetBy = User
+
+	column 'Event Family'
+		dataType: string
+		lineageTag: 741e4c38-9cd9-5503-8a94-f6701e01250f
+		summarizeBy: none
+		sourceColumn: Event Family
+
+		annotation SummarizationSetBy = User
+
+	column Event
+		dataType: string
+		lineageTag: c3c5f8fc-0ee3-5892-8ec8-16c05c70fc96
+		summarizeBy: none
+		sourceColumn: Event
+
+		annotation SummarizationSetBy = User
+
+	column ISO3
+		dataType: string
+		lineageTag: 773eb99f-1f64-5283-8876-087ed7f99545
+		summarizeBy: none
+		sourceColumn: ISO3
+
+		annotation SummarizationSetBy = User
+
+	column 'Rate %'
+		dataType: double
+		formatString: 0.0%
+		lineageTag: 6cd86933-2bc4-58ed-b29e-7ffe515197d6
+		summarizeBy: none
+		sourceColumn: Rate %
+
+		annotation SummarizationSetBy = User
+
+	column Description
+		dataType: string
+		lineageTag: 96aed29d-a22a-5af0-abba-61ce972286f7
+		summarizeBy: none
+		sourceColumn: Description
+
+		annotation SummarizationSetBy = User
+
+	column 'Source URL'
+		dataType: string
+		dataCategory: WebUrl
+		lineageTag: af2e783f-5122-532e-907a-e0507ce1a876
+		summarizeBy: none
+		sourceColumn: Source URL
+
+		annotation SummarizationSetBy = User
+
+	partition Events = m
+		mode: import
+		source =
+				let
+				    Source = Parquet.Document(File.Contents(DataRoot & "\Events.parquet"))
+				in
+				    Source
+
+	annotation PBI_ResultType = Table
+

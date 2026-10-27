@@ -1,0 +1,156 @@
+table Country
+	lineageTag: 285aa559-dcf3-5de8-acda-ae3ceeea3a28
+
+	column ISO3
+		dataType: string
+		lineageTag: 59d14292-443d-5f25-9630-4ea69997fc4b
+		summarizeBy: none
+		sourceColumn: ISO3
+
+		annotation SummarizationSetBy = User
+
+	column Country
+		dataType: string
+		lineageTag: 9fdf7455-2d7a-53dd-b99c-9f1e30adb92b
+		summarizeBy: none
+		sourceColumn: Country
+
+		annotation SummarizationSetBy = User
+
+	column Continent
+		dataType: string
+		lineageTag: 61193653-b5d9-5420-8c64-e3f902e110ec
+		summarizeBy: none
+		sourceColumn: Continent
+
+		annotation SummarizationSetBy = User
+
+	column 'Region WB'
+		dataType: string
+		lineageTag: 19ee0cce-0dfa-5142-a84a-a6c5659c4aca
+		summarizeBy: none
+		sourceColumn: Region WB
+
+		annotation SummarizationSetBy = User
+
+	column Subregion
+		dataType: string
+		lineageTag: efb21e30-35a1-5b2b-b615-6a9969a77eaf
+		summarizeBy: none
+		sourceColumn: Subregion
+
+		annotation SummarizationSetBy = User
+
+	column 'Income Group'
+		dataType: string
+		lineageTag: 4cb9dc5f-a8f9-5300-92db-d5a966eaf256
+		summarizeBy: none
+		sourceColumn: Income Group
+
+		annotation SummarizationSetBy = User
+
+	column 'Pop Est'
+		dataType: double
+		formatString: #,0.00
+		lineageTag: a6e5a4ed-ecc8-50c5-a765-9bcc3f8bfb63
+		summarizeBy: none
+		sourceColumn: Pop Est
+
+		annotation SummarizationSetBy = User
+
+	column 'GDP $M USD'
+		dataType: double
+		formatString: #,0
+		lineageTag: e6fce294-8fdf-5596-b8d3-b980d186c1cf
+		summarizeBy: none
+		sourceColumn: GDP $M USD
+
+		annotation SummarizationSetBy = User
+
+	column Latitude
+		dataType: double
+		formatString: #,0.00
+		dataCategory: Latitude
+		lineageTag: accc8209-ab12-5c08-aa5e-bc8f6de538e2
+		summarizeBy: none
+		sourceColumn: Latitude
+
+		annotation SummarizationSetBy = User
+
+	column Longitude
+		dataType: double
+		formatString: #,0.00
+		dataCategory: Longitude
+		lineageTag: 76339467-c881-57f8-98fc-10aa71713b7d
+		summarizeBy: none
+		sourceColumn: Longitude
+
+		annotation SummarizationSetBy = User
+
+	column 'Is US Trade Partner'
+		dataType: boolean
+		lineageTag: 85b011c4-7dc5-5dde-b294-5531180169ac
+		summarizeBy: none
+		sourceColumn: Is US Trade Partner
+
+		annotation SummarizationSetBy = User
+
+	column 'Is EU27'
+		dataType: boolean
+		lineageTag: 5ca00a05-67fa-55c6-8820-dace158d22a7
+		summarizeBy: none
+		sourceColumn: Is EU27
+
+		annotation SummarizationSetBy = User
+
+	column 'Partner Group'
+		dataType: string
+		lineageTag: 27847dcc-8e2d-5ace-bec4-5b6820629551
+		summarizeBy: none
+		sourceColumn: Partner Group
+
+		annotation SummarizationSetBy = User
+
+	column 'Is Focus'
+		dataType: boolean
+		lineageTag: 23346386-4915-5513-aa76-9325b3ed6a7f
+		summarizeBy: none
+		sourceColumn: Is Focus
+
+		annotation SummarizationSetBy = User
+
+	column 'Tariff Schedule Key'
+		dataType: string
+		lineageTag: f12fd26b-b5b6-51fc-9356-c25d3e805337
+		summarizeBy: none
+		sourceColumn: Tariff Schedule Key
+
+		annotation SummarizationSetBy = User
+
+	column 'Entity Type'
+		dataType: string
+		lineageTag: 36e7d759-4091-523d-acc0-19d335ee240e
+		summarizeBy: none
+		sourceColumn: Entity Type
+
+		annotation SummarizationSetBy = User
+
+	column 'Map Name'
+		dataType: string
+		dataCategory: Country
+		lineageTag: ad9b1bdd-0847-5fbf-a613-7a04dd2fcbf8
+		summarizeBy: none
+		sourceColumn: Map Name
+
+		annotation SummarizationSetBy = User
+
+	partition Country = m
+		mode: import
+		source =
+				let
+				    Source = Parquet.Document(File.Contents(DataRoot & "\Country.parquet"))
+				in
+				    Source
+
+	annotation PBI_ResultType = Table
+

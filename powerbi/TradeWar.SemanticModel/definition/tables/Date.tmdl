@@ -1,0 +1,164 @@
+table Date
+	lineageTag: 2136c573-627b-5861-b98f-39a604fa3ea3
+	dataCategory: Time
+
+	column Date
+		dataType: dateTime
+		isKey
+		formatString: yyyy-mm-dd
+		lineageTag: cf675afe-8cfa-578e-854f-2d00dadfdf6b
+		summarizeBy: none
+		sourceColumn: Date
+
+		annotation SummarizationSetBy = User
+
+	column Month
+		dataType: dateTime
+		formatString: mmm yyyy
+		lineageTag: 211286da-7785-5eb5-be6e-346e7d556e2b
+		summarizeBy: none
+		sourceColumn: Month
+
+		annotation SummarizationSetBy = User
+
+	column Year
+		dataType: int64
+		lineageTag: db4f50cb-b37b-522f-8e92-46c357dec656
+		summarizeBy: none
+		sourceColumn: Year
+
+		annotation SummarizationSetBy = User
+
+	column Quarter
+		dataType: int64
+		lineageTag: cc9ac052-cc8b-5261-8a9a-0a6e51af4467
+		summarizeBy: none
+		sourceColumn: Quarter
+
+		annotation SummarizationSetBy = User
+
+	column 'Month No'
+		dataType: int64
+		lineageTag: b0c962f5-a0f7-562b-8f19-1da33e8aca9e
+		summarizeBy: none
+		sourceColumn: Month No
+
+		annotation SummarizationSetBy = User
+
+	column 'Month Label'
+		dataType: string
+		lineageTag: 843fc473-7014-52b1-a422-922eb50667e9
+		summarizeBy: none
+		sourceColumn: Month Label
+		sortByColumn: Month
+
+		annotation SummarizationSetBy = User
+
+	column 'Year-Month'
+		dataType: string
+		lineageTag: 48654231-9398-5be3-bc92-c0fac006b455
+		summarizeBy: none
+		sourceColumn: Year-Month
+
+		annotation SummarizationSetBy = User
+
+	column 'Weekday No'
+		dataType: int64
+		lineageTag: 3c9631d3-731b-5545-80cf-04378ce1ea18
+		summarizeBy: none
+		sourceColumn: Weekday No
+
+		annotation SummarizationSetBy = User
+
+	column 'Is Weekend'
+		dataType: boolean
+		lineageTag: 99f61a01-3a42-570c-a1dd-8f39ddb8a532
+		summarizeBy: none
+		sourceColumn: Is Weekend
+
+		annotation SummarizationSetBy = User
+
+	column 'Is Month Start'
+		dataType: boolean
+		lineageTag: 7d7a1590-7b0b-5c8a-be9f-c078f091c643
+		summarizeBy: none
+		sourceColumn: Is Month Start
+
+		annotation SummarizationSetBy = User
+
+	column 'Trade Phase Code'
+		dataType: string
+		lineageTag: a6174753-4034-535a-ba51-29b578e79a7c
+		summarizeBy: none
+		sourceColumn: Trade Phase Code
+
+		annotation SummarizationSetBy = User
+
+	column 'Trade Phase Order'
+		dataType: int64
+		lineageTag: a07c09ba-9db0-500a-bad1-26f3133f3d2e
+		summarizeBy: none
+		sourceColumn: Trade Phase Order
+
+		annotation SummarizationSetBy = User
+
+	column 'Trade Phase'
+		dataType: string
+		lineageTag: ce011a09-3964-5004-9716-b711c3b9726e
+		summarizeBy: none
+		sourceColumn: Trade Phase
+		sortByColumn: 'Trade Phase Order'
+
+		annotation SummarizationSetBy = User
+
+	column 'War Phase Code'
+		dataType: string
+		lineageTag: 0bb13fce-d7a5-51d3-bcfb-2c3aa19f2cab
+		summarizeBy: none
+		sourceColumn: War Phase Code
+
+		annotation SummarizationSetBy = User
+
+	column 'War Phase Order'
+		dataType: int64
+		lineageTag: caf0ad34-55a5-5cd5-9d54-090ab596d341
+		summarizeBy: none
+		sourceColumn: War Phase Order
+
+		annotation SummarizationSetBy = User
+
+	column 'War Phase'
+		dataType: string
+		lineageTag: 582399b7-c474-5c8f-a674-c7e07eefdbb6
+		summarizeBy: none
+		sourceColumn: War Phase
+		sortByColumn: 'War Phase Order'
+
+		annotation SummarizationSetBy = User
+
+	column 'Before After'
+		dataType: string
+		lineageTag: 35188fcf-ac43-56be-937e-992f340a3f70
+		summarizeBy: none
+		sourceColumn: Before After
+
+		annotation SummarizationSetBy = User
+
+	column 'Is War Period'
+		dataType: boolean
+		lineageTag: 795ceb74-4870-59b3-a3cf-fd8cd565484f
+		summarizeBy: none
+		sourceColumn: Is War Period
+
+		annotation SummarizationSetBy = User
+
+	partition Date = m
+		mode: import
+		source =
+				let
+				    Source = Parquet.Document(File.Contents(DataRoot & "\Date.parquet"))
+				in
+				    Source
+
+	annotation PBI_ResultType = Table
+

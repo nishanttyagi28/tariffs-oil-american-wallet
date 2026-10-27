@@ -1,0 +1,223 @@
+table Counterfactual
+	lineageTag: 198dd627-f0dc-50c5-bff7-a0ff070cabce
+
+	column 'Series ID'
+		dataType: string
+		lineageTag: e080d2fe-6920-55a3-9278-2e94766e8842
+		summarizeBy: none
+		sourceColumn: Series ID
+
+		annotation SummarizationSetBy = User
+
+	column 'Partner Code'
+		dataType: string
+		lineageTag: f863721c-20de-56cb-8147-9196238068af
+		summarizeBy: none
+		sourceColumn: Partner Code
+
+		annotation SummarizationSetBy = User
+
+	column Partner
+		dataType: string
+		lineageTag: eded8f17-a6a6-5462-91f3-6951bc063342
+		summarizeBy: none
+		sourceColumn: Partner
+
+		annotation SummarizationSetBy = User
+
+	column Flow
+		dataType: string
+		lineageTag: ac9d8797-b117-5c24-8ccf-c0e47473c8b3
+		summarizeBy: none
+		sourceColumn: Flow
+
+		annotation SummarizationSetBy = User
+
+	column Month
+		dataType: dateTime
+		formatString: mmm yyyy
+		lineageTag: 4e784939-ab3e-5d7a-9c37-72173377186a
+		summarizeBy: none
+		sourceColumn: Month
+
+		annotation SummarizationSetBy = User
+
+	column 'Actual $M'
+		dataType: double
+		formatString: #,0
+		lineageTag: 3001396b-4fd4-544b-ba6f-f60caf62f504
+		summarizeBy: none
+		sourceColumn: Actual $M
+
+		annotation SummarizationSetBy = User
+
+	column 'Is Post-Tariff'
+		dataType: boolean
+		lineageTag: 66b04a9b-39cf-57aa-8fff-4a015e4b936f
+		summarizeBy: none
+		sourceColumn: Is Post-Tariff
+
+		annotation SummarizationSetBy = User
+
+	column 'Best Model'
+		dataType: string
+		lineageTag: 5b0f0d18-9d8f-5c8d-a0f9-6d4c0a0b904f
+		summarizeBy: none
+		sourceColumn: Best Model
+
+		annotation SummarizationSetBy = User
+
+	column Horizon
+		dataType: double
+		formatString: #,0.00
+		lineageTag: 45e8a775-5cce-5952-a506-7e6cdcde4735
+		summarizeBy: none
+		sourceColumn: Horizon
+
+		annotation SummarizationSetBy = User
+
+	column 'Counterfactual $M'
+		dataType: double
+		formatString: #,0
+		lineageTag: 700f78b3-d05c-53f6-9f8b-49581b2df2f8
+		summarizeBy: none
+		sourceColumn: Counterfactual $M
+
+		annotation SummarizationSetBy = User
+
+	column 'CF Lo 80'
+		dataType: double
+		formatString: #,0
+		lineageTag: 2c4a7987-babd-5fb6-bc96-c499b5eb2e8f
+		summarizeBy: none
+		sourceColumn: CF Lo 80
+
+		annotation SummarizationSetBy = User
+
+	column 'CF Hi 80'
+		dataType: double
+		formatString: #,0
+		lineageTag: ea113882-1748-5bda-8e75-3e5e9ffe9670
+		summarizeBy: none
+		sourceColumn: CF Hi 80
+
+		annotation SummarizationSetBy = User
+
+	column 'CF Lo 95'
+		dataType: double
+		formatString: #,0
+		lineageTag: 0f8719ad-9681-511a-a07d-726a76854dd7
+		summarizeBy: none
+		sourceColumn: CF Lo 95
+
+		annotation SummarizationSetBy = User
+
+	column 'CF Hi 95'
+		dataType: double
+		formatString: #,0
+		lineageTag: 2275e522-679f-550f-b776-640aabd0c1ff
+		summarizeBy: none
+		sourceColumn: CF Hi 95
+
+		annotation SummarizationSetBy = User
+
+	column 'CF Seasonal Naive'
+		dataType: double
+		formatString: #,0
+		lineageTag: 4aaf002c-297f-53f7-8c7b-4deb79fba905
+		summarizeBy: none
+		sourceColumn: CF Seasonal Naive
+
+		annotation SummarizationSetBy = User
+
+	column 'CF ETS'
+		dataType: double
+		formatString: #,0
+		lineageTag: 846be874-b62b-5672-9fc0-9af238575936
+		summarizeBy: none
+		sourceColumn: CF ETS
+
+		annotation SummarizationSetBy = User
+
+	column 'CF SARIMA'
+		dataType: double
+		formatString: #,0
+		lineageTag: 386cb41d-7fef-5118-ab8d-934935755969
+		summarizeBy: none
+		sourceColumn: CF SARIMA
+
+		annotation SummarizationSetBy = User
+
+	column 'CF LightGBM'
+		dataType: double
+		formatString: #,0
+		lineageTag: 495d09f9-2eb4-5952-8e21-463449f33367
+		summarizeBy: none
+		sourceColumn: CF LightGBM
+
+		annotation SummarizationSetBy = User
+
+	column 'Effect $M'
+		dataType: double
+		formatString: #,0
+		lineageTag: cba84233-8689-5451-a32c-2e4efb218f0b
+		summarizeBy: none
+		sourceColumn: Effect $M
+
+		annotation SummarizationSetBy = User
+
+	column 'Effect Lo 95'
+		dataType: double
+		formatString: #,0
+		lineageTag: d2d146e4-377d-5204-8788-4cd307df3594
+		summarizeBy: none
+		sourceColumn: Effect Lo 95
+
+		annotation SummarizationSetBy = User
+
+	column 'Effect Hi 95'
+		dataType: double
+		formatString: #,0
+		lineageTag: adde7174-c956-5127-b7d9-8d8792a89370
+		summarizeBy: none
+		sourceColumn: Effect Hi 95
+
+		annotation SummarizationSetBy = User
+
+	column 'Effect Lo 80'
+		dataType: double
+		formatString: #,0
+		lineageTag: e7f5fcb5-770a-5a96-9639-ef89eb8ca146
+		summarizeBy: none
+		sourceColumn: Effect Lo 80
+
+		annotation SummarizationSetBy = User
+
+	column 'Effect Hi 80'
+		dataType: double
+		formatString: #,0
+		lineageTag: 5ed0ee0d-aaf4-5a05-9133-2e00b0573326
+		summarizeBy: none
+		sourceColumn: Effect Hi 80
+
+		annotation SummarizationSetBy = User
+
+	column 'Effect %'
+		dataType: double
+		formatString: 0.0%
+		lineageTag: f5dd5c95-799d-500d-b6de-e0fdad5ef8de
+		summarizeBy: none
+		sourceColumn: Effect %
+
+		annotation SummarizationSetBy = User
+
+	partition Counterfactual = m
+		mode: import
+		source =
+				let
+				    Source = Parquet.Document(File.Contents(DataRoot & "\Counterfactual.parquet"))
+				in
+				    Source
+
+	annotation PBI_ResultType = Table
+
