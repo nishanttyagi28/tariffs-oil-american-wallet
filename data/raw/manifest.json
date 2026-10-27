@@ -1,0 +1,170 @@
+{
+  "bls/cpi_categories_monthly": {
+    "dataset": "cpi_categories_monthly",
+    "fetched_at_utc": "2026-10-26T19:09:08+00:00",
+    "max_date": "2026-09-01",
+    "min_date": "2017-01-01",
+    "note": "",
+    "rows": 2903,
+    "source": "bls",
+    "status": "ok",
+    "url": "https://api.bls.gov/publicAPI/v1/timeseries/data/"
+  },
+  "census_country/trade_by_country_monthly": {
+    "dataset": "trade_by_country_monthly",
+    "fetched_at_utc": "2026-10-27T12:42:30+00:00",
+    "max_date": "2026-08-01",
+    "min_date": "2015-01-01",
+    "note": "",
+    "rows": 69440,
+    "source": "census_country",
+    "status": "ok",
+    "url": "https://www.census.gov/foreign-trade/balance/country.xlsx"
+  },
+  "census_hs/imports_hs2_country_duty": {
+    "dataset": "imports_hs2_country_duty",
+    "fetched_at_utc": "2026-10-26T19:08:21+00:00",
+    "note": "CENSUS_API_KEY not set; optional source",
+    "rows": 0,
+    "source": "census_hs",
+    "status": "skipped",
+    "url": "https://api.census.gov/data/timeseries/intltrade/imports/hs"
+  },
+  "comtrade/mirror_exports_to_us_monthly": {
+    "dataset": "mirror_exports_to_us_monthly",
+    "fetched_at_utc": "2026-10-27T13:16:52+00:00",
+    "max_date": "2026-08-01",
+    "min_date": "2024-01-01",
+    "note": "failed calls: 0",
+    "rows": 170,
+    "source": "comtrade",
+    "status": "ok",
+    "url": "https://comtradeapi.un.org/public/v1/preview/C/M/HS"
+  },
+  "crosswalk/census_country_iso": {
+    "dataset": "census_country_iso",
+    "fetched_at_utc": "2026-10-27T13:17:15+00:00",
+    "note": "",
+    "rows": 241,
+    "source": "crosswalk",
+    "status": "ok",
+    "url": "https://www.census.gov/foreign-trade/schedules/c/country.txt"
+  },
+  "eia/crude_spot_daily": {
+    "dataset": "crude_spot_daily",
+    "fetched_at_utc": "2026-10-26T19:11:08+00:00",
+    "max_date": "2026-10-20",
+    "min_date": "1986-01-02",
+    "note": "",
+    "rows": 18639,
+    "source": "eia",
+    "status": "ok",
+    "url": "https://www.eia.gov/dnav/pet/hist_xls/RBRTEd.xls"
+  },
+  "eurostat/eu27_trade_partner_monthly": {
+    "dataset": "eu27_trade_partner_monthly",
+    "fetched_at_utc": "2026-10-26T19:08:39+00:00",
+    "max_date": "2026-08-01",
+    "min_date": "2015-01-01",
+    "note": "",
+    "rows": 560,
+    "source": "eurostat",
+    "status": "ok",
+    "url": "https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/ext_st_eu27_2020sitc"
+  },
+  "fred/fred_series": {
+    "dataset": "fred_series",
+    "fetched_at_utc": "2026-10-26T19:10:56+00:00",
+    "max_date": "2026-10-23",
+    "min_date": "2015-01-01",
+    "note": "32 series",
+    "rows": 44785,
+    "source": "fred",
+    "status": "ok",
+    "url": "https://fred.stlouisfed.org/graph/fredgraph.csv"
+  },
+  "gscpi/gscpi_monthly": {
+    "dataset": "gscpi_monthly",
+    "fetched_at_utc": "2026-10-27T12:43:42+00:00",
+    "max_date": "2026-09-01",
+    "min_date": "1998-01-01",
+    "note": "",
+    "rows": 345,
+    "source": "gscpi",
+    "status": "ok",
+    "url": "https://www.newyorkfed.org/medialibrary/research/interactives/gscpi/downloads/gscpi_data.xlsx"
+  },
+  "naturalearth/countries": {
+    "dataset": "countries",
+    "fetched_at_utc": "2026-10-27T13:17:09+00:00",
+    "note": "",
+    "rows": 177,
+    "source": "naturalearth",
+    "status": "ok",
+    "url": "https://naciscdn.org/naturalearth/110m/cultural/ne_110m_admin_0_countries.zip"
+  },
+  "portwatch/chokepoints_daily": {
+    "dataset": "chokepoints_daily",
+    "fetched_at_utc": "2026-10-27T12:50:42+00:00",
+    "max_date": "2026-10-18",
+    "min_date": "2019-01-01",
+    "note": "28 chokepoints",
+    "rows": 79744,
+    "source": "portwatch",
+    "status": "ok",
+    "url": "https://hub.arcgis.com/api/v3/datasets/3da2b9ca97684916b75c4013f95d18ab_0/downloads/data"
+  },
+  "portwatch/chokepoints_ref": {
+    "dataset": "chokepoints_ref",
+    "fetched_at_utc": "2026-10-27T13:17:08+00:00",
+    "note": "23 cols",
+    "rows": 28,
+    "source": "portwatch",
+    "status": "ok",
+    "url": "https://services9.arcgis.com/weJ1QsnbMYJlCHdG/arcgis/rest/services/PortWatch_chokepoints_database/FeatureServer/0/query"
+  },
+  "statcan/trade_principal_partners_monthly": {
+    "dataset": "trade_principal_partners_monthly",
+    "fetched_at_utc": "2026-10-26T19:08:47+00:00",
+    "max_date": "2026-08-01",
+    "min_date": "2015-01-01",
+    "note": "",
+    "rows": 36540,
+    "source": "statcan",
+    "status": "ok",
+    "url": "https://www150.statcan.gc.ca/n1/tbl/csv/12100011-eng.zip"
+  },
+  "treasury/mts_customs_duties_monthly": {
+    "dataset": "mts_customs_duties_monthly",
+    "fetched_at_utc": "2026-10-26T19:11:00+00:00",
+    "max_date": "2026-09-30",
+    "min_date": "2015-03-31",
+    "note": "",
+    "rows": 139,
+    "source": "treasury",
+    "status": "ok",
+    "url": "https://api.fiscaldata.treasury.gov/services/api/fiscal_service/v1/accounting/mts/mts_table_4"
+  },
+  "worldbank/wdi_annual": {
+    "dataset": "wdi_annual",
+    "fetched_at_utc": "2026-10-26T19:09:05+00:00",
+    "max_date": "2025-01-01",
+    "min_date": "2015-01-01",
+    "note": "",
+    "rows": 1155,
+    "source": "worldbank",
+    "status": "ok",
+    "url": "https://api.worldbank.org/v2/country/{c}/indicator/{i}"
+  },
+  "yahoo/market_prices_daily": {
+    "dataset": "market_prices_daily",
+    "fetched_at_utc": "2026-10-27T12:43:39+00:00",
+    "max_date": "2026-10-27",
+    "min_date": "2015-01-01",
+    "note": "25 instruments",
+    "rows": 74577,
+    "source": "yahoo",
+    "status": "ok",
+    "url": "https://query1.finance.yahoo.com/v8/finance/chart/{sym}"
+  }
+}
