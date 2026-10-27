@@ -2,7 +2,7 @@
 collapsed panes and the Windows taskbar). Idempotent: already-cropped files are skipped.
 
     python powerbi/tools/crop_screenshots.py docs/screenshots
-The same box (x=48..1515, y=168..836 at 1600x900) is used to crop the demo video.
+The same box (x=48..1488, y=168..836 at 1600x900) is used to crop the demo video.
 """
 from __future__ import annotations
 
@@ -11,7 +11,7 @@ from pathlib import Path
 
 from PIL import Image
 
-BOX = (48, 168, 1515, 836)
+BOX = (48, 168, 1488, 836)
 
 
 def main(folder: str) -> None:
