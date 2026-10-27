@@ -7,7 +7,9 @@
 
 ![Executive summary](docs/screenshots/01_exec.png)
 
-<!-- DEMO: replace with the walkthrough GIF once recorded -> ![Dashboard walkthrough](docs/demo.gif) -->
+![Dashboard walkthrough](docs/demo.gif)
+
+**[Watch the full 2-minute demo video (MP4)](docs/demo/tradewar_demo.mp4)**: a tour of the repo (SQL, dbt, ML code) and all 7 Power BI pages.
 
 ## The problem
 
