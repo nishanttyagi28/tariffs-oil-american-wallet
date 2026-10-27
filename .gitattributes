@@ -2,3 +2,10 @@
 *.xlsx binary
 *.png binary
 *.parquet binary
+*.duckdb binary
+*.zip binary
+*.xls binary
+*.mp4 binary
+*.gif binary
+# keep raw source snapshots byte-exact (no EOL normalisation)
+data/raw/** -text

@@ -8,10 +8,14 @@ seed-paths: ["../seeds"]
 test-paths: ["tests"]
 macro-paths: ["macros"]
 target-path: "target"
+on-run-start:
+  - "{{ check_raw_root() }}"
+
 clean-targets: ["target", "dbt_packages"]
 
 vars:
-  raw_root: "../data/raw"
+  # Relative to the dbt/ folder (run dbt from there); override with env TRADEWAR_RAW=<abs path to data/raw>.
+  raw_root: "{{ env_var('TRADEWAR_RAW', '../data/raw') }}"
   baseline_year: 2024
   before_start: "2024-01-01"      # "Before" window = calendar 2024
   before_end: "2024-12-31"

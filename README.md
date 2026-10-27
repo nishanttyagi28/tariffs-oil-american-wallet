@@ -172,6 +172,9 @@ Model outputs are written back to the warehouse (`ml` schema), tested by dbt, an
 
 ## How to reproduce
 
+**Step-by-step guide for a fresh Windows laptop, with runtimes and troubleshooting: [SETUP.md](SETUP.md).**
+
+Everything is committed (raw source snapshots in `data/raw`, the built DuckDB warehouse, ML outputs, Power BI tables), so a plain `git clone` can go straight to the dashboard; the commands below rebuild it all from scratch.
 Windows + Python 3.12 (Linux/macOS work the same except for Power BI Desktop). About 15 minutes end to end on a 2-core laptop.
 
 ```bash
@@ -199,6 +202,8 @@ Tests: `pytest -q` (warehouse tests skip if `warehouse/tradewar.duckdb` is absen
 ```
 .
 ├── ingest/              # one module per public source + run_all (no API keys)
+├── data/raw/            # raw source snapshots (parquet + original files, committed, ~21 MB)
+├── warehouse/           # tradewar.duckdb, the built warehouse (committed, ~41 MB)
 ├── seeds/               # tariff schedule & event timelines, each row with a source URL
 ├── dbt/                 # models: staging (16), intermediate (5), marts/core (13), marts/powerbi (5); tests; macros
 ├── sql/                 # analysis/*.sql (35 queries) + run_all.py

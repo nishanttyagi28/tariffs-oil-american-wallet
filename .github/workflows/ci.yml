@@ -29,6 +29,8 @@ jobs:
       - name: Install CI dependencies
         run: pip install -r requirements-ci.txt
 
+      - name: Secret scan (working tree)
+        run: python tools/secret_scan.py
       - name: Lint (ruff)
         run: ruff check .
 
